@@ -12,23 +12,17 @@
 
 <script type="text/JavaScript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery-1.3.2.min.js"></script>
 
-<script type="text/JavaScript" src="<?=$_SERVER['REQUEST_URI'];?>js/curvycorners.js"></script>
-<script type="text/JavaScript">
-<!--
-  addEvent(window, 'load', initCorners);
-
-  function initCorners() {
-    var settings = {
-      tl: { radius: 20 },
-      tr: { radius: 0 },
-      bl: { radius: 20 },
-      br: { radius: 0 },
-      antiAlias: true
-    }
-        curvyCorners(settings, "#mainContent,.mainContent2");
-  }
-  -->
+<!--============ SCRIPT: SUPERFISH (Menus Desplegables) =================-->
+<link rel="stylesheet" type="text/css" href="<?=$_SERVER['REQUEST_URI'];?>js/jquery.superfish/css/superfish.css" media="screen">
+<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery.superfish/js/hoverIntent.js"></script>
+<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery.superfish/js/superfish.js"></script>
+<script type="text/javascript">
+    jQuery(function(){
+        jQuery('ul.sf-menu').superfish();
+    });
 </script>
+<!--======= END SCRIPT =======-->
+
 
 <!--[if IE 6]>
 <script type="text/javascript">

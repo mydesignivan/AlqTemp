@@ -13,13 +13,7 @@
         <!-- end #header -->
       
         <div id="sidebar1">
-            <div class="publicity_horizontal">publicidad</div>
-            <div class="publicity_horizontal">publicidad</div>
-            <div class="publicity_horizontal">publicidad</div>
-            <div class="publicity_horizontal">publicidad</div>
-            <div class="publicity_horizontal">publicidad</div>
-            <div class="publicity_horizontal">publicidad</div>
-            <div class="publicity_horizontal">publicidad</div>
+            <?php include('includes/banner.php');?>
         </div>
         <!-- end #sidebar1 -->
       
@@ -28,35 +22,38 @@
                 <div class="content_top"><h1>Alquileres Destacados</h1></div>
 
                 <div class="description_properties">
-                    <div class="image_properties"><img src="images/image_properties1.png" alt="" /></div>
+                    <div class="image_properties"><img src="storage/thumbs/image_properties1.png" alt="" /></div>
                     <div class="description_text">
                         <h2>San Lorenzo Apartments</h2>
-                        <p>Ajkljlkjeqw jlkjadk wqe jklasd lkjalsdjasd klñkñalskd alkasd jka dasdas.</p>
+                        <p>departamentos en pleno centro de mendoza</p>
                         <b>Categor&iacute;a:</b> Departamentos <br />
                         <b>Ciudad:</b> Mendoza 
-                        <span><br />Precio: $250</span><a class="info" href="#">Mas info</a>
+                        <span><br />Precio: $250</span><a class="info" href="#">M&aacute;s info</a>
                     </div>
                 </div>
             
                 <div class="description_properties">
-                    <div class="image_properties"><img src="images/image_properties1.png" alt="" /></div>
+                    <div class="image_properties"><img src="storage/thumbs/8_valle.jpg" alt="" width="107" /></div>
                     <div class="description_text">
-                        <h2>San Lorenzo Apartments</h2>
-                        <p>Ajkljlkjeqw jlkjadk wqe jklasd lkjalsdjasd klñkñalskd alkasd jka dasdas.</p>
-                        <b>Categor&iacute;a:</b> Departamentos <br />
+                        <h2>Valle de Uco</h2>
+                        <p>
+                            Cabañas totalmente equipadas en la ruta de las nieves y el vino.
+                            En medio de la montaña y atravesadas por el arroyo PIRKAS en un barrio privado donde lo natural aun existe y el silencio es lo mas importante además de la fauna y los pájaros.
+                        </p>
+                        <b>Categor&iacute;a:</b> Cabañas<br />
                         <b>Ciudad:</b> Mendoza 
-                      <span><br />Precio: $250</span><a class="info" href="#">Mas info</a>
+                        <span><br />Precio: $210</span><a class="info" href="#">M&aacute;s info</a>
                     </div>
                 </div>
                 
                 <div class="description_properties">
-                    <div class="image_properties"><img src="images/image_properties1.png" alt="" /></div>
+                    <div class="image_properties"><img src="storage/thumbs/7_sanra2.jpg" alt="" width="107" /></div>
                     <div class="description_text">
-                        <h2>San Lorenzo Apartments</h2>
-                        <p>Ajkljlkjeqw jlkjadk wqe jklasd lkjalsdjasd klñkñalskd alkasd jka dasdas.</p>
+                        <h2>San Rafael</h2>
+                        <p>Alquilo departamento amoblado con todos los servicios, cochera techada, churrasquera, tv x cable con pileta. a pasos del parque. ideal para disfrutar tus vacaciones en san rafael mendoza.</p>
                         <b>Categor&iacute;a:</b> Departamentos <br />
                         <b>Ciudad:</b> Mendoza 
-                        <span><br />Precio: $250</span><a class="info" href="#">Mas info</a>
+                        <span><br />Precio: $130</span><a class="info" href="#">M&aacute;s info</a>
                     </div>
                 </div>
             </div>

@@ -1,1071 +1,1076 @@
 @charset "utf-8";
-body  {
-	font: 100% Verdana, Arial, Helvetica, sans-serif;
-	background: url(../images/background_texture_top.jpg) top left repeat-x #FAF5E1;
-	margin: 0; /* es recomendable ajustar a cero el margen y el relleno del elemento body para lograr la compatibilidad con la configuración predeterminada de los diversos navegadores */
-	padding: 0;
-	text-align: center; /* esto centra el contenedor en los navegadores IE 5*. El texto se ajusta posteriormente con el valor predeterminado de alineación a la izquierda en el selector #container */
-	color: #000000;
+body {
+    font: 100% Verdana, Arial, Helvetica, sans-serif;
+    background: url(../images/background_texture_top.jpg) top left repeat-x #FAF5E1;
+    margin: 0; /* es recomendable ajustar a cero el margen y el relleno del elemento body para lograr la compatibilidad con la configuración predeterminada de los diversos navegadores */
+    padding: 0;
+    text-align: center; /* esto centra el contenedor en los navegadores IE 5*. El texto se ajusta posteriormente con el valor predeterminado de alineación a la izquierda en el selector #container */
+    color: #000000;
+}
+img{border:none !important;}
+a{
+    text-decoration:none;
+}
+h1 {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:18px;
+    font-style:italic;
+    font-weight:bold;
+    color:#744818;
+    padding-left:23px;
+    padding-top:5px;
+}
+h2 {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:16px;
+    color: #FC7F07;
+}
+h3 {
+font-family:Arial, Helvetica, sans-serif;
+font-size:14px;
+color:#666666;
+font-style:italic;
+font-weight:bold;
+}
+
+
+
+
+
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+/*-----------------------------------------------------------------------------*/
+
+#container { 
+    width: 1050px;  /* el uso de 20px menos que un ancho completo de 800px da cabida a los bordes del navegador y evita la aparición de una barra de desplazamiento horizontal */
+    margin: 0 auto; /* los márgenes automáticos (conjuntamente con un ancho) centran la página */
+    /*border: 1px solid #000000;*/
+    text-align: left; /* esto anula text-align: center en el elemento body. */
+}
+
+#header {
+    padding: 0 10px 0 20px;
+    float:left;
+    /*border:1px #990000 solid;*/
+    /*height:306px;*/
+    /* este relleno coincide con la alineación izquierda de los elementos de los divs que aparecen bajo él. Si se utiliza una imagen en el #header en lugar de texto, es posible que le interese quitar el relleno. */
+} 
+    #header .top_left {
+        background:url(../images/top_left.png) top left no-repeat;
+        height:160px;
+        width: 241px;
+        padding:20px 0 10px 20px;
+        float:left;
+        margin-right:-20px;
+        position:relative;
+        z-index:5;
     }
-	#container { 
-		width: 1050px;  /* el uso de 20px menos que un ancho completo de 800px da cabida a los bordes del navegador y evita la aparición de una barra de desplazamiento horizontal */
-		margin: 0 auto; /* los márgenes automáticos (conjuntamente con un ancho) centran la página */
-		/*border: 1px solid #000000;*/
-		text-align: left; /* esto anula text-align: center en el elemento body. */
-	} 
-    #header {
-		padding: 0 10px 0 20px;
-		float:left;
-		/*border:1px #990000 solid;*/
-		/*height:306px;*/
-		  /* este relleno coincide con la alineación izquierda de los elementos de los divs que aparecen bajo él. Si se utiliza una imagen en el #header en lugar de texto, es posible que le interese quitar el relleno. */
-    } 
-		#header .top_left {
-			background:url(../images/top_left.png) top left no-repeat;
-			height:160px;
-			width: 241px;
-			padding:20px 0 10px 20px;
-			float:left;
-			margin-right:-20px;
-			position:relative;
-			z-index:5;
-		}
-		#header .top_left .top_menu li{
-			list-style:none;
-			display:inline;
-			font-size:10px;
-		}
-		#header .top_left .top_menu a{
-			color:#684C1D;
-			font-weight:bold;
-		}
-		#header .top_right {
-			background: url(../images/header_login.png) top left no-repeat;
-			height:193px;
-			width:743px;
-			float:left;
-			position:relative;
-			z-index:3;
-		}
-			#header .top_right .registro {
-				margin-top:22px;
-				margin-left:160px;
-			}
-				#header .top_right .registro form .login {
-					background:url(../images/button1.png) center no-repeat;
-					width:76px;
-					height:25px;
-					font-family:Arial, Helvetica, sans-serif;
-					font-size:12px;
-					font-weight:bold;
-					color:#684C1D;
-					float:right;
-					text-align:center;
-					vertical-align:middle;
-					line-height:25px;
-					margin-top:-3px;
-					margin-right:140px;
-					border:none;
-				}
-		/***************************** SEARCH ********************************/
-		#header .search{
-			float:left;
-			background:url(../images/background_search.png) top left no-repeat;
-			width:340px;
-			height:100px;
-			margin:-20px -5px 0 4px;
-			position:relative;
-			padding:20px 20px;
-		}
-			#header .search .search_top{
-				float:left;
-				width:340px;
-			}
-				#header .search .search_top .img_search{
-				width:22px;
-				height:22px;
-				float:right;
-				position:absolute;
-				z-index:30;
-				left:90px;
-				top:18px;
-				}
-					#header .search .search_top .div1{
-						float:left;
-						font-family:Arial, Helvetica, sans-serif;
-						font-size:14px;
-						color:#684C1D;
-						font-weight:bold;
-						font-style:italic;
-					}
-						#header .search .search_top .div1 .input{
-							padding-left:20px;
-						}
-					#header .search .search_top a{
-						background:url(../images/button1.png) center no-repeat;
-						width:76px;
-						height:25px;
-						font-family:Arial, Helvetica, sans-serif;
-						font-size:12px;
-						font-weight:bold;
-						color:#684C1D;
-						display:block;
-						float:left;
-						text-align:center;
-						vertical-align:middle;
-						line-height:25px;
-						margin-top:-3px;
-					}
-				#header .search .search_left{
-					float:left;
-					width:160px;
-					margin-top: 20px;
-				}
-				#header .search .search_right{
-					float:left;
-					width:160px;
-					margin-top: 20px;
-				}
-		/***************************** FIN SEARCH ********************************/
-		#header .column1{
-			float:left;
-			margin-left:-30;
-			width:600px;
-			height:48px;
-			margin-top:-10px
-		}
-			#header .column1 .main_menu{
-				width:600px;
-				height:48px;
-				float:left;
-			}
-				#header .column1 .main_menu ul{
-					list-style-type:none;
-					margin-left:-40px;
-					margin-top:-8px;
-					float:left;
-				}
-					#header .column1 .main_menu ul li{
-						display:inline;
-						padding-right:1px;
-					}
-						#header .column1 .main_menu ul li a{
-							background:url(../images/button_menu.png) no-repeat center top;
-							float:left;
-							width:145px;
-							height:48px;
-							text-align:center;
-							padding-top:13px;
-							padding-right:2px;
-							font-family:Arial, Helvetica, sans-serif;
-							font-size:14px;
-							text-decoration:none;
-							font-weight:bold;
-							color:#5F4E37;
-						}
-			#header .column1 .button_publicar{
-				width:109px;
-				height:70px;
-				float:right;
-				margin-right:15px;
-				/*border:1px #FF3300 solid;*/
-			}
-						
-		/************************************ MENU PANEL ******************************/
-		#header .column_panel{
-			float:left;
-			width:600px;
-			height:38px;
-			margin-top:-10px
-		}
-			#header .column_panel .menu_panel{
-				width:600px;
-				height:48px;
-				float:left;
-				margin-left:8px;
-			}
-				#header .column_panel .menu_panel ul{
-					list-style-type:none;
-					margin-left:-40px;
-					margin-top:-8px;
-					float:left;
-				}
-					#header .column_panel .menu_panel ul li{
-						display:inline;
-						padding-right:1px;
-					}
-						#header .column_panel .menu_panel ul li a{
-							background:url(../images/button_menu.png) no-repeat center top;
-							float:left;
-							width:145px;
-							height:48px;
-							text-align:center;
-							padding-top:13px;
-							padding-right:2px;
-							font-family:Arial, Helvetica, sans-serif;
-							font-size:13px;
-							text-decoration:none;
-							font-weight:bold;
-							color:#5F4E37;
-						}
-	/************************************ FIN MENU PANEL ******************************/
+        #header .top_left .top_menu li{
+            list-style:none;
+            display:inline;
+            font-size:10px;
+        }
+        #header .top_left .top_menu a{
+            color:#684C1D;
+            font-weight:bold;
+        }
+
+    #header .top_right {
+        background: url(../images/header_login.png) top left no-repeat;
+        height:193px;
+        width:743px;
+        float:left;
+        position:relative;
+        z-index:3;
+    }
+
+        #header .top_right .registro {
+            margin-top:22px;
+            margin-left:160px;
+        }
+            #header .top_right .registro form .login {
+                background:url(../images/button1.png) center no-repeat;
+                width:76px;
+                height:25px;
+                font-family:Arial, Helvetica, sans-serif;
+                font-size:12px;
+                font-weight:bold;
+                color:#684C1D;
+                float:right;
+                text-align:center;
+                vertical-align:middle;
+                line-height:25px;
+                margin-top:-3px;
+                margin-right:140px;
+                border:none;
+            }
+
+    /***************************** SEARCH ********************************/
+    #header .search{
+        float:left;
+        background:url(../images/background_search.png) top left no-repeat;
+        width:340px;
+        height:100px;
+        margin:-20px -5px 0 4px;
+        position:relative;
+        padding:20px 20px;
+    }
+        #header .search .search_top{
+            float:left;
+            width:340px;
+        }
+                #header .search .search_top .img_search{
+                    width:22px;
+                    height:22px;
+                    float:right;
+                    position:absolute;
+                    z-index:30;
+                    left:90px;
+                    top:18px;
+                }
+                #header .search .search_top .div1{
+                    float:left;
+                    font-family:Arial, Helvetica, sans-serif;
+                    font-size:14px;
+                    color:#684C1D;
+                    font-weight:bold;
+                    font-style:italic;
+                }
+                    #header .search .search_top .div1 .input{
+                        padding-left:20px;
+                    }
+
+                #header .search .search_top a{
+                    background:url(../images/button1.png) center no-repeat;
+                    width:76px;
+                    height:25px;
+                    font-family:Arial, Helvetica, sans-serif;
+                    font-size:12px;
+                    font-weight:bold;
+                    color:#684C1D;
+                    display:block;
+                    float:left;
+                    text-align:center;
+                    vertical-align:middle;
+                    line-height:25px;
+                    margin-top:-3px;
+                }
+            #header .search .search_left{
+                float:left;
+                width:160px;
+                margin-top: 20px;
+            }
+            #header .search .search_right{
+                float:left;
+                width:160px;
+                margin-top: 20px;
+            }
+    /***************************** FIN SEARCH ********************************/
+
+    #header .column1{
+        float:left;
+        margin-left:-30;
+        width:600px;
+        height:48px;
+        margin-top:-10px
+    }
+        #header .column1 .main_menu{
+            width:600px;
+            height:48px;
+            float:left;
+        }
+            #header .column1 .main_menu .sf-menu{
+                margin-top:-8px;
+                margin-left:-40px;
+            }        
+            #header .column1 .main_menu ul{
+                list-style-type:none;
+                float:left;
+            }
+                #header .column1 .main_menu ul li{
+                    display:inline;
+                    padding-right:1px;
+                }
+                    #header .column1 .main_menu ul li .menu-option{
+                        background:url(../images/button_menu.png) no-repeat top center;
+                        float:left;
+                        width:145px;
+                        height:29px;
+                        text-align:center;
+                        padding-top:13px;
+                        padding-right:2px;
+                        font-family:Arial, Helvetica, sans-serif;
+                        font-size:14px;
+                        text-decoration:none;
+                        font-weight:bold;
+                        color:#5F4E37;
+                    }
+        #header .column1 .button_publicar{
+            width:109px;
+            height:70px;
+            float:right;
+            margin-right:15px;
+            /*border:1px #FF3300 solid;*/
+        }
+
+    /******************************** MENU PANEL *****************************/
+    #header .column_panel{
+        float:left;
+        width:600px;
+        height:38px;
+        margin-top:-10px
+    }
+        #header .column_panel .menu_panel{
+            width:600px;
+            height:48px;
+            float:left;
+            margin-left:8px;
+        }
+            #header .column_panel .menu_panel ul{
+                list-style-type:none;
+                margin-left:-40px;
+                margin-top:-8px;
+                float:left;
+            }
+                #header .column_panel .menu_panel ul li{
+                    display:inline;
+                    padding-right:1px;
+                }
+                    #header .column_panel .menu_panel ul li a{
+                        background:url(../images/button_menu.png) no-repeat top center;
+                        float:left;
+                        width:145px;
+                        height:48px;
+                        text-align:center;
+                        padding-top:13px;
+                        padding-right:2px;
+                        font-family:Arial, Helvetica, sans-serif;
+                        font-size:13px;
+                        text-decoration:none;
+                        font-weight:bold;
+                        color:#5F4E37;
+                    }
+    /******************************* FIN MENU PANEL ****************************/
 	
 	
     #sidebar1 {
-		float: right; /* dado que este elemento es flotante, debe asignarse un ancho */
-		width: 297px; /* el ancho real de este div, en navegadores que cumplen los estándares, o el modo de estándares de Internet Explorer, incluirá el relleno y el borde además del ancho */
-		/*background: #EBEBEB; /* el color de fondo se mostrará a lo largo de todo el contenido de la columna, pero no más allá */
-		margin-top:10px;
-		margin-right:60px;
-		/*border:solid 1px;*/
-		background: url(../images/background_sidebar.png)left top repeat-y;
-		font-size:12px;
+        float: right; /* dado que este elemento es flotante, debe asignarse un ancho */
+        width: 297px; /* el ancho real de este div, en navegadores que cumplen los estándares, o el modo de estándares de Internet Explorer, incluirá el relleno y el borde además del ancho */
+        /*background: #EBEBEB; /* el color de fondo se mostrará a lo largo de todo el contenido de la columna, pero no más allá */
+        margin-top:10px;
+        margin-right:60px;
+        /*border:solid 1px;*/
+        background: url(../images/background_sidebar.png)left top repeat-y;
+        font-size:12px;
     }
-		#sidebar1 .publicity_horizontal{
-			width:260px;
-			height:90px;
-			background-color:#FFCC66;
-			margin:0 auto;
-			margin-top:20px;
-			margin-bottom:20px;
-		}
+        #sidebar1 .publicity_horizontal{
+            width:260px;
+            height:90px;
+            background-color:#FFCC66;
+            margin:0 auto;
+            margin-top:20px;
+            margin-bottom:20px;
+        }
 	
-	/************************************** PROPIEDADES DESTACADAS ******************************/
+    /*************************** PROPIEDADES DESTACADAS ************************/
     .container_mainContent{
-		width:650px;
-		padding: 0px 0 0 20px;
-		/*border:solid #006600 1px;*/
-		float:left;
-		margin-left:5px;
-	}
+        width:650px;
+        padding: 0px 0 0 20px;
+        /*border:solid #006600 1px;*/
+        float:left;
+        margin-left:5px;
+    }
 	.container_mainContent #mainContent { 
-		width:650px;
-		background: url(../images/background_general.png)left top repeat-y;
-		padding: 0px 0 0 20px;
-		/*border:solid #006600 1px;*/
-		float:left;
-		margin-top:10px;
-		font-family:Arial, Helvetica, sans-serif;
-		font-size:11px;
+            width:650px;
+            background: url(../images/background_general.png)left top repeat-y;
+            padding: 0px 0 0 20px;
+            /*border:solid #006600 1px;*/
+            float:left;
+            margin-top:10px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:11px;
 	}
-		.container_mainContent #mainContent .content_top{
-			float:left;
-			width:667px;
-			height:66px;
-			background:url(../images/form_top.png) no-repeat left top;
-			margin-left:-23px;
-			margin-top:-10px;
-		}
-		.container_mainContent #mainContent .description_properties {
-			float:left;
-			width:620px;
-			height:160px;
-			/*border:1px solid;*/
-		}
-			.container_mainContent #mainContent .description_properties .image_properties {
-				float:left;
-				width:106px;
-				height:90px;
-				margin-top:18px;
-			}
-			.container_mainContent #mainContent .description_properties .description_text {
-				float:left;
-				margin-left:20px;
-				width:490px;
-			}
-			.container_mainContent #mainContent .description_properties .description_text span {
-				font-size:12px;
-				color: #FC7F07;
-				font-weight:bold;
-			}
-			.container_mainContent #mainContent .description_properties .description_text .info {
-				float:right;
-				width:76px;
-				height:25px;
-				background:url(../images/button1.png) center no-repeat;
-				padding-bottom:-250px;
-				text-align:center;
-				vertical-align:middle;
-				padding-top:10px;
-				font-size:11px;
-				color:#724F1C;
-			}
-			.container_mainContent #mainContent .description_properties .description_text .info:hover {
-				background:url(../images/button1_over.png) center no-repeat;
-			}
+            .container_mainContent #mainContent .content_top{
+                float:left;
+                width:667px;
+                height:66px;
+                background:url(../images/form_top.png) no-repeat left top;
+                margin-left:-23px;
+                margin-top:-10px;
+            }
+            .container_mainContent #mainContent .description_properties {
+                float:left;
+                width:620px;
+                height:160px;
+                /*border:1px solid;*/
+            }
+                .container_mainContent #mainContent .description_properties .image_properties {
+                    float:left;
+                    width:106px;
+                    height:90px;
+                    margin-top:18px;
+                }
+                .container_mainContent #mainContent .description_properties .description_text {
+                    float:left;
+                    margin-left:20px;
+                    width:490px;
+                }
+                    .container_mainContent #mainContent .description_properties .description_text span {
+                        font-size:12px;
+                        color: #FC7F07;
+                        font-weight:bold;
+                    }
+                    .container_mainContent #mainContent .description_properties .description_text .info {
+                        float:right;
+                        width:76px;
+                        height:25px;
+                        background:url(../images/button1.png) center no-repeat;
+                        padding-bottom:-250px;
+                        text-align:center;
+                        vertical-align:middle;
+                        padding-top:10px;
+                        font-size:11px;
+                        color:#724F1C;
+                    }
+                    .container_mainContent #mainContent .description_properties .description_text .info:hover {
+                        background:url(../images/button1_over.png) center no-repeat;
+                    }
+
 	.container_mainContent .mainContent2 { 
-		width:650px;
-		background: url(../images/background_general.png)left top repeat-y;
-		padding: 0px 0 0 20px;
-		float:left;
-		margin-top:10px;
-		font-family:Arial, Helvetica, sans-serif;
-		font-size:11px;
+            width:650px;
+            background: url(../images/background_general.png)left top repeat-y;
+            padding: 0px 0 0 20px;
+            float:left;
+            margin-top:10px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:11px;
 	}
-		.container_mainContent .mainContent2 .content_top{
-			float:left;
-			width:667px;
-			height:66px;
-			background:url(../images/form_top.png) no-repeat left top;
-			margin-left:-23px;
-			margin-top:-10px;
-		}
-			.container_mainContent .mainContent2 .destinations{
-				width:100%;
-			}
-				.container_mainContent .mainContent2 .destinations .column{
-					width:30%;
-					float:left;
-					margin-right:20px;
-					margin-top:5px;
-				}
-				.container_mainContent .mainContent2 .destinations .line_right{
-					width:30%;
-					border-right:solid 1px #999999;
-					margin-top:5px;
-				}
-					.container_mainContent .mainContent2 .destinations .column ul{
-						color: #333333;
-					}
-					.container_mainContent .mainContent2 .destinations .column ul li{
-						list-style:none
-					}
-		/************************************** FIN PROPIEDADES DESTACADAS ******************************/
+            .container_mainContent .mainContent2 .content_top{
+                float:left;
+                width:667px;
+                height:66px;
+                background:url(../images/form_top.png) no-repeat left top;
+                margin-left:-23px;
+                margin-top:-10px;
+            }
+                .container_mainContent .mainContent2 .destinations{
+                    width:100%;
+                }
+                    .container_mainContent .mainContent2 .destinations .column{
+                        width:30%;
+                        float:left;
+                        margin-right:20px;
+                        margin-top:5px;
+                    }
+                        .container_mainContent .mainContent2 .destinations .column ul{
+                            color: #333333;
+                        }
+                            .container_mainContent .mainContent2 .destinations .column ul li{
+                                list-style:none
+                            }
+                    .container_mainContent .mainContent2 .destinations .line_right{
+                        width:30%;
+                        border-right:solid 1px #999999;
+                        margin-top:5px;
+                    }
+        /********************** FIN PROPIEDADES DESTACADAS *********************/
 		
-		.container_mainContent #mainContent .content_top .icons{
-			float:right;
-			margin-top:-45px;
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:11px;
-			color:#8C5F28;
-			width:200px;
-			height:20px;
-			/*border:solid 1px;*/
-		}
-			.container_mainContent #mainContent .content_top .icons span{
-				padding-top:-20px;
-				font-weight:bold;
-				color:#FF7C0E;
-			}
-			.container_mainContent #mainContent .content_top .icons img{
-				margin-left:10px;			
-			}
-			.container_mainContent #mainContent .content_top .icons a{
-				padding-top:-20px;
-				font-weight:bold;
-				color:#FF7C0E;
-			}
-		
-		
-		/************************************* FOTOS **********************************/
-		.container_mainContent #mainContent .content_left{
-			width:390px;
-			/*height:600px;*/
-			float:left;
-			margin-left:-10px;
-			/*border:1px solid;*/
-		}
-		.container_mainContent #mainContent .content_left .photos{
-			width:370px;
-			height:372px;
-			/*border:1px solid #FF0000;*/
-		}
-				.container_mainContent #mainContent .content_left .photos .photo_top{
-					width:370px;
-					height:273px;
-					/*border:1px solid #66CC00;*/
-					background:url(../images/background_photos.png) no-repeat left center;
-					margin:0 auto;
-					text-align:center;
-				}
-					.container_mainContent #mainContent .content_left .photos .photo_top img{
-						padding-top:20px;
-					}
-				.container_mainContent #mainContent .content_left .photos .photo_bottom{
-					float:left;
-					width:370px;
-					height:90px;
-					/*border:solid 1px #336666;*/
-				}
-				.container_mainContent #mainContent .content_left .photos .photo_bottom .middle{
-					float:left;
-					width:301px;
-					height:82px;
-					background:url(../images/background_miniaturas.png) repeat-y top;
-					/*border:solid 1px #CC0000;*/
-				}
-				.container_mainContent #mainContent .content_left .photos .photo_bottom .arrow_left{
-					float:left;
-					width:28px;
-					height:90px;
-					margin-left:5px;
-					margin-top:33px;
-				}
-				.container_mainContent #mainContent .content_left .photos .photo_bottom .arrow_left{
-					float:left;
-					width:28px;
-					height:90px;
-					margin-left:5px;
-					margin-top:33px;
-				}
-				.container_mainContent #mainContent .content_left .photos .photo_bottom .arrow_right{
-					float:right;
-					width:28px;
-					height:90px;
-					margin-right:5px;
-					margin-top:33px;
-				}
-		/**************************************** FIN FOTOS *********************************************/
+        .container_mainContent #mainContent .content_top .icons{
+            float:right;
+            margin-top:-45px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:11px;
+            color:#8C5F28;
+            width:200px;
+            height:20px;
+            /*border:solid 1px;*/
+        }
+            .container_mainContent #mainContent .content_top .icons span{
+                padding-top:-20px;
+                font-weight:bold;
+                color:#FF7C0E;
+            }
+            .container_mainContent #mainContent .content_top .icons img{
+                margin-left:10px;
+            }
+            .container_mainContent #mainContent .content_top .icons a{
+                padding-top:-20px;
+                font-weight:bold;
+                color:#FF7C0E;
+            }
+
+    /**************************** FOTOS ******************************/
+    .container_mainContent #mainContent .content_left{
+        width:390px;
+        /*height:600px;*/
+        float:left;
+        margin-left:-10px;
+        /*border:1px solid;*/
+    }
+        .container_mainContent #mainContent .content_left .photos{
+            width:370px;
+            height:372px;
+            /*border:1px solid #FF0000;*/
+        }
+            .container_mainContent #mainContent .content_left .photos .photo_top{
+                width:370px;
+                height:273px;
+                /*border:1px solid #66CC00;*/
+                background:url(../images/background_photos.png) no-repeat left center;
+                margin:0 auto;
+                text-align:center;
+            }
+                .container_mainContent #mainContent .content_left .photos .photo_top img{
+                    padding-top:20px;
+                }
+            .container_mainContent #mainContent .content_left .photos .photo_bottom{
+                float:left;
+                width:370px;
+                height:90px;
+                /*border:solid 1px #336666;*/
+            }
+                .container_mainContent #mainContent .content_left .photos .photo_bottom .middle{
+                    float:left;
+                    width:301px;
+                    height:82px;
+                    background:url(../images/background_miniaturas.png) repeat-y top;
+                    /*border:solid 1px #CC0000;*/
+                }
+                .container_mainContent #mainContent .content_left .photos .photo_bottom .arrow_left{
+                    float:left;
+                    width:28px;
+                    height:90px;
+                    margin-left:5px;
+                    margin-top:33px;
+                }
+                .container_mainContent #mainContent .content_left .photos .photo_bottom .arrow_right{
+                    float:right;
+                    width:28px;
+                    height:90px;
+                    margin-right:5px;
+                    margin-top:33px;
+                }
+    /******************************* FIN FOTOS *********************************/
 		
 		
-		/**************************************** FORMULARIO PROPIEDADES *********************************************/
-			.container_mainContent #mainContent .warning{
-				float:left;
-				width:200px;
-			}
-			.container_mainContent #mainContent .style_input{
-				float:right;
-				width:200px;
-			}
-			.container_mainContent #mainContent .content_left .style_textarea{
-				float:right;
-				width:200px;
-				height:100px;
-				margin-bottom:10px;
-			}
-			.container_mainContent #mainContent .content_left p{
-				float:left;
-				width:390px;
-				margin-bottom:2px;
-			}		
-			.container_mainContent #mainContent .content_left .list{
-				overflow:auto;
-				width:200px;
-				float:right;
-				height:100px;
-				margin-top:-30px;
-			}
-				.container_mainContent #mainContent .content_left .list ul{
-					list-style:none;
-					margin-left:-45px;
-					margin-top:-1px;
-				}
-					.container_mainContent #mainContent .content_left .list li{
-						width:184px;
-						height:20px;
-						padding:2px;
-					}
-					.container_mainContent #mainContent .content_left .list span{
-						padding-left:7px;
-					}
-					.container_mainContent #mainContent .content_left .list .impar{
-						background-color:#F4C990;
-						width:184px;
-						height:15px;
-					}
-					.container_mainContent #mainContent .content_left .list .checkbox{
-						width:10px;
-						height:10px;
-						float:left;
-					}
-					.container_mainContent #mainContent .content_left .container_button .button1{
-						margin-left:60px;
-					}
-		/**************************************** FIN FORMULARIO PROPIEDADES *********************************************/
+    /************************* FORMULARIO PROPIEDADES **************************/
+        .container_mainContent #mainContent .warning{
+            float:left;
+            width:200px;
+        }
+        .container_mainContent #mainContent .style_input{
+            float:right;
+            width:200px;
+        }
+        .container_mainContent #mainContent .content_left .style_textarea{
+            float:right;
+            width:200px;
+            height:100px;
+            margin-bottom:10px;
+        }
+        .container_mainContent #mainContent .content_left p{
+                float:left;
+                width:390px;
+                margin-bottom:2px;
+        }
+        .container_mainContent #mainContent .content_left .list{
+            overflow:auto;
+            width:200px;
+            float:right;
+            height:100px;
+            margin-top:-30px;
+        }
+        .container_mainContent #mainContent .content_left .list ul{
+            list-style:none;
+            margin-left:-45px;
+            margin-top:-1px;
+        }
+        .container_mainContent #mainContent .content_left .list li{
+            width:184px;
+            height:20px;
+            padding:2px;
+        }
+        .container_mainContent #mainContent .content_left .list span{
+            padding-left:7px;
+        }
+        .container_mainContent #mainContent .content_left .list .impar{
+            background-color:#F4C990;
+            width:184px;
+            height:15px;
+        }
+        .container_mainContent #mainContent .content_left .list .checkbox{
+            width:10px;
+            height:10px;
+            float:left;
+        }
+        .container_mainContent #mainContent .content_left .container_button .button1{
+            margin-left:60px;
+        }
+    /*********************** FIN FORMULARIO PROPIEDADES ************************/
 			
 			
-		/************************************* DESCRIPCION PROPIEDADES **********************************/
-		.container_mainContent #mainContent .content_left .text{
-			width:350px;
-			float:left;
-			margin-left:15px;
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:11px;
-			text-align:justify;
-		}
-		/************************************* FIN DESCRIPCION PROPIEDADES *************************************/
+    /*********************** DESCRIPCION PROPIEDADES ***************************/
+    .container_mainContent #mainContent .content_left .text{
+        width:350px;
+        float:left;
+        margin-left:15px;
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:11px;
+        text-align:justify;
+    }
+    /*********************** FIN DESCRIPCION PROPIEDADES ***********************/
 		
-				
+						
+    /******* FORMULARIOS (input de cada uno de los paneles de administracion) ******/
+    .container_mainContent #mainContent .content_left input{
+        width:200px;
+        margin:0 auto;
+        float:right;
+    }
+    .container_mainContent #mainContent .cell, .container_mainContent #mainContent .add{
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:12px;
+        color:#6C491D;
+        margin-left:20px;
+        font-weight:bold;
+        float:left;
+    }
+    .container_mainContent #mainContent .content_left .container_button{
+        width:200px;
+        height:50px;
+        float:right;
+        margin:0 auto;
+    }
+    .container_mainContent #mainContent .content_left .cell_cache{
+        width:390px;
+        text-align:right;
+        margin-left:-10px;
+    }
+        .container_mainContent #mainContent .content_left .cell_cache img{
+            margin-right:10px;
+        }
+        .container_mainContent #mainContent .content_left .cell_cache a{
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:12px;
+            color:#6C491D;
+            font-weight:bold;
+        }
+    .container_mainContent #mainContent .content_left p{
+        float:left;
+        width:390px;
+        margin-bottom:2px;
+    }
+/***** FIN FORMULARIOS (input de cada uno de los paneles de administracion) *****/
 		
-		/****************************** FORMULARIOS (input de cada uno de los paneles de administracion) *********************************/
-		.container_mainContent #mainContent .content_left input{
-			width:200px;
-			margin:0 auto;
-			float:right;
-		}
-		.container_mainContent #mainContent .cell, .container_mainContent #mainContent .add{
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:12px;
-			color:#6C491D;
-			margin-left:20px;
-			font-weight:bold;
-			float:left;
-		}
-		.container_mainContent #mainContent .content_left .container_button{
-			width:200px;
-			height:50px;
-			float:right;
-			margin:0 auto;
-		}
-		.container_mainContent #mainContent .content_left .cell_cache{
-			width:390px;
-			text-align:right;
-			margin-left:-10px;
-		}
-			.container_mainContent #mainContent .content_left .cell_cache img{
-			margin-right:10px;
-			}
-		.container_mainContent #mainContent .content_left .cell_cache a{
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:12px;
-			color:#6C491D;
-			font-weight:bold;
-		}
-		.container_mainContent #mainContent .content_left p{
-			float:left;
-			width:390px;
-			margin-bottom:2px;
-			}
-		/****************************** FIN FORMULARIOS (input de cada uno de los paneles de administracion) *********************************/
 		
-		
-		/*************************************** FORMULARIO DE CONTACTO *******************************************/
-		.container_mainContent #mainContent .form_contact{
-			width:480px;
-			margin:0 auto;
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:12px;
-			color:#6C491D;
-			font-weight:bold;
-		}
-			.container_mainContent #mainContent .form_contact .form_left{
-				float:left;
-				width:200px;
-			}
-			.container_mainContent #mainContent .form_contact .form_right{
-				float:right;
-				width:200px;
-			}
-			.container_mainContent #mainContent .form_contact .form_center{
-				width:600px;
-				float:left;
-				clear:left;
-				margin:0 auto;
-			}
-				.container_mainContent #mainContent .form_contact .form_left form p{
-					clear:left;
-				}
-				.container_mainContent #mainContent .form_contact .form_left .input{
-					float:left;
-					width:200px;
-					margin-bottom:10px;
-				}
-				.container_mainContent #mainContent .form_contact .form_right form p{
-					clear:left;
-				}
-				.container_mainContent #mainContent .form_contact .form_right .input{
-					float:left;
-					width:200px;
-					margin-bottom:10px;
-				}
-				.container_mainContent #mainContent .form_contact .form_center .input{
-					float:left;
-					width:480px;
-					height:200px;
-				}
-				.container_mainContent #mainContent .form_contact .container_button{
-					width:480px;
-					margin-left:200px;
-				}
-				
-				
-			
-	/************************************* FORMULARIO CONTACTO (sencillo) **********************************/
-	.container_mainContent #mainContent .content_right{
-		/*border:1px solid #FF0000;*/
-		width:260px;
-		float:left;
-		margin:0 auto;
-	}
-		.container_mainContent #mainContent .content_right .contact{
-			float:left;
-			width:260px;
-			margin-left:-15px;
-			margin-top:-5px;
-			background:url(../images/form_transparent_pagedescriptions.png) repeat-y;
-		}
-			.container_mainContent #mainContent .content_right .contact .mail_icon{
-				float:left;
-				width:260px;
-				height:40px;
-				background:url(../images/image_mail.jpg) no-repeat left top;
-			}
-			.container_mainContent #mainContent .content_right .contact form{
-				margin-left:30px;
-				font-family:Arial, Helvetica, sans-serif;
-				font-size:12px;
-				color: #6C491D;
-				font-weight:bold;
-			}
-				.container_mainContent #mainContent .content_right .contact form input{
-					width:200px;
-					height:18px;
-					background-color:#FAF8E9;
-					border:1px solid #CCCCCC;
-				}
-				.container_mainContent #mainContent .content_right .contact form .consulta{
-					width:200px;
-					height:115px;
-					background-color:#FAF8E9;
-					border:1px solid #CCCCCC;
-				}
-				.container_mainContent #mainContent .content_right .contact form .send{
-					width:70px;
-					height:30px;
-					background:url(../images/button_send_gray.png) no-repeat center;
-					border:none;
-					font-family:Arial, Helvetica, sans-serif;
-					font-weight:bold;
-					font-size:10px;
-					margin-left:60px;
-				}
-	/************************************* FIN FORMULARIO CONTACTO (sencillo) **********************************/
+/*************************************** FORMULARIO DE CONTACTO *******************************************/
+    .container_mainContent #mainContent .form_contact{
+        width:480px;
+        margin:0 auto;
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:12px;
+        color:#6C491D;
+        font-weight:bold;
+    }
+        .container_mainContent #mainContent .form_contact form p{
+            clear:left;
+        }
+        .container_mainContent #mainContent .form_contact .form_left{
+            float:left;
+            width:200px;
+        }
+            .container_mainContent #mainContent .form_contact .form_left .input{
+                float:left;
+                width:200px;
+                margin-bottom:10px;
+            }
+        .container_mainContent #mainContent .form_contact .form_right{
+            float:right;
+            width:200px;
+        }
+            .container_mainContent #mainContent .form_contact .form_right .input{
+                float:left;
+                width:200px;
+                margin-bottom:10px;
+            }
+        .container_mainContent #mainContent .form_contact .form_center{
+            width:600px;
+            float:left;
+            clear:left;
+            margin:0 auto;
+        }
+            .container_mainContent #mainContent .form_contact .form_center .input{
+                float:left;
+                width:480px;
+                height:200px;
+            }
+        .container_mainContent #mainContent .form_contact .container_button{
+            width:480px;
+            margin-left:200px;
+        }
+    /*********************** FORMULARIO CONTACTO (sencillo) ********************/
+    .container_mainContent #mainContent .content_right{
+        /*border:1px solid #FF0000;*/
+        width:260px;
+        float:left;
+        margin:0 auto;
+    }
+        .container_mainContent #mainContent .content_right .contact{
+            float:left;
+            width:260px;
+            margin-left:-15px;
+            margin-top:-5px;
+            background:url(../images/form_transparent_pagedescriptions.png) repeat-y;
+        }
+            .container_mainContent #mainContent .content_right .contact .mail_icon{
+                float:left;
+                width:260px;
+                height:40px;
+                background:url(../images/image_mail.jpg) no-repeat left top;
+            }
+            .container_mainContent #mainContent .content_right .contact form{
+                margin-left:30px;
+                font-family:Arial, Helvetica, sans-serif;
+                font-size:12px;
+                color: #6C491D;
+                font-weight:bold;
+            }
+                .container_mainContent #mainContent .content_right .contact form input{
+                    width:200px;
+                    height:18px;
+                    background-color:#FAF8E9;
+                    border:1px solid #CCCCCC;
+                }
+                .container_mainContent #mainContent .content_right .contact form .consulta{
+                    width:200px;
+                    height:115px;
+                    background-color:#FAF8E9;
+                    border:1px solid #CCCCCC;
+                }
+                .container_mainContent #mainContent .content_right .contact form .send{
+                    width:70px;
+                    height:30px;
+                    background:url(../images/button_send_gray.png) no-repeat center;
+                    border:none;
+                    font-family:Arial, Helvetica, sans-serif;
+                    font-weight:bold;
+                    font-size:10px;
+                    margin-left:60px;
+                }
+     /******************* FIN FORMULARIO CONTACTO (sencillo) ******************/
 	
 	
-	.container_mainContent #mainContent .content_right .address{
-		float:left;
-		width:260px;
-		margin-left:-15px;
-		margin-top:30px;
-		background:url(../images/form_transparent_pagedescriptions.png) repeat-y;
-	}
-		.container_mainContent #mainContent .content_right .address p{
-			margin-left:30px;
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:11px;
-		}
+    .container_mainContent #mainContent .content_right .address{
+        float:left;
+        width:260px;
+        margin-left:-15px;
+        margin-top:30px;
+        background:url(../images/form_transparent_pagedescriptions.png) repeat-y;
+    }
+        .container_mainContent #mainContent .content_right .address p{
+            margin-left:30px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:11px;
+        }
 	.container_mainContent #mainContent .content_right .cuenta_plus{
-		width:185px;
-		height:136px;
-		margin:0 auto;
-		margin-top:30px;
+            width:185px;
+            height:136px;
+            margin:0 auto;
+            margin-top:30px;
 	}
 		
-			
-	/************************************* SERVICIOS **************************************/
-	.container_mainContent .services{
-		float:left;
-		clear:left;
-	}
-		.container_mainContent .services .services_details{
-			float:left;
-			width:200px;
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:11px;
-		}
-			.container_mainContent .services .services_details ul li{
-				list-style-image:url(../images/point_list_services.png);
-				list-style-position:inside;
-				/*border:solid 1px;*/
-				color:#333333;
-				background-color:#FCF5D8;
-				height:15px;
-				margin-bottom:5px;
-				margin-left:-40px;
-				text-align:left;
-			}
+
+  /****************************** SERVICIOS ************************************/
+    .container_mainContent .services{
+        float:left;
+        clear:left;
+    }
+        .container_mainContent .services .services_details{
+            float:left;
+            width:200px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:11px;
+        }
+            .container_mainContent .services .services_details ul li{
+                list-style-image:url(../images/point_list_services.png);
+                list-style-position:inside;
+                /*border:solid 1px;*/
+                color:#333333;
+                background-color:#FCF5D8;
+                height:15px;
+                margin-bottom:5px;
+                margin-left:-40px;
+                text-align:left;
+            }
 		.container_mainContent .services a{
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:12px;
-			color:#F17F1C;
-			font-weight:bold;
-			float:right;
-			clear:left;
-			text-decoration:underline;
+                    font-family:Arial, Helvetica, sans-serif;
+                    font-size:12px;
+                    color:#F17F1C;
+                    font-weight:bold;
+                    float:right;
+                    clear:left;
+                    text-decoration:underline;
 		}
 		.container_mainContent .services a:hover{
-			color:#999999;
+                    color:#999999;
 		}
-	/************************************* FIN SERVICIOS **************************************/
+    /**************************** FIN SERVICIOS ***************************/
 	
 	
-	/************************************* CUENTA PLUS **************************************/
-	.container_mainContent #mainContent .container_center{
-		width:600px;
-		margin-top:70px;
-		margin-left:10px;
-		/*border:solid 1px #FF0000;*/
-	}
-		.container_mainContent #mainContent .container_center .plus1{
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:18px;
-			color:#F64923;
-			text-align:center;
-		}
-			.container_mainContent #mainContent .container_center .plus1 .t1{
-				font-size:22px;
-				font-weight:bold;
-			}
+    /************************************* CUENTA PLUS **************************************/
+    .container_mainContent #mainContent .container_center{
+        width:600px;
+        margin-top:70px;
+        margin-left:10px;
+        /*border:solid 1px #FF0000;*/
+    }
+        .container_mainContent #mainContent .container_center .plus1{
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:18px;
+            color:#F64923;
+            text-align:center;
+        }
+            .container_mainContent #mainContent .container_center .plus1 .t1{
+                font-size:22px;
+                font-weight:bold;
+            }
 			
-		.container_mainContent #mainContent .container_center .plus2{
-			background:url(../images/background_cuenta_plus.png) center top no-repeat;
-			width:374px;
-			/*border:1px solid #0000FF;*/
-			margin:0 auto;
-			margin-top:20px;
-			font-family:Arial, Helvetica, sans-serif;
-			color:#FE8405;
-		}
-			.container_mainContent #mainContent .container_center .plus2 .plus2_top{
-				width:374px;
-				font-size:15px;
-				font-weight:bold;
-				text-align:center;
-				margin-top:30px;
-				float:left;
-				margin-bottom:40px;
-			}
-			.container_mainContent #mainContent .container_center .plus2 .plus2_bottom{
-				width:340px;
-				padding-left:10px;
-				font-size:13px;
-			}
-				.container_mainContent #mainContent .container_center .plus2 .plus2_bottom li{
-					list-style-image:url(../images/img_tips.png);
-				}
-				.container_mainContent #mainContent .t2{
-					font-weight:bold;
-				}
-	/************************************* FIN CUENTA PLUS **************************************/
+            .container_mainContent #mainContent .container_center .plus2{
+                background:url(../images/background_cuenta_plus.png) center top no-repeat;
+                width:374px;
+                /*border:1px solid #0000FF;*/
+                margin:0 auto;
+                margin-top:20px;
+                font-family:Arial, Helvetica, sans-serif;
+                color:#FE8405;
+            }
+            .container_mainContent #mainContent .container_center .plus2 .plus2_top{
+                width:374px;
+                font-size:15px;
+                font-weight:bold;
+                text-align:center;
+                margin-top:30px;
+                float:left;
+                margin-bottom:40px;
+            }
+            .container_mainContent #mainContent .container_center .plus2 .plus2_bottom{
+                width:340px;
+                padding-left:10px;
+                font-size:13px;
+            }
+                .container_mainContent #mainContent .container_center .plus2 .plus2_bottom li{
+                    list-style-image:url(../images/img_tips.png);
+                }
+    .container_mainContent #mainContent .t2{
+        font-weight:bold;
+    }
+/******************************* FIN CUENTA PLUS ********************************/
 	
 	
-	/************************************* TABLAS (editar propiedades, destacarme) **************************************/
-	.container_mainContent #mainContent .buttons{
-		float:right;
-		width:200px;
-		margin-bottom:10px;
-	}
-	.container_mainContent #mainContent .header{
-		float:left;
-		width:600px;
-		height:24px;
-		/*border:1px solid #000066;*/
-		background:url(../images/background_top_table.png) repeat-x top;
-		font-family:Arial, Helvetica, sans-serif;
-		color:#6C491D;
-		font-size:12px;
-		font-weight:bold;
-	}
-		.container_mainContent #mainContent .header_left{
-			width:120px;
-			height:21px;
-			float:left;
-			border-right:1px solid #CFD0CB;
-			padding:2px 0 0 10px;
-		}
-		.container_mainContent #mainContent .header_center{
-			width:300px;
-			height:21px;
-			float:left;
-			border-right:1px solid #CFD0CB;
-			padding:2px 0 0 10px;
-		}
-		.container_mainContent #mainContent .header_right{
-			width:100px;
-			float:left;
-			padding:2px 0 0 10px;
-		}
+/******************** TABLAS (editar propiedades, destacarme) *******************/
+    .container_mainContent #mainContent .buttons{
+        float:right;
+        width:200px;
+        margin-bottom:10px;
+    }
+    .container_mainContent #mainContent .header{
+        float:left;
+        width:600px;
+        height:24px;
+        /*border:1px solid #000066;*/
+        background:url(../images/background_top_table.png) repeat-x top;
+        font-family:Arial, Helvetica, sans-serif;
+        color:#6C491D;
+        font-size:12px;
+        font-weight:bold;
+    }
+        .container_mainContent #mainContent .header_left{
+            width:120px;
+            height:21px;
+            float:left;
+            border-right:1px solid #CFD0CB;
+            padding:2px 0 0 10px;
+        }
+        .container_mainContent #mainContent .header_center{
+            width:300px;
+            height:21px;
+            float:left;
+            border-right:1px solid #CFD0CB;
+            padding:2px 0 0 10px;
+        }
+        .container_mainContent #mainContent .header_right{
+            width:100px;
+            float:left;
+            padding:2px 0 0 10px;
+        }
 	.container_mainContent #mainContent .table_body{
-	width:600px;
-	float:left;
+            width:600px;
+            float:left;
 	}
-		.container_mainContent #mainContent .table_body .table_impar{
-			width:600px;
-			height:71px;
-			background-color:#FAF8E9;
-			clear:left;
-			font-family:Arial, Helvetica, sans-serif;
-			color:#FA8E25;
-			font-size:12px;
-		}
-		.container_mainContent #mainContent .table_body .table_par{
-			width:600px;
-			height:71px;
-			background-color:#FDFDF5;
-			clear:left;
-			color:#FA8E25;
-			font-size:12px;
-		}
+            .container_mainContent #mainContent .table_body .table_impar{
+                width:600px;
+                height:71px;
+                background-color:#FAF8E9;
+                clear:left;
+                font-family:Arial, Helvetica, sans-serif;
+                color:#FA8E25;
+                font-size:12px;
+            }
+            .container_mainContent #mainContent .table_body .table_par{
+                width:600px;
+                height:71px;
+                background-color:#FDFDF5;
+                clear:left;
+                color:#FA8E25;
+                font-size:12px;
+            }
 	.container_mainContent #mainContent .container_scroll{
-		width:600px;
-		height:215px;
-		overflow:auto;
+            width:600px;
+            height:215px;
+            overflow:auto;
 	}
-		.container_mainContent #mainContent .container_scroll .table_par{
-			width:583px;
-		}
-		.container_mainContent #mainContent .container_scroll .table_impar{
-			width:583px;
-		}
+            .container_mainContent #mainContent .container_scroll .table_par{
+                width:583px;
+            }
+            .container_mainContent #mainContent .container_scroll .table_impar{
+                width:583px;
+            }
 	.container_mainContent #mainContent .table_bottom{
-	background:url(../images/background_table_list_properties.png) repeat-x top;
-	width:600px;
-	height:24px;
-	float:left;
+            background:url(../images/background_table_list_properties.png) repeat-x top;
+            width:600px;
+            height:24px;
+            float:left;
 	}
-		.container_mainContent #mainContent .table_left{
-			width:120px;
-			height:70px;
-			float:left;
-			border-right:1px solid #CFD0CB;
-			padding:2px 0 0 10px;
-		}
-			.container_mainContent #mainContent .table_left .miniatura{
-				float:right;
-				width:70px;
-				height:60px;
-				margin-right:20px;
-			}
-		.container_mainContent #mainContent .table_center{
-			width:300px;
-			height:70px;
-			float:left;
-			border-right:1px solid #CFD0CB;
-			padding:2px 0 0 10px;
-			font-weight:bold;
-		}
-		.container_mainContent #mainContent .table_right{
-			width:100px;
-			float:left;
-			padding:2px 0 0 10px;
-		}
-		.container_mainContent #mainContent .selection{
-			width:600px;
-			float:left;
-			/*border:1px solid #000099;*/
-			margin-bottom:10px;
-			font-size:11px;
-		}
-		.container_mainContent #mainContent .selection .style_input{
-		width:140px;
-		}
-			.container_mainContent #mainContent .selection_left{
-				width:260px;
-				float:left;
-				color:#6C491D;
-			}
-			.container_mainContent #mainContent .selection_right{
-				width:300px;
-				float:right;
-				color:#6C491D;
-				margin-right:3px;
-			}
-				.container_mainContent #mainContent .selection span{
-					font-weight:bold;
-				}
-				.container_mainContent #mainContent .selection_left form{
-					width:90px;
-					float:left;
-					font-weight:bold;
-					margin-top:3px;
-				}
-	/************************************* FIN TABLAS (editar propiedades, destacarme) **************************************/
+        .container_mainContent #mainContent .table_left{
+            width:120px;
+            height:70px;
+            float:left;
+            border-right:1px solid #CFD0CB;
+            padding:2px 0 0 10px;
+        }
+            .container_mainContent #mainContent .table_left .miniatura{
+                float:right;
+                width:70px;
+                height:60px;
+                margin-right:20px;
+            }
+        .container_mainContent #mainContent .table_center{
+            width:300px;
+            height:70px;
+            float:left;
+            border-right:1px solid #CFD0CB;
+            padding:2px 0 0 10px;
+            font-weight:bold;
+        }
+        .container_mainContent #mainContent .table_right{
+            width:100px;
+            float:left;
+            padding:2px 0 0 10px;
+        }
+        .container_mainContent #mainContent .selection{
+            width:600px;
+            float:left;
+            /*border:1px solid #000099;*/
+            margin-bottom:10px;
+            font-size:11px;
+        }
+            .container_mainContent #mainContent .selection .style_input{
+                width:140px;
+            }
+            .container_mainContent #mainContent .selection span{
+                font-weight:bold;
+            }
+        .container_mainContent #mainContent .selection_left{
+            width:260px;
+            float:left;
+            color:#6C491D;
+        }
+            .container_mainContent #mainContent .selection_left form{
+                width:90px;
+                float:left;
+                font-weight:bold;
+                margin-top:3px;
+            }
+        .container_mainContent #mainContent .selection_right{
+            width:300px;
+            float:right;
+            color:#6C491D;
+            margin-right:3px;
+        }
+/**************** FIN TABLAS (editar propiedades, destacarme) ******************/
 	
 	
-	/************************************* COMPRAR CREDITOS **************************************/
-	.container_mainContent #mainContent .credit{
-		width:600px;
-		margin-left:10px;
-		height:150px;
-		background:url(../images/background_credit.png) no-repeat right bottom;
-		/*border:1px solid #000066;*/
-	}
-		.container_mainContent #mainContent .credit .credit_attention{
-			width:380px;
-			height:90px;
-			float:right;
-			/*border:1px solid #000066;*/
-			font-family:Arial, Helvetica, sans-serif;
-			color:#FE8405;
-			font-size:12px;
-			padding-top:20px;
-			padding-right:25px;
-		}
+/************************* COMPRAR CREDITOS ***********************************/
+    .container_mainContent #mainContent .credit{
+        width:600px;
+        margin-left:10px;
+        height:150px;
+        background:url(../images/background_credit.png) no-repeat right bottom;
+        /*border:1px solid #000066;*/
+    }
+        .container_mainContent #mainContent .credit .credit_attention{
+            width:380px;
+            height:90px;
+            float:right;
+            /*border:1px solid #000066;*/
+            font-family:Arial, Helvetica, sans-serif;
+            color:#FE8405;
+            font-size:12px;
+            padding-top:20px;
+            padding-right:25px;
+        }
 	.container_mainContent #mainContent .column_left{
-		width:330px;
-		/*border:1px solid #000066;*/
-		float:left;
-		margin-top:20px;
-		margin-left:-5px;
-		margin-bottom:10px;
+            width:330px;
+            /*border:1px solid #000066;*/
+            float:left;
+            margin-top:20px;
+            margin-left:-5px;
+            margin-bottom:10px;
 	}
-		.container_mainContent #mainContent .column_right{
-			width:250px;
-			/*border:1px solid #000066;*/
-			float:right;
-			margin-top:20px;
-			margin-right:50px;
-			margin-bottom:10px;
-		}
-			.container_mainContent #mainContent .column_right .style_input{
-				width:150px;
-			}
-	/************************************* FIN COMPRAR CREDITOS **************************************/
+        .container_mainContent #mainContent .column_right{
+            width:250px;
+            /*border:1px solid #000066;*/
+            float:right;
+            margin-top:20px;
+            margin-right:50px;
+            margin-bottom:10px;
+        }
+            .container_mainContent #mainContent .column_right .style_input{
+                width:150px;
+            }
+/************************** FIN COMPRAR CREDITOS *****************************/
 			
 	
-/******************************************* FOOTER ***************************************/
+/******************************* FOOTER *************************************/
 #footer {
-	float:left;
-	width:950px;
-	margin-left:30px;
-	margin-top:15px;
-	/*border:1px solid;*/
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:11px;
-	font-weight:bold;
-	color:#666666;
+    float:left;
+    width:950px;
+    margin-left:30px;
+    margin-top:15px;
+    /*border:1px solid;*/
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    color:#666666;
 } 
-	#footer .left{
-		width:450px;
-		float:left;
-	}
-	#footer span{
-		color:#F68E12;
-		text-align:left;
-	}
-	#footer .rigth{
-		width:450px;
-		float:right;
-		text-align:right;
-	}
+    #footer .left{
+        width:450px;
+        float:left;
+    }
+    #footer span{
+        color:#F68E12;
+        text-align:left;
+    }
+    #footer .rigth{
+        width:450px;
+        float:right;
+        text-align:right;
+    }
     #footer p {
-		margin: 0; /* el ajuste en cero de los márgenes del primer elemento del pie evitará que puedan contraerse los márgenes (un espacio entre divs) */
-		padding: 10px 0; /* el relleno de este elemento creará espacio, de la misma forma que lo haría el margen, sin el problema de la contracción de márgenes */
+        margin: 0; /* el ajuste en cero de los márgenes del primer elemento del pie evitará que puedan contraerse los márgenes (un espacio entre divs) */
+        padding: 10px 0; /* el relleno de este elemento creará espacio, de la misma forma que lo haría el margen, sin el problema de la contracción de márgenes */
     }
     .fltrt { /* esta clase puede utilizarse para que un elemento flote en la parte derecha de la página. El elemento flotante debe preceder al elemento junto al que debe aparecer en la página. */
-		float: right;
-		margin-left: 8px;
-	}
+        float: right;
+        margin-left: 8px;
+    }
     .fltlft { /* esta clase puede utilizarse para que un elemento flote en la parte izquierda de la página. */
-		float: left;
-		margin-right: 8px;
+        float: left;
+        margin-right: 8px;
     }
     .clearfloat { /* esta clase debe colocarse en un elemento div o break y debe ser el último elemento antes del cierre de un contenedor que incluya completamente a un elemento flotante */
-		clear:both;
-		height:0;
-		font-size: 1px;
-		line-height: 0px;
+        clear:both;
+        height:0;
+        font-size: 1px;
+        line-height: 0px;
     }
-	/******************************************* FIN FOOTER ***************************************/	
-	
+/******************************************* FIN FOOTER ***************************************/	
+
+
 .input_login{
-	border:1px #F2A858 solid;
-	background-color:#FAE397;
-	width:150px;
-	height:15px;
-	margin-right:10px;
-	padding:0 0 2px 5px;
-	text-align:left;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+    border:1px #F2A858 solid;
+    background-color:#FAE397;
+    width:150px;
+    height:15px;
+    margin-right:10px;
+    padding:0 0 2px 5px;
+    text-align:left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
 }
 .input{
-	border:1px #FAD4A3 solid;
-	background-color:#FAF8E9;
-	padding:0 0 2px 5px;
-	text-align:left;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
+    border:1px #FAD4A3 solid;
+    background-color:#FAF8E9;
+    padding:0 0 2px 5px;
+    text-align:left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
 }
 .add{
-	padding-left:225px;
-	text-decoration:underline;
-	font-style:italic;
-	font-size:11px;
+    padding-left:225px;
+    text-decoration:underline;
+    font-style:italic;
+    font-size:11px;
 }
 .button1{
-	display:inline-block;
-	float:left;
-	width:76px;
-	height:25px;
-	background:url(../images/button1.png) no-repeat center left;
-	border:none;
-	text-align:center;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	color:#6C491D;
-	font-weight:bold;
-	padding-top:8px;
-	margin:0 auto;
+    display:inline-block;
+    float:left;
+    width:76px;
+    height:25px;
+    background:url(../images/button1.png) no-repeat center left;
+    border:none;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#6C491D;
+    font-weight:bold;
+    padding-top:8px;
+    margin:0 auto;
 }
 .button1:hover{
-	background:url(../images/button1_over.png) no-repeat center left;
-	margin:0 auto;
+    background:url(../images/button1_over.png) no-repeat center left;
+    margin:0 auto;
 }
 .button2{
-	display:inline-block;
-	width:121px;
-	height:25px;
-	background:url(../images/button_canjear_puntos.png) no-repeat center left;
-	border:none;
-	text-align:center;
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	color:#6C491D;
-	font-weight:bold;
-	margin:0 auto;
-	padding-top:8px;
+    display:inline-block;
+    width:121px;
+    height:25px;
+    background:url(../images/button_canjear_puntos.png) no-repeat center left;
+    border:none;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#6C491D;
+    font-weight:bold;
+    margin:0 auto;
+    padding-top:8px;
 }
-.button2:hover{
-	background:url(../images/button_canjear_puntos_over.png) no-repeat center left;
-}
+    .button2:hover{
+        background:url(../images/button_canjear_puntos_over.png) no-repeat center left;
+    }
 .container_button{
-	width:600px;
-	height:30px;
-	float:left;
-	text-align:center;
-	margin-left:10px;
+    width:600px;
+    height:30px;
+    float:left;
+    text-align:center;
+    margin-left:10px;
 }
 
 .banner_top_cuadrado{
-width:180px;
-height:120px;
-margin-top:13px;
-margin-right:-170px;
-float:right;
-background-color:#F1CB65;
-text-align:center;
+    width:180px;
+    height:120px;
+    margin-top:13px;
+    margin-right:-170px;
+    float:right;
+    background-color:#F1CB65;
+    text-align:center;
 }
 .banner_top_horizontal{
-width:441px;
-height:60px;
-margin-top:5px;
-margin-left:20px;
-float:left;
-background-color:#F1CB65;
-text-align:center;
-}
-a{
-	text-decoration:none;
-}
-h1 {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:18px;
-	font-style:italic;
-	font-weight:bold;
-	color:#744818;
-	padding-left:23px;
-	padding-top:5px;
-}
-h2 {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:16px;
-	color: #FC7F07;
-}
-h3 {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:14px;
-	color:#666666;
-	font-style:italic;
-	font-weight:bold;
+    width:441px;
+    height:60px;
+    margin-top:5px;
+    margin-left:20px;
+    float:left;
+    background-color:#F1CB65;
+    text-align:center;
 }
