@@ -7,7 +7,7 @@ body {
     text-align: center; /* esto centra el contenedor en los navegadores IE 5*. El texto se ajusta posteriormente con el valor predeterminado de alineación a la izquierda en el selector #container */
     color: #000000;
 }
-img{border:none !important;}
+img{border:none !important; }
 a{
     text-decoration:none;
 }
@@ -32,7 +32,8 @@ color:#666666;
 font-style:italic;
 font-weight:bold;
 }
-
+.float-left{float:left !important;}
+.float-right{float:left !important;}
 
 
 
@@ -100,7 +101,6 @@ font-weight:bold;
                 text-align:center;
                 vertical-align:middle;
                 line-height:25px;
-                margin-top:-3px;
                 margin-right:140px;
                 border:none;
             }
@@ -1059,9 +1059,10 @@ font-weight:bold;
 .banner_top_cuadrado{
     width:180px;
     height:120px;
-    margin-top:13px;
+    margin-top:35px;
     margin-right:-170px;
     float:right;
+    clear:left;
     background-color:#F1CB65;
     text-align:center;
 }

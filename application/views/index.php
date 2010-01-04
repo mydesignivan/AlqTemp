@@ -21,7 +21,7 @@
             <div id="mainContent">
                 <div class="content_top"><h1>Alquileres Destacados</h1></div>
 
-                <div class="description_properties">
+                <div class="description_properties" id="div1">
                     <div class="image_properties"><img src="storage/thumbs/image_properties1.png" alt="" /></div>
                     <div class="description_text">
                         <h2>San Lorenzo Apartments</h2>

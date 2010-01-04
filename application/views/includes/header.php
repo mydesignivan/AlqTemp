@@ -1,4 +1,4 @@
-    <div class="top_left">
+<div class="top_left">
         <div class="top_menu">
             <ul>
                 <li><a href="index.php"><img src="images/icono_inicio.png" alt="inicio" /> Inicio</a></li>
@@ -10,10 +10,11 @@
 
     <div class="top_right">
         <div class="registro">
-            <form action="" enctype="application/x-www-form-urlencoded">
-                <input type="text" value="Usuario" class="input_login" />
-                <input type="password" value="Contrase&ntilde;a" class="input_login" />
-                <a href="#"><input type="submit" value="login" class="login"/></a>
+            <form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post">
+                <div class="float-left"><input type="text" name="txtLoginUser" id="txtLoginUser" value="Usuario" class="input_login float-left validator {v_required : true}" onfocus="clear_input(event)" onblur="set_input(event, 'Usuario')" /></div>
+                <div class="float-left"><input type="text" name="txtLoginPass" id="txtLoginPass" value="Contrase&ntilde;a" class="input_login float-left validator {v_required : true}" onfocus="clear_input(event, 1)" onblur="set_input(event, 'Contrase&ntilde;a', 1)" /></div>
+                <input type="button" id="btnLogin" value="login" class="login" onclick="Login.login();" />
+                <input type="hidden" name="action" value="login" />
             </form>
         </div>
         <div class="banner_top_cuadrado"><h1>Espacio para publicitar</h1></div>
