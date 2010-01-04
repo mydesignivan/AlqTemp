@@ -20,8 +20,7 @@
                 <div class="content_top">
                     <h1>Mi Cuenta</h1>
                     <div class="icons">
-                        <span>Usuario:</span>
-                        Propietario<a href="#"><img src="images/icon_exit.png" border="0" alt="salir" /> Salir</a>
+                        <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/logout/');?>"><img src="images/icon_exit.png" border="0" alt="Salir" /> Salir</a>
                     </div>
                 </div>
                 <div class="content_left">

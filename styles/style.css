@@ -179,11 +179,9 @@ font-weight:bold;
             height:48px;
             float:left;
         }
-            #header .column1 .main_menu .sf-menu{
+            #header .column1 .main_menu ul{
                 margin-top:-8px;
                 margin-left:-40px;
-            }        
-            #header .column1 .main_menu ul{
                 list-style-type:none;
                 float:left;
             }

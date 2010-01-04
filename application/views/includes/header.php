@@ -38,16 +38,8 @@
     </div>
     <div class="column1">
         <div class="main_menu">
-            <ul class="sf-menu">
-                <li>
-                    <a class="menu-option" href="#">Casas</a>
-                    <ul>
-                        <li><a href="#">Casa1</a></li>
-                        <li><a href="#">Casa2</a></li>
-                        <li><a href="#">Casa3</a></li>
-                        <li><a href="#">Casa4</a></li>
-                    </ul>
-                </li>
+            <ul>
+                <li><a class="menu-option" href="#">Casas</a></li>
                 <li><a class="menu-option" href="#">Departamentos</a></li>
                 <li><a class="menu-option" href="#">Cabañas</a></li>
                 <li><a class="menu-option" href="#">Otros</a></li>

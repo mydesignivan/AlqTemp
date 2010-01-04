@@ -1,46 +1,47 @@
+<base href="<?=base_url();?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 
-<link href="<?=$_SERVER['REQUEST_URI'];?>images/favicon.ico" rel="stylesheet icon" type="image/ico" />
-<link href="<?=$_SERVER['REQUEST_URI'];?>styles/style.css" rel="stylesheet" type="text/css" />
+<link href="images/favicon.ico" rel="stylesheet icon" type="image/ico" />
+<link href="styles/style.css" rel="stylesheet" type="text/css" />
 
 <!--[if IE]>
-<link href="<?=$_SERVER['REQUEST_URI'];?>styles/styleIE.css" rel="stylesheet" type="text/css" />
+<link href="styles/styleIE.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 
 <!--========== LIBRARIES ============-->
-<script type="text/JavaScript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/helpers.js"></script>
+<script type="text/JavaScript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/helpers.js"></script>
 <!--========== END LIBRARIES =======-->
 
 
 <!--============ SCRIPT: SUPERFISH (Menus Desplegables) =================-->
-<link rel="stylesheet" type="text/css" href="<?=$_SERVER['REQUEST_URI'];?>js/jquery.superfish/css/superfish.css" media="screen">
-<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery.superfish/js/hoverIntent.js"></script>
-<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery.superfish/js/superfish.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="js/jquery.superfish/css/superfish.css" media="screen">
+<script type="text/javascript" src="js/jquery.superfish/js/hoverIntent.js"></script>
+<script type="text/javascript" src="js/jquery.superfish/js/superfish.js"></script>
 <script type="text/javascript">
     jQuery(function(){
         jQuery('ul.sf-menu').superfish();
     });
-</script>
+</script>-->
 <!--======= END SCRIPT =======-->
 
 <!--============ SCRIPT: JQuery Validator =================-->
-<link href="<?=$_SERVER['REQUEST_URI'];?>js/jquery.validator/css/jquery.validate.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery.validator/js/jquery.validate.js"></script>
-<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery.validator/js/jquery.validate.messages.js"></script>
-<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/jquery.validator/js/execute.js"></script>
+<link href="js/jquery.validator/css/jquery.validate.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.validator/js/jquery.validate.js"></script>
+<script type="text/javascript" src="js/jquery.validator/js/jquery.validate.messages.js"></script>
+<script type="text/javascript" src="js/jquery.validator/js/execute.js"></script>
 <!--======= END SCRIPT =======-->
 
 
 
 <!--========== CLASS ============-->
-<script type="text/javascript" src="<?=$_SERVER['REQUEST_URI'];?>js/class.login.js"></script>
+<script type="text/javascript" src="js/class.login.js"></script>
 
 <!--======= END CLASS =======-->
 
-<?php if( $_SERVER['REQUEST_METHOD']=="POST" && $_POST["action"]=="login" && !$logged_in ) {?>
+<?php if( $this->session->flashdata('logout') ) {?>
     <script type="text/javascript">
     <!--
     $(document).ready(function(){
