@@ -3,6 +3,8 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head.php');?>
+
+    <script type="text/javascript" src="js/class.account.js"></script>
 </head>
 
 <body>
@@ -20,24 +22,34 @@
                 <div class="content_top">
                     <h1>Mi Cuenta</h1>
                     <div class="icons">
-                        <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/logout/');?>"><img src="images/icon_exit.png" border="0" alt="Salir" /> Salir</a>
+                        <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/login/logout/');?>"><img src="images/icon_exit.png" border="0" alt="Salir" /> Salir</a>
                     </div>
                 </div>
                 <div class="content_left">
-                    <form action="" enctype="application/x-www-form-urlencoded">
-                        <p><span class="cell">*Nombre:</span><input type="text" class="input" /></p>
-                        <p><span class="cell">*E-Mail:</span><input type="text" class="input" /></p>
-                        <p><span class="cell">Teléfono:</span><input type="text" class="input" /></p>
-                        <p><span class="cell">*Usuario:</span><input type="text" class="input" /></p>
-                        <p><span class="cell">*Contraseña:</span><input type="password" class="input" /></p>
-                        <p><span class="cell">*Repetir:</span><input type="text" class="input" /></p>
-                    </form>
-                    <div class="container_button">
-                        <a class="button1" href="#">Guardar</a>
-                        <a class="button2" href="#">Eliminar Cuenta</a>
-                    </div>
-                    <h3>&nbsp;</h3>
-                    <h3>(*)Campos Obligatorios</h3>
+
+                    <?php if( $this->session->flashdata('statusrecord') ) {?>
+
+                        <h3>El usuario ha sido creado con &eacute;xito</h3>
+                        <p>En un instante recibira un email para la activacion del mismo</p>
+
+                    <?php }else{?>
+
+                        <form name="formAccount" action="<?=site_url('/login/create');?>" method="post" enctype="application/x-www-form-urlencoded">
+                            <p><span class="cell">*Nombre:</span><input type="text" class="input" name="txtName" /></p>
+                            <p><span class="cell">*E-Mail:</span><input type="text" class="input" name="txtEmail" /></p>
+                            <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" /></p>
+                            <p><span class="cell">*Usuario:</span><input type="text" class="input" name="txtUser" /></p>
+                            <p><span class="cell">*Contraseña:</span><input type="password" class="input" name="txtPass" /></p>
+                            <p><span class="cell">*Repetir:</span><input type="password" class="input" name="txtPass2" /></p>
+                        </form>
+                        <div class="container_button">
+                            <a class="button1" href="#" onclick="Account.create(); return false;">Guardar</a>
+                            <a class="button2" href="#" onclick="Account.Delete(); return false;">Eliminar Cuenta</a>
+                        </div>
+                        <br class="clearfloat" />
+                        <h3>(*)Campos Obligatorios</h3>
+                        
+                    <?php }?>
                 </div>
 
                 <div class="content_right">

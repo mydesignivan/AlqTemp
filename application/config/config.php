@@ -11,8 +11,8 @@
 |	http://example.com/
 |
 */
-//$config['base_url']	= "http://localhost/AlqTemp.git/";
-$config['base_url']	= "http://localhost/trabajos/AlqTemp.git/";
+$config['base_url']	= "http://localhost/AlqTemp.git/";
+//$config['base_url']	= "http://localhost/trabajos/AlqTemp.git/";
 
 /*
 |--------------------------------------------------------------------------
