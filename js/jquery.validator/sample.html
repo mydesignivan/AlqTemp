@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Validador de Formularios</title>
+
+<script type="text/javascript" src="../jquery-1.3.2.min.js"></script>
+
+<!--SCRIPT "VALIDADOR DE FORMULARIOS"-->
+<link href="css/jquery.validate.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.validate.messages.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script>
+<script type="text/javascript">
+<!--
+var Validator = new Class_Validator({
+	selectors : '#form1 .validate',
+	messageClass : 'formError_Right'
+});
+
+function validate(){
+	Validator.validate(function(error){
+		if( error ){
+			alert("Revise el formulario.");
+		}else{
+			alert("Validacion correcta.");
+		}
+	});
+}
+-->
+</script>
+<!-- END SCRIPT -->
+
+<style type="text/css">
+body{font-family:Verdana, Arial, Helvetica, sans-serif; font-size:16px;}
+.inputbox{width:200px; border:2px solid #ccc; padding:3px;}
+.inputbox:visited,.inputbox:focus{border:2px solid #0066FF;}
+ul{list-style-type:none; margin-top:60px; margin-left:20px;}
+	ul li{margin-bottom:40px; position:relative; }
+.col{width:190px; height:20px; float:left; text-align:right; padding-right:10px; font-weight:bold;}
+</style>
+</head>
+
+<body>
+
+<form id="form1" action="#">
+<ul>
+	<li><div class="col">* Nombre</div><input type="text" id="txtName" name="txtName" class="validate {v_required:true,v_string:true} inputbox" /></li>
+	
+	<li><div class="col">* Sexo</div><input type="radio" name="optSex" class="radio1" />&nbsp;Masculino&nbsp;&nbsp;<input type="radio" name="optSex" class="validate {v_required_radio:'radio1'} radio1" />&nbsp;Femenino</li>
+	
+	<li><div class="col">* Email</div><input type="text" name="txtEmail" class="validate {v_required:true,v_email:true} inputbox" /></li>
+	
+	<li><div class="col">* DNI</div><input type="text" name="txtDNI" class="validate {v_required:true,v_string:false} inputbox" /></li>
+    <li><div class="col">* Pais</div>
+    	<select class="validate {v_required:true}">
+        <option value="0">Seleccione un pais</option>
+        <option value="1">Argentina</option>
+        <option value="2">Chile</option>
+        <option value="3">Uruguay</option>
+        </select>
+    </li>
+	
+	<li><div class="col">* Password</div><input type="password" id="txtPass" name="txtPass" class="validate {v_required:true,v_password:[6,10]} inputbox" /></li>
+	
+	<li><div class="col">* Confirmar Password</div><input type="password" id="txtConfirmPass" name="txtConfirmPass" class="validate {v_required:true,v_compare:'txtPass'} inputbox" /></li>
+	
+	<li><div class="col">Newsletters</div><input type="checkbox" name="chkNews" class="validate {v_required:true}" /></li>
+</ul>
+</form>
+
+<br /><br />
+<p><button onclick="validate()">Validar</button></p>
+
+</body>
+</html>
