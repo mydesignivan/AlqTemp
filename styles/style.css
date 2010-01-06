@@ -35,7 +35,9 @@ font-weight:bold;
 .float-left{float:left !important;}
 .float-right{float:left !important;}
 
-
+.select1{
+    width:160px;
+}
 
 
 /*-----------------------------------------------------------------------------*/
@@ -157,12 +159,11 @@ font-weight:bold;
                 }
             #header .search .search_left{
                 float:left;
-                width:160px;
                 margin-top: 20px;
+                margin-right: 10px;
             }
             #header .search .search_right{
                 float:left;
-                width:160px;
                 margin-top: 20px;
             }
     /***************************** FIN SEARCH ********************************/

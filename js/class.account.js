@@ -1,5 +1,5 @@
 /* 
- * Clase encargada de crear eliminar, modificar o eliminar usuarios
+ * Clase 
  * 
  */
 
@@ -17,7 +17,7 @@ var Account = new (function(){
     };
 
     this.delete_account = function(){
-
+        
     };
 
 })();

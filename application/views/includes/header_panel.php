@@ -10,11 +10,7 @@
 
     <div class="top_right">
         <div class="registro">
-            <form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post">
-                <input type="text" value="Usuario" class="input_login" />
-                <input type="password" value="Contrase&ntilde;a" class="input_login" />
-                <a href="#"><input type="submit" value="login" class="login"/></a>
-            </form>
+            <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
         </div>
     </div>
 

@@ -10,12 +10,16 @@
 
     <div class="top_right">
         <div class="registro">
+            <?php if( !$this->session->userdata('logged_in') ){?>
             <form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
                 <div class="float-left"><input type="text" name="txtLoginUser" id="txtLoginUser" value="Usuario" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event)" onblur="set_input(event, 'Usuario')" /></div>
                 <div class="float-left"><input type="text" name="txtLoginPass" id="txtLoginPass" value="Contrase&ntilde;a" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event, 1)" onblur="set_input(event, 'Contrase&ntilde;a', 1)" /></div>
                 <input type="submit" id="btnLogin" value="login" class="login" />
                 <input type="hidden" name="action" value="login" />
             </form>
+            <?php }else{?>
+                <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
+            <?php }?>
         </div>
         <div class="banner_top_cuadrado"><h1>Espacio para publicitar</h1></div>
     </div>
@@ -26,14 +30,23 @@
             <a href="#">Buscar</a>
         </div>
         <div class="search_left">
-       	    <select name="pais"></select>
+       	    <select name="cboCountry" class="select1">
+                <option value="0">Paises</option>
+                <?php get_options_country();?>
+            </select>
             <br />
-            <select name="provincia"></select>
+            <select name="cboState" class="select1">
+                <option value="0">Estados / Provincias</option>
+            </select>
         </div>
         <div class="search_right">
-            <select name="ciudad"></select>
+            <select name="cboCity" class="select1">
+                <option value="0">Ciudades</option>
+            </select>
             <br />
-            <select name="departamento"></select>
+            <select name="cboCategory" class="select1">
+                <option value="0">Categor&iacute;as</option>
+            </select>
         </div>
     </div>
     <div class="column1">

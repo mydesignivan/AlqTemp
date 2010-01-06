@@ -8,15 +8,14 @@ class Simplelogin{
 
     function __construct($table = 'users'){
         $this->user_table = $table;
+        $this->CI =& get_instance();
+        $this->CI->load->library('encpss');
     }
 
     /**
      * @return	boolean
      */
     public function login($user = '', $password = '') {
-        //Put here for PHP 4 users
-        $this->CI =& get_instance();
-
         //Make sure login info was sent
         if($user == '' OR $password == '') {
             return false;
@@ -36,8 +35,9 @@ class Simplelogin{
         if ($query->num_rows() > 0) {
             $row = $query->row_array();
             //Check against password
-            if(md5($password) != $row['password']) {
-                    return false;
+
+            if( $password != $this->CI->encpss->decode($row['password']) ) {
+                return false;
             }
 
             //Destroy old session
@@ -67,9 +67,6 @@ class Simplelogin{
      * @return	void
      */
     public function logout() {
-        //Put here for PHP 4 users
-        $this->CI =& get_instance();
-
         //Destroy session
         $this->CI->session->sess_destroy();
     }
