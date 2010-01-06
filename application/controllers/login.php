@@ -26,33 +26,6 @@ class Login extends Controller{
         redirect('/');
     }
 
-    public function update(){
-        if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            print_r($_POST);
-
-            /*$data = array(
-                'name'     => $_POST["txtName"],
-                'email'    => $_POST["txtEmail"],
-                'phone'    => $_POST["txtPhone"],
-                'username' => $_POST["txtUser"],
-                'password' => $_POST["txtPass"]
-            );*/
-            $data = array(
-                'name'     => $_POST["txtName"],
-                'email'    => $_POST["txtEmail"],
-                'phone'    => $_POST["txtPhone"]
-            );
-            
-            if( $this->users->update($data, $_POST["user_id"]) ){
-                redirect('/myaccount/');
-            }
-        }
-    }
-
-    public function delete(){
-
-    }
-
 }
 
 ?>

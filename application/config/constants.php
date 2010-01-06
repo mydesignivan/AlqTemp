@@ -41,8 +41,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 | MENSAJES DE ERROR
 |--------------------------------------------------------------------------
 */
-define('ERR_100', 'Se produjo un error internto de la base de dato.<br>Si el error persiste porfavor comuniquese con el administrador del sitio.');
-
+define('ERR_100', 'Se produjo un error interno en la base de dato.');
+define('ERR_101', 'La actualizacion de los datos no pudo ser completado.');
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */
