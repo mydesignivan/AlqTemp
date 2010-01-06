@@ -10,10 +10,10 @@
 
     <div class="top_right">
         <div class="registro">
-            <form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post">
-                <div class="float-left"><input type="text" name="txtLoginUser" id="txtLoginUser" value="Usuario" class="input_login float-left validator {v_required : true}" onfocus="clear_input(event)" onblur="set_input(event, 'Usuario')" /></div>
-                <div class="float-left"><input type="text" name="txtLoginPass" id="txtLoginPass" value="Contrase&ntilde;a" class="input_login float-left validator {v_required : true}" onfocus="clear_input(event, 1)" onblur="set_input(event, 'Contrase&ntilde;a', 1)" /></div>
-                <input type="button" id="btnLogin" value="login" class="login" onclick="Login.login();" />
+            <form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
+                <div class="float-left"><input type="text" name="txtLoginUser" id="txtLoginUser" value="Usuario" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event)" onblur="set_input(event, 'Usuario')" /></div>
+                <div class="float-left"><input type="text" name="txtLoginPass" id="txtLoginPass" value="Contrase&ntilde;a" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event, 1)" onblur="set_input(event, 'Contrase&ntilde;a', 1)" /></div>
+                <input type="submit" id="btnLogin" value="login" class="login" />
                 <input type="hidden" name="action" value="login" />
             </form>
         </div>

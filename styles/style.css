@@ -42,7 +42,7 @@ font-weight:bold;
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
 
-#container { 
+#container {
     width: 1050px;  /* el uso de 20px menos que un ancho completo de 800px da cabida a los bordes del navegador y evita la aparición de una barra de desplazamiento horizontal */
     margin: 0 auto; /* los márgenes automáticos (conjuntamente con un ancho) centran la página */
     /*border: 1px solid #000000;*/
@@ -55,7 +55,7 @@ font-weight:bold;
     /*border:1px #990000 solid;*/
     /*height:306px;*/
     /* este relleno coincide con la alineación izquierda de los elementos de los divs que aparecen bajo él. Si se utiliza una imagen en el #header en lugar de texto, es posible que le interese quitar el relleno. */
-} 
+}
     #header .top_left {
         background:url(../images/top_left.png) top left no-repeat;
         height:160px;
@@ -249,8 +249,8 @@ font-weight:bold;
                         color:#5F4E37;
                     }
     /******************************* FIN MENU PANEL ****************************/
-	
-	
+
+
     #sidebar1 {
         float: right; /* dado que este elemento es flotante, debe asignarse un ancho */
         width: 297px; /* el ancho real de este div, en navegadores que cumplen los estándares, o el modo de estándares de Internet Explorer, incluirá el relleno y el borde además del ancho */
@@ -269,7 +269,7 @@ font-weight:bold;
             margin-top:20px;
             margin-bottom:20px;
         }
-	
+
     /*************************** PROPIEDADES DESTACADAS ************************/
     .container_mainContent{
         width:650px;
@@ -278,7 +278,7 @@ font-weight:bold;
         float:left;
         margin-left:5px;
     }
-	.container_mainContent #mainContent { 
+	.container_mainContent #mainContent {
             width:650px;
             background: url(../images/background_general.png)left top repeat-y;
             padding: 0px 0 0 20px;
@@ -334,7 +334,7 @@ font-weight:bold;
                         background:url(../images/button1_over.png) center no-repeat;
                     }
 
-	.container_mainContent .mainContent2 { 
+	.container_mainContent .mainContent2 {
             width:650px;
             background: url(../images/background_general.png)left top repeat-y;
             padding: 0px 0 0 20px;
@@ -372,7 +372,7 @@ font-weight:bold;
                         margin-top:5px;
                     }
         /********************** FIN PROPIEDADES DESTACADAS *********************/
-		
+
         .container_mainContent #mainContent .content_top .icons{
             float:right;
             margin-top:-45px;
@@ -449,8 +449,8 @@ font-weight:bold;
                     margin-top:33px;
                 }
     /******************************* FIN FOTOS *********************************/
-		
-		
+
+
     /************************* FORMULARIO PROPIEDADES **************************/
         .container_mainContent #mainContent .warning{
             float:left;
@@ -505,8 +505,8 @@ font-weight:bold;
             margin-left:60px;
         }
     /*********************** FIN FORMULARIO PROPIEDADES ************************/
-			
-			
+
+
     /*********************** DESCRIPCION PROPIEDADES ***************************/
     .container_mainContent #mainContent .content_left .text{
         width:350px;
@@ -517,8 +517,8 @@ font-weight:bold;
         text-align:justify;
     }
     /*********************** FIN DESCRIPCION PROPIEDADES ***********************/
-		
-						
+
+
     /******* FORMULARIOS (input de cada uno de los paneles de administracion) ******/
     .container_mainContent #mainContent .content_left input{
         width:200px;
@@ -559,8 +559,8 @@ font-weight:bold;
         margin-bottom:2px;
     }
 /***** FIN FORMULARIOS (input de cada uno de los paneles de administracion) *****/
-		
-		
+
+
 /*************************************** FORMULARIO DE CONTACTO *******************************************/
     .container_mainContent #mainContent .form_contact{
         width:480px;
@@ -656,8 +656,8 @@ font-weight:bold;
                     margin-left:60px;
                 }
      /******************* FIN FORMULARIO CONTACTO (sencillo) ******************/
-	
-	
+
+
     .container_mainContent #mainContent .content_right .address{
         float:left;
         width:260px;
@@ -676,7 +676,7 @@ font-weight:bold;
             margin:0 auto;
             margin-top:30px;
 	}
-		
+
 
   /****************************** SERVICIOS ************************************/
     .container_mainContent .services{
@@ -713,8 +713,8 @@ font-weight:bold;
                     color:#999999;
 		}
     /**************************** FIN SERVICIOS ***************************/
-	
-	
+
+
     /************************************* CUENTA PLUS **************************************/
     .container_mainContent #mainContent .container_center{
         width:600px;
@@ -732,7 +732,7 @@ font-weight:bold;
                 font-size:22px;
                 font-weight:bold;
             }
-			
+
             .container_mainContent #mainContent .container_center .plus2{
                 background:url(../images/background_cuenta_plus.png) center top no-repeat;
                 width:374px;
@@ -763,8 +763,8 @@ font-weight:bold;
         font-weight:bold;
     }
 /******************************* FIN CUENTA PLUS ********************************/
-	
-	
+
+
 /******************** TABLAS (editar propiedades, destacarme) *******************/
     .container_mainContent #mainContent .buttons{
         float:right;
@@ -896,8 +896,8 @@ font-weight:bold;
             margin-right:3px;
         }
 /**************** FIN TABLAS (editar propiedades, destacarme) ******************/
-	
-	
+
+
 /************************* COMPRAR CREDITOS ***********************************/
     .container_mainContent #mainContent .credit{
         width:600px;
@@ -937,8 +937,8 @@ font-weight:bold;
                 width:150px;
             }
 /************************** FIN COMPRAR CREDITOS *****************************/
-			
-	
+
+
 /******************************* FOOTER *************************************/
 #footer {
     float:left;
@@ -950,7 +950,7 @@ font-weight:bold;
     font-size:11px;
     font-weight:bold;
     color:#666666;
-} 
+}
     #footer .left{
         width:450px;
         float:left;
@@ -982,7 +982,7 @@ font-weight:bold;
         font-size: 1px;
         line-height: 0px;
     }
-/******************************************* FIN FOOTER ***************************************/	
+/******************************************* FIN FOOTER ***************************************/
 
 
 .input_login{

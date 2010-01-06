@@ -55,3 +55,31 @@
             width:15px;
             height:9px;
 	}
+
+
+.formError_Account{
+    margin-left:-270px;
+    margin-top:28px;
+    display:none;
+    position:relative;
+    z-index:5000;
+}
+	.formError_Account .formErrorContent{
+            width:100%;
+            background:#ee0101;
+            color:#fff;
+            width:150px;
+            font-family: Verdana,Arial,Helvetica,sans-serif;
+            font-size:100%;
+            border:2px solid #ddd;
+            padding:4px 10px 4px 10px;
+            text-align:left;
+	}
+	.formError_Account .formErrorArrow_up{
+            background:url(../images/arrow_up.png) no-repeat;
+            position:absolute;
+            left:2px;
+            top:-8px;
+            width:15px;
+            height:9px;
+	}

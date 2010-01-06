@@ -31,7 +31,6 @@
 <link href="js/jquery.validator/css/jquery.validate.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.validator/js/jquery.validate.js"></script>
 <script type="text/javascript" src="js/jquery.validator/js/jquery.validate.messages.js"></script>
-<script type="text/javascript" src="js/jquery.validator/js/execute.js"></script>
 <!--======= END SCRIPT =======-->
 
 

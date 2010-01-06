@@ -5,7 +5,7 @@
 
 var Login = new (function(){
 
-    this.login = function(){
+    this.validate = function(){
         if( $("#txtLoginUser").val().toLowerCase()=="usuario" ){
             ValidatorLogin2.message.hidden("#txtLoginPass");
             ValidatorLogin2.message.show("#txtLoginUser", ['Ingrese un usuario.']);
@@ -17,8 +17,7 @@ var Login = new (function(){
             return false;
         }
 
-        document.formLogin.submit();
-        return false;
+        return true;
     };
 
 

@@ -7,73 +7,11 @@ class Simplelogin{
     private $user_table;
 
     function __construct($table = 'users'){
-            // get_instance does not work well in PHP 4
-            // you end up with two instances
-            // of the CI object and missing data
-            // when you call get_instance in the constructor
-            //$this->CI =& get_instance();
         $this->user_table = $table;
     }
 
     /**
-     * Create a user account
-     *
-     * @access	public
-     * @param	string
-     * @param	string
-     * @param	bool
-     * @return	bool
-     */
-    public function create($data = array()) {
-        //Put here for PHP 4 users
-        $this->CI =& get_instance();        
-
-        //Encrypt password
-        $password = md5($data['password']);
-
-        //Insert account into the database
-        $this->CI->db->set($data);
-        if(!$this->CI->db->insert($this->user_table)) {
-            //There was a problem!
-            return false;
-        }
-
-        return $this->CI->db->insert_id();
-    }
-
-    /**
-     * Delete user
-     *
-     * @access	public
-     * @param integer
-     * @return	bool
-     */
-    public function delete($user_id) {
-        //Put here for PHP 4 users
-        $this->CI =& get_instance();
-
-        if(!is_numeric($user_id)) {
-            //There was a problem
-            return false;
-        }
-
-        if($this->CI->db->delete($this->user_table, array('id' => $user_id))) {
-            //Database call was successful, user is deleted
-            return true;
-        } else {
-            //There was a problem
-            return false;
-        }
-    }
-
-
-    /**
-     * Login and sets session variables
-     *
-     * @access	public
-     * @param	string
-     * @param	string
-     * @return	bool
+     * @return	boolean
      */
     public function login($user = '', $password = '') {
         //Put here for PHP 4 users
@@ -126,9 +64,6 @@ class Simplelogin{
     }
 
     /**
-     * Logout user
-     *
-     * @access	public
      * @return	void
      */
     public function logout() {

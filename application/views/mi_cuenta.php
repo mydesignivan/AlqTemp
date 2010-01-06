@@ -27,29 +27,23 @@
                 </div>
                 <div class="content_left">
 
-                    <?php if( $this->session->flashdata('statusrecord') ) {?>
+                    <form name="formAccount" id="formAccount" action="<?=site_url('/login/update');?>" method="post" enctype="application/x-www-form-urlencoded">
+                        <p><span class="cell">*Nombre:</span><input type="text" class="input validate {v_required:true}" name="txtName" value="<?=$dataUser['name'];?>" /></p>
+                        <p><span class="cell">*E-Mail:</span><input type="text" class="input validate {v_required:true, v_email:true}" name="txtEmail" value="<?=$dataUser['email'];?>" /></p>
+                        <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" value="<?=$dataUser['phone'];?>" /></p>
+                        <p><span class="cell">*Usuario:</span><input type="text" class="input validate {v_required:true}" name="txtUser" value="<?=$dataUser['username'];?>" /></p>
+                        <p><span class="cell">*Contraseña:</span><input type="password" class="input validate {v_password:[6,10]}" name="txtPass" id="txtPass" /></p>
+                        <p><span class="cell">*Repetir:</span><input type="password" class="input validate {v_compare:'txtPass'}" name="txtPass2" /></p>
 
-                        <h3>El usuario ha sido creado con &eacute;xito</h3>
-                        <p>En un instante recibira un email para la activacion del mismo</p>
-
-                    <?php }else{?>
-
-                        <form name="formAccount" action="<?=site_url('/login/create');?>" method="post" enctype="application/x-www-form-urlencoded">
-                            <p><span class="cell">*Nombre:</span><input type="text" class="input" name="txtName" /></p>
-                            <p><span class="cell">*E-Mail:</span><input type="text" class="input" name="txtEmail" /></p>
-                            <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" /></p>
-                            <p><span class="cell">*Usuario:</span><input type="text" class="input" name="txtUser" /></p>
-                            <p><span class="cell">*Contraseña:</span><input type="password" class="input" name="txtPass" /></p>
-                            <p><span class="cell">*Repetir:</span><input type="password" class="input" name="txtPass2" /></p>
-                        </form>
-                        <div class="container_button">
-                            <a class="button1" href="#" onclick="Account.create(); return false;">Guardar</a>
-                            <a class="button2" href="#" onclick="Account.Delete(); return false;">Eliminar Cuenta</a>
-                        </div>
-                        <br class="clearfloat" />
-                        <h3>(*)Campos Obligatorios</h3>
+                        <input type="hidden" name="user_id" value="<?=$this->session->userdata('id');?>" />
+                    </form>
+                    <div class="container_button">
+                        <a class="button1" href="#" onclick="Account.save(); return false;">Guardar</a>
+                        <a class="button2" href="#" onclick="Account.delete_account(); return false;">Eliminar Cuenta</a>
+                    </div>
+                    <br class="clearfloat" />
+                    <h3>(*)Campos Obligatorios</h3>
                         
-                    <?php }?>
                 </div>
 
                 <div class="content_right">

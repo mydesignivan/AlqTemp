@@ -8,29 +8,23 @@ var Account = new (function(){
     /*
      * PUBLIC METHODS
      */
-    this.create = function(){
-        document.formAccount.submit();
+    this.save = function(){
+        if( !ValidatorAccount.statusError ){
+            document.formAccount.submit();
+        }else{
+            alert('Por favor, revise el formulario.');
+        }
     };
 
-    this.update = function(){
+    this.delete_account = function(){
 
     };
-
-    this.Delete = function(){
-
-    };
-
-
-    /*
-     * PRIVATE PROPERTIES
-     */
-
-
-    /*
-     * PUBLIC METHODS
-     */
-     var validate = function(){
-
-     };
 
 })();
+
+var ValidatorAccount = new Class_Validator({
+    selectors : '#formAccount .validate',
+    messageClass : 'formError_Account',
+    messagePos : 'up',
+    validationOne : true
+});
