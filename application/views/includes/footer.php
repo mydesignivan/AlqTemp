@@ -5,7 +5,7 @@
 </div>
 
 <div class="rigth">
-    <a href="#">Site Map</a> | <a href="#">Publicidad</a> | <a href="#">Cont&aacute;tenos</a>
+    <a href="#">Site Map</a> | <a href="#">Publicidad</a> | <a href="<?=site_url('/contacto/');?>">Cont&aacute;tenos</a>
     <br />
     <span><a href="#">Condiciones de Uso</a> | <a href="#">Pol&iacute;ticas de Privacidad</a></span>
 </div>

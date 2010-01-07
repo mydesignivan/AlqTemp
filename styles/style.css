@@ -39,6 +39,16 @@ font-weight:bold;
     width:160px;
 }
 
+#contmessage{
+    border: 2px solid #FAD4A3;
+    background-color: #FAF9F0;
+    color:#6C491D;
+    padding: 12px;
+    font-size: 110%;
+    text-align: center;
+    display:none;
+}
+
 
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/

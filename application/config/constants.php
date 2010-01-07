@@ -43,6 +43,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 */
 define('ERR_100', 'Se produjo un error interno en la base de dato.');
 define('ERR_101', 'La actualizacion de los datos no pudo ser completado.');
+define('ERR_102', 'El registro del usuario no pudo ser completado.');
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

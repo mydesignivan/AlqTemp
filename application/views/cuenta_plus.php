@@ -19,10 +19,10 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Cuenta Plus</h1>
-                    <div class="icons">
+                    <!--<div class="icons">
                         <span>Usuario:</span>
                         Propietario<a href="#"><img src="images/icon_exit.png" alt="salir" /> Salir</a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="container_center">
                     <div class="plus1">

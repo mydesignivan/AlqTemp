@@ -13,16 +13,12 @@ class Users extends Model {
     }
 
 
-    public function get_all_user() {
-        return $this->db->get_where($this->user_table, array('active'=>'1'));
-    }
-
     public function get_user($user_id) {
         if( !is_numeric($user_id) ) {
             //There was a problem
             return false;
         }
-        return $this->db->get_where($this->user_table, array('id_user'=>$user_id, 'active'=>1));
+        return $this->db->get_where($this->user_table, array('user_id'=>$user_id, 'active'=>1));
     }
 
     /*
@@ -30,32 +26,47 @@ class Users extends Model {
      */
     public function create($data = array()) {
 
-        //Insert account into the database
-        if( !$this->db->insert($this->user_table, $data) ) {
-            //There was a problem!
-            return false;
+        $result = $this->db->get_where($this->user_table, array('username'=>$data['username']));
+
+        if( $result->num_rows==0 ){
+            //Insert account into the database
+            if( !$this->db->insert($this->user_table, $data) ) {
+                //There was a problem!
+                return false;
+            }
+        }else{
+            return "userexists";
         }
 
-        return $this->CI->db->insert_id();
+        return $this->db->insert_id();
     }
 
     /*
      * @return	boolean
      */
-    public function update($data = array(), $user_id) {
+    public function update($data = array(), $user_id=null) {
 
         if( !is_numeric($user_id) ) {
             //There was a problem
             return false;
         }
 
-        //Update account into the database
-        if( !$this->db->update_string($this->user_table, $data, "id_user = ".$user_id) ) {
-            //There was a problem!
-            return false;
-        }
+        $result = $this->db->get_where($this->user_table, array('user_id <>'=>$user_id, 'username'=>$data['username']));
+        
+        if( $result->num_rows==0 ){
+            if( empty($data["password"]) ) unset($data["password"]);
 
-        return true;
+            //Update account into the database
+            $this->db->where('user_id', $user_id);
+
+            if( !$this->db->update($this->user_table, $data) ) {
+                //There was a problem!
+                return false;
+            }
+        }else{
+            return "userexists";
+        }
+        return "ok";
     }
 
     /*

@@ -9,11 +9,13 @@ var Account = new (function(){
      * PUBLIC METHODS
      */
     this.save = function(){
-        if( !ValidatorAccount.statusError ){
-            document.formAccount.submit();
-        }else{
-            alert('Por favor, revise el formulario.');
-        }
+        if( !ValidatorAccount.validate(function(error){
+            if( !error ){
+                document.formAccount.submit();
+            }else{
+                alert('Se han encontrado errores.\nPor favor, revise el formulario.');
+            }
+        }));
     };
 
     this.delete_account = function(){

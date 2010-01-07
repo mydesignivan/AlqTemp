@@ -17,12 +17,12 @@ class Simplelogin{
      */
     public function login($user = '', $password = '') {
         //Make sure login info was sent
-        if($user == '' OR $password == '') {
+        if( $user == '' OR $password == '' ) {
             return false;
         }
 
         //Check if already logged in
-        if($this->CI->session->userdata('username') == $user) {
+        if( $this->CI->session->userdata('username') == $user ) {
             //User is already logged in.
             return false;
         }

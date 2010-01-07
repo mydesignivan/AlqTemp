@@ -5,6 +5,20 @@
     <?php require('includes/head.php');?>
 
     <script type="text/javascript" src="js/class.account.js"></script>
+<?php if( $this->session->flashdata('statusrecord')!='' ) {?>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <?php if( $this->session->flashdata('statusrecord')=='saveok' ){?>
+                $('#contmessage').html('Los datos han sido guardados con &eacute;xito.');
+            <?php }?>
+            <?php if( $this->session->flashdata('statusrecord')=='userexists' ){?>
+                $('#contmessage').html('El nombre de usuario ya existe.');
+            <?php }?>
+
+            $('#contmessage').slideToggle('slow');
+        });
+    </script>
+<?php }?>
 </head>
 
 <body>
@@ -21,13 +35,13 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Mi Cuenta</h1>
-                    <div class="icons">
+                    <!--<div class="icons">
                         <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/login/logout/');?>"><img src="images/icon_exit.png" border="0" alt="Salir" /> Salir</a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="content_left">
-
-                    <form name="formAccount" id="formAccount" action="<?=site_url('/login/update');?>" method="post" enctype="application/x-www-form-urlencoded">
+                    <div id="contmessage"></div>
+                    <form name="formAccount" id="formAccount" action="<?=site_url('/myaccount/update');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <p><span class="cell">*Nombre:</span><input type="text" class="input validate {v_required:true}" name="txtName" value="<?=$dataUser['name'];?>" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" class="input validate {v_required:true, v_email:true}" name="txtEmail" value="<?=$dataUser['email'];?>" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" value="<?=$dataUser['phone'];?>" /></p>
@@ -35,7 +49,7 @@
                         <p><span class="cell">*Contraseña:</span><input type="password" class="input validate {v_password:[6,10]}" name="txtPass" id="txtPass" /></p>
                         <p><span class="cell">*Repetir:</span><input type="password" class="input validate {v_compare:'txtPass'}" name="txtPass2" /></p>
 
-                        <input type="hidden" name="user_id" value="<?=$this->session->userdata('id');?>" />
+                        <input type="hidden" name="user_id" value="<?=$dataUser['user_id'];?>" />
                     </form>
                     <div class="container_button">
                         <a class="button1" href="#" onclick="Account.save(); return false;">Guardar</a>

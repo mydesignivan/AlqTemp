@@ -19,10 +19,10 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Destacarme</h1>
-                    <div class="icons">
+                    <!--<div class="icons">
                         <span>Usuario:</span>
                         Propietario<a href="#"><img src="images/icon_exit.png" alt="salir" /> Salir</a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="credit">
                     <div class="credit_attention">El posicionamiento de la propiedad <span class="t2">se realizar&aacute; unicamente para la secci&oacute;n elegida</span> y la <span class="t2">propiedad seleccionada.</span> La duraci&oacute;n de la posici&oacute;n ser&aacute; de <span class="t2">3 meses</span> desde la fecha de contrataci&oacute;n.</div>

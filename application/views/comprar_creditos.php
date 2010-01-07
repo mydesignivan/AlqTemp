@@ -19,10 +19,10 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Comprar Cr&eacute;dito</h1>
-                    <div class="icons">
+                    <!--<div class="icons">
                         <span>Usuario:</span>
                         Propietario<a href="#"><img src="images/icon_exit.png" alt="salir" /> Salir</a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="credit">
                     <div class="credit_attention">El Cr&eacute;dito que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <span class="t2">alquilerestemporarios.org</span></div>

@@ -19,10 +19,10 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Editar Propiedad</h1>
-                    <div class="icons">
+                    <!--<div class="icons">
                         <span>Usuario:</span>
                         Propietario<a href="#"><img src="images/icon_exit.png" border="0" alt="salir" /> Salir</a>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="buttons">
                     <a href="#" class="button1">Modificar</a>

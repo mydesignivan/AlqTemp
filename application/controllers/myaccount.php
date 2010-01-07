@@ -2,6 +2,8 @@
 class Myaccount extends Controller{
     function __construct(){
         parent::Controller();
+        if( !$this->session->userdata('logged_in') ) redirect('/');
+        
         $this->load->model('users');
         $this->load->library('encpss');
     }
@@ -28,18 +30,21 @@ class Myaccount extends Controller{
                 'password' => $this->encpss->encode($_POST["txtPass"])
             );
 
-            if( $this->users->update($data, $_POST["user_id"]) ){
+            $statusUpdate = $this->users->update($data, $_POST["user_id"]);
 
-                $this->session->userdata('name') = $_POST["txtName"];
-                $this->session->userdata('email') = $_POST["txtEmail"];
-                $this->session->userdata('phone') = $_POST["txtPhone"];
-                $this->session->userdata('username') = $_POST["txtUser"];
-                $this->session->userdata('password') = $_POST["txtPass"];
-                
+            if( $statusUpdate=="ok" ){
+                $this->session->set_userdata($data);
+                $this->session->set_flashdata('statusrecord', 'saveok');
                 redirect('/myaccount/');
+
+            }elseif( $statusUpdate=="userexists" ){
+                $this->session->set_flashdata('statusrecord', 'userexists');
+                redirect('/myaccount/');
+
             }else{
                 show_error(ERR_101);
             }
+
         }
     }
 
