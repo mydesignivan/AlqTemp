@@ -10,24 +10,22 @@ function get_options_country(){
     }
 }
 
-function get_options_state(){
+function get_options_state($country_id){
+    if( !is_numeric($country_id) ) return false;
     $CI =& get_instance();
 
-    $query = $CI->db->get('list_states');
+    $query = $CI->db->query("SELECT state_id, name FROM list_states WHERE country_id=".$country_id." ORDER BY name");
 
-    foreach( $query->result_array() as $row ){
-        echo '<option value="'. $row['state_id'] .'">'. $row['name'] .'</option>';
-    }
+    echo json_encode($query->result_array());
 }
 
-function get_options_city(){
+function get_options_city($state_id){
+    if( !is_numeric($state_id) ) return false;
     $CI =& get_instance();
 
-    $query = $CI->db->get('list_city');
+    $query = $CI->db->query("SELECT city_id, name FROM list_city WHERE state_id=".$state_id." ORDER BY name");
 
-    foreach( $query->result_array() as $row ){
-        echo '<option value="'. $row['city_id'] .'">'. $row['name'] .'</option>';
-    }
+    echo json_encode($query->result_array());
 }
 
 ?>

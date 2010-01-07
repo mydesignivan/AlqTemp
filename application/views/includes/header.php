@@ -29,25 +29,31 @@
             <div class="div1">Buscador:&nbsp;<input type="text" class="input"/></div>
             <a href="#">Buscar</a>
         </div>
-        <div class="search_left">
-       	    <select name="cboCountry" class="select1">
-                <option value="0">Paises</option>
-                <?php get_options_country();?>
-            </select>
-            <br />
-            <select name="cboState" class="select1">
-                <option value="0">Estados / Provincias</option>
-            </select>
-        </div>
-        <div class="search_right">
-            <select name="cboCity" class="select1">
-                <option value="0">Ciudades</option>
-            </select>
-            <br />
-            <select name="cboCategory" class="select1">
-                <option value="0">Categor&iacute;as</option>
-            </select>
-        </div>
+        <form name="formSearch" action="" method="post">
+            <div class="search_left">
+                <select name="cboCountry" class="select1" onchange="Search.show_states(this);">
+                    <option value="0">Paises</option>
+                    <?php get_options_country();?>
+                </select>
+                <br />
+                <select name="cboState" class="select1" onchange="Search.show_city(this);">
+                    <option value="0">Estados / Provincias</option>
+                </select>
+            </div>
+            <div class="search_right">
+                <select name="cboCity" class="select1">
+                    <option value="0">Ciudades</option>
+                </select>
+                <br />
+                <select name="cboCategory" class="select1">
+                    <option value="0">Categor&iacute;as</option>
+                    <option value="">Casas</option>
+                    <option value="">Caba&ntilde;as</option>
+                    <option value="">Departamentos</option>
+                    <option value="">Otros</option>
+                </select>
+            </div>
+        </form>
     </div>
     <div class="column1">
         <div class="main_menu">
