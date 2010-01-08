@@ -4,8 +4,7 @@ class Login extends Controller{
 
     function __construct(){
         parent::Controller();
-        $this->load->library("Simplelogin");
-        $this->load->model('users');
+        $this->load->library("simplelogin");
     }
 
     public function index(){

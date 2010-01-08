@@ -7,7 +7,7 @@ class Creditbuy extends Controller {
     }
 
     public function index(){
-        $this->load->view('comprar_creditos');
+        $this->load->view('comprarcreditos_view');
     }
 }
 

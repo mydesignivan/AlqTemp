@@ -7,7 +7,7 @@ class Servpremium extends Controller {
     }
 
     public function index(){
-        $this->load->view('servicios_premium');
+        $this->load->view('servpremium_view');
     }
 }
 

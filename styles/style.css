@@ -33,10 +33,13 @@ font-style:italic;
 font-weight:bold;
 }
 .float-left{float:left !important;}
-.float-right{float:left !important;}
+.float-right{float:right !important;}
 
 .select1{
     width:160px;
+}
+.select2{
+    width:208px;
 }
 
 #contmessage{

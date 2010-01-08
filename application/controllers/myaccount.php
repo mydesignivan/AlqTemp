@@ -4,24 +4,24 @@ class Myaccount extends Controller{
         parent::Controller();
         if( !$this->session->userdata('logged_in') ) redirect('/');
         
-        $this->load->model('users');
+        $this->load->model('users_model');
         $this->load->library('encpss');
     }
 
     public function index(){
-        $query = $this->users->get_user($this->session->userdata('user_id'));
+        $query = $this->users_model->get_user($this->session->userdata('user_id'));
 
         if( !$query || $query->num_rows==0 ){
             show_error(ERR_100);
         }else {
             $data = $query->row_array();
-            $this->load->view("mi_cuenta", array('dataUser'=>$data));
+            $this->load->view("micuenta_view", array('dataUser'=>$data));
         }
     }
 
-    public function update(){
+    public function edit(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-
+            
             $data = array(
                 'name'     => $_POST["txtName"],
                 'email'    => $_POST["txtEmail"],
@@ -30,7 +30,7 @@ class Myaccount extends Controller{
                 'password' => $this->encpss->encode($_POST["txtPass"])
             );
 
-            $statusUpdate = $this->users->update($data, $_POST["user_id"]);
+            $statusUpdate = $this->users_model->update($data, $_POST["user_id"]);
 
             if( $statusUpdate=="ok" ){
                 $this->session->set_userdata($data);

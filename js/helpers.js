@@ -7,6 +7,22 @@ jQuery.fn.extend({
         });
     },
 
+    ucTitle : function(){
+        return this.each(function(){
+            if( this.value ){
+                if( this.value.length>0 ){
+                    var arr = this.value.split(" ");
+                    var t = this;
+                    this.value="";
+                    $(arr).each(function(){
+                        t.value+= this.substr(0,1).toUpperCase()+this.substr(1,this.length).toLowerCase()+" ";
+                    });
+                    t.value = t.value.substr(0, t.value.length-1);
+                }
+            }
+        });
+    },
+
     convertDate : function(){
         return this.each(function(){
             if( this.value ){
@@ -26,6 +42,16 @@ jQuery.fn.extend({
                            (opacity == 1 ? '' : ' alpha(opacity=' + opacity * 100 + ')');
             }else{
                 s.opacity = opacity*0.1;
+            }
+        });
+    },
+
+    formatURL : function(){
+        return this.each(function(){
+            if( this.value ){
+                if( this.value.substr(0,7).toLowerCase()!="http://" ){
+                    this.value = "http://"+this.value;
+                }
             }
         });
     }

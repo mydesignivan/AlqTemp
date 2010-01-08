@@ -3,14 +3,14 @@ class Registro extends Controller {
 
     function __construct(){
         parent::Controller();
-        $this->load->model('users');
+        $this->load->model('users_model');
         $this->load->helper('combobox');
         $this->load->library('encpss');
         $this->load->library('email');
     }
 
     public function index(){
-        $this->load->view('registrarme');
+        $this->load->view('formregistro_view');
     }
 
     public function create(){
@@ -24,19 +24,21 @@ class Registro extends Controller {
                 'password' => $this->encpss->encode($_POST["txtPass"])
             );
 
-            $status = $this->users->create($data);
+            $status = $this->users_model->create($data);
 
             if( is_numeric($status) ){
 
-                /*$this->email->from('tu_direccion@tu_sitio.com', 'Tu nombre');
-                $this->email->to('alguien@ejemplo.com');
-                $this->email->subject('Correo de Prueba');
-                $this->email->message('Probando la clase email');
-                $this->email->send();
-                echo $this->email->print_debugger();*/
+                $this->email->from(EMAIL_REG_FROM, EMAIL_REG_NAME);
+                $this->email->to($_POST["txtEmail"]);
+                $this->email->subject(EMAIL_REG_SUBJECT);
+                $this->email->message(EMAIL_REG_MESSAGE);
+                if( $this->email->send() ){
+                    $this->session->set_flashdata('statusrecord', 'saveok');
+                    redirect('/registro/');
+                }else {
+                    show_error(ERR_103);
+                }
 
-                $this->session->set_flashdata('statusrecord', 'saveok');
-                redirect('/registro/');
 
             }elseif( $status=="userexists" ){
                 $this->session->set_flashdata('statusrecord', 'userexists');

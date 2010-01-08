@@ -7,7 +7,7 @@ class Contacto extends Controller {
     }
 
     public function index(){
-        $this->load->view('contacto');
+        $this->load->view('contacto_view');
     }
 }
 
