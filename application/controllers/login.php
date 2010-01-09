@@ -8,16 +8,16 @@ class Login extends Controller{
     }
 
     public function index(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $statusLogin = $this->simplelogin->login($_POST["txtLoginUser"], $_POST["txtLoginPass"]);
 
-        $this->simplelogin->logout();
-        $statusLogin = $this->simplelogin->login($_POST["txtLoginUser"], $_POST["txtLoginPass"]);
-        
-        if( $statusLogin ){
-            redirect('/myaccount/');
-        }else{
-            $this->session->set_flashdata('logout', true);
-            redirect('/');
-        }
+            if( $statusLogin ){
+                redirect('/myaccount/');
+            }else{
+                $this->session->set_flashdata('loginfaild', true);
+                redirect('/');
+            }
+        }else redirect('/');
     }
 
     public function logout(){

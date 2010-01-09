@@ -11,7 +11,7 @@ class Ajax_search extends Controller {
     }
 
     public function list_states(){
-        get_options_state($this->uri->segment(3));
+        get_options_state(array('country_id'=>$this->uri->segment(3)));
     }
     public function list_city(){
         get_options_city($this->uri->segment(3));

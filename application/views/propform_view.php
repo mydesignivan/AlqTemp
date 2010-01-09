@@ -28,27 +28,31 @@
                     </div>-->
                 </div>
                 <div class="content_left">
-                    <form name="formProp" id="formProp" action="<?=site_url('/myaccount/update');?>" method="post" enctype="application/x-www-form-urlencoded">
-                        <p><span class="cell">*Dirección:</span><input type="text" name="txtAddress" class="input style_input validate {v_required:true}" /></p>
+                    <div id="contmessage"></div>
+                    <form name="formProp" id="formProp" action="<?=site_url('/prop/create');?>" method="post" enctype="application/x-www-form-urlencoded">
+                        <p><span class="cell">*Dirección:</span><input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=$data['address'];?>" /></p>
                       	<!--<p>
                         	<span class="cell">*Foto:</span>
                             <input type="file" name="fileField" class="input" />
                             <a href="#" class="add">Adjuntar otro archivo</a>
                         </p>-->
 
-                        <p><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" class="input style_textarea  validate {v_required:true}" cols="20" rows="5"></textarea></p>
+                        <p><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" class="input style_textarea  validate {v_required:true}" cols="20" rows="5"><?=$data['description'];?></textarea></p>
 
                         <p>
                             <span class="cell">*Servicios:</span>
-                            <div class="list input">
+                            <div id="contServices" class="list input overflow-x-hidden">
                                 <ul id="lstServices">
-                                    <li class="impar"><input type="checkbox" name="checkbox" class="checkbox" /><span>Salon de reuni&oacute;n</span></li>
-                                    <li><input type="checkbox" name="checkbox" class="checkbox" /><span>Secador de pelo</span></li>
-                                    <li class="impar"><input type="checkbox" name="checkbox" class="checkbox" /><span>Aire acondicionado</span></li>
-                                    <li><input type="checkbox" name="checkbox" class="checkbox" /><span>Calefacci&oacute;n</span></li>
-                                    <li class="impar"><input type="checkbox" name="checkbox" class="checkbox" /><span>Aire acondicionado</span></li>
-                                    <li><input type="checkbox" name="checkbox" class="checkbox" /><span>Calefacci&oacute;n</span></li>
-                                    <li class="impar"><input type="checkbox" name="checkbox" class="checkbox" /><span>Aire acondicionado</span></li>
+                                    <?php
+                                        $n=0;
+                                        foreach( $services as $row ){
+                                            $n++;
+                                            $class = $n%2 ? 'class="impar"' : "";
+                                    ?>
+
+                                    <li <?=$class;?>><input type="checkbox" name="checkbox" class="checkbox" value="<?=$row['service_id'];?>" /><span><?=$row['name'];?></span></li>
+
+                                    <?php }?>
                                 </ul>
                             </div>
                       	</p>
@@ -57,19 +61,21 @@
                             <span class="cell">*Pais:</span>
                             <select name="cboCountry" class="select2 float-right validate {v_required:true}" onchange="ComboBox.states(this);">
                                 <option value="0">Seleccione un Pa&iacute;s</option>
-                                <?php get_options_country();?>
+                                <?php get_options_country($data['country_id']);?>
                             </select>
                         </p>
                         <p>
                             <span class="cell">*Provincia</span>
                             <select name="cboStates" id="cboStates" class="select2 float-right validate {v_required:true}">
                                 <option value="0">Seleccione un Pa&iacute;s</option>
+                                <?php if( $data['state_id']!='' ) get_options_state(array('selected'=>$data['state_id']));?>
                             </select>
                         </p>
-                        <p><span class="cell">*Ciudad:</span><input type="text" name="txtCity" class="input style_input validate {v_required:true}" onblur="$(this).ucFirst();" /></p>
-                        <p><span class="cell">Tel&eacute;fono:</span><input type="text" name="txtPhone" class="input style_input" /></p>
-                        <p><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" /></p>
-                        <p><span class="cell">Precio:</span><input type="text" name="txtPrice" class="input style_input" /></p>
+                        <p><span class="cell">*Ciudad:</span><input type="text" name="txtCity" class="input style_input validate {v_required:true}" onblur="$(this).ucFirst();" value="<?=$data['city'];?>" /></p>
+                        <p><span class="cell">Tel&eacute;fono:</span><input type="text" name="txtPhone" class="input style_input" value="<?=$data['phone'];?>" /></p>
+                        <p><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" value="<?=$data['website'];?>" /></p>
+                        <p><span class="cell">Precio:</span><input type="text" name="txtPrice" class="input style_input" value="<?=$data['price'];?>" /></p>
+                        <input type="hidden" name="services" value="<?=$data['services'];?>" />
                     </form>
 
                     <p><div class="container_button"><a class="button1" href="#" onclick="Prop.save(); return false;">Guardar</a></div></p>

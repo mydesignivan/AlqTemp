@@ -43,7 +43,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 */
 define('ERR_100', 'Se produjo un error interno en la base de dato.');
 define('ERR_101', 'La actualizacion de los datos no pudo ser completado.');
-define('ERR_102', 'El registro del usuario no pudo ser completado.');
+define('ERR_102', 'Los datos no pudieron ser guardados.');
 define('ERR_103', 'El usuario ha sido creado satisfactoriamente pero no se ha podido enviar el email de activaci&oacute;n del mismo');
 
 /*
@@ -55,6 +55,16 @@ define('EMAIL_REG_FROM', 'ivan@mydesign.com.ar');
 define('EMAIL_REG_NAME', 'alquilerestemporario.org');
 define('EMAIL_REG_SUBJECT', 'alquilerestemporario.org - Activación de Usuario');
 define('EMAIL_REG_MESSAGE', '<a href="">Haga click aquí para activar su usuario</a>');
+
+/*
+|--------------------------------------------------------------------------
+| EMAIL RECORDAR CONTRASEÑA
+|--------------------------------------------------------------------------
+*/
+define('EMAIL_RP_FROM', 'ivan@mydesign.com.ar');
+define('EMAIL_RP_NAME', 'alquilerestemporario.org');
+define('EMAIL_RP_SUBJECT', 'alquilerestemporario.org - Recordar contraseña');
+define('EMAIL_RP_MESSAGE', 'Su contraseña es %s');
 
 
 /* End of file constants.php */

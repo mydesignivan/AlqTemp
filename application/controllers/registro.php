@@ -28,20 +28,21 @@ class Registro extends Controller {
 
             if( is_numeric($status) ){
 
-                $this->email->from(EMAIL_REG_FROM, EMAIL_REG_NAME);
+                /*$this->email->from(EMAIL_REG_FROM, EMAIL_REG_NAME);
                 $this->email->to($_POST["txtEmail"]);
                 $this->email->subject(EMAIL_REG_SUBJECT);
                 $this->email->message(EMAIL_REG_MESSAGE);
-                if( $this->email->send() ){
+                if( $this->email->send() ){*/
                     $this->session->set_flashdata('statusrecord', 'saveok');
                     redirect('/registro/');
-                }else {
+                /*}else {
                     show_error(ERR_103);
-                }
+                }*/
 
 
             }elseif( $status=="userexists" ){
                 $this->session->set_flashdata('statusrecord', 'userexists');
+                $this->session->set_flashdata('data', $data);
                 redirect('/registro/');
                 
             }else{
