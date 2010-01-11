@@ -5,7 +5,7 @@
                 <li><a href="<?=site_url('/contacto/');?>"><img src="images/icono_contacto.png" alt="contacto" border="0" />Contacto</a></li>
             </ul>
         </div>
-        <div class="logo"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" border="0" /> </div>
+        <div class="logo"><a href="<?=site_url('/');?>" target="_blank"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" /></a></div>
     </div>
 
     <div class="top_right">

@@ -52,6 +52,12 @@ font-weight:bold;
     display:none;
 }
 
+.overflow-x-hidden{overflow-x: hidden !important;}
+#ajaxloader{
+    float:left;
+    margin:8px 0 0 10px;
+    display: none;
+}
 
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
@@ -490,7 +496,7 @@ font-weight:bold;
             width:200px;
             float:right;
             height:100px;
-            margin-top:-30px;
+            margin-top:0px;
         }
         .container_mainContent #mainContent .content_left .list ul{
             list-style:none;
@@ -539,7 +545,8 @@ font-weight:bold;
         margin:0 auto;
         float:right;
     }
-    .container_mainContent #mainContent .cell, .container_mainContent #mainContent .add{
+    .container_mainContent #mainContent .cell,
+    .container_mainContent #mainContent .add{
         font-family:Arial, Helvetica, sans-serif;
         font-size:12px;
         color:#6C491D;
@@ -571,6 +578,16 @@ font-weight:bold;
         float:left;
         width:390px;
         margin-bottom:2px;
+    }
+    .container_mainContent #mainContent .content_left .row{
+        float:left;
+        width:600px;
+        margin-bottom:2px;
+    }
+    .container_mainContent #mainContent .content_left .row2{
+        float:left;
+        width:358px;
+        margin-bottom:6px;
     }
 /***** FIN FORMULARIOS (input de cada uno de los paneles de administracion) *****/
 
@@ -953,6 +970,15 @@ font-weight:bold;
 /************************** FIN COMPRAR CREDITOS *****************************/
 
 
+/********************* FORMULARIO RECORDAR CONTRASEÑA ************************/
+.content_rememberpass{
+    float:left;
+    font-size: 120%;
+}
+
+
+
+
 /******************************* FOOTER *************************************/
 #footer {
     float:left;
@@ -1046,7 +1072,7 @@ font-weight:bold;
 .button2{
     display:inline-block;
     width:121px;
-    height:25px;
+    height:17px;
     background:url(../images/button_canjear_puntos.png) no-repeat center left;
     border:none;
     text-align:center;
@@ -1056,6 +1082,7 @@ font-weight:bold;
     font-weight:bold;
     margin:0 auto;
     padding-top:8px;
+    padding-bottom: 4px;
 }
     .button2:hover{
         background:url(../images/button_canjear_puntos_over.png) no-repeat center left;

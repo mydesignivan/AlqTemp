@@ -38,12 +38,6 @@ class Registro extends Controller {
                 /*}else {
                     show_error(ERR_103);
                 }*/
-
-
-            }elseif( $status=="userexists" ){
-                $this->session->set_flashdata('statusrecord', 'userexists');
-                $this->session->set_flashdata('data', $data);
-                redirect('/registro/');
                 
             }else{
                 show_error(ERR_102);

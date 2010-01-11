@@ -3,6 +3,8 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
+
+    <script type="text/javascript" src="js/class.prop.js"></script>
 </head>
 
 <body>
@@ -18,55 +20,48 @@
         <div class="container_mainContent">
             <div id="mainContent">
                 <div class="content_top">
-                    <h1>Editar Propiedad</h1>
+                    <h1>Propiedades</h1>
                     <!--<div class="icons">
                         <span>Usuario:</span>
                         Propietario<a href="#"><img src="images/icon_exit.png" border="0" alt="salir" /> Salir</a>
                     </div>-->
                 </div>
+
+                <?php if( count($listProp)>0 ){?>
                 <div class="buttons">
-                    <a href="#" class="button1">Modificar</a>
-                    <a href="#" class="button1">Eliminar</a>
+                    <a href="#" class="button1" onclick="Prop.action.edit(); return false;">Modificar</a>
+                    <a href="#" class="button1" onclick="Prop.action.del(); return false;">Eliminar</a>
                 </div>
+
                 <div class="header">
-                    <div class="header_left">Imagen</div>
+                    <div class="header_left">Im&aacute;gen</div>
                     <div class="header_center">Ubicaci&oacute;n</div>
                     <div class="header_right">Categor&iacute;a</div>
                 </div>
-                <div class="table_body">
-                    <div class="table_impar">
+                <div id="tblProp" class="table_body">
+                <?php
+                    $n=0;
+                    foreach( $listProp as $row ){
+                        $n++;
+                        $class = $n%2 ? 'table_impar' : 'table_par';
+                    ?>
+                    <div class="<?=$class;?>">
                         <div class="table_left">
-                            <form action="" enctype="application/x-www-form-urlencoded">
-                                <input type="checkbox" name="checkbox" id="checkbox" />
-                                <div class="miniatura"><img src="images/img1.png" alt="propiedades" /></div>
-                            </form>
+                            <input type="checkbox" name="checkbox" id="checkbox" value="<?=$row["prop_id"];?>" />
+                            <div class="miniatura"><img src="images/img1.png" alt="" /></div>
                         </div>
-                        <div class="table_center">San Lorenzo Apartments</div>
-                        <div class="table_right">Departamentos</div>
+                        <div class="table_center"><?=$row["address"];?></div>
+                        <div class="table_right"><?=$row["category"];?></div>
                     </div>
-                    <div class="table_par">
-                        <div class="table_left">
-                            <form action="" enctype="application/x-www-form-urlencoded">
-                                <input type="checkbox" name="checkbox" id="checkbox" />
-                                <div class="miniatura"><img src="images/img1.png" alt="propiedades" /></div>
-                            </form>
-                        </div>
-                        <div class="table_center">Mendoza - Ciudad</div>
-                        <div class="table_right">departamentos</div>
-                    </div>
-                    <div class="table_impar">
-                        <div class="table_left">
-                            <form action="" enctype="application/x-www-form-urlencoded">
-                                <input type="checkbox" name="checkbox" id="checkbox" />
-                                <div class="miniatura"><img src="images/img1.png" alt="propiedades" /></div>
-                            </form>
-                        </div>
-                        <div class="table_center">San Lorenzo Apartments</div>
-                        <div class="table_right">Departamentos</div>
-                    </div>
+                <?php }?>
                 </div>
                 <!--end .table_body -->
                 <div class="table_bottom"></div>
+                <?php }else{?>
+                    <p>No existen propiedades cargadas.</p>
+                <?php }?>
+
+
                 <br />&nbsp;<br />
             </div>
             <!--end .maintContent -->

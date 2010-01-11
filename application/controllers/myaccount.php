@@ -37,10 +37,6 @@ class Myaccount extends Controller{
                 $this->session->set_flashdata('statusrecord', 'saveok');
                 redirect('/myaccount/');
 
-            }elseif( $statusUpdate=="userexists" ){
-                $this->session->set_flashdata('statusrecord', 'userexists');
-                redirect('/myaccount/');
-
             }else{
                 show_error(ERR_101);
             }

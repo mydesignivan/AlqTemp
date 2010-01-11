@@ -40,7 +40,7 @@
 
 <!--======= END CLASS =======-->
 
-<?php if( $this->session->flashdata('logout') ) {?>
+<?php if( $this->session->flashdata('loginfaild') ) {?>
     <script type="text/javascript">
     <!--
     $(document).ready(function(){

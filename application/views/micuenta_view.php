@@ -5,16 +5,10 @@
     <?php require('includes/head_inc.php');?>
 
     <script type="text/javascript" src="js/class.account.js"></script>
-<?php if( $this->session->flashdata('statusrecord')!='' ) {?>
+<?php if( $this->session->flashdata('statusrecord')=='saveok' ) {?>
     <script type="text/javascript">
         $(document).ready(function(){
-            <?php if( $this->session->flashdata('statusrecord')=='saveok' ){?>
-                $('#contmessage').html('Los datos han sido guardados con &eacute;xito.');
-            <?php }?>
-            <?php if( $this->session->flashdata('statusrecord')=='userexists' ){?>
-                $('#contmessage').html('El nombre de usuario ya existe.');
-            <?php }?>
-
+            $('#contmessage').html('Los datos han sido guardados con &eacute;xito.');
             $('#contmessage').slideToggle('slow');
         });
     </script>
@@ -52,7 +46,7 @@
                         <input type="hidden" name="user_id" value="<?=$dataUser['user_id'];?>" />
                     </form>
                     <div class="container_button">
-                        <a class="button1" href="#" onclick="Account.save(); return false;">Guardar</a>
+                        <a class="button1" href="#" onclick="Account.save(); return false;">Guardar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" />
                         <a class="button2" href="#" onclick="Account.delete_account(); return false;">Eliminar Cuenta</a>
                     </div>
                     <br class="clearfloat" />

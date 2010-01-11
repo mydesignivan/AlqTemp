@@ -5,7 +5,7 @@
                 <li><a href="<?=site_url('/contacto/');?>"><img src="images/icono_contacto.png" alt="contacto" />Contacto</a></li>
             </ul>
         </div>
-        <div class="logo"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" border="0" /></div>
+        <div class="logo"><a href="<?=site_url('/');?>" target="_blank"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" /></a></div>
     </div>
 
     <div class="top_right">
@@ -15,7 +15,7 @@
                     <div class="float-left"><input type="text" name="txtLoginUser" id="txtLoginUser" value="Usuario" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event)" onblur="set_input(event, 'Usuario')" /></div>
                     <div class="float-left"><input type="text" name="txtLoginPass" id="txtLoginPass" value="Contrase&ntilde;a" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event, 1)" onblur="set_input(event, 'Contrase&ntilde;a', 1)" /></div>
                     <input type="submit" id="btnLogin" value="login" class="login" />
-                    <input type="hidden" name="action" value="login" />
+                    <br /><a href="<?=site_url('/rememberpass/');?>">&iquest;Olvido su contrase&ntilde;a?</a>
                 </form>
 
             <?php }else{?>

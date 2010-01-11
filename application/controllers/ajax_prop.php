@@ -10,9 +10,9 @@ class Ajax_prop extends Controller {
         
     }
 
-    public function existsprop(){
-        if( $this->prop_model->existsprop($this->uri->segment(3)) ){
-            echo "propexists";
+    public function valid(){
+        if( $this->prop_model->exists($this->uri->segment(3), $this->uri->segment(4)) ){
+            echo "exists";
         }
     }
 
