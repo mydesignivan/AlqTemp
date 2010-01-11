@@ -1,9 +1,9 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Ajax_prop extends Controller {
+class Ajax_account extends Controller {
 
     function __construct(){
         parent::Controller();
-        $this->load->model('prop_model');
+        $this->load->model('users_model');
     }
 
     public function index(){
@@ -11,7 +11,7 @@ class Ajax_prop extends Controller {
     }
 
     public function valid(){
-        if( $this->prop_model->exists($this->uri->segment(3), $this->uri->segment(4)) ){
+        if( $this->users_model->exists($this->uri->segment(3), $this->uri->segment(4)) ){
             echo "exists";
         }
     }
