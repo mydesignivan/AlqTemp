@@ -6,6 +6,15 @@
 var Prop = new (function(){
 
     /*
+     * CONSTRUCTOR
+     */
+    $(document).ready(function(){
+       //document.formProp.cboCountry.selectedIndex=0;
+
+    });
+
+
+    /*
      * PUBLIC METHODS
      */
     this.save = function(){
@@ -85,6 +94,21 @@ var Prop = new (function(){
         }
     }
 
+    this.append_row_file = function(el){
+        var div = $('<div class="row span-3"></div>');
+        var button = $('<div class="button2 float-right btnexamin">Examinar</div>');
+
+        div.append('<a class="button2 float-right" onclick="Prop.remove_row_file(this); return false;">Eliminar</a>');
+        div.append(button);
+        div.append('<input type="text" name="" class="input style_input" value="" />');
+        
+        $(el).parent().prepend(div);
+        AjaxUpload.append_input(button);
+    };
+
+    this.remove_row_file = function(el){
+        $(el).parent().remove();
+    };
 
     /*
      * PRIVATE PROPERTIES
@@ -105,9 +129,6 @@ var Prop = new (function(){
         return true;
     };
 
-    $(document).ready(function(){
-       //document.formProp.cboCountry.selectedIndex=0;
-    });
 
 
 })();
@@ -117,4 +138,30 @@ var ValidatorProp = new Class_Validator({
     messageClass : 'formError_Account',
     messagePos : 'up',
     validationOne : true
+});
+
+var AjaxUpload = new ClassAjaxUpload({
+    selector : '.btnexamin',
+    action   : document.baseURI+'index.php/ajax_upload',
+    autoSubmit : true,
+    multifile : true,
+    onSubmit : function(input, ext){
+        if( !(ext && /^(jpg|png|jpeg|gif)$/.test(ext)) ){
+            alert('Error: Solo se permiten imagenes');
+            return false;
+        } else {
+            var divRow = $(input).parent().parent();
+            divRow.removeClass('span-1')
+                  .addClass('span-4')
+                  .append('<div id="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>')
+                  .find('div.btnexamin, input.style_input').hide();
+
+            divRow.find('input.style_input').val(input.value);
+        }
+        return true;
+    },
+    onComplete : function(response){
+        alert(response);
+        //$(".style_input").val('');
+    }
 });

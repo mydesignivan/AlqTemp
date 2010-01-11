@@ -5,38 +5,8 @@
     <?php require('includes/head_inc.php');?>
 
     <script type="text/javascript" src="js/class.combobox.js"></script>
+    <script type="text/javascript" src="js/jquery.ajaxupload.js"></script>
     <script type="text/javascript" src="js/class.prop.js"></script>
-    <script type="text/javascript" src="js/ajaxupload.2.0.js"></script>
-    <script type="text/javascript">
-    <!--
-    $(document).ready(function(){
-        var button = $('.btnexamin'), interval;
-        new AjaxUpload('.btnexamin', {
-            action: document.baseURI+'index.php/ajax_upload',
-            onSubmit : function(file , ext){
-                if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){
-                    alert('Error: Solo se permiten imagenes');
-                    return false;
-                } else {
-                    document.title = "subiendo";
-                    //button.text('Uploading');
-                    this.disable();
-                }
-            },
-            onComplete: function(file, response){
-                alert(response);
-                alert(file);
-                document.title = "listo";
-                //button.text('Upload');
-                // habilito upload button
-                this.enable();
-                // Agrega archivo a la lista
-                //$('#lista').appendTo('.files').text(file);
-            }
-        });
-    });
-    -->
-    </script>
 </head>
 
 <body>
@@ -62,13 +32,13 @@
                     <div id="contmessage"></div>
                     <form name="formProp" id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="row2"><span class="cell">*Dirección:</span><input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" /></div>
-                        <div class="row">
+                        <div class="row span-1">
                             <span class="cell">*Foto:</span>
-                            <a href="#" class="button2 float-right">Eliminar</a>
-                            <div href="#" class="button2 float-right btnexamin">Examinar</div>
+                            <div class="button2 float-right btnexamin">Examinar</div>
                             <input type="text" name="" class="input style_input" value="" />
+                            <!--<a href="#" class="previewthumb"><img src="images/img1.png" alt="" width="69" height="60" /></a>-->
                         </div>
-                        <div class="row"><a href="#" class="add">Adjuntar otro archivo</a></div>
+                        <div class="row2"><a href="#" class="add" onclick="Prop.append_row_file(this); return false;">Adjuntar otro archivo</a></div>
 
 
                         <div class="row2"><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" class="input style_textarea  validate {v_required:true}" cols="20" rows="5"><?=getval($data, 'description');?></textarea></div>

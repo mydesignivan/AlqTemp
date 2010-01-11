@@ -58,6 +58,16 @@ font-weight:bold;
     margin:8px 0 0 10px;
     display: none;
 }
+#ajaxloader2{
+    float:right;
+    display: block;
+}
+
+.span-1{width:434px;}
+.span-2{width:500px;}
+.span-3{width:510px;}
+.span-4{width:265px;}
+
 
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
@@ -581,7 +591,6 @@ font-weight:bold;
     }
     .container_mainContent #mainContent .content_left .row{
         float:left;
-        width:600px;
         margin-bottom:2px;
     }
     .container_mainContent #mainContent .content_left .row2{
@@ -1045,10 +1054,10 @@ font-weight:bold;
     font-size:12px;
 }
 .add{
-    padding-left:225px;
     text-decoration:underline;
     font-style:italic;
     font-size:11px;
+    float: right !important;
 }
 .button1{
     display:inline-block;
@@ -1071,21 +1080,21 @@ font-weight:bold;
 }
 .button2{
     display:inline-block;
-    width:121px;
+    width:76px;
     height:17px;
-    background:url(../images/button_canjear_puntos.png) no-repeat center left;
+    background:url(../images/button1.png) no-repeat center left;
     border:none;
     text-align:center;
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
     color:#6C491D;
     font-weight:bold;
-    margin:0 auto;
     padding-top:8px;
     padding-bottom: 4px;
+    margin-top: -5px;
 }
     .button2:hover{
-        background:url(../images/button_canjear_puntos_over.png) no-repeat center left;
+        background:url(../images/button1_over.png) no-repeat center left;
     }
 .container_button{
     width:600px;
@@ -1113,4 +1122,9 @@ font-weight:bold;
     float:left;
     background-color:#F1CB65;
     text-align:center;
+}
+.previewthumb{
+    float:right;
+    display: block;
+    margin-right: 10px;
 }
