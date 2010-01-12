@@ -18,6 +18,8 @@ var Prop = new (function(){
      * PUBLIC METHODS
      */
     this.save = function(){
+        AjaxUpload.submit();
+        return;
         if( working ) return;
 
         ValidatorProp.validate(function(error){
@@ -95,19 +97,24 @@ var Prop = new (function(){
     }
 
     this.append_row_file = function(el){
-        var div = $('<div class="row span-3"></div>');
-        var button = $('<div class="button2 float-right btnexamin">Examinar</div>');
+        var divRow = $('<div class="row"></div>');
+        var divCol = $('<div class="col"></div>');
+        var button = $('<div class="button2 float-left btnexamin">Examinar</div>');
 
-        div.append('<a class="button2 float-right" onclick="Prop.remove_row_file(this); return false;">Eliminar</a>');
-        div.append(button);
-        div.append('<input type="text" name="" class="input style_input" value="" />');
-        
-        $(el).parent().prepend(div);
+        divCol.append('<div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>')
+              .append('<a href="#" class="previewthumb"><img src="" alt="" width="69" height="60" /></a>')
+              .append('<input type="text" name="" class="input style_input float-left" value="" />')
+              .append(button)
+              .append('<a class="button2 float-left" onclick="Prop.remove_row_file(this); return false;">Eliminar</a>');
+              
+        divRow.append(divCol);
+
+        $(el).parent().before(divRow);
         AjaxUpload.append_input(button);
     };
 
     this.remove_row_file = function(el){
-        $(el).parent().remove();
+        $(el).parent().parent().remove();
     };
 
     /*
@@ -143,25 +150,34 @@ var ValidatorProp = new Class_Validator({
 var AjaxUpload = new ClassAjaxUpload({
     selector : '.btnexamin',
     action   : document.baseURI+'index.php/ajax_upload',
-    autoSubmit : true,
-    multifile : true,
     onSubmit : function(input, ext){
         if( !(ext && /^(jpg|png|jpeg|gif)$/.test(ext)) ){
             alert('Error: Solo se permiten imagenes');
             return false;
         } else {
-            var divRow = $(input).parent().parent();
-            divRow.removeClass('span-1')
-                  .addClass('span-4')
-                  .append('<div id="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>')
-                  .find('div.btnexamin, input.style_input').hide();
-
-            divRow.find('input.style_input').val(input.value);
+            var divCol = $(input).parent().parent();
+            divCol.find('div.btnexamin, input.style_input').hide();
+            divCol.find('div.ajaxloader2').show();
+            divCol.find('input.style_input').val(input.value);
         }
         return true;
     },
-    onComplete : function(response){
-        alert(response);
-        //$(".style_input").val('');
+    onComplete : function(response, input){
+        var divCol = $(input).parent().parent();
+
+        divCol.find('div.ajaxloader2').hide();
+        divCol.find('div.btnexamin, input.style_input').show();
+
+        if( /^(filename:)/.test(response) ){
+            var filename = response.substr(9);
+            var a = divCol.find('a.previewthumb');
+            var img = a.find(':first')
+            img.attr('src', 'tmp/'+filename)
+            a.show();
+        }else{
+            divCol.find('input.style_input').val('');
+            alert(response);
+        }
+
     }
 });

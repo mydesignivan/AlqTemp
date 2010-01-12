@@ -84,7 +84,7 @@ var ClassAjaxUpload=function(options){
     };
 
     var create_input = function(){
-        var i = $('<input type="file" name="'+(options.multifile ? 'uploadFile[]' : 'uploadFile')+'" />');
+        var i = $('<input type="file" name="'+(options.multifile ? 'userfile[]' : 'uploadFile')+'" />');
 
         i.attr('size', '200');
         i.css({
@@ -131,12 +131,14 @@ var ClassAjaxUpload=function(options){
 
             if( options.autoSubmit ) {
                 tmpButton.append(create_input());
-                input = tmpButton.find('input');
+                input = tmpButton.find('input')[0];
             }else{
                 input = new Array();
                 var el = $(options.selector);
                 el.each(function(){
-                    input.push($(this).append(create_input()));
+                    var i = create_input();
+                    $(this).append(i);
+                    input.push(i[0]);
                 });
             }
 

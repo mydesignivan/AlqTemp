@@ -58,15 +58,11 @@ font-weight:bold;
     margin:8px 0 0 10px;
     display: none;
 }
-#ajaxloader2{
-    float:right;
-    display: block;
+.ajaxloader2{
+    float:left;
+    display: none;
+    margin-right: 10px;
 }
-
-.span-1{width:434px;}
-.span-2{width:500px;}
-.span-3{width:510px;}
-.span-4{width:265px;}
 
 
 /*-----------------------------------------------------------------------------*/
@@ -592,7 +588,12 @@ font-weight:bold;
     .container_mainContent #mainContent .content_left .row{
         float:left;
         margin-bottom:2px;
+        width:642px;
     }
+        .container_mainContent #mainContent .content_left .row .col{
+            float:right;
+            width:489px;
+        }
     .container_mainContent #mainContent .content_left .row2{
         float:left;
         width:358px;
@@ -1124,7 +1125,7 @@ font-weight:bold;
     text-align:center;
 }
 .previewthumb{
-    float:right;
-    display: block;
+    float:left;
+    display: none;
     margin-right: 10px;
 }

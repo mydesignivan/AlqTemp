@@ -66,6 +66,15 @@ define('EMAIL_RP_NAME', 'alquilerestemporario.org');
 define('EMAIL_RP_SUBJECT', 'alquilerestemporario.org - Recordar contraseña');
 define('EMAIL_RP_MESSAGE', 'Su contraseña es %s');
 
+/*
+|--------------------------------------------------------------------------
+| UPLOAD FILE
+|--------------------------------------------------------------------------
+*/
+define('UPLOAD_DIR', '/storage/images/');
+define('UPLOAD_DIR_TMP', $_SERVER['DOCUMENT_ROOT']."/AlqTemp.git/tmp/");
+define('UPLOAD_WIDTH', 107);
+define('UPLOAD_HEIGHT', 90);
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

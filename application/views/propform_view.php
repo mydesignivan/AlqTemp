@@ -32,11 +32,14 @@
                     <div id="contmessage"></div>
                     <form name="formProp" id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="row2"><span class="cell">*Dirección:</span><input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" /></div>
-                        <div class="row span-1">
+                        <div class="row">
                             <span class="cell">*Foto:</span>
-                            <div class="button2 float-right btnexamin">Examinar</div>
-                            <input type="text" name="" class="input style_input" value="" />
-                            <!--<a href="#" class="previewthumb"><img src="images/img1.png" alt="" width="69" height="60" /></a>-->
+                            <div class="col">
+                                <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
+                                <a href="#" class="previewthumb"><img src="images/img1.png" alt="" width="69" height="60" /></a>
+                                <input type="text" name="" class="input style_input float-left" value="" />
+                                <div class="button2 btnexamin">Examinar</div>
+                            </div>
                         </div>
                         <div class="row2"><a href="#" class="add" onclick="Prop.append_row_file(this); return false;">Adjuntar otro archivo</a></div>
 
