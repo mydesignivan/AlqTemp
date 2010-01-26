@@ -18,13 +18,13 @@ class Simplelogin{
     public function login($user = '', $password = '') {
         //Make sure login info was sent
         if( $user == '' OR $password == '' ) {
-            return false;
+            return 'loginfaild';
         }
 
         //Check if already logged in
         if( $this->CI->session->userdata('username') == $user ) {
             //User is already logged in.
-            return false;
+            return 'loginfaild';
         }
 
 
@@ -37,7 +37,11 @@ class Simplelogin{
             //Check against password
 
             if( $password != $this->CI->encpss->decode($row['password']) ) {
-                return false;
+                return 'loginfaild';
+            }
+
+            if( $row['active']==0 ){
+                return 'userinactive';
             }
 
             //Destroy old session
@@ -59,7 +63,7 @@ class Simplelogin{
             return true;
         } else {
             //No database result found
-            return false;
+            return 'loginfaild';
         }
     }
 

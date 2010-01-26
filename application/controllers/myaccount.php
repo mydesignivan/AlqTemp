@@ -45,7 +45,12 @@ class Myaccount extends Controller{
     }
 
     public function delete(){
+        if( $this->uri->segment(3)!="" ){
 
+            $this->prop_model->delete($this->uri->segment(3));
+            redirect('/prop/');
+
+        }
     }
 
 }

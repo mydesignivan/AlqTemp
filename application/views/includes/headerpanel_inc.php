@@ -18,7 +18,7 @@
         <div class="menu_panel">
             <ul>
                 <li><a href="<?=site_url('/prop/');?>">Propiedades</a></li>
-                <li><a href="#">Servicios Premium</a></li>
+                <li><a href="<?=site_url('/servpremium/');?>">Servicios Premium</a></li>
                 <li><a href="<?=site_url('/myaccount/');?>">Mi Cuenta</a></li>
                 <li><a href="<?=site_url('/creditbuy/');?>">Comprar Creditos</a></li>
             </ul>
