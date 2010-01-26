@@ -1,0 +1,111 @@
+
+.IG_ajaxload{
+    float:left;
+    position:relative;
+    background:url(../img/ajax-load.gif) no-repeat center;
+    width:370px;
+    height:273px;
+    z-index: 1000;
+    display:none;
+}
+
+.IG_view{
+    z-index:2000;
+    display:block;
+}
+
+div.IG_view_top{
+    float: left;
+    background: url(../img/shadow_n.png) repeat-x left top;
+    background-color: transparent;
+    /*width:342px;*/
+    height:18px;
+}
+div.IG_view_content{
+    clear:left;
+    background-color: #fff;
+    /*width:342px;
+    height:259px;*/
+    text-align: left;
+}
+    div.IG_view_content img{
+        position:relative;
+        top:0;
+        left:0;
+        margin:13px 0 13px 0;
+    }
+div.IG_view_bottom{
+    clear:left;
+    background: url(../img/shadow_s.png) repeat-x left bottom;
+    background-color: transparent;
+    /*width:342px;*/
+    height:18px;
+}
+
+div.IG_view_no{
+    float:left;
+    position:relative;
+    background: url(../img/shadow_nw.png) no-repeat left;
+    background-color: transparent;
+    width:13px;
+    height:18px;
+    left:-13px;
+}
+div.IG_view_ne{
+    float:right;
+    position:relative;
+    background: url(../img/shadow_ne.png) no-repeat right;
+    background-color: transparent;
+    width:13px;
+    height:18px;
+    right:-13px;
+}
+
+div.IG_view_left{
+    float:left;
+    position: relative;
+    background: url(../img/shadow_w.png) repeat-y left top;
+    background-color: transparent;
+    width:13px;
+    /*height:259px;*/
+    left:-13px;
+}
+div.IG_view_right{
+    float:right;
+    position: relative;
+    background: url(../img/shadow_e.png) repeat-y left top;
+    background-color: transparent;
+    width:13px;
+    /*height:259px;*/
+    right:-13px;
+}
+
+
+div.IG_view_so{
+    float:left;
+    position:relative;
+    background: url(../img/shadow_sw.png) no-repeat;
+    width:13px;
+    height:18px;
+    left:-13px;
+}
+div.IG_view_se{
+    float:right;
+    position:relative;
+    background: url(../img/shadow_se.png) no-repeat;
+    width:13px;
+    height:18px;
+    right:-13px;
+}
+
+div.IG_closebox{
+    position:relative;
+    float:right;
+    background: url(../img/closebox.png) no-repeat top left;
+    width:30px;
+    height:30px;
+    top:5px;
+    right:-23px;
+    cursor:pointer;
+    z-index: 2030;
+}

@@ -84,7 +84,7 @@ var ClassAjaxUpload=function(options){
     };
 
     var create_input = function(){
-        var i = $('<input type="file" name="'+(options.multifile ? 'userfile[]' : 'uploadFile')+'" />');
+        var i = $('<input type="file" name="'+(options.multifile ? 'userfile[]' : 'userfile')+'" />');
 
         i.attr('size', '200');
         i.css({
@@ -121,6 +121,7 @@ var ClassAjaxUpload=function(options){
         var iframe = $('<iframe name="ajaxuploadiframe" id="ajaxuploadiframe" src="about:blank" width="400" height="100"></iframe>');
         iframe.attr('src', '');
         iframe.bind('load', eventLoadIframe);
+        iframe.hide();
         return iframe;
     };
 
