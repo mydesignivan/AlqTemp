@@ -3,6 +3,8 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
+
+    <script type="text/javascript" src="js/class.contact.js"></script>
 </head>
 
 <body>
@@ -19,32 +21,41 @@
             <div id="mainContent">
                 <div class="content_top"><h1>Contacto</h1></div>
                 <div class="form_contact">
-                    <div class="form_left">
-                        <form action="" enctype="application/x-www-form-urlencoded">
-                            <p>Nombre:<input type="text" class="input" /></p>
-                            <p>E-mail:<input type="text" class="input" /></p>
-                        </form>
+                    <?php if( $this->session->flashdata('statusmail')=="ok" ){?>
+                    <div class="message">
+                        <p>Muchas gracias por comunicarse,</p>
+                        <p>En breve estaremos en contacto.</p>
                     </div>
-                    <div class="form_right">
-                    	<form action="" enctype="application/x-www-form-urlencoded">
-                            <p>Tel&eacute;fono:<input type="text" class="input" /></p>
+                    <?php }elseif( $this->session->flashdata('statusmail')=="error" ){?>
+
+                    <div class="message">
+                        <p>Formulario no enviado.</p>
+                        <p>Ha ocurrido un error durante el envio del formulario.</p>
+                    </div>
+
+                    <?php }else{?>
+                    <form name="formContact" id="formContact" action="<?=site_url('/contacto/send');?>" enctype="application/x-www-form-urlencoded" method="post">
+                        <div class="form_left">
+                            <p>*Nombre:<input type="text" class="input validate {v_required:true}" name="txtName" /></p>
+                            <p>*E-mail:<input type="text" class="input validate {v_required:true, v_email:true}" name="txtEmail" /></p>
+                        </div>
+                        <div class="form_right">
+                            <p>Tel&eacute;fono:<input type="text" class="input" name="txtPhone" /></p>
                             <p>
                                 Area de Consulta:<br />
-                                <select name="select" class="input"></select>
+                                <select name="cboArea" class="input">
+                                </select>
                             </p>
-                        </form>
-                    </div>
-                    <div class="form_center">
-                    	<form action="" enctype="application/x-www-form-urlencoded">
+                        </div>
+                        <div class="form_center">
                             <p>
-                                Consulta:<br />
-                                <input type="text" class="input" />
+                                *Consulta:<br />
+                                <textarea class="input validate {v_required:true}" name="txtConsult" rows="22" cols="4"></textarea>
                             </p>
-                        </form>
-                    </div>
-                    <div class="container_button">
-                        <a class="button1" href="#">Enviar</a>
-                    </div>
+                        </div>
+                        <div class="container_button"><a class="button1" href="#" onclick="Contact.send(); return false;">Enviar</a></div>
+                    </form>
+                    <?php }?>
                  </div>
             </div>
             <!--end .maintContent -->

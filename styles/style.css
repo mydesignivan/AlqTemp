@@ -167,20 +167,8 @@ font-weight:bold;
                         padding-left:20px;
                     }
 
-                #header .search .search_top a{
-                    background:url(../images/button1.png) center no-repeat;
-                    width:76px;
-                    height:25px;
-                    font-family:Arial, Helvetica, sans-serif;
-                    font-size:12px;
-                    font-weight:bold;
-                    color:#684C1D;
-                    display:block;
-                    float:left;
-                    text-align:center;
-                    vertical-align:middle;
-                    line-height:25px;
-                    margin-top:-3px;
+                #header .search .search_top .button1{
+                    margin-top: -7px;
                 }
             #header .search .search_left{
                 float:left;
@@ -443,6 +431,7 @@ font-weight:bold;
                 background:url(../images/background_photos.png) no-repeat left center;
                 margin:0 auto;
                 text-align:center;
+                position:relative;
             }
                 .container_mainContent #mainContent .content_left .photos .photo_top img{
                     padding-top:20px;
@@ -451,28 +440,46 @@ font-weight:bold;
                 float:left;
                 width:370px;
                 height:90px;
-                /*border:solid 1px #336666;*/
             }
+                .container_mainContent #mainContent .content_left .photos .photo_bottom ul{
+                    margin:0;
+                    padding:0;
+                    /*border:1px solid red;*/
+                }
+                .container_mainContent #mainContent .content_left .photos .photo_bottom li{
+                    list-style-type: none;
+                    display:inline-block;
+                    float:left;
+                    margin:0 3px 0 0;
+                }
+                .container_mainContent #mainContent .content_left .photos .photo_bottom .middle a{
+                    display:block;
+                    border:1px solid blue;
+                    padding:2px;
+                }
                 .container_mainContent #mainContent .content_left .photos .photo_bottom .middle{
                     float:left;
-                    width:301px;
-                    height:82px;
+                    width:316px;
+                    height:90px;
                     background:url(../images/background_miniaturas.png) repeat-y top;
-                    /*border:solid 1px #CC0000;*/
+                    overflow: hidden;
+                    margin:0px;
+                    padding:0px;
+                    /*border:solid 1px green;*/
                 }
                 .container_mainContent #mainContent .content_left .photos .photo_bottom .arrow_left{
                     float:left;
-                    width:28px;
-                    height:90px;
-                    margin-left:5px;
-                    margin-top:33px;
+                    width:22px;
+                    padding-top: 30px;
+                    padding-right:5px;
+                    text-align: center;
                 }
                 .container_mainContent #mainContent .content_left .photos .photo_bottom .arrow_right{
                     float:right;
-                    width:28px;
-                    height:90px;
-                    margin-right:5px;
-                    margin-top:33px;
+                    width:22px;
+                    padding-top: 30px;
+                    padding-left: 5px;
+                    text-align: center;
                 }
     /******************************* FIN FOTOS *********************************/
 
@@ -561,20 +568,20 @@ font-weight:bold;
         float:left;
     }
     .container_mainContent #mainContent .content_left .container_button{
-        width:200px;
+        width:300px;
         height:50px;
         float:right;
         margin:0 auto;
     }
-    .container_mainContent #mainContent .content_left .cell_cache{
+    .container_mainContent #mainContent .content_left .cell_captcha{
         width:390px;
         text-align:right;
         margin-left:-10px;
     }
-        .container_mainContent #mainContent .content_left .cell_cache img{
+        .container_mainContent #mainContent .content_left .cell_captcha img{
             margin-right:10px;
         }
-        .container_mainContent #mainContent .content_left .cell_cache a{
+        .container_mainContent #mainContent .content_left .cell_captcha a{
             font-family:Arial, Helvetica, sans-serif;
             font-size:12px;
             color:#6C491D;
@@ -599,6 +606,10 @@ font-weight:bold;
         width:358px;
         margin-bottom:6px;
     }
+        .container_mainContent #mainContent .content_left .row2 .col{
+            float:right;
+            width:205px;
+        }
 /***** FIN FORMULARIOS (input de cada uno de los paneles de administracion) *****/
 
 
@@ -647,6 +658,15 @@ font-weight:bold;
             width:480px;
             margin-left:200px;
         }
+        .container_mainContent #mainContent .form_contact .message{
+            float:left;
+            position:relative;
+            padding-top:30px;
+            padding-bottom:80px;
+            width:100%;
+            text-align: center;
+        }
+
     /*********************** FORMULARIO CONTACTO (sencillo) ********************/
     .container_mainContent #mainContent .content_right{
         /*border:1px solid #FF0000;*/
@@ -660,6 +680,7 @@ font-weight:bold;
             margin-left:-15px;
             margin-top:-5px;
             background:url(../images/form_transparent_pagedescriptions.png) repeat-y;
+            position:relative;
         }
             .container_mainContent #mainContent .content_right .contact .mail_icon{
                 float:left;
@@ -696,6 +717,14 @@ font-weight:bold;
                     font-size:10px;
                     margin-left:60px;
                 }
+            .container_mainContent #mainContent .content_right .contact .message{
+                float:left;
+                width:200px;
+                border:1px solid #ccc;
+                padding:5px;
+                margin-bottom:10px;
+                display:none;
+            }
      /******************* FIN FORMULARIO CONTACTO (sencillo) ******************/
 
 
@@ -809,8 +838,8 @@ font-weight:bold;
 /******************** TABLAS (editar propiedades, destacarme) *******************/
     .container_mainContent #mainContent .buttons{
         float:right;
-        width:200px;
         margin-bottom:10px;
+        margin-right: 50px;
     }
     .container_mainContent #mainContent .header{
         float:left;
@@ -1128,4 +1157,36 @@ font-weight:bold;
     float:left;
     display: none;
     margin-right: 10px;
+}
+
+.ajaxload-mask{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background-color: #fff;
+    opacity:0.8;
+    z-index: 800;
+}
+.ajaxload-message{
+   position:absolute;
+   top:0;
+   left:0;
+   width:100%;
+   padding-top:120px;
+   z-index: 820;
+   background-color: transparent;
+   text-align: center;
+   font-size: 120%;
+}
+
+.pagination{
+    position:relative;
+    clear:both;
+    width:625px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    text-align:center;
+    font-size:130%;
 }

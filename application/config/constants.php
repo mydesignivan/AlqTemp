@@ -46,6 +46,11 @@ define('ERR_101', 'La actualizacion de los datos no pudo ser completado.');
 define('ERR_102', 'Los datos no pudieron ser guardados.');
 define('ERR_103', 'El usuario ha sido creado satisfactoriamente pero no se ha podido enviar el email de activaci&oacute;n del mismo');
 
+define('ERR_UPLOAD_NOTUPLOAD', 'El archivo no ha podido llegar al servidor.');
+define('ERR_UPLOAD_MAXSIZE', 'El tamaño del archivo debe ser menor a %s MB.');
+define('ERR_UPLOAD_FILETYPE', 'El tipo de archivo es incompatible.');
+
+
 /*
 |--------------------------------------------------------------------------
 | EMAIL FORM REGISTRO
@@ -54,7 +59,7 @@ define('ERR_103', 'El usuario ha sido creado satisfactoriamente pero no se ha po
 define('EMAIL_REG_FROM', 'ivan@mydesign.com.ar');
 define('EMAIL_REG_NAME', 'alquilerestemporario.org');
 define('EMAIL_REG_SUBJECT', 'alquilerestemporario.org - Activación de Usuario');
-define('EMAIL_REG_MESSAGE', '<a href="">Haga click aquí para activar su usuario</a>');
+define('EMAIL_REG_MESSAGE', '<a href="%s">Haga click aquí para activar su usuario</a>');
 
 /*
 |--------------------------------------------------------------------------
@@ -68,13 +73,32 @@ define('EMAIL_RP_MESSAGE', 'Su contraseña es %s');
 
 /*
 |--------------------------------------------------------------------------
+| EMAIL FORMULARIO CONSULTA DE LA PROP
+|--------------------------------------------------------------------------
+*/
+define('EMAIL_CONSULTPROP_SUBJECT', 'Consulta propiedad');
+define('EMAIL_CONSULTPROP_MESSAGE', 'Propiedad: %s<br>Nombre persona: %s<br>Telefono: %s<br><hr color="#000000" />Consulta:<br>%s');
+
+/*
+|--------------------------------------------------------------------------
+| EMAIL CONTACTO
+|--------------------------------------------------------------------------
+*/
+define('EMAIL_CONTACT_TO', 'ivan@mydesign.com.ar');
+define('EMAIL_CONTACT_SUBJECT', 'Formulario de consulta');
+define('EMAIL_CONTACT_MESSAGE', 'Nombre: %s<br>Telefono: %s<br><hr color="#000000" />Consulta:<br>%s');
+
+/*
+|--------------------------------------------------------------------------
 | UPLOAD FILE
 |--------------------------------------------------------------------------
 */
-define('UPLOAD_DIR', '/storage/images/');
-define('UPLOAD_DIR_TMP', $_SERVER['DOCUMENT_ROOT']."/AlqTemp.git/tmp/");
+define('UPLOAD_DIR', './uploads/');
+define('UPLOAD_DIR_TMP', './uploads/tmp/');
 define('UPLOAD_WIDTH', 107);
 define('UPLOAD_HEIGHT', 90);
+define('UPLOAD_FILETYPE', 'gif|jpg|png');
+define('UPLOAD_MAXSIZE', 1024); //Expresado en Kylobytes
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

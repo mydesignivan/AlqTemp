@@ -1,5 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// FUNCIONES PARA LOS COMBOS DE LA PROPIEDAD
 function get_options_country($country_id){
     $CI =& get_instance();
 
@@ -32,13 +33,44 @@ function get_options_state($param = array('country_id'=>0, 'selected'=>null)){
     }
 }
 
-function get_options_city($state_id){
-    if( !is_numeric($state_id) ) return false;
+
+// FUNCIONES PARA LOS COMBOS DEL BUSCADOR
+function get_options_search_country($id){
     $CI =& get_instance();
+    $CI->db->select('DISTINCT list_country.name, list_country.country_id', false);
+    $CI->db->from('list_country');
+    $CI->db->join('properties', 'list_country.country_id = properties.country_id');
+    $CI->db->order_by('name', 'asc');
+    $query = $CI->db->get();
+    foreach( $query->result_array() as $row ){
+        $selected = $id==$row["country_id"] ? 'selected="selected"' : "";
+        echo '<option value="'. $row['country_id'] .'" '.$selected.'>'. $row['name'] .'</option>';
+    }
+}
 
-    $query = $CI->db->query("SELECT city_id, name FROM list_city WHERE state_id=".$state_id." ORDER BY name");
+function get_options_search_states($id){
+    $CI =& get_instance();
+    $CI->db->select('DISTINCT list_states.name, list_states.state_id', false);
+    $CI->db->from('list_states');
+    $CI->db->join('properties', 'list_states.state_id = properties.state_id');
+    $CI->db->order_by('name', 'asc');
+    $query = $CI->db->get();
+    foreach( $query->result_array() as $row ){
+        $selected = $id==$row["state_id"] ? 'selected="selected"' : "";
+        echo '<option value="'. $row['state_id'] .'" '.$selected.'>'. $row['name'] .'</option>';
+    }
+}
 
-    echo json_encode($query->result_array());
+function get_options_search_city($city){
+    $CI =& get_instance();
+    $CI->db->select('DISTINCT city', false);
+    $CI->db->from('properties');
+    $CI->db->order_by('city', 'asc');
+    $query = $CI->db->get();
+    foreach( $query->result_array() as $row ){
+        $selected = $city==$row["city"] ? 'selected="selected"' : "";
+        echo '<option value="'. $row['city'] .'" '.$selected.'>'. $row['city'] .'</option>';
+    }
 }
 
 ?>
