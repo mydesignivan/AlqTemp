@@ -8,7 +8,6 @@ class Registro extends Controller {
         $this->load->library('encpss');
         $this->load->library('email');
         $this->load->model('captcha_model');
-        $this->load->model('search_model');
         session_start();
     }
 

@@ -3,7 +3,6 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
-    <script type="text/javascript" src="js/class.combobox.js"></script>
     <script type="text/javascript" src="js/class.search.js"></script>
 </head>
 

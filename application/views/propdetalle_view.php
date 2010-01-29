@@ -19,7 +19,6 @@
     <!===== END SCRIPT =====-->
 
     <script type="text/javascript" src="js/class.moreinfo.js"></script>
-    <script type="text/javascript" src="js/class.combobox.js"></script>
     <script type="text/javascript" src="js/class.search.js"></script>
 </head>
 
