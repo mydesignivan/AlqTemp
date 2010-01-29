@@ -7,15 +7,22 @@ class Registro extends Controller {
         $this->load->helper('combobox');
         $this->load->library('encpss');
         $this->load->library('email');
+        $this->load->model('captcha_model');
+        $this->load->model('search_model');
+        session_start();
     }
 
     public function index(){
-        $this->load->view('formregistro_view');
+        $captcha = $this->captcha_model->generateCaptcha();
+        $_SESSION['captchaWord'] = $captcha['word'];
+        $data['captcha'] = $captcha;
+
+        $this->load->view('formregistro_view', $data);
     }
 
     public function create(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-
+            
             $data = array(
                 'name'     => $_POST["txtName"],
                 'email'    => $_POST["txtEmail"],
@@ -24,20 +31,22 @@ class Registro extends Controller {
                 'password' => $this->encpss->encode($_POST["txtPass"])
             );
 
-            $status = $this->users_model->create($data);
+            $user_id = $this->users_model->create($data);
 
-            if( is_numeric($status) ){
+            if( is_numeric($user_id) ){
 
-                /*$this->email->from(EMAIL_REG_FROM, EMAIL_REG_NAME);
+                $message = sprintf(EMAIL_REG_MESSAGE, site_url('/registro/activacion/'.$user_id));
+
+                $this->email->from(EMAIL_REG_FROM, EMAIL_REG_NAME);
                 $this->email->to($_POST["txtEmail"]);
                 $this->email->subject(EMAIL_REG_SUBJECT);
-                $this->email->message(EMAIL_REG_MESSAGE);
-                if( $this->email->send() ){*/
+                $this->email->message($message);
+                if( $this->email->send() ){
                     $this->session->set_flashdata('statusrecord', 'saveok');
                     redirect('/registro/');
-                /*}else {
+                }else {
                     show_error(ERR_103);
-                }*/
+                }
                 
             }else{
                 show_error(ERR_102);
@@ -45,6 +54,18 @@ class Registro extends Controller {
 
         }
     }
+
+    public function activacion(){
+        if( $this->uri->segment(3) ){
+
+            if( !$this->users_model->activate($this->uri->segment(3)) ){
+                redirect('/');
+            }
+
+            $this->load->view('activacion_view');
+        }
+    }
+
 }
 
 ?>

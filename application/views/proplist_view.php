@@ -27,12 +27,15 @@
                     </div>-->
                 </div>
 
-                <?php if( count($listProp)>0 ){?>
                 <div class="buttons">
+                    <a href="<?=site_url('/prop/form');?>" class="button1">Nuevo</a>
+                <?php if( $listProp->num_rows>0 ){?>
                     <a href="#" class="button1" onclick="Prop.action.edit(); return false;">Modificar</a>
                     <a href="#" class="button1" onclick="Prop.action.del(); return false;">Eliminar</a>
+                <?php }?>
                 </div>
 
+                <?php if( $listProp->num_rows>0 ){?>
                 <div class="header">
                     <div class="header_left">Im&aacute;gen</div>
                     <div class="header_center">Ubicaci&oacute;n</div>
@@ -41,25 +44,25 @@
                 <div id="tblProp" class="table_body">
                 <?php
                     $n=0;
-                    foreach( $listProp as $row ){
+                    foreach( $listProp->result_array() as $row ){
                         $n++;
                         $class = $n%2 ? 'table_impar' : 'table_par';
                     ?>
                     <div class="<?=$class;?>">
                         <div class="table_left">
-                            <input type="checkbox" name="checkbox" id="checkbox" value="<?=$row["prop_id"];?>" />
-                            <div class="miniatura"><img src="images/img1.png" alt="" /></div>
+                            <input type="checkbox" name="checkbox" value="<?=$row["prop_id"];?>" />
+                            <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
                         <div class="table_center"><?=$row["address"];?></div>
                         <div class="table_right"><?=$row["category"];?></div>
                     </div>
+                <?php }
+                }else{?>
+                    <center><h3>No hay propiedades cargadas.</h3></center>
                 <?php }?>
                 </div>
                 <!--end .table_body -->
                 <div class="table_bottom"></div>
-                <?php }else{?>
-                    <p>No existen propiedades cargadas.</p>
-                <?php }?>
 
 
                 <br />&nbsp;<br />

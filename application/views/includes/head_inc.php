@@ -1,7 +1,7 @@
 <base href="<?=base_url();?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="description" content="" />
-<meta name="keywords" content="" />
+<meta name="keywords" content="alquiler apartamentos, alquiler cabañas, alquiler bungalows, alquiler temporario, alquiler fin de semana, alquiler vacaciones, alquiler casas" />
 
 <link href="images/favicon.ico" rel="stylesheet icon" type="image/ico" />
 <link href="styles/style.css" rel="stylesheet" type="text/css" />
@@ -40,11 +40,21 @@
 
 <!--======= END CLASS =======-->
 
-<?php if( $this->session->flashdata('loginfaild') ) {?>
+<?php if( $this->session->flashdata('statusLogin') ) {?>
     <script type="text/javascript">
     <!--
     $(document).ready(function(){
-        ValidatorLogin.message.show('#btnLogin', ['El usuario y/o password son incorrectos.']);
+     <?php
+        switch($this->session->flashdata('statusLogin')){
+            case "loginfaild":
+                $message = "El usuario y/o password son incorrectos.";
+            break;
+            case "userinactive":
+                $message = "El usuario no esta activado.";
+            break;
+        }
+     ?>
+        ValidatorLogin.message.show('#btnLogin', ['<?=$message;?>']);
     });
     -->
     </script>

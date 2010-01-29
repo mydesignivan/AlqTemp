@@ -27,13 +27,15 @@ h3 {
 
 /*************************** HEADER *********************************/
 #header .top_right .registro form .login {
-    margin-top:-23px;
+    margin-top:-5px;
 }
 #header .column1 .main_menu{
-    width:587px;
+    width:600px;
+    height:48px;
+    float:left;
 }
     #header .column1 .main_menu ul{
-        margin-left:-2px;
+        margin-left:-40px;
         margin-top:-8px;
     }
 #header .column_panel .menu_panel{
@@ -44,6 +46,14 @@ h3 {
 #sidebar1 {
     background: url(../images/background_sidebar.png) left top repeat-y;
 }
+    #sidebar1 .publicity_horizontal{
+            width:260px;
+            /*height:90px;*/
+            background-color:#FAF9F0;
+            /*margin:0 auto;*/
+            margin-top:20px;
+            margin-bottom:20px;
+        }
 
 /************************** BODY (columna izuqierda) *************************/
 .container_mainContent #mainContent { 
@@ -494,11 +504,11 @@ h3 {
     text-align:center;
 }
 .banner_top_horizontal{
-    width:441px;
+    width:458px;
     height:60px;
     margin-top:5px;
-    margin-left:20px;
+    margin-left:5px;
     float:left;
-    background-color:#F1CB65;
+    background-color:#FAF9F0;
     text-align:center;
 }

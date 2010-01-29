@@ -1,11 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Prop_model extends Model {
 
-    private $user_table;
-
     function  __construct() {
         parent::Model();
-        $this->user_table = "properties";
     }
 
     /*
@@ -19,7 +16,7 @@ class Prop_model extends Model {
         unset($data['images_new']);
 
         // INSERTA LOS DATOS DE LA PROPIEDAD
-        if( !$this->db->insert($this->user_table, $data) ) {
+        if( !$this->db->insert(TBL_PROPERTIES, $data) ) {
             return false;
         }
 
@@ -36,7 +33,7 @@ class Prop_model extends Model {
 
         // GUARDA LAS IMAGENES EN LA BASE DE DATO
         foreach( $data as $dat ){
-            if( !$this->db->insert("images", $dat) ) {
+            if( !$this->db->insert(TBL_IMAGES, $dat) ) {
                 return false;
             }
         }
@@ -65,12 +62,12 @@ class Prop_model extends Model {
 
         // MODIFICA LOS DATOS DE LA PROPIEDAD
         $this->db->where('prop_id', $prop_id);
-        if( !$this->db->update($this->user_table, $data) ) {
+        if( !$this->db->update(TBL_PROPERTIES, $data) ) {
             return false;
         }
 
         // ELIMINA E INSERTA LOS SERVICIOS
-        $this->db->delete("properties_to_services", array('prop_id'=>$prop_id));
+        $this->db->delete(TBL_PROPERTIES_SERVS, array('prop_id'=>$prop_id));
         if( !$this->create_servprop($services, $prop_id) ) {
             return false;
         }
@@ -78,13 +75,13 @@ class Prop_model extends Model {
         // ELIMINA IMAGENES
         if( $images_deletes!="" ){
             foreach( $images_deletes as $image_id ){
-                $row = $this->db->query("SELECT name, name_thumb FROM images WHERE image_id=".$image_id)->row_array();
+                $row = $this->db->query("SELECT name, name_thumb FROM ". TBL_IMAGES ." WHERE image_id=".$image_id)->row_array();
 
                 @unlink(UPLOAD_DIR.$row['name']);
                 @unlink(UPLOAD_DIR.$row['name_thumb']);
 
                 if( $images_modified_id=="" ){
-                    $this->db->delete("images", array('image_id'=>$image_id));
+                    $this->db->delete(TBL_IMAGES, array('image_id'=>$image_id));
                 }
             }
         }
@@ -95,7 +92,7 @@ class Prop_model extends Model {
 
             // GUARDA LAS IMAGENES EN LA BASE DE DATO
             foreach( $data as $dat ){
-                if( !$this->db->insert("images", $dat) ) {
+                if( !$this->db->insert(TBL_IMAGES, $dat) ) {
                     return false;
                 }            
             }
@@ -112,7 +109,7 @@ class Prop_model extends Model {
                 unset($dat['prop_id']);
                 $this->db->where('image_id', $image_id);
 
-                if( !$this->db->update("images", $dat) ) {
+                if( !$this->db->update(TBL_IMAGES, $dat) ) {
                     return false;
                 }
                 next($data);
@@ -126,12 +123,11 @@ class Prop_model extends Model {
     }
 
     public function delete($prop_id) {
-        if( !is_numeric($prop_id) ) return false;
 
         // ELIMINA LAS IMAGENES
         $this->db->select('name, name_thumb');
-        $this->db->where("prop_id", $prop_id);
-        $query = $this->db->get('images');
+        $this->db->where_in("prop_id", $prop_id);
+        $query = $this->db->get(TBL_IMAGES);
 
         foreach( $query->result_array() as $row ){
             @unlink(UPLOAD_DIR.$row['name']);
@@ -139,10 +135,9 @@ class Prop_model extends Model {
         }
 
         // ELIMINA DATOS EN (properties, properties_to_services, images)
-        $this->db->where('prop_id in ('.$prop_id.')');
-        $delete1 = $this->db->delete($this->user_table);
-        $delete2 = $this->db->delete("properties_to_services", array('prop_id' => $prop_id));
-        $delete3 = $this->db->delete("images", array('prop_id' => $prop_id));
+        $delete1 = $this->db->query('DELETE FROM '.TBL_PROPERTIES.' WHERE prop_id in('. implode(",", $prop_id) .')');
+        $delete2 = $this->db->query('DELETE FROM '.TBL_PROPERTIES_SERVS.' WHERE prop_id in('. implode(",", $prop_id) .')');
+        $delete3 = $this->db->query('DELETE FROM '.TBL_IMAGES.' WHERE prop_id in('. implode(",", $prop_id) .')');
 
         if( !$delete1 || !$delete2 || !$delete3 ) return false;
 
@@ -155,7 +150,7 @@ class Prop_model extends Model {
         }else{
             $where = array('prop_id <>'=>$prop_id, 'address'=>$address);
         }
-        $result = $this->db->get_where($this->user_table, $where);
+        $result = $this->db->get_where(TBL_PROPERTIES, $where);
         return $result->num_rows==0 ? false : true;
     }
 
@@ -168,22 +163,22 @@ class Prop_model extends Model {
             //There was a problem
             return false;
         }
-        $this->db->select('list_services.service_id');
-        $this->db->select('list_services.name');
-        $this->db->join('properties_to_services', 'list_services.service_id = properties_to_services.service_id');
-        return $this->db->get_where("list_services", array('prop_id'=>$prop_id));
+        $this->db->select(TBL_SERVICES.'.service_id');
+        $this->db->select(TBL_SERVICES.'.name');
+        $this->db->join(TBL_PROPERTIES_SERVS, TBL_SERVICES.'.service_id = '. TBL_PROPERTIES_SERVS .'.service_id');
+        return $this->db->get_where(TBL_SERVICES, array('prop_id'=>$prop_id));
     }
 
     public function get_list_prop($where=array()){
         $sql = "prop_id, address,";
         $sql.= "CASE category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
-        $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."',name_thumb) FROM images WHERE images.prop_id=properties.prop_id LIMIT 1) as image";
+        $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."',name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_IMAGES .".prop_id=". TBL_PROPERTIES .".prop_id LIMIT 1) as image";
         $this->db->select($sql, false);
         $this->db->where("user_id", $this->session->userdata('user_id'));
         $this->db->where($where);
         $this->db->order_by('prop_id', 'desc');
         $this->db->order_by('address', 'asc');
-        return $this->db->get($this->user_table);
+        return $this->db->get(TBL_PROPERTIES);
     }
 
 
@@ -192,7 +187,7 @@ class Prop_model extends Model {
             //There was a problem
             return false;
         }
-        $query = $this->db->get_where($this->user_table, array('prop_id'=>$prop_id));
+        $query = $this->db->get_where(TBL_PROPERTIES, array('prop_id'=>$prop_id));
 
         $service_id = array();
         $data = array();
@@ -216,16 +211,21 @@ class Prop_model extends Model {
 
         $this->db->select($sql, false);
         $this->db->where('prop_id', $prop_id);
-        return $this->db->get("images");
+        return $this->db->get(TBL_IMAGES);
     }
 
     public function get_info_prop($id){
-        $this->db->select('users.email, properties.address', false);
-        $this->db->from('users');
-        $this->db->join('properties', 'users.user_id = properties.user_id');
-        $this->db->where('properties.prop_id', $id);
+        $this->db->select(TBL_USERS.'.email, '.TBL_PROPERTIES.'.address', false);
+        $this->db->from(TBL_USERS);
+        $this->db->join(TBL_PROPERTIES, TBL_USERS.'.user_id = '.TBL_PROPERTIES.'.user_id');
+        $this->db->where(TBL_PROPERTIES.'.prop_id', $id);
         $query = $this->db->get();
         return $query->row_array();
+    }
+
+    public function disting($prop_id, $disting){
+        $this->db->where_in('prop_id', $prop_id);
+        return $this->db->update(TBL_PROPERTIES, array('disting'=>$disting));
     }
 
 
@@ -234,7 +234,7 @@ class Prop_model extends Model {
      * FUNCTIONS PRIVATE
      */
      private function create_servprop($services, $prop_id){
-        $sql = "INSERT INTO properties_to_services(prop_id,service_id) VALUES ";
+        $sql = "INSERT INTO ".TBL_PROPERTIES_SERVS."(prop_id,service_id) VALUES ";
         foreach ( $services as $service ){
             $sql.="(";
             $sql.= $prop_id.",".$service."),";

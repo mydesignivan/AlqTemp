@@ -36,6 +36,22 @@ define('FOPEN_READ_WRITE_CREATE', 				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT', 			'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
+
+/*
+|--------------------------------------------------------------------------
+| NOMBRE DE LAS TABLAS (BASE DE DATO)
+|--------------------------------------------------------------------------
+*/
+define('TBL_IMAGES', 'images');
+define('TBL_COUNTRY', 'list_country');
+define('TBL_STATES', 'list_states');
+define('TBL_SERVICES', 'list_services');
+define('TBL_PROPERTIES', 'properties');
+define('TBL_PROPERTIES_SERVS', 'properties_to_services');
+define('TBL_USERS', 'users');
+define('TBL_LOGSEARCHES', 'log_searches');
+
+
 /*
 |--------------------------------------------------------------------------
 | MENSAJES DE ERROR
@@ -57,9 +73,9 @@ define('ERR_UPLOAD_FILETYPE', 'El tipo de archivo es incompatible.');
 |--------------------------------------------------------------------------
 */
 define('EMAIL_REG_FROM', 'ivan@mydesign.com.ar');
-define('EMAIL_REG_NAME', 'alquilerestemporario.org');
-define('EMAIL_REG_SUBJECT', 'alquilerestemporario.org - Activación de Usuario');
-define('EMAIL_REG_MESSAGE', '<a href="%s">Haga click aquí para activar su usuario</a>');
+define('EMAIL_REG_NAME', 'alquilerestemporarios.org');
+define('EMAIL_REG_SUBJECT', 'Activación de Usuario');
+define('EMAIL_REG_MESSAGE', '<a href="%s">Haga clic aqu&iacute; para activar su usuario</a>');
 
 /*
 |--------------------------------------------------------------------------
@@ -67,9 +83,9 @@ define('EMAIL_REG_MESSAGE', '<a href="%s">Haga click aquí para activar su usuar
 |--------------------------------------------------------------------------
 */
 define('EMAIL_RP_FROM', 'ivan@mydesign.com.ar');
-define('EMAIL_RP_NAME', 'alquilerestemporario.org');
-define('EMAIL_RP_SUBJECT', 'alquilerestemporario.org - Recordar contraseña');
-define('EMAIL_RP_MESSAGE', 'Su contraseña es %s');
+define('EMAIL_RP_NAME', 'alquilerestemporarios.org');
+define('EMAIL_RP_SUBJECT', 'Recordatorio contraseña');
+define('EMAIL_RP_MESSAGE', 'Su contrase&ntilde;a es %s');
 
 /*
 |--------------------------------------------------------------------------

@@ -93,6 +93,12 @@ font-weight:bold;
         position:relative;
         z-index:5;
     }
+        #header .top_left .top_menu ul{
+            float:right;
+            margin-top:0px;
+            margin-bottom:0px;
+            margin-right:-45px;
+        }
         #header .top_left .top_menu li{
             list-style:none;
             display:inline;
@@ -116,6 +122,9 @@ font-weight:bold;
             margin-top:22px;
             margin-left:160px;
         }
+        #header .top_right .registro a{
+            font-size:70%;
+        }
             #header .top_right .registro form .login {
                 background:url(../images/button1.png) center no-repeat;
                 width:76px;
@@ -124,12 +133,14 @@ font-weight:bold;
                 font-size:12px;
                 font-weight:bold;
                 color:#684C1D;
-                float:right;
+                /*float:right;*/
                 text-align:center;
                 vertical-align:middle;
                 line-height:25px;
-                margin-right:140px;
+                /*margin-right:140px;*/
                 border:none;
+                margin-top:-2px;
+                padding:0 0 3px 0;
             }
 
     /***************************** SEARCH ********************************/
@@ -277,8 +288,8 @@ font-weight:bold;
     }
         #sidebar1 .publicity_horizontal{
             width:260px;
-            height:90px;
-            background-color:#FFCC66;
+            /*height:90px;*/
+            background-color:#FAF9F0;
             margin:0 auto;
             margin-top:20px;
             margin-bottom:20px;
@@ -298,7 +309,7 @@ font-weight:bold;
             padding: 0px 0 0 20px;
             /*border:solid #006600 1px;*/
             float:left;
-            margin-top:10px;
+            margin-top:20px;
             font-family:Arial, Helvetica, sans-serif;
             font-size:11px;
 	}
@@ -308,7 +319,7 @@ font-weight:bold;
                 height:66px;
                 background:url(../images/form_top.png) no-repeat left top;
                 margin-left:-23px;
-                margin-top:-10px;
+                margin-top:-20px;
             }
             .container_mainContent #mainContent .description_properties {
                 float:left;
@@ -329,7 +340,7 @@ font-weight:bold;
                 }
                     .container_mainContent #mainContent .description_properties .description_text span {
                         font-size:12px;
-                        color: #FC7F07;
+                        color: #FC7F07b;
                         font-weight:bold;
                     }
                     .container_mainContent #mainContent .description_properties .description_text .info {
@@ -353,7 +364,7 @@ font-weight:bold;
             background: url(../images/background_general.png)left top repeat-y;
             padding: 0px 0 0 20px;
             float:left;
-            margin-top:10px;
+            margin-top:20px;
             font-family:Arial, Helvetica, sans-serif;
             font-size:11px;
 	}
@@ -363,7 +374,7 @@ font-weight:bold;
                 height:66px;
                 background:url(../images/form_top.png) no-repeat left top;
                 margin-left:-23px;
-                margin-top:-10px;
+                margin-top:-20px;
             }
                 .container_mainContent .mainContent2 .destinations{
                     width:100%;
@@ -1067,10 +1078,10 @@ font-weight:bold;
 .input_login{
     border:1px #F2A858 solid;
     background-color:#FAE397;
-    width:150px;
+    width:120px;
     height:15px;
     margin-right:10px;
-    padding:0 0 2px 5px;
+    padding:3px 0 2px 5px;
     text-align:left;
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
@@ -1145,12 +1156,12 @@ font-weight:bold;
     text-align:center;
 }
 .banner_top_horizontal{
-    width:441px;
+    width:458px;
     height:60px;
     margin-top:5px;
-    margin-left:20px;
+    margin-left:5px;
     float:left;
-    background-color:#F1CB65;
+    background-color:#FAF9F0;
     text-align:center;
 }
 .previewthumb{

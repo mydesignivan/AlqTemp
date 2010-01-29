@@ -47,7 +47,7 @@
                     </form>
                     <div class="container_button">
                         <a class="button1" href="#" onclick="Account.save(); return false;">Guardar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" />
-                        <a class="button2" href="#" onclick="Account.delete_account(); return false;">Eliminar Cuenta</a>
+                        <a class="button2" href="#" onclick="Account.delete_account(<?=$dataUser['user_id'];?>, '<?=site_url('/myaccount/delete');?>'); return false;">Eliminar Cuenta</a>
                     </div>
                     <br class="clearfloat" />
                     <h3>(*)Campos Obligatorios</h3>

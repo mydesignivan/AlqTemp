@@ -134,3 +134,8 @@ function set_input(e, text, isPass){
     }
     return false;
 }
+
+// Elimina un espacio de un Array
+Array.prototype.unset_array = function(key){
+    return this.splice(this.indexOf(key), 1);
+}

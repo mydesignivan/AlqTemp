@@ -6,6 +6,7 @@ class Search extends Controller {
     function __construct(){
         parent::Controller();
         $this->load->helper('combobox');
+        $this->load->helper('text');
         $this->load->model('search_model');
         $this->load->library('pagination');
         $this->count_per_page=3;
@@ -44,7 +45,9 @@ class Search extends Controller {
         $config['prev_link'] = 'Atrás';
         $this->pagination->initialize($config);
 
-        $this->load->view('index_view', array("listProp"=>$data['result'], "section_title"=>$title));
+        $result_searches = $this->search_model->get_searches();
+
+        $this->load->view('index_view', array("listProp"=>$data['result'], "section_title"=>$title, "listSearches"=>$result_searches));
     }
 
 }

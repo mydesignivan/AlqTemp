@@ -3,6 +3,24 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
+
+    <!===== SCRIPT: ImageGallery =====-->
+    <link type="text/css" href="js/jquery.imagegallery/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery.imagegallery/js/script.js"></script>
+    <script type="text/javascript">
+    <!--
+    var ImageGallery = new ClassImageGallery({
+        selectorThumbs      : '#container-thumbs',
+        selectorPreview     : '#thumb-preview',
+        effect_slide        : true
+    });
+    -->
+    </script>
+    <!===== END SCRIPT =====-->
+
+    <script type="text/javascript" src="js/class.moreinfo.js"></script>
+    <script type="text/javascript" src="js/class.combobox.js"></script>
+    <script type="text/javascript" src="js/class.search.js"></script>
 </head>
 
 <body>
@@ -17,68 +35,77 @@
       
         <div class="container_mainContent">
             <div id="mainContent">
-                <div class="content_top"><h1>San Lorenzo</h1></div>
+                <div class="content_top"><h1>Detalle Propiedad</h1></div>
                 <div class="content_left">
                     <div class="photos">
-                        <div class="photo_top"><img src="images/image_house1.jpg" alt="propiedades" /></div>
+                        <?php $arrImages = $data['images']->result_array();?>
+                        <div class="photo_top"><a href="#" id="thumb-preview"><img src="<?=$arrImages[0]['name'];?>" alt="" width="316" height="233" /></a></div>
                         <div class="photo_bottom">
-                            <div class="arrow_left"><a href="#"><img src="images/arrow_photo_previous.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_previous_over.png'" onmouseout="this.src='images/arrow_photo_previous.png'" /></a></div>
-                            <div class="middle"></div>
-                            <div class="arrow_right"><a href="#"><img src="images/arrow_photo_next.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_next_over.png'" onmouseout="this.src='images/arrow_photo_next.png'" /></a></div>
+                            <div class="arrow_left"><a href="#" onclick="ImageGallery.back(); return false;"><img src="images/arrow_photo_previous.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_previous_over.png'" onmouseout="this.src='images/arrow_photo_previous.png'" /></a></div>
+                            <div class="middle">
+                                <ul id="container-thumbs">
+                            <?php                            
+                            foreach( $arrImages as $row ){?>
+                                    <li><a href="<?=$row['name'];?>"><img src="<?=$row['name_thumb'];?>" alt="" /></a></li>
+
+                            <?php }?>
+                                </ul>
+                            </div>
+                            <div class="arrow_right"><a href="#" onclick="ImageGallery.next(); return false;"><img src="images/arrow_photo_next.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_next_over.png'" onmouseout="this.src='images/arrow_photo_next.png'" /></a></div>
                         </div>
                     </div>
                     <!--end.photos-->
 
                     <div class="text">
-                        <h2>Descripci&oacute;n</h2> Hotel Provincial desde una zona pintoresca –muy cercana a variadas ofertas de bares, restaurantes y tiendas-, propone 40 habitaciones totalmente equipadas.
-                        <br />
-                        TV por cable, Internet en habitaciones, teléfono, calefacción central y aire acondicionado, caja de seguridad y secadores de cabello son algunos de sus servicios. Además para deleitarse con el sol mendocino.
+                        <h2>Descripci&oacute;n</h2> 
+                        <?=nl2br($data['description']);?>
                     </div>
                 </div>
                 <!--end .content_left-->
 
                 <div class="content_right">
-                    <div class="contact">
+                    <div id="contFormConsult" class="contact">
                         <div class="mail_icon"></div>
-                        <form action="" enctype="application/x-www-form-urlencoded">
-                            Nombre <br /><input type="text" />
-                            <p>E-mail<br /><input type="text" /></p>
-                            <p>N&uacute;mero de Contacto<br /><input type="text" /></p>
-                            <p>Consulta<br /><input type="text" class="consulta" /></p>
-                            <a href="#"><input name="Enviar" type="submit" class="send" value="Enviar" /></a>
+                        <form name="formConsult" id="formConsult" action="" method="post" enctype="application/x-www-form-urlencoded">
+                            <div class="message"></div>
+                            *Nombre <br />
+                            <div><input type="text" name="txtName" class="validate {v_required:true}" /></div>
+
+                            <p>
+                                *E-mail<br />
+                                <div><input type="text" name="txtEmail" class="validate {v_required:true, v_email:true}" /></div>
+                            </p>
+                            <p>
+                                N&uacute;mero de Contacto<br />
+                                <input type="text" name="txtPhone" />
+                            </p>
+                            <p>
+                                *Consulta<br />
+                                <div><textarea class="consulta validate {v_required:true}" name="txtConsult" cols="22" rows="4"></textarea></div>
+                            </p>
+                            <input type="button" class="send" value="Enviar" onclick="MoreInfo.send_consult();" />
+                            <input type="hidden" name="id" value="<?=$this->uri->segment(3);?>" />
                         </form>
                     </div>
+
                     <div class="address">
-                        <p><img src="images/icon_web.png" alt="direccion web" border="0"/>www.alquilerestemporarios.com</p>
-                        <p><img src="images/icon_address.png" alt="direccion" border="0"/>Belgrano 1259 - Mendoza</p>
-                        <p><img src="images/icon_phone.png" alt="telefono" border="0"/>+54 (261) 4258284</p>
-                        <p><a href="#"><img src="images/icon_map.png" alt="ver mapa" border="0"/>Ver mapa</a></p>
+                        <?php if( !empty($data['web_site']) ){?><p><img src="images/icon_web.png" alt="" border="0"/><?=$data['web_site'];?></p><?php }?>
+                        <p><img src="images/icon_address.png" alt="" border="0"/><?=$data['address'];?></p>
+                        <?php if( !empty($data['phone']) ){?><p><img src="images/icon_phone.png" alt="" border="0"/><?=$data['phone'];?></p><?php }?>
+                        <p><a href="#"><img src="images/icon_map.png" alt="" border="0"/>Ver mapa</a></p>
                     </div>
                 </div>
                 <!--end.content_right-->
                 <div class="services">
                     <h2>Servicios</h2>
-                    <div class="services_details">
-                        <ul>
-                            <li>Tv por Cable</li>
-                            <li>Tv por Cable</li>
-                            <li>Tv por Cable</li>
-                    	</ul>
-                    </div>
-                    <div class="services_details">
-                        <ul>
-                            <li>Tv por Cable</li>
-                            <li>Tv por Cable</li>
-                            <li>Tv por Cable</li>
-                    	</ul>
-                    </div>
-                    <div class="services_details">
-                        <ul>
-                            <li>Tv por Cable</li>
-                            <li>Tv por Cable</li>
-                            <li>Tv por Cable</li>
-                    	</ul>
-                    </div>
+                    <?php
+                        $config['result'] = $data['services']->result_array();
+                        $config['total_row'] = 3;
+                        $config['field'] = "name";
+                        $config['tag_open'] = '<div class="services_details">';
+                        $config['tag_close'] = '</div>';
+                        construct_bloq($config);
+                    ?>
                 </div>
                 <!--end .services-->
             </div>

@@ -31,6 +31,10 @@ var MoreInfo = new (function(){
                      },
                      complete : function(){
                          ajaxload.hidden();
+                         document.formConsult.txtName.value = "";
+                         document.formConsult.txtEmail.value = "";
+                         document.formConsult.txtPhone.value = "";
+                         document.formConsult.txtConsult.value = "";
                      }
                  });                 
              }

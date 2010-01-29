@@ -32,15 +32,38 @@
                     <div id="contmessage"></div>
                     <form name="formProp" id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="row2"><span class="cell">*Dirección:</span><input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" /></div>
+                    <?php
+                        $html = '
                         <div class="row">
                             <span class="cell">*Foto:</span>
                             <div class="col">
                                 <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
-                                <a href="#" class="previewthumb"><img src="images/img1.png" alt="" width="69" height="60" /></a>
-                                <input type="text" name="" class="input style_input float-left" value="" />
+                                <a href="#" class="previewthumb"><img src="" alt="" width="69" height="60" /></a>
+                                <input type="text" name="" class="input style_input float-left ajaxupload-input" value="" />
                                 <div class="button2 btnexamin">Examinar</div>
                             </div>
-                        </div>
+                        </div>';
+
+                        $images = getval($data, 'images');
+                        if( empty($images) ) echo $html;
+                        else{
+                            $n=0;
+                            foreach( $images->result_array() as $image ){
+                                $n++;
+
+                                echo '<div class="row">';
+                                if( $n==1 ) echo '<span class="cell">*Foto:</span>';
+                                echo '<div class="col">';
+                                echo '  <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>';
+                                echo '  <a href="#" class="previewthumb"><img src="'. $image['name_thumb'] .'" alt="" width="69" height="60" /></a>';
+                                echo '  <input type="text" name="" class="input style_input float-left ajaxupload-input" value="'.$image['name_original'].'" />';
+                                echo '  <div id="b'.$image['image_id'].'" class="button2 float-left btnexamin">Examinar</div>';
+                                if( $n>1 ) echo '<a class="button2 float-left" onclick="Prop.remove_row_file(this,'. $image['image_id'] .'); return false;">Eliminar</a>';
+                                echo '</div>'; //end col
+                                echo '</div>'; //end row
+                            }
+                        }
+                   ?>
                         <div class="row2"><a href="#" class="add" onclick="Prop.append_row_file(this); return false;">Adjuntar otro archivo</a></div>
 
 
@@ -56,7 +79,7 @@
                                 <option value="4" <?php if($val==4) echo 'selected="selected"';?>>Otros</option>
                             </select>
                         </div>
-                        
+
                         <div class="row2">
                             <span class="cell">*Servicios:</span>
                             <div id="contServices" class="list input overflow-x-hidden">
@@ -64,11 +87,18 @@
                             <?php
                                 $n=0;
                                 $checked="";
-                                $service_id = getval($data, 'service_id');
+                                $services_associate = getval($data, 'services');
+                                $service_id = array();
+                                if( $services_associate ){
+                                    foreach( $services_associate->result_array() as $rowserv ){
+                                        $service_id[] = $rowserv['service_id'];
+                                    }
+                                }
+
                                 foreach( $services as $row ){
                                     $n++;
                                     $class = $n%2 ? 'class="impar"' : "";
-                                    if( $service_id!="" ) $checked = array_search($row["service_id"], $service_id) ? 'checked="checked"' : "";
+                                    if( $service_id!="" ) $checked = in_array($row["service_id"], $service_id) ? 'checked="checked"' : "";
                              ?>
 
                                     <li <?=$class;?>><input type="checkbox" name="checkbox" class="checkbox" value="<?=$row['service_id'];?>" <?=$checked;?> /><span><?=$row['name'];?></span></li>
@@ -100,11 +130,21 @@
                         <div class="row2"><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" value="<?=getval($data, 'website');?>" /></div>
                         <div class="row2"><span class="cell">Precio:</span><input type="text" name="txtPrice" class="input style_input" value="<?=getval($data, 'price');?>" /></div>
 
+
                         <input type="hidden" name="services" value="" />
+                        <input type="hidden" name="images_new" value="" />
+                        <input type="hidden" name="images_deletes" value="" />
+                        <input type="hidden" name="images_modified_id" value="" />
+                        <input type="hidden" name="images_modified_name" value="" />
                         <input type="hidden" name="prop_id" value="<?=getval($data, 'prop_id');?>" />
                     </form>
 
-                    <p><div class="container_button"><a class="button1" href="#" onclick="Prop.save(); return false;">Guardar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" /></div></p>
+                    <p>
+                        <div class="container_button">
+                            <a class="button1 float-left" href="#" onclick="Prop.save(); return false;">Guardar</a>
+                            <a class="button1 float-left" href="<?=site_url('/prop/cancel');?>">Cancelar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" />
+                        </div>
+                    </p>
 
                     <div class="warning"><h3>(*) Campos Obligatorios </h3></div>
                 </div>

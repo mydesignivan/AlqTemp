@@ -4,6 +4,8 @@ class Ajax_account extends Controller {
     function __construct(){
         parent::Controller();
         $this->load->model('users_model');
+        $this->load->model('captcha_model');
+        session_start();
     }
 
     public function index(){
@@ -11,9 +13,22 @@ class Ajax_account extends Controller {
     }
 
     public function valid(){
-        if( $this->users_model->exists($this->uri->segment(3), $this->uri->segment(4)) ){
-            echo "exists";
+        $status = $this->users_model->exists($_POST['username'], $_POST['email'], $_POST['userid']);
+
+        if( $status!="ok" ){
+            die($status);
         }
+        if( strcasecmp($_SESSION['captchaWord'], $_POST['captcha']) != 0 ){
+            die("captcha_error");
+        }
+
+        die("ok");
+    }
+
+    public function generatecaptcha(){
+        $captcha = $this->captcha_model->generateCaptcha();
+        $_SESSION['captchaWord'] = $captcha['word'];
+        echo $captcha['image'];
     }
 
 }

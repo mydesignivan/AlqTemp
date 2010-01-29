@@ -16,25 +16,41 @@ var Account = new (function(){
             if( !error ){
                 working=true;
                 var userid="";
-                if( document.formAccount.user_id ) userid = "/"+document.formAccount.user_id.value;
 
                 $('#ajaxloader').show();
-                $.get(document.baseURI+'index.php/ajax_account/valid/'+escape(document.formAccount.txtUser.value)+userid+'/'+document.formAccount.txtCatcha.value, function(data){
-                    if( data=="exists" ){
-                        if( $('#contmessage').is(':hidden') ){
-                            $('#contmessage').html('El usuario ingresado ya existe.');
-                            $('#contmessage').slideToggle('slow');
+                if( document.formAccount.user_id ) userid = document.formAccount.user_id.value;
+
+                $.ajax({
+                    type : 'post',
+                    url  : document.baseURI+'index.php/ajax_account/valid/',
+                    data : {
+                        username : escape(document.formAccount.txtUser.value),
+                        email    : escape(document.formAccount.txtEmail.value),
+                        captcha  : document.formAccount.txtCatcha.value,
+                        userid   : userid
+                    },
+                    success : function(data){
+                        if( data=="existsuser" ){
+                            show_error('El usuario ingresado ya existe.');
+
+                        }else if( data=="existsmail" ){
+                            show_error('El email ingresado ya existe.');
+
+                        }else if( data=="captcha_error" ){
+                            ValidatorAccount.message.hidden("#formAccount .validate");
+                            ValidatorAccount.message.show("#txtCatcha", ['El c&oacute;digo ingresado es incorrecto.']);
+                            $('#ajaxloader').hide();
+
+                        }else if( data=="ok" ){
+                            document.formAccount.submit();
                         }
+                    },
+                    error   : function(http){
+                        alert("ERROR: "+http.responseText);
+                    },
+                    complete : function(){
                         $('#ajaxloader').hide();
                         working=false;
-                    }else if( data=="captcha_error" ){
-                        ValidatorAccount.message.hidden("#formAccount .validate");
-                        ValidatorAccount.message.show("#txtCatcha", ['El c&oacute;digo ingresado es incorrecto.']);
-                        $('#ajaxloader').hide();
-                        working=false;
-                        
-                    }else{
-                        document.formAccount.submit();
                     }
                 });
 
@@ -68,6 +84,18 @@ var Account = new (function(){
      * PRIVATE PROPERTIES
      */
     var working=false;
+
+
+    /*
+     * PRIVATE METHODS
+     */
+    var show_error = function(msg){
+        $('#contmessage').html(msg);
+        if( $('#contmessage').is(':hidden') ){
+            $('#contmessage').slideToggle('slow');
+        }
+        $('#ajaxloader').hide();
+    };
 
 })();
 

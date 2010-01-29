@@ -33,8 +33,13 @@
                         <p><span class="cell">*Usuario:</span><input type="text" name="txtUser" class="input style_input validate {v_required:true}" /></p>
                         <p><span class="cell">*Contraseña:</span><input type="password" name="txtPass" id="txtPass" class="input style_input validate {v_password:[6,10], v_required:true}" /></p>
                         <p><span class="cell">*Repetir:</span><input type="password" name="txtPass2" class="input style_input validate {v_compare:'txtPass'}" /></p>
-                        <p><div class="cell_cache"><img src="js/catcha/securimage_show.php?sid=<?php echo md5(uniqid(time()));?>" id="image" alt="" width="150" /><a class="otra" href="#" onclick="document.getElementById('image').src = 'js/catcha/securimage_show.php?sid=' + Math.random(); return false">(Otra)</a>&nbsp;</div></p>
-                        <p><span class="cell">*Ingresar C&oacute;digo:</span><input type="text" name="txtCatcha" class="input style_input validate {v_required:true}" /></p>
+                        <p>
+                            <div class="cell_captcha">
+                                <?php echo $captcha['image'];?>
+                                <a href="#" onclick="Account.captcha_show('.cell_captcha img'); return false;">Otro</a>
+                            </div>
+                        </p>
+                        <p><span class="cell">*Ingrese C&oacute;digo:</span><input type="text" name="txtCatcha" id="txtCatcha" class="input style_input validate {v_required:true}" /></p>
                     </form>
                     <div class="container_button"><a class="button1" href="#" onclick="Account.save(); return false;">Enviar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" /></div>
                     <h3>&nbsp;</h3>

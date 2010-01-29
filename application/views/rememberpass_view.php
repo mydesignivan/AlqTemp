@@ -5,15 +5,6 @@
     <?php require('includes/head_inc.php');?>
     <script type="text/javascript" src="js/class.combobox.js"></script>
     <script type="text/javascript" src="js/class.rememberpass.js"></script>
-
-<?php if( $this->session->flashdata('status')=='emailnotexists' ){?>
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#contmessage').html('El email ingresado no existe.');
-            $('#contmessage').slideToggle('slow');
-        });
-    </script>
-<?php }?>
 </head>
 
 <body>
@@ -32,14 +23,25 @@
             <div id="mainContent">
                 <div class="content_top"><h1>Contrase&ntilde;a Login</h1></div>
 
-                <div class="content_rememberpass">
-                    <div id="contmessage"></div>
-                    <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post" onsubmit="return RememberPass.send(this);">
-                        <p>Escriba su direcci&oacute;n de correo</p>
-                        <input type="text" name="txtEmail" class="input validate {v_required:true, v_email:true}" />&nbsp;<input type="submit" value="Enviar" />
-                    </form>
-                    <br />
-                </div>
+                <?php if( !$status ){?>
+                    <div class="content_rememberpass">
+                        <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post" onsubmit="return RememberPass.send(this);">
+                            <p>Escriba su direcci&oacute;n de correo</p>
+                            <input type="text" name="txtEmail" class="input validate {v_required:true, v_email:true}" />&nbsp;<input type="submit" value="Enviar" />
+                        </form>
+                        <br />
+                    </div>
+
+                <?php }elseif( $status=="emailnotexists" ){?>
+                    <p>El email ingresado no existe.</p>
+
+                <?php }elseif( $status=="userinactive" ){?>
+                    <p>El usuario no esta activado.</p>
+
+                <?php }elseif( $status=="ok" ){?>
+                    <p>En unos instantes recibira un mail con su contrase&ntilde;a.</p>
+
+                <?php }?>
 
             </div>      
         </div>

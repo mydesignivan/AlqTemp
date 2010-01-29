@@ -1,3 +1,8 @@
 application/config/config.php
 application/config/database.php
+application/nbproject/*
+application/uploads/*
 db.txt
+AlqTemp.git.tar.gz
+.htaccess
+htaccess.txt

@@ -64,11 +64,13 @@ class Prop extends Controller {
     }
 
     public function delete(){
-        if( $this->uri->segment(3)!="" ){
-
-            $this->prop_model->delete($this->uri->segment(3));
-            redirect('/prop/');
+        if( $this->uri->segment(3) ){
+            $id = $this->uri->segment_array();
+            array_splice($id, 0,2);
             
+            if( $this->prop_model->delete($id) ){
+                redirect('/prop/');
+            }
         }
     }
 

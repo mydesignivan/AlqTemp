@@ -6,8 +6,8 @@ class Simplelogin{
     private $CI;
     private $user_table;
 
-    function __construct($table = 'users'){
-        $this->user_table = $table;
+    function __construct(){
+        $this->user_table = TBL_USERS;
         $this->CI =& get_instance();
         $this->CI->load->library('encpss');
     }
