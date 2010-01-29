@@ -93,7 +93,7 @@ define('EMAIL_RP_MESSAGE', 'Su contrase&ntilde;a es %s');
 |--------------------------------------------------------------------------
 */
 define('EMAIL_CONSULTPROP_SUBJECT', 'Consulta propiedad');
-define('EMAIL_CONSULTPROP_MESSAGE', 'Propiedad: %s<br>Nombre persona: %s<br>Telefono: %s<br><hr color="#000000" />Consulta:<br>%s');
+define('EMAIL_CONSULTPROP_MESSAGE', 'Propiedad: %s<br>Nombre persona: %s<br>Telefono: %s<br>Consulta:<hr color="#000000" />%s');
 
 /*
 |--------------------------------------------------------------------------
@@ -102,7 +102,7 @@ define('EMAIL_CONSULTPROP_MESSAGE', 'Propiedad: %s<br>Nombre persona: %s<br>Tele
 */
 define('EMAIL_CONTACT_TO', 'ivan@mydesign.com.ar');
 define('EMAIL_CONTACT_SUBJECT', 'Formulario de consulta');
-define('EMAIL_CONTACT_MESSAGE', 'Nombre: %s<br>Telefono: %s<br><hr color="#000000" />Consulta:<br>%s');
+define('EMAIL_CONTACT_MESSAGE', 'Nombre: %s<br>Telefono: %s<br>Consulta:<hr color="#000000" />%s');
 
 /*
 |--------------------------------------------------------------------------

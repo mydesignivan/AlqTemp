@@ -9,5 +9,6 @@
             $config['tag_open_special'] = '<div class="column">';
             construct_bloq($config);
         ?>
+
     </div>
     <h2>&nbsp;</h2>

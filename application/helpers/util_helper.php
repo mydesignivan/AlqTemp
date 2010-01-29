@@ -63,20 +63,21 @@ function construct_bloq($config){
     
     $n=0;
     $col=0;
-
     foreach( $config['result'] as $row ){
         $n++;
         if( $n==1 ){
             if( $col<2 ) echo $config['tag_open'].'<ul>';
-            elseif( $col==2 && !empty($config['tag_open_special']) )
+            elseif( $col==2 && !empty($config['tag_open_special']) ){
                 echo $config['tag_open_special'].'<ul>';
+                $col=0;
+            }
         }
 
         if( $n<=$config['total_row'] ){
             echo '<li>'. $row[$config['field']] .'</li>';
         }
 
-        if( $n==$config['total_row'] ){
+        if( $n==$config['total_row'] || $n==count($config['result']) ){
             echo '</ul>'.$config['tag_close'];
             $n=0;
             $col++;
