@@ -6,6 +6,7 @@ class Myaccount extends Controller{
         
         $this->load->model('users_model');
         $this->load->library('encpss');
+        $this->load->library("simplelogin");
     }
 
     public function index(){
@@ -47,8 +48,10 @@ class Myaccount extends Controller{
     public function delete(){
         if( $this->uri->segment(3)!="" ){
 
-            $this->prop_model->delete($this->uri->segment(3));
-            redirect('/prop/');
+            if( $this->users_model->delete($this->uri->segment(3)) ){
+                $this->simplelogin->logout();
+                redirect('/');
+            }
 
         }
     }

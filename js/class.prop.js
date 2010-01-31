@@ -108,10 +108,17 @@ var Prop = new (function(){
             return false;
         },
 
-        disting : function(dist, sel){
+        disting : function(dist, sel, credit, user_credit){
             var lstProp = $(sel+" input:checked");
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad.");
+                return false;
+            }
+
+            var newcredit = user_credit - (credit*lstProp.length);
+
+            if( newcredit<=0 ){
+                alert("No tiene suficiente credito para destacar.")
                 return false;
             }
 

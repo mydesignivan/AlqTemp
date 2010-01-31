@@ -5,6 +5,7 @@
     <?php require('includes/head_inc.php');?>
 
     <script type="text/javascript" src="js/class.prop.js"></script>
+    <script type="text/javascript" src="js/class.combobox.js"></script>
 </head>
 
 <body>
@@ -21,10 +22,6 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Propiedades</h1>
-                    <!--<div class="icons">
-                        <span>Usuario:</span>
-                        Propietario<a href="#"><img src="images/icon_exit.png" border="0" alt="salir" /> Salir</a>
-                    </div>-->
                 </div>
 
                 <div class="buttons">
@@ -53,7 +50,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row["prop_id"];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><?=$row["address"];?></div>
+                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" target="_blank"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row["category"];?></div>
                     </div>
                 <?php }

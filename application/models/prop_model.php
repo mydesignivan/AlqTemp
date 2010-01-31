@@ -3,6 +3,7 @@ class Prop_model extends Model {
 
     function  __construct() {
         parent::Model();
+        $this->load->model('credit_model');
     }
 
     /*
@@ -224,6 +225,11 @@ class Prop_model extends Model {
     }
 
     public function disting($prop_id, $disting){
+
+        if( $disting==1 ){
+            $this->credit_model->extract(CREDIT_PROP);
+        }
+
         $this->db->where_in('prop_id', $prop_id);
         return $this->db->update(TBL_PROPERTIES, array('disting'=>$disting));
     }

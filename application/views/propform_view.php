@@ -23,10 +23,6 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1><?=(!$data) ? "Nueva Propiedad" : "Modificar Propiedad";?></h1>
-                    <!--<div class="icons">
-                        <span>Usuario:</span>
-                        Propietario<a href="#"><img src="images/icon_exit.png" alt="salir" /> Salir</a>
-                    </div>-->
                 </div>
                 <div class="content_left">
                     <div id="contmessage"></div>

@@ -8,10 +8,6 @@ class Masinfo extends Controller {
     }
 
     public function index(){
-        $this->display();
-    }
-
-    public function display(){
         if( $this->uri->segment(3) ){
             $data = $this->prop_model->get_prop($this->uri->segment(3));
             $this->load->view('propdetalle_view', array("data"=>$data));

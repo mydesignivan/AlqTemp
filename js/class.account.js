@@ -60,11 +60,11 @@ var Account = new (function(){
         });
     };
 
-    this.delete_account = function(id, url){
+    this.delete_account = function(id){
         var msg = "Si elimina su usuario se eliminara también las propiedades associadas.\n";
         msg+= "¿Está seguro de confirmar la eliminación del usuario?.";
         if( confirm(msg) ){
-            location.href = url+"/"+id;
+            location.href = document.baseURI+"index.php/myaccount/delete/"+id;
         }
         return false;
     };

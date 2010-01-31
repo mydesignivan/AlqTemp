@@ -41,7 +41,15 @@ class Users_model extends Model {
         if( !is_numeric($user_id) ) return false;
 
         if( $this->db->delete(TBL_USERS, array('user_id' => $user_id)) ){
-            return $this->prop_model->delete();
+            $this->db->select('prop_id');
+            $this->db->where("user_id", $user_id);
+            $query = $this->db->get(TBL_PROPERTIES);
+            $prop_id = array();
+            foreach( $query->result_array() as $row ){
+                $prop_id[] = $row['prop_id'];
+            }
+
+            return $this->prop_model->delete($prop_id);
         }else{
             return false;
         }

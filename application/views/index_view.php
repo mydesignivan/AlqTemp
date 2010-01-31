@@ -32,12 +32,14 @@
                 <div class="description_properties">
                     <div class="image_properties"><img src="<?=$row['image_thumb'];?>" alt="" /></div>
                     <div class="description_text">
-                        <h2><?=$row['address'];?></h2>
+                        <?php $url=site_url('/masinfo/index/'.$row['prop_id']);?>
+
+                        <h2><a href="<?=$url;?>"><?=$row['address'];?></a></h2>
                         <p><?=character_limiter($row['description'], 150);?></p>
                         <b>Categor&iacute;a:</b> <?=$row['category'];?><br />
                         <b>Ciudad:</b> <?=$row['city'];?>
-                        <span><br />Precio: <?=$row['price'];?></span>
-                        <a class="info" href="<?=site_url('/masinfo/display/'.$row['prop_id']);?>">M&aacute;s info</a>
+                        <?php if( !empty($row['price']) ){?><span><br />Precio: <?=$row['price'];?></span><?php }?>
+                        <a class="info" href="<?=$url?>">M&aacute;s info</a>
                     </div>
                 </div>
 

@@ -47,7 +47,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><?=$row['address'];?></div>
+                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" target="_blank"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row['category'];?></div>
                     </div>
                 <?php }
@@ -58,7 +58,7 @@
                 <div class="table_bottom"></div>
 
                 <?php if( $listProp->num_rows>0 ){?>
-                <div class="container_button"><a href="#" class="button2" onclick="Prop.action.disting(1, '#tblProp .table_left'); return false;">Canjear Puntos</a></div>
+                <div class="container_button"><a href="#" class="button2" onclick="Prop.action.disting(1, '#tblProp .table_left', <?=CREDIT_PROP;?>, <?=$this->session->userdata('credit');?>); return false;">Destacar</a></div>
                 <?php }?>
 
                 <br />&nbsp;<br />
@@ -87,7 +87,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><?=$row['address'];?></div>
+                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" target="_blank"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row['category'];?></div>
                     </div>
                 <?php } 

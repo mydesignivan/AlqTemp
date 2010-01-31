@@ -106,6 +106,17 @@ define('EMAIL_CONTACT_MESSAGE', 'Nombre: %s<br>Telefono: %s<br>Consulta:<hr colo
 
 /*
 |--------------------------------------------------------------------------
+| EMAIL CONTACTO
+|--------------------------------------------------------------------------
+*/
+define('EMAIL_BUYCREDIT_FROM', 'ivan@mydesign.com.ar');
+define('EMAIL_BUYCREDIT_TO', 'ivan@mydesign.com.ar');
+define('EMAIL_BUYCREDIT_SUBJECT', 'Pedido');
+define('EMAIL_BUYCREDIT_MESSAGE', '<b>Nombre:</b> %s<hr color="#000000" /><b>Telefono:</b> %s<hr color="#000000" /><b>Email:</b> %s<hr color="#000000" /><b>Forma de Pago:</b> %s<hr color="#000000" /><b>Importe:</b> $ %s');
+
+
+/*
+|--------------------------------------------------------------------------
 | UPLOAD FILE
 |--------------------------------------------------------------------------
 */
@@ -115,6 +126,16 @@ define('UPLOAD_WIDTH', 107);
 define('UPLOAD_HEIGHT', 90);
 define('UPLOAD_FILETYPE', 'gif|jpg|png');
 define('UPLOAD_MAXSIZE', 1024); //Expresado en Kylobytes
+
+/*
+|--------------------------------------------------------------------------
+| CREDITOS
+|--------------------------------------------------------------------------
+*/
+define('CREDIT_PROP', 10);
+
+
+
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

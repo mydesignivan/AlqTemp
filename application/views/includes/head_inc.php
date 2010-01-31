@@ -70,3 +70,7 @@
 </script>
 <script type="text/javascript" src="js/ie6update/ie6update/ie6update.js"></script>
 <![endif]-->
+
+<!--[if IE 6]>
+<script type="text/javascript" src="js/DD_belatedPNG.js"></script>
+<![endif]-->

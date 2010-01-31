@@ -29,9 +29,6 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Mi Cuenta</h1>
-                    <!--<div class="icons">
-                        <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/login/logout/');?>"><img src="images/icon_exit.png" border="0" alt="Salir" /> Salir</a>
-                    </div>-->
                 </div>
                 <div class="content_left">
                     <div id="contmessage"></div>
@@ -47,7 +44,7 @@
                     </form>
                     <div class="container_button">
                         <a class="button1" href="#" onclick="Account.save(); return false;">Guardar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" />
-                        <a class="button2" href="#" onclick="Account.delete_account(<?=$dataUser['user_id'];?>, '<?=site_url('/myaccount/delete');?>'); return false;">Eliminar Cuenta</a>
+                        <a class="button2" href="#" onclick="Account.delete_account(<?=$dataUser['user_id'];?>); return false;">Eliminar</a>
                     </div>
                     <br class="clearfloat" />
                     <h3>(*)Campos Obligatorios</h3>
@@ -55,7 +52,7 @@
                 </div>
 
                 <div class="content_right">
-                    <div class="cuenta_plus"><a href="#"><img src="images/cuenta_plus.png" alt="Obtene tu Cuenta Plus" /></a></div>
+                    <!--<div class="cuenta_plus"><a href="#"><img src="images/cuenta_plus.png" alt="Obtene tu Cuenta Plus" /></a></div>-->
                 </div>  
             </div>
             <!--end .maintContent -->

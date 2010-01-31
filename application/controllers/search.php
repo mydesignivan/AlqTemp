@@ -12,12 +12,8 @@ class Search extends Controller {
         $this->count_per_page=3;
     }
 
-    public function index($offset=0){
-       if( !is_numeric($offset) ) $offset=0;
-
-        $dataURL = $this->uri->uri_to_assoc(3);
-
-        if( count($dataURL)==1 ){
+    public function index($dataURL=array()){
+        if( count($dataURL)>0 ){
             switch($dataURL['category']){
                 case 1: $title = "Casas"; break;
                 case 2: $title = "Departamentos"; break;
@@ -25,6 +21,7 @@ class Search extends Controller {
                 case 4: $title = "Otros"; break;
             }
         }else{
+            $dataURL = $this->uri->uri_to_assoc(3);
             $title = "Resultado de B&uacute;queda";
         }
 
@@ -48,6 +45,19 @@ class Search extends Controller {
         $result_searches = $this->search_model->get_searches();
 
         $this->load->view('index_view', array("listProp"=>$data['result'], "section_title"=>$title, "listSearches"=>$result_searches));
+    }
+
+    public function casas(){
+        $this->index(array('category'=>1, 'page'=>0));
+    }
+    public function departamentos(){
+        $this->index(array('category'=>2, 'page'=>0));
+    }
+    public function cabanias(){
+        $this->index(array('category'=>3, 'page'=>0));
+    }
+    public function otros(){
+        $this->index(array('category'=>4, 'page'=>0));
     }
 
 }

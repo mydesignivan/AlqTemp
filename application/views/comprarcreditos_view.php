@@ -19,35 +19,35 @@
             <div id="mainContent">
                 <div class="content_top">
                     <h1>Comprar Cr&eacute;dito</h1>
-                    <!--<div class="icons">
-                        <span>Usuario:</span>
-                        Propietario<a href="#"><img src="images/icon_exit.png" alt="salir" /> Salir</a>
-                    </div>-->
                 </div>
                 <div class="credit">
                     <div class="credit_attention">El Cr&eacute;dito que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <span class="t2">alquilerestemporarios.org</span></div>
                 </div>
-                <div class="column_left">
-                    <form action="" enctype="application/x-www-form-urlencoded">
+
+                <?php if( !$this->session->flashdata('status') ){?>
+                <form name="form1" action="<?=site_url('comprarcredito/send/');?>" method="post">
+                    <div class="column_left">
                         <span class="cell">Forma de pago</span>
-                        <select name="select" class="input style_input">
-                          <option>Debito</option>
-                          <option>Tarjeta de Credito</option>
-                          <option>Efectivo</option>
+                        <select name="cboFormaPago" class="input style_input">
+                          <option value="Debito">Debito</option>
+                          <option value="Tarjeta de Credito">Tarjeta de Credito</option>
+                          <option value="Efectivo">Efectivo</option>
                         </select>
-                    </form>
-                </div>
-                <div class="column_right">
-                    <form action="" enctype="application/x-www-form-urlencoded">
+                    </div>
+                    <div class="column_right">
                         <span class="cell">Importe $</span>
-                        <select name="select" class="input style_input">
-                          <option>20</option>
-                          <option>40</option>
-                          <option>50</option>
+                        <select name="cboImport" class="input style_input">
+                          <option value="20">20</option>
+                          <option value="40">40</option>
+                          <option value="50">50</option>
                         </select>
-                    </form>
-                </div>
-                <div class="container_button"><a class="button2" href="#">Realizar Compra</a></div>
+                    </div>
+                    <div class="container_button"><a class="button2" href="#" onclick="document.form1.submit(); return false;">Comprar</a></div>
+                </form>
+                <?php }elseif( $this->session->flashdata('status')=="ok" ){?>
+                    <p>La compra ha sido realizada con exito.</p>
+                    
+                <?php }?>
             </div>
             <!--end .maintContent -->
          </div>

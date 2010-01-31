@@ -64,10 +64,10 @@
     <div class="column1">
         <div class="main_menu">
             <ul>
-                <li><a class="menu-option" href="<?=site_url("/search/index/category/1/page/0");?>">Casas</a></li>
-                <li><a class="menu-option" href="<?=site_url("/search/index/category/2/page/0");?>">Departamentos</a></li>
-                <li><a class="menu-option" href="<?=site_url("/search/index/category/3/page/0");?>">Cabañas</a></li>
-                <li><a class="menu-option" href="<?=site_url("/search/index/category/4/page/0");?>">Otros</a></li>
+                <li><a class="menu-option" href="<?=site_url("/search/casas/");?>">Casas</a></li>
+                <li><a class="menu-option" href="<?=site_url("/search/departamentos/");?>">Departamentos</a></li>
+                <li><a class="menu-option" href="<?=site_url("/search/cabanias/");?>">Cabañas</a></li>
+                <li><a class="menu-option" href="<?=site_url("/search/otros/");?>">Otros</a></li>
             </ul>
         </div>
         <div class="banner_top_horizontal">

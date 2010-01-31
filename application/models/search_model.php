@@ -64,6 +64,8 @@ class Search_model extends Model {
 
         // GUARDO LA PALABRA
         if( isset($data['city']) && !empty($data['city']) ){
+            echo $data['city'];
+            die();
             $query = $this->db->query('SELECT hits,id FROM '.TBL_LOGSEARCHES." WHERE search_term='".$data['city']."'");
             if( $query->num_rows==0 ){
                 $this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$data['city'], 'hits'=>1));
