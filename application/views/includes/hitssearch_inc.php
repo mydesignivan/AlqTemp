@@ -7,6 +7,7 @@
             $config['tag_open'] = '<div class="column line_right">';
             $config['tag_close'] = '</div>';
             $config['tag_open_special'] = '<div class="column">';
+            $config['tag_link'] = true;
             construct_bloq($config);
         ?>
 

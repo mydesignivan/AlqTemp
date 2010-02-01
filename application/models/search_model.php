@@ -43,7 +43,7 @@ class Search_model extends Model {
             if( isset($data['country']) && $data['country']!=0 ) $where = array("country"=>$data["country"]);
             if( isset($data['states']) && $data['states']!=0 )   $where = array("states"=>$data["states"]);
             if( isset($data['city']) && !empty($data['city']) )  $like = array("city"=>$data['city']);
-            if( $data['category']!=0 )                           $where = array("category"=>$data["category"]);
+            if( isset($data['category']) && $data['category']!=0 ) $where = array("category"=>$data["category"]);
             //if( count($where)>0 ) $this->db->where(implode(" AND ", $where), false);
         }
 
@@ -64,8 +64,6 @@ class Search_model extends Model {
 
         // GUARDO LA PALABRA
         if( isset($data['city']) && !empty($data['city']) ){
-            echo $data['city'];
-            die();
             $query = $this->db->query('SELECT hits,id FROM '.TBL_LOGSEARCHES." WHERE search_term='".$data['city']."'");
             if( $query->num_rows==0 ){
                 $this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$data['city'], 'hits'=>1));

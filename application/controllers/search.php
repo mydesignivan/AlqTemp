@@ -12,7 +12,30 @@ class Search extends Controller {
         $this->count_per_page=3;
     }
 
-    public function index($dataURL=array()){
+    /*
+     * PUBLIC FUNCTIONS
+     */
+    public function index(){
+        $this->display();
+    }
+
+    public function casas(){
+        $this->display(array('category'=>1, 'page'=>0));
+    }
+    public function departamentos(){
+        $this->display(array('category'=>2, 'page'=>0));
+    }
+    public function cabanias(){
+        $this->display(array('category'=>3, 'page'=>0));
+    }
+    public function otros(){
+        $this->display(array('category'=>4, 'page'=>0));
+    }
+
+    /*
+     * PRIVATE FUNCTIONS
+     */
+    private function display($dataURL=array()){
         if( count($dataURL)>0 ){
             switch($dataURL['category']){
                 case 1: $title = "Casas"; break;
@@ -24,7 +47,6 @@ class Search extends Controller {
             $dataURL = $this->uri->uri_to_assoc(3);
             $title = "Resultado de B&uacute;queda";
         }
-
 
         $data = $this->search_model->search($dataURL, $this->count_per_page, $dataURL['page']);
 
@@ -45,19 +67,6 @@ class Search extends Controller {
         $result_searches = $this->search_model->get_searches();
 
         $this->load->view('index_view', array("listProp"=>$data['result'], "section_title"=>$title, "listSearches"=>$result_searches));
-    }
-
-    public function casas(){
-        $this->index(array('category'=>1, 'page'=>0));
-    }
-    public function departamentos(){
-        $this->index(array('category'=>2, 'page'=>0));
-    }
-    public function cabanias(){
-        $this->index(array('category'=>3, 'page'=>0));
-    }
-    public function otros(){
-        $this->index(array('category'=>4, 'page'=>0));
     }
 
 }
