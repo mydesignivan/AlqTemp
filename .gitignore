@@ -5,4 +5,5 @@ application/uploads/*
 db.txt
 AlqTemp.git.tar.gz
 .htaccess
+htaccess
 htaccess.txt
