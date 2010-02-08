@@ -20,7 +20,7 @@
 
             <?php }else{?>
 
-                <span>Usuario:</span><?=$this->session->userdata('name');?>
+                <span>Usuario:<?=$this->session->userdata('name');?></span>
                 &nbsp;&nbsp;<a href="<?=site_url('/myaccount/');?>">(mi cuenta)</a>
                 <a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
             <?php }?>

@@ -54,7 +54,8 @@ var Prop = new (function(){
                         }else{
                            //Busca Imagenes Nuevas
                            $('a.ajaxupload-preview:visible').each(function(){
-                               arr_images_new.push($(this).parent().find('.ajaxupload-input').val());
+                               var val = $(this).parent().find('.ajaxupload-input').val();
+                               if( val!="" ) arr_images_new.push();
                            });
 
                            document.formProp.images_new.value = arrayToObject(arr_images_new);
@@ -151,14 +152,27 @@ var Prop = new (function(){
 
     this.remove_row_file = function(el, image_id){
         var filename = $(el).parent().find('.ajaxupload-input').val();
-        if( confirm('¿Está seguro que desea quitar la imagen "'+filename+'"') ){
-            $(el).parent().parent().remove();
 
-            if( typeof image_id!="undefined" ) {
-                if( $.inArray(image_id, arr_images_delete)==-1 ){
-                    arr_images_delete.push(image_id);
+        if( filename!="" ){
+            if( confirm('¿Está seguro que desea quitar la imagen "'+filename+'"') ){
+                $(el).parent().parent().remove();
+
+                if( typeof image_id!="undefined" ) {
+                    if( $.inArray(image_id, arr_images_delete)==-1 ){
+                        arr_images_delete.push(image_id);
+                    }
+
+                    var key = $.inArray(image_id, arr_images_modified.id);
+                    if( key!=-1 ){
+                        arr_images_modified.id.unset_array(key);
+                        arr_images_modified.name.unset_array(key);
+                    }
+
                 }
             }
+            
+        }else{
+            $(el).parent().parent().remove();
         }
     };
 
@@ -166,7 +180,7 @@ var Prop = new (function(){
         if( $.inArray(id, arr_images_modified.id)==-1 ){
             arr_images_modified.id.push(id);
             arr_images_modified.name.push(name);
-            arr_images_delete.push(id);
+            if( $.inArray(id, arr_images_delete)==-1 ) arr_images_delete.push(id);
         }
     };
 

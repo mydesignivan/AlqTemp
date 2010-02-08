@@ -37,12 +37,12 @@ class Search_model extends Model {
         if( is_array($data) ){
             $where = array();
             if( isset($data['search'] ) && $data['search']!="empty" ) {
-                $like = array('address'=>$data["search"]);
-                $or_like = array('description'=>$data["search"]);
+                $like = array('address'=>utf8_encode($data["search"]));
+                $or_like = array('description'=>utf8_encode($data["search"]));
             }
             if( isset($data['country']) && $data['country']!=0 ) $where = array("country"=>$data["country"]);
             if( isset($data['states']) && $data['states']!=0 )   $where = array("states"=>$data["states"]);
-            if( isset($data['city']) && !empty($data['city']) )  $like = array("city"=>$data['city']);
+            if( isset($data['city']) && !empty($data['city']) )  $like = array("city"=>utf8_encode($data['city']));
             if( isset($data['category']) && $data['category']!=0 ) $where = array("category"=>$data["category"]);
             //if( count($where)>0 ) $this->db->where(implode(" AND ", $where), false);
         }

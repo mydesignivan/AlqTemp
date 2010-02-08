@@ -11,6 +11,12 @@ img{border:none !important; }
 a{
     text-decoration:none;
 }
+a.link1,
+a.link1:link,
+a.link1:visited,
+a.link1:active{
+    color:#FC7F07 !important;
+}
 h1 {
     font-family:Arial, Helvetica, sans-serif;
     font-size:18px;
@@ -122,9 +128,12 @@ font-weight:bold;
             margin-top:22px;
             margin-left:160px;
         }
-        #header .top_right .registro a{
-            font-size:70%;
-        }
+            #header .top_right .registro span{
+                font-size:75%;
+            }
+            #header .top_right .registro a{
+                font-size:70%;
+            }
             #header .top_right .registro form .login {
                 background:url(../images/button1.png) center no-repeat;
                 width:76px;
@@ -274,17 +283,34 @@ font-weight:bold;
                         color:#5F4E37;
                     }
     /******************************* FIN MENU PANEL ****************************/
-
+    .sidebar{
+        float:right;
+        margin-right:60px;
+    }
 
     #sidebar1 {
-        float: right; /* dado que este elemento es flotante, debe asignarse un ancho */
         width: 297px; /* el ancho real de este div, en navegadores que cumplen los estándares, o el modo de estándares de Internet Explorer, incluirá el relleno y el borde además del ancho */
         /*background: #EBEBEB; /* el color de fondo se mostrará a lo largo de todo el contenido de la columna, pero no más allá */
-        margin-top:10px;
-        margin-right:60px;
         /*border:solid 1px;*/
         background: url(../images/background_sidebar.png)left top repeat-y;
         font-size:12px;
+        float:left;
+        clear:left;
+    }
+    .background_sidebar_top{
+        width: 297px;
+        height:15px;
+        background:url(../images/background_sidebar_top.png) no-repeat top left;
+        float:left;
+        margin-left:-2px;
+    }
+    .background_sidebar_bottom{
+        width: 297px;
+        height:15px;
+        background:url(../images/background_sidebar_bottom.png) no-repeat top left;
+        float:left;
+        clear:left;
+        margin-left:-2px;
     }
         #sidebar1 .publicity_horizontal{
             width:260px;
@@ -299,15 +325,24 @@ font-weight:bold;
     .container_mainContent{
         width:650px;
         padding: 0px 0 0 20px;
-        /*border:solid #006600 1px;*/
         float:left;
         margin-left:5px;
+    }
+    .condiciones{
+        padding-right:30px;
+    }
+    .background_bottom{
+        width:660px;
+        height:21px;
+        background:url(../images/background_bottom.png) no-repeat top left;
+        float:left;
+        padding: 0px 0 0 5px;
+        margin-left:-5px;
     }
 	.container_mainContent #mainContent {
             width:650px;
             background: url(../images/background_general.png)left top repeat-y;
             padding: 0px 0 0 20px;
-            /*border:solid #006600 1px;*/
             float:left;
             margin-top:20px;
             font-family:Arial, Helvetica, sans-serif;
@@ -340,7 +375,7 @@ font-weight:bold;
                 }
                     .container_mainContent #mainContent .description_properties .description_text span {
                         font-size:12px;
-                        color: #FC7F07b;
+                        color: #6D6D6D;
                         font-weight:bold;
                     }
                     .container_mainContent #mainContent .description_properties .description_text .info {
@@ -367,7 +402,7 @@ font-weight:bold;
             margin-top:20px;
             font-family:Arial, Helvetica, sans-serif;
             font-size:11px;
-	}
+        }
             .container_mainContent .mainContent2 .content_top{
                 float:left;
                 width:667px;
@@ -1201,3 +1236,4 @@ font-weight:bold;
     text-align:center;
     font-size:130%;
 }
+

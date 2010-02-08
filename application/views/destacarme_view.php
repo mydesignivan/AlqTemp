@@ -12,9 +12,8 @@
             <?php include ('includes/headerpanel_inc.php');?>
         </div><!-- end #header -->
       
-        <div id="sidebar1">
-            <?php include('includes/banner_inc.php');?>
-        </div><!-- end #sidebar1 -->
+        
+        <?php include('includes/banner_inc.php');?>
       
         <div class="container_mainContent">
             <div id="mainContent">
@@ -47,7 +46,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" target="_blank"><?=$row["address"];?></a></div>
+                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" target="_blank" class="link1"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row['category'];?></div>
                     </div>
                 <?php }
@@ -87,7 +86,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" target="_blank"><?=$row["address"];?></a></div>
+                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" class="link1" target="_blank"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row['category'];?></div>
                     </div>
                 <?php } 
@@ -108,6 +107,7 @@
             <?php }?>
              </div>
             <!--end .maintContent -->
+            <div class="background_bottom"></div>
         </div>
         <!-- end .container_mainContent -->
       

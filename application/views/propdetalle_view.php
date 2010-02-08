@@ -28,9 +28,8 @@
         <?php include ('includes/header_inc.php');?>
         </div><!-- end #header -->
       
-        <div id="sidebar1">
-            <?php include('includes/banner_inc.php');?>
-        </div><!-- end #sidebar1 -->
+        
+        <?php include('includes/banner_inc.php');?>
       
         <div class="container_mainContent">
             <div id="mainContent">
@@ -91,7 +90,7 @@
                         <?php if( !empty($data['web_site']) ){?><p><img src="images/icon_web.png" alt="" border="0"/><?=$data['web_site'];?></p><?php }?>
                         <p><img src="images/icon_address.png" alt="" border="0"/><?=$data['address'];?></p>
                         <?php if( !empty($data['phone']) ){?><p><img src="images/icon_phone.png" alt="" border="0"/><?=$data['phone'];?></p><?php }?>
-                        <p><a href="#"><img src="images/icon_map.png" alt="" border="0"/>Ver mapa</a></p>
+                        <p><a class="link1" href="#"><img src="images/icon_map.png" alt="" border="0"/>Ver mapa</a></p>
                     </div>
                 </div>
                 <!--end.content_right-->
@@ -109,6 +108,7 @@
                 <!--end .services-->
             </div>
             <!--end .maintContent -->
+            <div class="background_bottom"></div>
         </div>
         <!-- end .container_mainContent -->
       

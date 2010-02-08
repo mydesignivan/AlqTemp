@@ -12,11 +12,9 @@
             <?php include ('includes/header_inc.php');?>
         </div>
         <!-- end #header -->
-      
-        <div id="sidebar1">
-            <?php include('includes/banner_inc.php');?>
-        </div>
-        <!-- end #sidebar1 -->
+
+        
+        <?php include('includes/banner_inc.php');?>
       
         <div class="container_mainContent">
             <div id="mainContent">
@@ -34,7 +32,7 @@
                     <div class="description_text">
                         <?php $url=site_url('/masinfo/index/'.$row['prop_id']);?>
 
-                        <h2><a href="<?=$url;?>"><?=$row['address'];?></a></h2>
+                        <h2><a class="link1" href="<?=$url;?>"><?=$row['address'];?></a></h2>
                         <p><?=character_limiter($row['description'], 150);?></p>
                         <b>Categor&iacute;a:</b> <?=$row['category'];?><br />
                         <b>Ciudad:</b> <?=$row['city'];?>
@@ -50,14 +48,11 @@
                 }?>
             </div>
             <!-- end #mainContent -->
-      
+            <div class="background_bottom"></div>
       
             <br class="clearfloat" />
         
-            <div class="mainContent2">
-                <?php include ('includes/hitssearch_inc.php');?>
-            </div>
-            <!--end .mainContent2-->
+            <?php include ('includes/hitssearch_inc.php');?>
         </div>
         <!--end .container_mainContent-->
       

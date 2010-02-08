@@ -10,7 +10,7 @@
 
     <div class="top_right">
         <div class="registro">
-            <span>Usuario:</span><?=$this->session->userdata('name');?><a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
+            <span>Usuario:<?=$this->session->userdata('name');?></span><a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
         </div>
     </div>
 

@@ -15,9 +15,8 @@
             <?php include ('includes/headerpanel_inc.php');?>
         </div><!-- end #header -->
       
-        <div id="sidebar1">
-            <?php include('includes/banner_inc.php');?>
-        </div><!-- end #sidebar1 -->
+        
+        <?php include('includes/banner_inc.php');?>
       
         <div class="container_mainContent">
             <div id="mainContent">
@@ -27,7 +26,13 @@
                 <div class="content_left">
                     <div id="contmessage"></div>
                     <form name="formProp" id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
-                        <div class="row2"><span class="cell">*Dirección:</span><input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" /></div>
+                        <div class="row2">
+                            <span class="cell">*Dirección:</span>
+                            <input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" />
+                            <div class="formError_Account" style="top: 0px;  display: block;">
+                                <div class="formErrorContent">Este campo es obligatorio.</div>
+                            </div>
+                        </div>
                     <?php
                         $html = '
                         <div class="row">
@@ -147,6 +152,7 @@
                 <!--end .content_left -->
              </div>
              <!--end .maintContent -->
+             <div class="background_bottom"></div>
         </div>
         <!-- end .container_mainContent -->
       

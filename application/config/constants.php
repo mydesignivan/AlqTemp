@@ -122,10 +122,14 @@ define('EMAIL_BUYCREDIT_MESSAGE', '<b>Nombre:</b> %s<hr color="#000000" /><b>Tel
 */
 define('UPLOAD_DIR', './uploads/');
 define('UPLOAD_DIR_TMP', './uploads/tmp/');
-define('UPLOAD_WIDTH', 107);
-define('UPLOAD_HEIGHT', 90);
 define('UPLOAD_FILETYPE', 'gif|jpg|png');
 define('UPLOAD_MAXSIZE', 1024); //Expresado en Kylobytes
+
+define('IMAGE_THUMB_WIDTH', 107);
+define('IMAGE_THUMB_HEIGHT', 90);
+define('IMAGE_ORIGINAL_WIDTH', 800);
+define('IMAGE_ORIGINAL_HEIGHT', 600);
+
 
 /*
 |--------------------------------------------------------------------------

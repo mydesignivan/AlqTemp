@@ -75,7 +75,7 @@ function construct_bloq($config){
 
         if( $n<=$config['total_row'] ){
             $name = $row[$config['field']];
-            $tag = isset($config['tag_link']) ? '<a href="'.site_url('/search/index/city/'.$name.'/page/0').'">'.$name.'</a>' : $name;
+            $tag = isset($config['tag_link']) ? '<a href="'.site_url('/search/index/city/'.$name.'/page/0').'" class="link1">'.$name.'</a>' : $name;
             echo '<li>'. $tag .'</li>';
         }
 

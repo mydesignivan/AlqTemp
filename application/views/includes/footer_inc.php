@@ -5,9 +5,9 @@
 </div>
 
 <div class="rigth">
-    <a href="#">Site Map</a> | <a href="#">Publicidad</a> | <a href="<?=site_url('/contacto/');?>">Cont&aacute;tenos</a>
+    <a href="#" class="link1">Site Map</a> | <a href="#" class="link1">Publicidad</a> | <a href="<?=site_url('/contacto/');?>" class="link1">Cont&aacute;tenos</a>
     <br />
-    <span><a href="<?=site_url('/condicionesdeuso/');?>">Condiciones de Uso</a> | <a href="#">Pol&iacute;ticas de Privacidad</a></span>
+    <span><a href="<?=site_url('/condicionesdeuso/');?>" class="link1">Condiciones de Uso</a> | <a href="#" class="link1">Pol&iacute;ticas de Privacidad</a></span>
 </div>
 
 <p>&nbsp;</p>

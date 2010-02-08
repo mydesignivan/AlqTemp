@@ -53,7 +53,6 @@ class Prop_model extends Model {
         $images_deletes = json_decode($data['images_deletes']);
         $images_modified_id = json_decode($data['images_modified_id']);
         $images_modified_name = json_decode($data['images_modified_name']);
-        $user_id = $this->session->userdata('user_id');
 
         unset($data['services']);
         unset($data['images_new']);
@@ -267,24 +266,27 @@ class Prop_model extends Model {
                 $partf = part_filename($name);
 
                 $n=0;
-                while( file_exists($filename_dest) ){
+                while( file_exists(UPLOAD_DIR.$filename_dest) ){
                     $n++;
-                    $partf = part_filename($filename_dest);
-                    $filename_dest = $partf['basename']."_copy".$n.".".$partf['ext'];
+                    $partf2 = part_filename($filename_dest);
+                    $filename_dest = $partf2['basename']."_copy".$n.".".$partf2['ext'];
+
+                    $partf3 = part_filename($name_original);
+                    $name_original = $partf3['basename']."_copy".$n.".".$partf3['ext'];
                 }
+
 
                 /*echo $filesource."<br>";
                 echo UPLOAD_DIR.$filename_dest;
                 die();*/
-                if( !copy($filesource, UPLOAD_DIR.$filename_dest) ){
-                    die("pase");
+                if( !@copy($filesource, UPLOAD_DIR.$filename_dest) ){
                     return false;
                 }
 
                 if( $n==0 ){
                     $filename_thumb_dest = $prefix.$partf['basename']."_thumb.".$partf['ext'];
                 }else{
-                    $filename_thumb_dest = $prefix.$partf['basename']."_copy".$n."_thumb.".$partf['ext'];
+                    $filename_thumb_dest = $partf2['basename']."_copy".$n."_thumb.".$partf2['ext'];
                 }
 
                 $filesource = str_replace($name, "", $filesource);

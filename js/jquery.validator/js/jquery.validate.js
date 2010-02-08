@@ -275,7 +275,8 @@ var Class_Validator = function(options){
         if( !el.objectFormError ){
             var div = el.objectFormError = document.createElement("DIV");
             div.className = options.messageClass;
-            $(div).append('<DIV class="formErrorArrow_'+options.messagePos+'"></DIV><DIV class="formErrorContent">'+arrayMsg+'</DIV>');
+            //$(div).append('<DIV class="formErrorArrow_'+options.messagePos+'"></DIV><DIV class="formErrorContent">'+arrayMsg+'</DIV>');
+            $(div).append('<DIV class="formErrorContent">'+arrayMsg+'</DIV>');
             $(el.parentNode).append(div);
             show_effect=true;
         }else {

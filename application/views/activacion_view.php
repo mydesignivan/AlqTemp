@@ -12,9 +12,8 @@
         <?php include ('includes/header_inc.php');?>
         </div><!-- end #header -->
       
-        <div id="sidebar1">
-            <?php include('includes/banner_inc.php');?>
-        </div><!-- end #sidebar1 -->
+        
+        <?php include('includes/banner_inc.php');?>
       
         <div class="container_mainContent">
             <div id="mainContent">
@@ -34,6 +33,7 @@
 
             </div>
             <!--end .maintContent -->
+            <div class="background_bottom"></div>
         </div>
         <!-- end .container_mainContent -->
       
