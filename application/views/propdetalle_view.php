@@ -7,15 +7,7 @@
     <!===== SCRIPT: ImageGallery =====-->
     <link type="text/css" href="js/jquery.imagegallery/css/style.css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery.imagegallery/js/script.js"></script>
-    <script type="text/javascript">
-    <!--
-    var ImageGallery = new ClassImageGallery({
-        selectorThumbs      : '#container-thumbs',
-        selectorPreview     : '#thumb-preview',
-        effect_slide        : true
-    });
-    -->
-    </script>
+    <script type="text/javascript" src="js/jquery.imagegallery/js/execute.js"></script>
     <!===== END SCRIPT =====-->
 
     <script type="text/javascript" src="js/class.moreinfo.js"></script>
@@ -64,7 +56,7 @@
                 <div class="content_right">
                     <div id="contFormConsult" class="contact">
                         <div class="mail_icon"></div>
-                        <form name="formConsult" id="formConsult" action="" method="post" enctype="application/x-www-form-urlencoded">
+                        <form id="formConsult" action="" method="post" enctype="application/x-www-form-urlencoded">
                             <div class="message"></div>
                             *Nombre <br />
                             <div><input type="text" name="txtName" class="validate {v_required:true}" /></div>

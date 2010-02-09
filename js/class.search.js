@@ -1,12 +1,12 @@
 /* 
- * Clase encargada del logeo
+ * Clase
  * 
  */
 
 var Search = new (function(){
 
     this.search = function(){
-        var f = document.formSearch;
+        var f = $('#formSearch')[0];
         var search = f.txtSearch.value.length==0 ? "empty" : f.txtSearch.value;
 
         var params = "search/"+ escape(search) +"/";
@@ -16,8 +16,8 @@ var Search = new (function(){
             params+= "category/"+ f.cboCategory.value+"/";
             params+= "page/0";
 
-        document.formSearch.action = document.baseURI+"index.php/search/index/"+params;
-        document.formSearch.submit();
+        f.action = baseURI+"search/index/"+params;
+        f.submit();
     };
 
 

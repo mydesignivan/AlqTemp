@@ -33,7 +33,7 @@
                     </div>
 
                     <?php }else{?>
-                    <form name="formContact" id="formContact" action="<?=site_url('/contacto/send');?>" enctype="application/x-www-form-urlencoded" method="post">
+                    <form id="formContact" action="<?=site_url('/contacto/send');?>" enctype="application/x-www-form-urlencoded" method="post">
                         <div class="form_left">
                             <p>*Nombre:<input type="text" class="input validate {v_required:true}" name="txtName" /></p>
                             <p>*E-mail:<input type="text" class="input validate {v_required:true, v_email:true}" name="txtEmail" /></p>

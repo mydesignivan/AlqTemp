@@ -33,7 +33,11 @@
 <script type="text/javascript" src="js/jquery.validator/js/jquery.validate.messages.js"></script>
 <!--======= END SCRIPT =======-->
 
-
+<script type="text/javascript">
+<!--
+    var baseURI = $("base").attr("href")+"<?=index_page();?>/";
+-->
+</script>
 
 <!--========== CLASS ============-->
 <script type="text/javascript" src="js/class.login.js"></script>

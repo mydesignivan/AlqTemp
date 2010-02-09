@@ -24,7 +24,7 @@
                 </div>
 
                 <?php if( !$this->session->flashdata('status') ){?>
-                <form name="form1" action="<?=site_url('comprarcredito/send/');?>" method="post">
+                <form id="form1" action="<?=site_url('comprarcredito/send/');?>" method="post">
                     <div class="column_left">
                         <span class="cell">Forma de pago</span>
                         <select name="cboFormaPago" class="input style_input">
@@ -41,7 +41,7 @@
                           <option value="50">50</option>
                         </select>
                     </div>
-                    <div class="container_button"><a class="button2" href="#" onclick="document.form1.submit(); return false;">Comprar</a></div>
+                    <div class="container_button"><a class="button2" href="#" onclick="$('#form1').submit(); return false;">Comprar</a></div>
                 </form>
                 <?php }elseif( $this->session->flashdata('status')=="ok" ){?>
                     <p>La compra ha sido realizada con exito.</p>

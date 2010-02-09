@@ -259,7 +259,7 @@ class Prop_model extends Model {
             $name = preg_replace("/\s+/", "_", strtolower($name_original));
 
 
-            $filesource = file_search_special(UPLOAD_DIR_TMP, "/^".$user_id."\_.*\__".$name."$/");
+            $filesource = file_search_special(UPLOAD_DIR_TMP, $name);
 
             if( $filesource ){
                 $filename_dest = $prefix.$name;

@@ -70,6 +70,33 @@ font-weight:bold;
     margin-right: 10px;
 }
 
+.link-register{
+    float:left;
+    margin-top: -5px;
+}
+span.title1{
+    color:#684C1D;
+    font-weight:bold;
+    font-size: 60% !important;
+}
+.button-enter-login {
+    background:url(../images/button_enter_login.png) center no-repeat;
+    width:69px;
+    height:30px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    color:#684C1D;
+    /*float:right;*/
+    text-align:center;
+    vertical-align:middle;
+    line-height:25px;
+    /*margin-right:140px;*/
+    border:none;
+    margin-top:-2px;
+    padding:0 0 3px 0;.
+}
+
 
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
@@ -133,23 +160,6 @@ font-weight:bold;
             }
             #header .top_right .registro a{
                 font-size:70%;
-            }
-            #header .top_right .registro form .login {
-                background:url(../images/button1.png) center no-repeat;
-                width:76px;
-                height:25px;
-                font-family:Arial, Helvetica, sans-serif;
-                font-size:12px;
-                font-weight:bold;
-                color:#684C1D;
-                /*float:right;*/
-                text-align:center;
-                vertical-align:middle;
-                line-height:25px;
-                /*margin-right:140px;*/
-                border:none;
-                margin-top:-2px;
-                padding:0 0 3px 0;
             }
 
     /***************************** SEARCH ********************************/
@@ -1236,4 +1246,43 @@ font-weight:bold;
     text-align:center;
     font-size:130%;
 }
+
+#login-container{
+    float:left;
+    position:relative;
+    padding:0;
+    margin-top: -5px;
+    margin-left: 100px;
+}
+    #login-container a.button{
+        position: relative;
+        display:block;
+        background:url(../images/button_login.png) no-repeat;
+        width:60px;
+        height:20px;
+        padding:8px 0 0 20px;
+        font-size:90%;
+        font-weight: bold;
+        color:#000;
+        z-index: 100;
+    }
+    #login-container a.button_current{
+        background:url(../images/button_login_in.png) no-repeat;
+        z-index: 400;
+    }
+    #login-container .cont-form-login{
+        position: relative;
+        background: url(../images/background_login.png) no-repeat;
+        width:186px;
+        height:157px;
+        margin:-15px 0 0 -2px;
+        padding:20px 0 0 15px;
+        display:none;
+        z-index: 90;
+    }
+        #login-container .cont-form-login .row{
+            float:left;
+            clear:left;
+            margin-bottom: 5px;
+        }
 

@@ -11,12 +11,31 @@
     <div class="top_right">
         <div class="registro">
             <?php if( !$this->session->userdata('logged_in') ){?>
-                <form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
+                <!--<form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
                     <div class="float-left"><input type="text" name="txtLoginUser" id="txtLoginUser" value="Usuario" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event)" onblur="set_input(event, 'Usuario')" /></div>
                     <div class="float-left"><input type="text" name="txtLoginPass" id="txtLoginPass" value="Contrase&ntilde;a" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event, 1)" onblur="set_input(event, 'Contrase&ntilde;a', 1)" /></div>
                     <div class="float-left"><input type="submit" id="btnLogin" value="login" class="login float-left" /></div>
                     <div class="float-left"><a href="<?=site_url('/rememberpass/');?>"> &iquest;Olvido su contrase&ntilde;a?</a></div>
-                </form>
+                </form>-->
+
+                <a href="<?=site_url('/registro/');?>" class="link-register"><img src="images/button_registrarse.png" alt="Registrarse" /></a>
+                <div id="login-container">
+                    <a href="javascript:Login.open_dialog(this);" class="button">Login</a>
+                    <div class="cont-form-login">
+                        <form id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
+                            <div class="row">
+                                <span class="title1">Usuario</span><br />
+                                <input type="text" name="txtLoginUser" id="txtLoginUser" value="" class="input_login float-left validate {v_required : true}" />
+                            </div>
+                            <div class="row">
+                                <span class="title1">Contrase&ntilde;a</span><br />
+                                <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left validate {v_required : true}" />
+                            </div>
+                            <div class="row"><input type="submit" id="btnLogin" value="Entrar" class="button-enter-login float-left" /></div>
+                            <div class="row"><a href="<?=site_url('/rememberpass/');?>"> &iquest;Olvido su contrase&ntilde;a?</a></div>
+                        </form>
+                    </div>
+                </div>
 
             <?php }else{?>
 
@@ -28,7 +47,7 @@
         <!--<div class="banner_top_cuadrado"><h1>Espacio para publicitar</h1></div>-->
     </div>
     <div class="search">
-        <form name="formSearch" action="" method="post">
+        <form id="formSearch" action="" method="post">
             <div class="search_top">
                 <div class="img_search"><img src="images/icono_buscar.png" alt="buscar" border="0" /></div>
                 <div class="div1">Buscador:&nbsp;<input type="text" class="input" name="txtSearch" value="<?=getval($_POST, "txtSearch");?>" onkeypress="javascript:if(getKeyCode(event)==13) Search.search();" /></div>

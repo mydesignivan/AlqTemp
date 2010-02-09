@@ -20,6 +20,13 @@ var Login = new (function(){
         return true;
     };
 
+    this.open_dialog = function(){
+        $('#login-container .button').toggleClass('button_current');
+        var cont = $('#login-container .cont-form-login');
+        cont.focus();
+        if( cont.is(':hidden') ) cont.show()
+        else cont.hide();
+    };
 
 })();
 

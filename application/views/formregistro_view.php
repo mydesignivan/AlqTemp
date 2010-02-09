@@ -26,7 +26,7 @@
 
                  <?php }else{?>
                     <div id="contmessage"></div>
-                    <form name="formAccount" id="formAccount" action="<?=site_url('/registro/create');?>" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="formAccount" action="<?=site_url('/registro/create');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <p><span class="cell">*Nombre:</span><input type="text" name="txtName" class="input style_input validate {v_required:true}" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" name="txtEmail" class="input style_input validate {v_email:true}" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" name="txtPhone" class="input style_input" /></p>

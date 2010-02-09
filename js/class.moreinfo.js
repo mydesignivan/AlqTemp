@@ -14,11 +14,13 @@ var MoreInfo = new (function(){
                 //alert('Se han encontrado errores.\nPor favor, revise el formulario.');
              }else{
                  ajaxload.show();
+                 var f = $('#formConsult')[0];
+                 var data = $('#formConsult').serialize();
 
                  $.ajax({
                      type : 'post',
-                     url  : document.baseURI+'index.php/masinfo/sendconsult',
-                     data : $(document.formConsult).serialize(),
+                     url  : baseURI+'masinfo/sendconsult',
+                     data : data,
                      success : function(data){
                          if( data=="ok" ){
                               $('#formConsult .message').html('La consulta ha sido enviada con &eacute;xito.').slideDown('slow');
@@ -31,10 +33,10 @@ var MoreInfo = new (function(){
                      },
                      complete : function(){
                          ajaxload.hidden();
-                         document.formConsult.txtName.value = "";
-                         document.formConsult.txtEmail.value = "";
-                         document.formConsult.txtPhone.value = "";
-                         document.formConsult.txtConsult.value = "";
+                         f.txtName.value = "";
+                         f.txtEmail.value = "";
+                         f.txtPhone.value = "";
+                         f.txtConsult.value = "";
                      }
                  });                 
              }

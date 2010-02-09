@@ -6,22 +6,6 @@
 var Prop = new (function(){
 
     /*
-     * CONSTRUCTOR
-     */
-    $(document).ready(function(){
-       //document.formProp.cboCountry.selectedIndex=0;
-       var p = $('.previewthumb');
-       if( p.length>0 ){
-           if( document.formProp.prop_id.value!="" ) {
-               p.show();
-           }
-
-           $('input.ajaxupload-input').bind('keypress', function(e){e.preventDefault();});
-       }
-    });
-
-
-    /*
      * PUBLIC METHODS
      */
     this.save = function(){
@@ -31,10 +15,11 @@ var Prop = new (function(){
             if( !error && validServices() && validImages() ){
                 working=true;
                 var propid="";
-                if( document.formProp.prop_id.value!="" ) propid = "/"+document.formProp.prop_id.value;
-                
+
+                if( f.prop_id.value!="" ) propid = "/"+f.prop_id.value;
+
                 $('#ajaxloader').show();
-                $.get(document.baseURI+'index.php/ajax_prop/valid/'+escape(document.formProp.txtAddress.value)+propid, function(data){
+                $.get(baseURI+'ajax_prop/valid/'+escape(f.txtAddress.value)+propid, function(data){
                     if( data=="exists" ){
                         if( $('#contmessage').is(':hidden') ){
                             $('#contmessage').html('La propiedad ingresada ya existe.');
@@ -49,8 +34,8 @@ var Prop = new (function(){
                         });
                         servsel = servsel.substr(0, servsel.length-1);
 
-                        if( document.formProp.prop_id.value=="" ){
-                            document.formProp.images_new.value = arrayToObject($('input.ajaxupload-input:not(empty)'));
+                        if( f.prop_id.value=="" ){
+                            f.images_new.value = arrayToObject($('input.ajaxupload-input:not(empty)'));
                         }else{
                            //Busca Imagenes Nuevas
                            $('a.ajaxupload-preview:visible').each(function(){
@@ -58,15 +43,15 @@ var Prop = new (function(){
                                if( val!="" ) arr_images_new.push();
                            });
 
-                           document.formProp.images_new.value = arrayToObject(arr_images_new);
-                           document.formProp.images_deletes.value = arrayToObject(arr_images_delete);
-                           document.formProp.images_modified_id.value = arrayToObject(arr_images_modified.id);
-                           document.formProp.images_modified_name.value = arrayToObject(arr_images_modified.name);
+                           f.images_new.value = arrayToObject(arr_images_new);
+                           f.images_deletes.value = arrayToObject(arr_images_delete);
+                           f.images_modified_id.value = arrayToObject(arr_images_modified.id);
+                           f.images_modified_name.value = arrayToObject(arr_images_modified.name);
                         }
 
-                        document.formProp.services.value = servsel;
-                        document.formProp.action = (propid=="") ? document.baseURI+"index.php/prop/create" : document.baseURI+"index.php/prop/edit"+propid;
-                        document.formProp.submit();
+                        f.services.value = servsel;
+                        f.action = (propid=="") ? baseURI+"prop/create" : baseURI+"prop/edit"+propid;
+                        f.submit();
                     }
                 });
 
@@ -89,7 +74,7 @@ var Prop = new (function(){
                 alert("Debe seleccionar una sola propiedad.");
                 return false;
             }
-            location.href = document.baseURI+'index.php/prop/form/'+lstProp.val();
+            location.href = baseURI+'prop/form/'+lstProp.val();
             return false;
         },
 
@@ -103,7 +88,7 @@ var Prop = new (function(){
             var data = get_data(lstProp);
 
             if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
-                location.href = document.baseURI+'index.php/prop/delete/'+data.id;
+                location.href = baseURI+'prop/delete/'+data.id;
             }
 
             return false;
@@ -125,7 +110,7 @@ var Prop = new (function(){
 
             var data = get_data(lstProp);
 
-            location.href = document.baseURI+"index.php/destacarme/disting/"+data.id+"/"+dist;
+            location.href = baseURI+"destacarme/disting/"+data.id+"/"+dist;
 
             return false;
         }
@@ -197,6 +182,7 @@ var Prop = new (function(){
     };
     var arr_images_new = new Array();
     var arr_images_delete = new Array();
+    var f=false;
 
     /*
      * PRIVATE METHODS
@@ -252,6 +238,21 @@ var Prop = new (function(){
     }
 
 
+    /*
+     * CONSTRUCTOR
+     */
+    $(document).ready(function(){
+       var p = $('.previewthumb');
+       f = $('#formProp')[0];
+       
+       if( p.length>0 ){
+           if( f.prop_id.value!="" ) {
+               p.show();
+           }
+
+           $('input.ajaxupload-input').bind('keypress', function(e){e.preventDefault();});
+       }
+    });
 
 })();
 
@@ -269,7 +270,7 @@ var ValidatorProp = new Class_Validator({
 if( typeof ClassAjaxUpload!="undefined" ){
     var AjaxUpload = new ClassAjaxUpload({
         selector : '.btnexamin',
-        action   : document.baseURI+'index.php/ajax_upload',
+        action   : baseURI+'ajax_upload',
         onSubmit : function(input, ext){
             if( !(ext && /^(jpg|png|jpeg|gif)$/.test(ext)) ){
                 alert('Error: Solo se permiten imagenes');

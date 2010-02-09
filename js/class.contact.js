@@ -8,7 +8,7 @@ var Contact = new (function(){
              if( error ){
                 alert('Se han encontrado errores.\nPor favor, revise el formulario.');
              }else{
-                 document.formContact.submit();
+                 $('#formContact').submit();
              }
          });
 

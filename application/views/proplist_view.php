@@ -59,9 +59,6 @@
                 </div>
                 <!--end .table_body -->
                 <div class="table_bottom"></div>
-
-
-                <br />&nbsp;<br />
             </div>
             <!--end .maintContent -->
             <div class="background_bottom"></div>

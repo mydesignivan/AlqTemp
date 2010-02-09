@@ -15,18 +15,19 @@ var Account = new (function(){
         ValidatorAccount.validate(function(error){
             if( !error ){
                 working=true;
-                var userid="";
+                var userid="", f=false;
+                f = $('#formAccount')[0];
 
                 $('#ajaxloader').show();
-                if( document.formAccount.user_id ) userid = document.formAccount.user_id.value;
+                if( f.user_id ) userid = f.user_id.value;
 
                 $.ajax({
                     type : 'post',
-                    url  : document.baseURI+'index.php/ajax_account/valid/',
+                    url  : baseURI+'ajax_account/valid/',
                     data : {
-                        username : escape(document.formAccount.txtUser.value),
-                        email    : escape(document.formAccount.txtEmail.value),
-                        captcha  : document.formAccount.txtCatcha.value,
+                        username : escape(f.txtUser.value),
+                        email    : escape(f.txtEmail.value),
+                        captcha  : f.txtCatcha.value,
                         userid   : userid
                     },
                     success : function(data){
@@ -42,7 +43,7 @@ var Account = new (function(){
                             $('#ajaxloader').hide();
 
                         }else if( data=="ok" ){
-                            document.formAccount.submit();
+                            f.submit();
                         }
                     },
                     error   : function(http){
@@ -64,7 +65,7 @@ var Account = new (function(){
         var msg = "Si elimina su usuario se eliminara también las propiedades associadas.\n";
         msg+= "¿Está seguro de confirmar la eliminación del usuario?.";
         if( confirm(msg) ){
-            location.href = document.baseURI+"index.php/myaccount/delete/"+id;
+            location.href = baseURI+"myaccount/delete/"+id;
         }
         return false;
     };
@@ -72,7 +73,7 @@ var Account = new (function(){
     this.captcha_show = function(selector){
         $.ajax({
             type : 'POST',
-            url  : document.baseURI+"index.php/ajax_account/generatecaptcha",
+            url  : baseURI+"ajax_account/generatecaptcha",
             success : function(data){
                 $(selector).replaceWith(data);
             }

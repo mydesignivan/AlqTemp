@@ -7,10 +7,12 @@
     <script type="text/javascript" src="js/class.account.js"></script>
 <?php if( $this->session->flashdata('statusrecord')=='saveok' ) {?>
     <script type="text/javascript">
+    <!--
         $(document).ready(function(){
             $('#contmessage').html('Los datos han sido guardados con &eacute;xito.');
             $('#contmessage').slideToggle('slow');
         });
+    -->
     </script>
 <?php }?>
 </head>
@@ -31,7 +33,7 @@
                 </div>
                 <div class="content_left">
                     <div id="contmessage"></div>
-                    <form name="formAccount" id="formAccount" action="<?=site_url('/myaccount/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="formAccount" action="<?=site_url('/myaccount/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <p><span class="cell">*Nombre:</span><input type="text" class="input validate {v_required:true}" name="txtName" value="<?=$dataUser['name'];?>" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" class="input validate {v_required:true, v_email:true}" name="txtEmail" value="<?=$dataUser['email'];?>" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" value="<?=$dataUser['phone'];?>" /></p>

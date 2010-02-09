@@ -24,7 +24,7 @@ var ComboBox = new (function(){
     var exec_ajax = function(el, selector, segment, optdef){
         el.disabled = true;
 
-        $.getJSON(document.baseURI+'index.php/ajax_search/'+segment+'/'+el.value, function(data){
+        $.getJSON(baseURI+'ajax_search/'+segment+'/'+el.value, function(data){
             var combo = $(selector)[0];
 
             combo.options.length = 1;

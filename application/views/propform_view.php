@@ -25,7 +25,7 @@
                 </div>
                 <div class="content_left">
                     <div id="contmessage"></div>
-                    <form name="formProp" id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="row2">
                             <span class="cell">*Dirección:</span>
                             <input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" />

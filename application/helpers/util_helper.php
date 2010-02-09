@@ -14,7 +14,7 @@ function file_search_special($dir, $filename_search){
             if( $file!="." AND $file!=".." ){
                 if( is_file($dir.'/'.$file) ){
                     // Es Archivo
-                    if( preg_match($filename_search, $file) ){
+                    if( strpos($file, $filename_search) ){
                         return ($dir.'/'.$file);
                     }
                 }
