@@ -17,6 +17,22 @@ a.link1:visited,
 a.link1:active{
     color:#FC7F07 !important;
 }
+
+a.link2{
+    color:#684C1D !important;
+    font-weight:bold;
+    font-size: 90%;
+}
+
+a.link3{
+    color:#684C1D;
+    text-decoration: none;
+    font-size: 90%;
+}
+a.link3:hover{
+    text-decoration: underline;
+}
+
 h1 {
     font-family:Arial, Helvetica, sans-serif;
     font-size:18px;
@@ -71,8 +87,9 @@ font-weight:bold;
 }
 
 .link-register{
-    float:left;
-    margin-top: -5px;
+    position:relative;
+    top:-5px;
+    left:75px;
 }
 span.title1{
     color:#684C1D;
@@ -84,17 +101,12 @@ span.title1{
     width:69px;
     height:30px;
     font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
+    font-size:80%;
     font-weight:bold;
     color:#684C1D;
-    /*float:right;*/
-    text-align:center;
-    vertical-align:middle;
-    line-height:25px;
-    /*margin-right:140px;*/
+    text-align:center;    
     border:none;
-    margin-top:-2px;
-    padding:0 0 3px 0;.
+    padding:0 0 3px 0;
 }
 
 
@@ -126,22 +138,9 @@ span.title1{
         position:relative;
         z-index:5;
     }
-        #header .top_left .top_menu ul{
-            float:right;
-            margin-top:0px;
-            margin-bottom:0px;
-            margin-right:-45px;
-        }
-        #header .top_left .top_menu li{
-            list-style:none;
-            display:inline;
-            font-size:10px;
-        }
-        #header .top_left .top_menu a{
-            color:#684C1D;
-            font-weight:bold;
-        }
-
+    #header .top_left .logo{
+        padding-top:20px;
+    }
     #header .top_right {
         background: url(../images/header_login.png) top left no-repeat;
         height:193px;
@@ -1123,7 +1122,7 @@ span.title1{
 .input_login{
     border:1px #F2A858 solid;
     background-color:#FAE397;
-    width:120px;
+    width:150px;
     height:15px;
     margin-right:10px;
     padding:3px 0 2px 5px;
@@ -1246,43 +1245,67 @@ span.title1{
     text-align:center;
     font-size:130%;
 }
-
+/*------------------ Login -----------------*/
 #login-container{
-    float:left;
+    float:right;
     position:relative;
     padding:0;
-    margin-top: -5px;
-    margin-left: 100px;
+    margin-top: -6px;
+    margin-right: 18px;
+    /*border:1px solid;*/
 }
-    #login-container a.button{
+    #login-container a.signin{
         position: relative;
         display:block;
         background:url(../images/button_login.png) no-repeat;
         width:60px;
         height:20px;
         padding:8px 0 0 20px;
+        margin-right:8px;
         font-size:90%;
         font-weight: bold;
         color:#000;
-        z-index: 100;
     }
-    #login-container a.button_current{
-        background:url(../images/button_login_in.png) no-repeat;
-        z-index: 400;
-    }
-    #login-container .cont-form-login{
+    #login-container .container-form{
         position: relative;
         background: url(../images/background_login.png) no-repeat;
-        width:186px;
-        height:157px;
-        margin:-15px 0 0 -2px;
-        padding:20px 0 0 15px;
+        width:188px;
+        height:192px;
+        margin-right: 4px;
         display:none;
-        z-index: 90;
+        overflow:hidden;
     }
-        #login-container .cont-form-login .row{
+        #login-container .container-form .row{
             float:left;
             clear:left;
             margin-bottom: 5px;
         }
+        #login-container .container-form .signup{
+            position:relative;
+            float:right;
+            font-size:90%;
+            font-weight: bold;
+            color:#000;
+            right:30px;
+            top:8px;
+        }
+        #login-container .container-form #formLogin{
+            float:left;
+            clear:right;
+            margin-top:20px;
+            margin-left:15px;
+        }
+        #login-container .container-form .button-enter-login{
+            margin:-5px 0 0 -4px;
+        }
 
+/*--------- HEADER BOTONERA SUPERIOR ---------*/
+.header-menu-cell1{
+    float:left;
+    width:150px;
+}
+.header-menu-cell2{
+    float:left;
+    width:218px;
+    /*border:1px solid;*/
+}

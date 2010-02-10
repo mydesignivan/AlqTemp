@@ -5,6 +5,9 @@
 
 var Login = new (function(){
 
+    /*
+     * METHODS PUBLIC
+     */
     this.validate = function(){
         if( $("#txtLoginUser").val().toLowerCase()=="usuario" ){
             ValidatorLogin2.message.hidden("#txtLoginPass");
@@ -21,20 +24,38 @@ var Login = new (function(){
     };
 
     this.open_dialog = function(){
-        $('#login-container .button').toggleClass('button_current');
-        var cont = $('#login-container .cont-form-login');
-        cont.focus();
-        if( cont.is(':hidden') ) cont.show()
-        else cont.hide();
+        $('#login-container .signin').hide();
+        $('#login-container .container-form').show();
+        $('#formLogin')[0].txtLoginUser.focus();
+        opendialog=true;
     };
+    this.close_dialog = function(){
+        $('#login-container .signin').show();
+        $('#login-container .container-form').hide();
+        opendialog=false;
+    };
+
+    /*
+     * PROPERTIES PRIVATE
+     */
+    var mouse_over=false;
+    var opendialog=false;
+    var This=this;
+
+    /*
+     * CONSTRUCTOR
+     */
+    $(document).ready(function(){
+        $(document.body).click(function(){
+            if( !mouse_over && opendialog ){
+                This.close_dialog();
+            }
+        });
+        $('#login-container').hover(function(){mouse_over=true;}, function(){mouse_over=false;});
+    });
 
 })();
 
-
-var ValidatorLogin = new Class_Validator({
-    selectors : '#formLogin .validate',
-    messageClass : 'formError_Login'
-});
 
 var ValidatorLogin2 = new Class_Validator({
     selectors : '#formLogin .validate',

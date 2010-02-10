@@ -1,41 +1,36 @@
-<div class="top_left">
-        <div class="top_menu">
-            <ul>
-                <li><a href="<?=site_url('/');?>"><img src="images/icono_inicio.png" alt="inicio" /> Inicio</a></li>
-                <li><a href="<?=site_url('/contacto/');?>"><img src="images/icono_contacto.png" alt="contacto" /> Contacto</a></li>
-            </ul>
-        </div>
+    <div class="top_left">
         <div class="logo"><a href="<?=site_url('/');?>"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" /></a></div>
     </div>
 
     <div class="top_right">
         <div class="registro">
             <?php if( !$this->session->userdata('logged_in') ){?>
-                <!--<form name="formLogin" id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
-                    <div class="float-left"><input type="text" name="txtLoginUser" id="txtLoginUser" value="Usuario" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event)" onblur="set_input(event, 'Usuario')" /></div>
-                    <div class="float-left"><input type="text" name="txtLoginPass" id="txtLoginPass" value="Contrase&ntilde;a" class="input_login float-left validate {v_required : true}" onfocus="clear_input(event, 1)" onblur="set_input(event, 'Contrase&ntilde;a', 1)" /></div>
-                    <div class="float-left"><input type="submit" id="btnLogin" value="login" class="login float-left" /></div>
-                    <div class="float-left"><a href="<?=site_url('/rememberpass/');?>"> &iquest;Olvido su contrase&ntilde;a?</a></div>
-                </form>-->
 
+            <div class="header-menu-cell1">
+                <a href="<?=site_url('/');?>" class="link2"><img src="images/icono_inicio.png" alt="" /> Inicio</a>
+                <a href="<?=site_url('/contacto/');?>" class="link2"><img src="images/icono_contacto.png" alt="" /> Contacto</a>
+            </div>
+            <div class="header-menu-cell2">
                 <a href="<?=site_url('/registro/');?>" class="link-register"><img src="images/button_registrarse.png" alt="Registrarse" /></a>
-                <div id="login-container">
-                    <a href="javascript:Login.open_dialog(this);" class="button">Login</a>
-                    <div class="cont-form-login">
-                        <form id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
-                            <div class="row">
-                                <span class="title1">Usuario</span><br />
-                                <input type="text" name="txtLoginUser" id="txtLoginUser" value="" class="input_login float-left validate {v_required : true}" />
-                            </div>
-                            <div class="row">
-                                <span class="title1">Contrase&ntilde;a</span><br />
-                                <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left validate {v_required : true}" />
-                            </div>
-                            <div class="row"><input type="submit" id="btnLogin" value="Entrar" class="button-enter-login float-left" /></div>
-                            <div class="row"><a href="<?=site_url('/rememberpass/');?>"> &iquest;Olvido su contrase&ntilde;a?</a></div>
-                        </form>
-                    </div>
+            </div>
+            <div id="login-container">
+                <a href="javascript:Login.open_dialog();" class="signin">Login</a>
+                <div class="container-form">
+                    <a href="javascript:Login.close_dialog();" class="signup">Login</a>
+                    <form id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
+                        <div class="row">
+                            <span class="title1">Usuario</span><br />
+                            <input type="text" name="txtLoginUser" id="txtLoginUser" value="" class="input_login float-left" />
+                        </div>
+                        <div class="row">
+                            <span class="title1">Contrase&ntilde;a</span><br />
+                            <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left" />
+                        </div>
+                        <div class="row"><input type="submit" id="btnLogin" value="Entrar" class="button-enter-login" /></div>
+                        <div class="row"><a href="<?=site_url('/rememberpass/');?>" class="link3"> &iquest;Olvido su contrase&ntilde;a?</a></div>
+                    </form>
                 </div>
+            </div>
 
             <?php }else{?>
 
