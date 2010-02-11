@@ -44,26 +44,6 @@
 
 <!--======= END CLASS =======-->
 
-<?php if( $this->session->flashdata('statusLogin') ) {?>
-    <script type="text/javascript">
-    <!--
-    $(document).ready(function(){
-     <?php
-        switch($this->session->flashdata('statusLogin')){
-            case "loginfaild":
-                $message = "El usuario y/o password son incorrectos.";
-            break;
-            case "userinactive":
-                $message = "El usuario no esta activado.";
-            break;
-        }
-     ?>
-        ValidatorLogin.message.show('#btnLogin', ['<?=$message;?>']);
-    });
-    -->
-    </script>
-<?php }?>
-
 
 <!--[if IE 6]>
 <script type="text/javascript">

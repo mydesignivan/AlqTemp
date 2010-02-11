@@ -76,3 +76,14 @@
     }
 /************************** FIn Sidebar *************************/
 
+.container_mainContent #mainContent .content_top{
+    padding-top:15px;
+}
+.container_mainContent .mainContent2 .content_top{
+    padding-top:15px;
+}
+
+#header .search .search_right{
+    float:left;
+    margin-top: 20px;
+}

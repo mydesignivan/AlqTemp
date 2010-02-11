@@ -28,9 +28,10 @@
                     <div class="column_left">
                         <span class="cell">Forma de pago</span>
                         <select name="cboFormaPago" class="input style_input">
-                          <option value="Debito">Debito</option>
+                          <option value="Pago Facil">Pago Facil (ARG)</option>
+                          <option value="Rapipago">Rapipago (ARG)</option>
                           <option value="Tarjeta de Credito">Tarjeta de Credito</option>
-                          <option value="Efectivo">Efectivo</option>
+                          <option value="Transferencia bancaria">Transferencia bancaria</option>
                         </select>
                     </div>
                     <div class="column_right">

@@ -1,15 +1,17 @@
+    <div id="message-login"></div>
+
     <div class="top_left">
         <div class="logo"><a href="<?=site_url('/');?>"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" /></a></div>
     </div>
 
     <div class="top_right">
         <div class="registro">
-            <?php if( !$this->session->userdata('logged_in') ){?>
-
             <div class="header-menu-cell1">
                 <a href="<?=site_url('/');?>" class="link2"><img src="images/icono_inicio.png" alt="" /> Inicio</a>
                 <a href="<?=site_url('/contacto/');?>" class="link2"><img src="images/icono_contacto.png" alt="" /> Contacto</a>
             </div>
+
+            <?php if( !$this->session->userdata('logged_in') ){?>
             <div class="header-menu-cell2">
                 <a href="<?=site_url('/registro/');?>" class="link-register"><img src="images/button_registrarse.png" alt="Registrarse" /></a>
             </div>
@@ -32,8 +34,26 @@
                 </div>
             </div>
 
-            <?php }else{?>
+            <?php if( $this->session->flashdata('statusLogin') ) {?>
+                <script type="text/javascript">
+                <!--
+                 <?php
+                    switch($this->session->flashdata('statusLogin')){
+                        case "loginfaild":
+                            $message = "El usuario y/o password son incorrectos.";
+                        break;
+                        case "userinactive":
+                            $message = "El usuario no esta activado.";
+                        break;
+                    }
+                 ?>
+                    Login.message_show('<?=$message;?>');
+                -->
+                </script>
+            <?php }?>
 
+
+            <?php }else{?>
                 <span>Usuario:<?=$this->session->userdata('name');?></span>
                 &nbsp;&nbsp;<a href="<?=site_url('/myaccount/');?>">(mi cuenta)</a>
                 <a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
