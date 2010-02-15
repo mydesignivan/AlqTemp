@@ -3,6 +3,12 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
+
+    <!--SCRIPT "VALIDADOR DE FORMULARIOS"-->
+    <link type="text/css" href="js/jquery.validator/css/style.css" rel="stylesheet"  />
+    <script type="text/javascript" src="js/jquery.validator/js/script.min.js"></script>
+    <!--END SCRIPT-->
+
     <script type="text/javascript" src="js/class.account.js"></script>
     <script type="text/javascript" src="js/class.search.js"></script>
 </head>
@@ -27,24 +33,30 @@
                  <?php }else{?>
                     <div id="contmessage"></div>
                     <form id="formAccount" action="<?=site_url('/registro/create');?>" method="post" enctype="application/x-www-form-urlencoded">
-                        <p><span class="cell">*Nombre:</span><input type="text" name="txtName" class="input style_input validate {v_required:true}" /></p>
-                        <p><span class="cell">*E-Mail:</span><input type="text" name="txtEmail" class="input style_input validate {v_email:true}" /></p>
+                        <p><span class="cell">*Nombre:</span><input type="text" name="txtName" class="input style_input validate" /></p>
+                        <p><span class="cell">*E-Mail:</span><input type="text" name="txtEmail" class="input style_input validate" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" name="txtPhone" class="input style_input" /></p>
-                        <p><span class="cell">*Usuario:</span><input type="text" name="txtUser" class="input style_input validate {v_required:true}" /></p>
-                        <p><span class="cell">*Contraseña:</span><input type="password" name="txtPass" id="txtPass" class="input style_input validate {v_password:[6,10], v_required:true}" /></p>
-                        <p><span class="cell">*Repetir:</span><input type="password" name="txtPass2" class="input style_input validate {v_compare:'txtPass'}" /></p>
+                        <p><span class="cell">*Usuario:</span><input type="text" name="txtUser" class="input style_input validate" /></p>
+                        <p><span class="cell">*Contraseña:</span><input type="password" name="txtPass" class="input style_input validate" /></p>
+                        <p><span class="cell">*Repetir:</span><input type="password" name="txtPass2" class="input style_input validate" /></p>
                         <p>
                             <div class="cell_captcha">
                                 <?php echo $captcha['image'];?>
-                                <a href="#" onclick="Account.captcha_show('.cell_captcha img'); return false;">Otro</a>
+                                <a href="javascript:Account.captcha_show('.cell_captcha img');">Otro</a>
                             </div>
                         </p>
-                        <p><span class="cell">*Ingrese C&oacute;digo:</span><input type="text" name="txtCatcha" id="txtCatcha" class="input style_input validate {v_required:true}" /></p>
+                        <p><span class="cell">*Ingrese C&oacute;digo:</span><input type="text" name="txtCaptcha" id="txtCaptcha" class="input style_input validate" /></p>
                     </form>
-                    <div class="container_button"><a class="button1" href="#" onclick="Account.save(); return false;">Enviar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" /></div>
+                    <div class="container_button"><a class="button1" href="javascript:Account.save();">Enviar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" /></div>
                     <h3>&nbsp;</h3>
                     <h3>(*)Campos Obligatorios</h3>
                 <?php }?>
+
+                    <script type="text/javascript">
+                    <!--
+                        Account.initializer();
+                    -->
+                    </script>
                 </div>
             </div>
             <!--end .maintContent -->

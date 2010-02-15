@@ -19,7 +19,7 @@
                 <a href="javascript:Login.open_dialog();" class="signin">Login</a>
                 <div class="container-form">
                     <a href="javascript:Login.close_dialog();" class="signup">Login</a>
-                    <form id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post" onsubmit="return Login.validate();">
+                    <form id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post">
                         <div class="row">
                             <span class="title1">Usuario</span><br />
                             <input type="text" name="txtLoginUser" id="txtLoginUser" value="" class="input_login float-left" />

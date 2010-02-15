@@ -8,15 +8,43 @@ var Account = new (function(){
     /*
      * PUBLIC METHODS
      */
+    this.initializer = function(){
+        f = $('#formAccount')[0];
 
-    this.save = function(){
-        if( working ) return;
+        $.validator.setting('#formAccount .validate', {
+            effect_show     : 'slide',
+            validateOne     : true
+        });
 
-        ValidatorAccount.validate(function(error){
+        $(f.txtName).validator({
+            v_required  : true
+        });
+        $(f.txtEmail).validator({
+            v_required  : true,
+            v_email     : true
+        });
+        $(f.txtUser).validator({
+            v_required  : true,
+            v_user      : [4,15]
+        });
+        $(f.txtPass).validator({
+            v_required  : true,
+            v_password  : [6,15]
+        });
+        $(f.txtPass2).validator({
+            v_required  : true,
+            v_compare   : $(f.txtPass)
+        });
+    };
+
+    this.save = function(){        
+        if( working ) return false;
+
+        $.validator.validate('#formAccount .validate', function(error){
+            alert(error);
             if( !error ){
                 working=true;
-                var userid="", f=false;
-                f = $('#formAccount')[0];
+                var userid="";
 
                 $('#ajaxloader').show();
                 if( f.user_id ) userid = f.user_id.value;
@@ -27,23 +55,22 @@ var Account = new (function(){
                     data : {
                         username : escape(f.txtUser.value),
                         email    : escape(f.txtEmail.value),
-                        captcha  : f.txtCatcha.value,
+                        captcha  : f.txtCaptcha.value,
                         userid   : userid
                     },
                     success : function(data){
                         if( data=="existsuser" ){
-                            show_error('El usuario ingresado ya existe.');
+                            show_error(f.txtUser, 'El usuario ingresado ya existe.');
 
                         }else if( data=="existsmail" ){
-                            show_error('El email ingresado ya existe.');
+                            show_error(f.txtEmail, 'El email ingresado ya existe.');
 
                         }else if( data=="captcha_error" ){
-                            ValidatorAccount.message.hidden("#formAccount .validate");
-                            ValidatorAccount.message.show("#txtCatcha", ['El c&oacute;digo ingresado es incorrecto.']);
-                            $('#ajaxloader').hide();
+                            show_error(f.txtCaptcha, 'El c&oacute;digo ingresado es incorrecto.');
 
                         }else if( data=="ok" ){
-                            f.submit();
+                            alert("ok")
+                            //f.submit();
                         }
                     },
                     error   : function(http){
@@ -55,8 +82,6 @@ var Account = new (function(){
                     }
                 });
 
-            }else{
-                alert('Se han encontrado errores.\nPor favor, revise el formulario.');
             }
         });
     };
@@ -85,24 +110,16 @@ var Account = new (function(){
      * PRIVATE PROPERTIES
      */
     var working=false;
+    var f=false;
 
 
     /*
      * PRIVATE METHODS
      */
-    var show_error = function(msg){
-        $('#contmessage').html(msg);
-        if( $('#contmessage').is(':hidden') ){
-            $('#contmessage').slideToggle('slow');
-        }
-        $('#ajaxloader').hide();
+    var show_error = function(el, msg){
+        $.validator.show(el,{
+            message : msg
+        });
     };
 
 })();
-
-var ValidatorAccount = new Class_Validator({
-    selectors : '#formAccount .validate',
-    messageClass : 'formError_Account',
-    messagePos : 'up',
-    validationOne : true
-});

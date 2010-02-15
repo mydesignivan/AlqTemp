@@ -27,12 +27,6 @@
 </script>-->
 <!--======= END SCRIPT =======-->
 
-<!--============ SCRIPT: JQuery Validator =================-->
-<link href="js/jquery.validator/css/jquery.validate.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.validator/js/jquery.validate.js"></script>
-<script type="text/javascript" src="js/jquery.validator/js/jquery.validate.messages.js"></script>
-<!--======= END SCRIPT =======-->
-
 <script type="text/javascript">
 <!--
     var baseURI = $("base").attr("href")+"<?=index_page();?>/";
@@ -41,7 +35,6 @@
 
 <!--========== CLASS ============-->
 <script type="text/javascript" src="js/class.login.js"></script>
-
 <!--======= END CLASS =======-->
 
 

@@ -1,0 +1,25 @@
+/*
+ * jQuery JavaScript Library v1.3
+ * http://jquery.com/
+ *
+ * Copyright (c) 2009-2010 Ivan Mattoni
+ * Empresa MyDesign
+ * Dual licensed under the MIT and GPL licenses.
+ * http://docs.jquery.com/License
+ *
+ * Version: 3.0
+ */
+
+.jquery-validator{
+    float:right;
+    clear: both !important;
+    width:195px;
+    padding:5px;
+    /*margin:10px 0 0 100px !important;*/
+    margin-top:4px !important;
+    background-color:#fff;
+    border:1px solid #ccc;
+    color:red;
+    font-size: 110%;
+    display:none;
+}
