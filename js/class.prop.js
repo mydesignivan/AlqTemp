@@ -8,6 +8,20 @@ var Prop = new (function(){
     /*
      * PUBLIC METHODS
      */
+    this.initializer = function(){
+        f = $('#formProp')[0];
+
+        $.validator.setting('#formAccount .validate', {
+            effect_show     : 'slide',
+            validateOne     : true
+        });
+
+        $(f.txtName).validator({
+            v_required  : true
+        });
+    };
+
+
     this.save = function(){
         if( working ) return false;
 
@@ -258,14 +272,6 @@ var Prop = new (function(){
 
 
 
-
-
-var ValidatorProp = new Class_Validator({
-    selectors : '#formProp .validate',
-    messageClass : 'formError_Account',
-    messagePos : 'up',
-    validationOne : true
-});
 
 if( typeof ClassAjaxUpload!="undefined" ){
     var AjaxUpload = new ClassAjaxUpload({

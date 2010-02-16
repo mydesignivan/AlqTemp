@@ -43,6 +43,8 @@
                             <p>
                                 Area de Consulta:<br />
                                 <select name="cboArea" class="input">
+                                    <option value="jbasaez@mydesign.com.ar">Publicidad</option>
+                                    <option value="jbasaez@mydesign.com.ar">Consultas</option>
                                 </select>
                             </p>
                         </div>
@@ -54,6 +56,8 @@
                         </div>
                         <div class="container_button"><a class="button1" href="#" onclick="Contact.send(); return false;">Enviar</a></div>
                     </form>
+                    <br class="clearfloat"/>
+                    <h3>(*) Campos Obligatorios</h3>
                     <?php }?>
                  </div>
             </div>

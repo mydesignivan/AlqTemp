@@ -6,7 +6,7 @@
 
     <!--SCRIPT "VALIDADOR DE FORMULARIOS"-->
     <link type="text/css" href="js/jquery.validator/css/style.css" rel="stylesheet"  />
-    <script type="text/javascript" src="js/jquery.validator/js/script.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
     <!--END SCRIPT-->
 
     <script type="text/javascript" src="js/class.account.js"></script>
@@ -45,10 +45,10 @@
                                 <a href="javascript:Account.captcha_show('.cell_captcha img');">Otro</a>
                             </div>
                         </p>
-                        <p><span class="cell">*Ingrese C&oacute;digo:</span><input type="text" name="txtCaptcha" id="txtCaptcha" class="input style_input validate" /></p>
+                        <p><span class="cell">*Ingrese C&oacute;digo:</span><input type="text" name="txtCaptcha" class="input style_input validate" /></p>
                     </form>
-                    <div class="container_button"><a class="button1" href="javascript:Account.save();">Enviar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" /></div>
-                    <h3>&nbsp;</h3>
+                    <div class="container_button3"><a class="button1" href="javascript:Account.save();">Enviar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" /></div>
+                    <br class="clearfloat" />
                     <h3>(*)Campos Obligatorios</h3>
                 <?php }?>
 

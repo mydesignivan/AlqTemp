@@ -26,7 +26,7 @@
                 <?php if( !$this->session->flashdata('status') ){?>
                 <form id="form1" action="<?=site_url('comprarcredito/send/');?>" method="post">
                     <div class="column_left">
-                        <span class="cell">Forma de pago</span>
+                        <span class="cell">Forma de pago &emsp;</span>
                         <select name="cboFormaPago" class="input style_input">
                           <option value="Pago Facil">Pago Facil (ARG)</option>
                           <option value="Rapipago">Rapipago (ARG)</option>
@@ -35,12 +35,13 @@
                         </select>
                     </div>
                     <div class="column_right">
-                        <span class="cell">Importe $</span>
-                        <select name="cboImport" class="input style_input">
+                        <span class="cell">Importe $ &emsp;</span>
+                        <select name="cboImport" class="input style_input2">
                           <option value="20">20</option>
                           <option value="40">40</option>
                           <option value="50">50</option>
                         </select>
+                        <input type="text" class="input style_input3" />
                     </div>
                     <div class="container_button"><a class="button2" href="#" onclick="$('#form1').submit(); return false;">Comprar</a></div>
                 </form>

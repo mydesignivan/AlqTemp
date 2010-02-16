@@ -8,6 +8,9 @@
         display:inline;
         padding-right:1px;
     }
+    #header .column_panel .menu_panel{
+        margin-left:47px;
+    }
 /************************** FIN Header *************************/
 
 
@@ -82,8 +85,23 @@
 .container_mainContent .mainContent2 .content_top{
     padding-top:15px;
 }
-
 #header .search .search_right{
     float:left;
     margin-top: 20px;
+}
+
+/************************** Login *************************/
+#login-container .container-form .row{
+    margin-top:15px;
+    margin-bottom:-5px;
+}
+
+#login-container .container-form .row .link3{
+    float:left;
+    width:300px;
+}
+/************************** FIN Login *************************/
+
+.container_mainContent #mainContent .credit .credit_attention{
+    padding-top:20px;
 }

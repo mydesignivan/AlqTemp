@@ -29,7 +29,7 @@
                             <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left" />
                         </div>
                         <div class="row"><input type="submit" id="btnLogin" value="Entrar" class="button-enter-login" /></div>
-                        <div class="row"><a href="<?=site_url('/rememberpass/');?>" class="link3"> &iquest;Olvido su contrase&ntilde;a?</a></div>
+                        <div class="row"><a href="<?=site_url('/rememberpass/');?>" class="link3">Recordar Contraseña</a></div>
                     </form>
                 </div>
             </div>
@@ -54,10 +54,18 @@
 
 
             <?php }else{?>
+            <div class="header-menu-cell3">
                 <span>Usuario:<?=$this->session->userdata('name');?></span>
-                &nbsp;&nbsp;<a href="<?=site_url('/myaccount/');?>">(mi cuenta)</a>
-                <a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
+            </div>
+            <div class="header-menu-cell3">
+                <a href="<?=site_url('/myaccount/');?>" class="link3">(mi cuenta)</a>
+            </div>
+            <div class="header-menu-salir">
+                <a href="<?=site_url('/login/logout/');?>" class="button1">Salir</a>
+            </div>
             <?php }?>
+            
+            
         </div>
         <!--<div class="banner_top_cuadrado"><h1>Espacio para publicitar</h1></div>-->
     </div>

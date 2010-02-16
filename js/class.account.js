@@ -25,29 +25,31 @@ var Account = new (function(){
         });
         $(f.txtUser).validator({
             v_required  : true,
-            v_user      : [4,15]
+            v_user      : [5,10]
         });
         $(f.txtPass).validator({
-            v_required  : true,
-            v_password  : [6,15]
+            v_required  : ($(f.user_id).val()!='') ? false : true,
+            v_password  : [8,10]
         });
         $(f.txtPass2).validator({
-            v_required  : true,
+            v_required  : ($(f.user_id).val()!='') ? false : true,
             v_compare   : $(f.txtPass)
         });
+        if( f.txtCaptcha ){
+            $(f.txtCaptcha).validator({
+                v_required  : true
+            });
+        }
     };
 
-    this.save = function(){        
+    this.save = function(){
         if( working ) return false;
 
         $.validator.validate('#formAccount .validate', function(error){
-            alert(error);
             if( !error ){
                 working=true;
-                var userid="";
 
                 $('#ajaxloader').show();
-                if( f.user_id ) userid = f.user_id.value;
 
                 $.ajax({
                     type : 'post',
@@ -55,8 +57,8 @@ var Account = new (function(){
                     data : {
                         username : escape(f.txtUser.value),
                         email    : escape(f.txtEmail.value),
-                        captcha  : f.txtCaptcha.value,
-                        userid   : userid
+                        captcha  : $(f.txtCaptcha).val(),
+                        userid   : $(f.user_id).val()
                     },
                     success : function(data){
                         if( data=="existsuser" ){
@@ -69,8 +71,7 @@ var Account = new (function(){
                             show_error(f.txtCaptcha, 'El c&oacute;digo ingresado es incorrecto.');
 
                         }else if( data=="ok" ){
-                            alert("ok")
-                            //f.submit();
+                            f.submit();
                         }
                     },
                     error   : function(http){

@@ -4,8 +4,14 @@
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
 
-    <script type="text/javascript" src="js/class.combobox.js"></script>
+    <!--SCRIPT "VALIDADOR DE FORMULARIOS"-->
+    <link type="text/css" href="js/jquery.validator/css/style.css" rel="stylesheet"  />
+    <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
+    <!--END SCRIPT-->
+
     <script type="text/javascript" src="js/jquery.ajaxupload.js"></script>
+
+    <script type="text/javascript" src="js/class.combobox.js"></script>
     <script type="text/javascript" src="js/class.prop.js"></script>
 </head>
 
@@ -29,9 +35,9 @@
                         <div class="row2">
                             <span class="cell">*Dirección:</span>
                             <input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" />
-                            <div class="formError_Account" style="top: 0px;  display: block;">
+                            <!--<div class="formError_Account" style="top: 0px;  display: block;">
                                 <div class="formErrorContent">Este campo es obligatorio.</div>
-                            </div>
+                            </div>-->
                         </div>
                     <?php
                         $html = '
@@ -65,7 +71,10 @@
                             }
                         }
                    ?>
-                        <div class="row2"><a href="#" class="add" onclick="Prop.append_row_file(this); return false;">Adjuntar otro archivo</a></div>
+                        <div class="row2">
+                                <a href="#" class="add" onclick="Prop.append_row_file(this); return false;">Adjuntar otro archivo</a>
+                                <p class="aling-right">Archivos (jpg | gif | png) 2MB max &emsp; &emsp;</p>
+                        </div>
 
 
                         <div class="row2"><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" class="input style_textarea  validate {v_required:true}" cols="20" rows="5"><?=getval($data, 'description');?></textarea></div>

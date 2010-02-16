@@ -13,6 +13,5 @@
         ?>
 
     </div>
-    <h2>&nbsp;</h2>
 </div>
 <div class="background_bottom"></div>

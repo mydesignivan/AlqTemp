@@ -3,6 +3,12 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
+
+    <!--SCRIPT "VALIDADOR DE FORMULARIOS"-->
+    <link type="text/css" href="js/jquery.validator/css/style.css" rel="stylesheet"  />
+    <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
+    <!--END SCRIPT-->
+
     <script type="text/javascript" src="js/class.rememberpass.js"></script>
     <script type="text/javascript" src="js/class.search.js"></script>
 </head>
@@ -25,10 +31,16 @@
                     <div class="content_rememberpass">
                         <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post" onsubmit="return RememberPass.send(this);">
                             <p>Escriba su direcci&oacute;n de correo</p>
-                            <input type="text" name="txtEmail" class="input validate {v_required:true, v_email:true}" />&nbsp;<input type="submit" value="Enviar" />
+                            <div id="cont-input-email" class="cell1"><input type="text" name="txtEmail" class="input validate" /></div>&nbsp;<input type="submit" value="Enviar" />
                         </form>
                         <br />
                     </div>
+
+                    <script type="text/javascript">
+                    <!--
+                        RememberPass.initializer();
+                    -->
+                    </script>
 
                 <?php }elseif( $status=="emailnotexists" ){?>
                     <p>El email ingresado no existe.</p>

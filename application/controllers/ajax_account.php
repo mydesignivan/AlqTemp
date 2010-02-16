@@ -18,8 +18,10 @@ class Ajax_account extends Controller {
         if( $status!="ok" ){
             die($status);
         }
-        if( strcasecmp($_SESSION['captchaWord'], $_POST['captcha']) != 0 ){
-            die("captcha_error");
+        if( !empty($_POST['captcha']) ){
+            if( strcasecmp($_SESSION['captchaWord'], $_POST['captcha']) != 0 ){
+                die("captcha_error");
+            }
         }
 
         die("ok");

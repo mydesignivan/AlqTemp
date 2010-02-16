@@ -8,9 +8,13 @@
                 <a href="<?=site_url('/');?>" class="link2"><img src="images/icono_inicio.png" alt="" /> Inicio</a>
                 <a href="<?=site_url('/contacto/');?>" class="link2"><img src="images/icono_contacto.png" alt="" /> Contacto</a>
             </div>
-
-            <span>Usuario:<?=$this->session->userdata('name');?></span>
-            <a href="<?=site_url('/login/logout/');?>">&nbsp;&nbsp;&nbsp;<img src="images/icon_exit.png" alt="Salir" /> Salir</a>
+            
+            <div class="header-menu-cell3">
+                <span>Usuario:<?=$this->session->userdata('name');?></span>
+            </div>
+            <div class="header-menu-salir">
+                <a href="<?=site_url('/login/logout/');?>" class="button1">Salir</a>
+            </div>
         </div>
     </div>
 

@@ -28,6 +28,7 @@ a.link3{
     color:#684C1D;
     text-decoration: none;
     font-size: 90%;
+    float: left;
 }
 a.link3:hover{
     text-decoration: underline;
@@ -108,7 +109,9 @@ span.title1{
     border:none;
     padding:0 0 3px 0;
 }
-
+.aling-right{
+    text-align: right;
+}
 
 /*-----------------------------------------------------------------------------*/
 /*-----------------------------------------------------------------------------*/
@@ -198,6 +201,7 @@ span.title1{
 
                 #header .search .search_top .button1{
                     margin-top: -7px;
+                    padding-top: 10px;
                 }
             #header .search .search_left{
                 float:left;
@@ -393,8 +397,7 @@ span.title1{
                         background:url(../images/button1.png) center no-repeat;
                         padding-bottom:-250px;
                         text-align:center;
-                        vertical-align:middle;
-                        padding-top:10px;
+                        padding-top:13px;
                         font-size:11px;
                         color:#724F1C;
                     }
@@ -572,7 +575,7 @@ span.title1{
         }
         .container_mainContent #mainContent .content_left .list li{
             width:184px;
-            height:20px;
+            height:15px;
             padding:2px;
         }
         .container_mainContent #mainContent .content_left .list span{
@@ -816,7 +819,6 @@ span.title1{
             .container_mainContent .services .services_details ul li{
                 list-style-image:url(../images/point_list_services.png);
                 list-style-position:inside;
-                /*border:solid 1px;*/
                 color:#333333;
                 background-color:#FCF5D8;
                 height:15px;
@@ -858,7 +860,7 @@ span.title1{
             }
 
             .container_mainContent #mainContent .container_center .plus2{
-                background:url(../images/background_cuenta_plus.png) center top no-repeat;
+                background:url(../images/background_cuenta_plus.png) no-repeat top center;
                 width:374px;
                 /*border:1px solid #0000FF;*/
                 margin:0 auto;
@@ -1034,31 +1036,32 @@ span.title1{
             width:380px;
             height:90px;
             float:right;
-            /*border:1px solid #000066;*/
             font-family:Arial, Helvetica, sans-serif;
             color:#FE8405;
             font-size:12px;
-            padding-top:20px;
+            padding-top:30px;
             padding-right:25px;
         }
 	.container_mainContent #mainContent .column_left{
-            width:330px;
             /*border:1px solid #000066;*/
             float:left;
             margin-top:20px;
             margin-left:-5px;
             margin-bottom:10px;
+            margin-right:20px;
 	}
         .container_mainContent #mainContent .column_right{
             width:250px;
-            /*border:1px solid #000066;*/
             float:right;
             margin-top:20px;
             margin-right:50px;
             margin-bottom:10px;
         }
-            .container_mainContent #mainContent .column_right .style_input{
-                width:150px;
+            .container_mainContent #mainContent .column_right .style_input2{
+                width:80px;
+            }
+            .container_mainContent #mainContent .column_right .style_input3{
+                width:50px;
             }
 /************************** FIN COMPRAR CREDITOS *****************************/
 
@@ -1068,7 +1071,15 @@ span.title1{
     float:left;
     font-size: 120%;
 }
-
+    .content_rememberpass .cell1{
+        float:left;
+        width:200px;
+    }
+    .content_rememberpass .validator{
+        float:left;
+        font-size: 90%;
+        width:155px;
+    }
 
 
 
@@ -1155,7 +1166,7 @@ span.title1{
     font-size:12px;
     color:#6C491D;
     font-weight:bold;
-    padding-top:8px;
+    padding-top:10px;
     margin:0 auto;
 }
 .button1:hover{
@@ -1185,9 +1196,19 @@ span.title1{
     height:30px;
     float:left;
     text-align:center;
-    margin-left:10px;
 }
-
+.container_button2{
+    width:175px;
+    height:30px;
+    float:right;
+    text-align:center;
+}
+.container_button3{
+    width:140px;
+    height:30px;
+    float:right;
+    text-align:center;
+}
 .banner_top_cuadrado{
     width:180px;
     height:120px;
@@ -1308,6 +1329,15 @@ span.title1{
     width:218px;
     /*border:1px solid;*/
 }
+.header-menu-cell3{
+    float:left;
+    margin-left:60px;
+}
+.header-menu-salir{
+    float:right;
+    margin-right:30px;
+    margin-top: -7px;
+}
 
 #message-login{
     position:absolute;
@@ -1318,7 +1348,7 @@ span.title1{
     padding-top: 5px;
     text-align: center;
     font-size: 95%;
-    color: #000;
+    color: #fff;
     background:url(../images/message_login.png) repeat-x left top;
     border: 1px solid #003E74;
     z-index: 3000;

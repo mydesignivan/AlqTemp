@@ -83,13 +83,17 @@ var ClassValidator = function(param1, param2){
                 if( options.container!=null && (typeof options.container=="string"||typeof options.container=="object") ){
                     obj = (typeof options.container)=="string" ? $(options.container) : options.container;
                 }
+                var div = get_div();
+                var cssAdd = (this.validator_setting.addClass=='') ? this.validator_options.addClass : this.validator_setting.addClass;
                 if( !obj ){
                     if( !this.validator_container ){
-                        $(this).after(get_div());
+                        $(this).after(div);
                         this.validator_container = $(this).parent().find("."+this.validator_setting.className);
+                        $(this.validator_container).addClass(cssAdd);
                     }
                 }else{
-                    this.validator_container = obj;
+                    this.validator_container = obj.append(div);
+                    $(this.validator_container).find('.'+this.validator_setting.className).addClass(cssAdd);
                 }
    
                 this.validator_error = true;
@@ -113,6 +117,7 @@ var ClassValidator = function(param1, param2){
      **********************************************************************/
     var OPTIONS={
         container       :       null,   // [STRING] || [OBJECT]
+        addClass        :       '',     // [STRING]
         msg_required    :       '',     // [STRING]
         msg_email       :       '',     // [STRING]
         msg_string      :       '',     // [STRING]
@@ -136,6 +141,7 @@ var ClassValidator = function(param1, param2){
         className	:	'jquery-validator',  // [STRING]
         classArrow      :       'arrow',             // [STRING]
         classMessage    :       'message',           // [STRING]
+        addClass        :       '',                  // [STRING]
         effect_show  	:	'fade',              // [STRING]  null, fade, slide, slidefade, toggle
         effect_hide  	:	'fade',              // [STRING]  null, fade, slide, slidefade, toggle
         validateOne	:	false,               // [BOOLEAN]
@@ -176,13 +182,17 @@ var ClassValidator = function(param1, param2){
             if( !this.validator_setting ) this.validator_setting = SETTING;
 
             if( !this.validator_container_one ){
+                var div = get_div();
+                var cssAdd = (this.validator_setting.addClass=='') ? this.validator_options.addClass : this.validator_setting.addClass;
                 if( !obj ){
                     if( !this.validator_container ){
-                        $(this).after(get_div());
-                        this.validator_container = $(this).parent().find("."+SETTING.className);
+                        $(this).after(div);
+                        this.validator_container = $(this).parent().find("."+this.validator_setting.className);
+                        $(this.validator_container).addClass(cssAdd);
                     }
                 }else{
-                    this.validator_container = obj;
+                    this.validator_container = obj.append(div);
+                    $(this.validator_container).find('.'+this.validator_setting.className).addClass(cssAdd);
                 }
             }
 
@@ -314,8 +324,8 @@ var ClassValidator = function(param1, param2){
             if( !el.validator_container_one ){
                 if( div.hasClass('.'+SETTING.className) ){
                     div.find('.'+SETTING.classMessage).html(msg);
-                }else{
-                    div.html(msg);
+                }else if( div.find('.'+SETTING.className).length>0 ){
+                    div.find('.'+SETTING.className).find('.'+SETTING.classMessage).html(msg);
                 }
             }else{
                 var tag,i,ntag;
