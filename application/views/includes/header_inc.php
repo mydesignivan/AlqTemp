@@ -29,7 +29,7 @@
                             <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left" />
                         </div>
                         <div class="row"><input type="submit" id="btnLogin" value="Entrar" class="button-enter-login" /></div>
-                        <div class="row"><a href="<?=site_url('/rememberpass/');?>" class="link3">Recordar Contraseña</a></div>
+                        <div class="row"><a href="<?=site_url('/rememberpass/');?>" class="link3">¿Olvido su Contraseña?</a></div>
                     </form>
                 </div>
             </div>

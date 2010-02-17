@@ -1073,15 +1073,17 @@ span.title1{
 }
     .content_rememberpass .cell1{
         float:left;
-        width:200px;
+        width:240px;
+        margin-top:8px;
     }
     .content_rememberpass .validator{
         float:left;
         font-size: 90%;
         width:155px;
     }
-
-
+    .validate{
+        width:230px;
+    }
 
 /******************************* FOOTER *************************************/
 #footer {
@@ -1112,6 +1114,36 @@ span.title1{
         margin: 0; /* el ajuste en cero de los márgenes del primer elemento del pie evitará que puedan contraerse los márgenes (un espacio entre divs) */
         padding: 10px 0; /* el relleno de este elemento creará espacio, de la misma forma que lo haría el margen, sin el problema de la contracción de márgenes */
     }
+/*************************** END FOOTER ****************************/
+
+/******************************* FOOTER 2 ************************************/
+#footer2 {
+    float:left;
+    width:700px;
+    margin-left:175px;
+    margin-top:0px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:11px;
+    font-weight:bold;
+    color:#666666;
+}
+    #footer2 .left{
+        float:left;
+        width:350px;
+    }
+    #footer2 .right{
+        float:right;
+        width:350px;
+        text-align: right;
+    }
+    #footer2 span{
+        color:#F68E12;
+        text-align:left;
+    }
+/*************************** END FOOTER2 ****************************/
+
+
+
     .fltrt { /* esta clase puede utilizarse para que un elemento flote en la parte derecha de la página. El elemento flotante debe preceder al elemento junto al que debe aparecer en la página. */
         float: right;
         margin-left: 8px;
@@ -1354,3 +1386,59 @@ span.title1{
     z-index: 3000;
     display:none;
 }
+
+
+/***********************************POPUP*************************************/
+#popup{
+    position:absolute;
+    z-index:100;
+    left:370px;
+}
+.top-popup{
+    background:url(../images/windows_top.png) no-repeat top center;
+    width:260px;
+    height:12px;
+}
+.center-popup{
+    background:url(../images/windows_center.png) repeat-y top center;
+    width:260px;
+    text-align:center;
+    padding:10px 0 10px 0;
+    font-size:130%;
+    color:#6C491D;
+}
+.bottom-popup{
+    background:url(../images/windows_bottom.png) no-repeat top center;
+    width:260px;
+    height:12px;
+}
+/***********************************FIN POPUP*************************************/
+
+/***********************************ERROR 404*************************************/
+.space-top{
+    height:100px;
+}
+.message-error{
+    background:url(../images/bg_404.png) no-repeat top center;
+    width:725px;
+    height:250px;
+    margin:0 auto;
+    padding-top:40px;
+}
+    .message-error .logo-error{
+        margin-left:230px;
+    }
+    .message-error .warning{
+        text-align:center;
+        font-size:80%;
+        font-weight:bold;
+        color:#6C491D;
+    }
+        .message-error .warning a{
+            font-size:90%;
+            font-weight:bold;
+            color:#FF7D00;
+        }
+        .message-error .warning a:hover{
+            text-decoration:underline;
+        }

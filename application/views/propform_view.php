@@ -151,7 +151,7 @@
 
                     <p>
                         <div class="container_button">
-                            <a class="button1 float-left" href="javascript:Prop.save();">Guardar</a>
+                            <a class="button1 float-left" href="javascript:void(Prop.save());">Guardar</a>
                             <a class="button1 float-left" href="<?=site_url('/prop/cancel');?>">Cancelar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" />
                         </div>
                     </p>

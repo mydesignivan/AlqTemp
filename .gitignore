@@ -2,4 +2,5 @@ application/config/config.php
 application/config/database.php
 nbproject/*
 uploads/*
+images/tmp/*
 AlqTemp.git.tar.gz

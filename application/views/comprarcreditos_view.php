@@ -43,7 +43,7 @@
                         </select>
                         <input type="text" class="input style_input3" />
                     </div>
-                    <div class="container_button"><a class="button2" href="#" onclick="$('#form1').submit(); return false;">Comprar</a></div>
+                    <div class="container_button"><a class="button2" href="javascript:$('#form1').submit();">Comprar</a></div>
                 </form>
                 <?php }elseif( $this->session->flashdata('status')=="ok" ){?>
                     <p>La compra ha sido realizada con exito.</p>

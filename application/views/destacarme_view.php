@@ -57,7 +57,7 @@
                 <div class="table_bottom"></div>
 
                 <?php if( $listProp->num_rows>0 ){?>
-                <div class="container_button"><a href="#" class="button2" onclick="Prop.action.disting(1, '#tblProp .table_left', <?=CREDIT_PROP;?>, <?=$this->session->userdata('credit');?>); return false;">Destacar</a></div>
+                <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left', <?=CREDIT_PROP;?>, <?=$this->session->userdata('credit');?>));" class="button2">Destacar</a></div>
                 <?php }?>
 
                 <br />&nbsp;<br />
@@ -97,7 +97,7 @@
                 <div class="table_bottom"></div>
 
                 <?php if( $listPropDisting->num_rows>0 ){?>
-                <div class="container_button"><a href="#" class="button1" onclick="Prop.action.disting(0, '#tblProp2 .table_left'); return false;">Eliminar</a></div>
+                <div class="container_button"><a href="javascript:void(Prop.action.disting(0, '#tblProp2 .table_left'));" class="button1">Eliminar</a></div>
                 <?php }?>
 
              <?php }else{?>

@@ -31,7 +31,7 @@
                         <?php $arrImages = $data['images']->result_array();?>
                         <div class="photo_top"><a href="#" id="thumb-preview"><img src="<?=$arrImages[0]['name'];?>" alt="" width="316" height="233" /></a></div>
                         <div class="photo_bottom">
-                            <div class="arrow_left"><a href="#" onclick="ImageGallery.back(); return false;"><img src="images/arrow_photo_previous.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_previous_over.png'" onmouseout="this.src='images/arrow_photo_previous.png'" /></a></div>
+                            <div class="arrow_left"><a href="javascript:void(ImageGallery.back());"><img src="images/arrow_photo_previous.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_previous_over.png'" onmouseout="this.src='images/arrow_photo_previous.png'" /></a></div>
                             <div class="middle">
                                 <ul id="container-thumbs">
                             <?php                            
@@ -41,7 +41,7 @@
                             <?php }?>
                                 </ul>
                             </div>
-                            <div class="arrow_right"><a href="#" onclick="ImageGallery.next(); return false;"><img src="images/arrow_photo_next.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_next_over.png'" onmouseout="this.src='images/arrow_photo_next.png'" /></a></div>
+                            <div class="arrow_right"><a href="javascript:void(ImageGallery.next());"><img src="images/arrow_photo_next.png" alt="foto anterior" border="0" onmouseover="this.src='images/arrow_photo_next_over.png'" onmouseout="this.src='images/arrow_photo_next.png'" /></a></div>
                         </div>
                     </div>
                     <!--end.photos-->

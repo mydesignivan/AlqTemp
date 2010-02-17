@@ -85,6 +85,7 @@ var Prop = new (function(){
 
             }
         });
+        return false;
     };
 
 
@@ -93,14 +94,13 @@ var Prop = new (function(){
             var lstProp = $("#tblProp .table_left input:checked");
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad para modificar.");
-                return false;
+                return true;
             }
             if( lstProp.length>1 ){
                 alert("Debe seleccionar una sola propiedad.");
                 return false;
             }
             location.href = baseURI+'prop/form/'+lstProp.val();
-            return false;
         },
 
         del : function(){
@@ -115,8 +115,6 @@ var Prop = new (function(){
             if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
                 location.href = baseURI+'prop/delete/'+data.id;
             }
-
-            return false;
         },
 
         disting : function(dist, sel, credit, user_credit){
@@ -136,8 +134,6 @@ var Prop = new (function(){
             var data = get_data(lstProp);
 
             location.href = baseURI+"destacarme/disting/"+data.id+"/"+dist;
-
-            return false;
         }
     }
 

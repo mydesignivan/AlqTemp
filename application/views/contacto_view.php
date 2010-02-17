@@ -54,7 +54,7 @@
                                 <textarea class="input validate {v_required:true}" name="txtConsult" rows="22" cols="4"></textarea>
                             </p>
                         </div>
-                        <div class="container_button"><a class="button1" href="#" onclick="Contact.send(); return false;">Enviar</a></div>
+                        <div class="container_button"><a class="button1" href="javascript:void(Contact.send());">Enviar</a></div>
                     </form>
                     <br class="clearfloat"/>
                     <h3>(*) Campos Obligatorios</h3>

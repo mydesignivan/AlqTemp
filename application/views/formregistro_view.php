@@ -34,7 +34,11 @@
 
                     <form id="formAccount" action="<?=site_url('/registro/create');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <div id="popup">
-                            <span></span>
+                            <div class="top-popup"></div>
+                            <div class="center-popup">
+                                <span>Desea guardar los cambios?</span>
+                            </div>
+                            <div class="bottom-popup"></div>
                         </div>
 
                         <p><span class="cell">*Nombre:</span><input type="text" name="txtName" class="input style_input validate" /></p>

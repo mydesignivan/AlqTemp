@@ -26,8 +26,8 @@
                 <div class="buttons">
                     <a href="<?=site_url('/prop/form');?>" class="button1">Nuevo</a>
                 <?php if( $listProp->num_rows>0 ){?>
-                    <a href="#" class="button1" onclick="Prop.action.edit(); return false;">Modificar</a>
-                    <a href="#" class="button1" onclick="Prop.action.del(); return false;">Eliminar</a>
+                    <a href="javascript:void(Prop.action.edit());" class="button1">Modificar</a>
+                    <a href="javascript:void(Prop.action.del());" class="button1">Eliminar</a>
                 <?php }?>
                 </div>
 

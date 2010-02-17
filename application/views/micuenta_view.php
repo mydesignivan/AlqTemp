@@ -49,8 +49,8 @@
                         <input type="hidden" name="user_id" value="<?=$dataUser['user_id'];?>" />
                     </form>
                     <div class="container_button2">
-                        <a class="button1" href="#" onclick="Account.save(); return false;">Guardar</a>
-                        <a class="button1" href="#" onclick="Account.delete_account(<?=$dataUser['user_id'];?>); return false;">Eliminar</a>
+                        <a class="button1" href="javascript:void(Account.save());">Guardar</a>
+                        <a class="button1" href="javascript:void(Account.delete_account(<?=$dataUser['user_id'];?>));">Eliminar</a>
                     </div>
                     <br class="clearfloat" />
                     <h3>(*)Campos Obligatorios</h3>
