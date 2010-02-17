@@ -34,10 +34,7 @@
                     <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="row2">
                             <span class="cell">*Dirección:</span>
-                            <input type="text" name="txtAddress" class="input style_input validate {v_required:true}" value="<?=getval($data, 'address');?>" />
-                            <!--<div class="formError_Account" style="top: 0px;  display: block;">
-                                <div class="formErrorContent">Este campo es obligatorio.</div>
-                            </div>-->
+                            <input type="text" name="txtAddress" id="txtAddress" class="input style_input validate" value="<?=getval($data, 'address');?>" />
                         </div>
                     <?php
                         $html = '
@@ -77,11 +74,11 @@
                         </div>
 
 
-                        <div class="row2"><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" class="input style_textarea  validate {v_required:true}" cols="20" rows="5"><?=getval($data, 'description');?></textarea></div>
+                        <div class="row2"><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" id="txtDesc" class="input style_textarea  validate" cols="20" rows="5"><?=getval($data, 'description');?></textarea></div>
 
                         <div class="row2">
                             <span class="cell">*Categor&iacute;a:</span>
-                            <select name="cboCategory" class="select2 float-right validate {v_required:true}">
+                            <select name="cboCategory" id="cboCategory" class="select2 float-right validate">
                             <?php $val = getval($data, 'category');?>
                                 <option value="1" <?php if($val==1) echo 'selected="selected"';?>>Casas</option>
                                 <option value="2" <?php if($val==2) echo 'selected="selected"';?>>Departamentos</option>
@@ -120,14 +117,14 @@
 
                         <div class="row2">
                             <span class="cell">*Pais:</span>
-                            <select name="cboCountry" class="select2 float-right validate {v_required:true}" onchange="ComboBox.states(this, 'Seleccione una Provincia');">
+                            <select name="cboCountry" id="cboCategory" class="select2 float-right validate" onchange="ComboBox.states(this, 'Seleccione una Provincia');">
                                 <option value="0">Seleccione un Pa&iacute;s</option>
                                 <?php get_options_country(getval($data, 'country_id'));?>
                             </select>
                         </div>
                         <div class="row2">
                             <span class="cell">*Provincia</span>
-                            <select name="cboStates" id="cboStates" class="select2 float-right validate {v_required:true}">
+                            <select name="cboStates" id="cboStates" class="select2 float-right validate">
                                 <?php
                                     if( !$data ) echo '<option value="0">Seleccione un Pa&iacute;s</option>';
                                     $val = getval($data, 'state_id');
@@ -135,7 +132,7 @@
                                 ?>
                             </select>
                         </div>
-                        <div class="row2"><span class="cell">*Ciudad:</span><input type="text" name="txtCity" class="input style_input validate {v_required:true}" onblur="$(this).ucFirst();" value="<?=getval($data, 'city');?>" /></div>
+                        <div class="row2"><span class="cell">*Ciudad:</span><input type="text" name="txtCity" id="txtCity" class="input style_input validate" onblur="$(this).ucFirst();" value="<?=getval($data, 'city');?>" /></div>
                         <div class="row2"><span class="cell">Tel&eacute;fono:</span><input type="text" name="txtPhone" class="input style_input" value="<?=getval($data, 'phone');?>" /></div>
                         <div class="row2"><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" value="<?=getval($data, 'website');?>" /></div>
                         <div class="row2"><span class="cell">Precio:</span><input type="text" name="txtPrice" class="input style_input" value="<?=getval($data, 'price');?>" /></div>
@@ -151,13 +148,20 @@
 
                     <p>
                         <div class="container_button">
-                            <a class="button1 float-left" href="#" onclick="Prop.save(); return false;">Guardar</a>
+                            <a class="button1 float-left" href="javascript:Prop.save();">Guardar</a>
                             <a class="button1 float-left" href="<?=site_url('/prop/cancel');?>">Cancelar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" />
                         </div>
                     </p>
 
                     <div class="warning"><h3>(*) Campos Obligatorios </h3></div>
                 </div>
+
+                <script type="text/javascript">
+                <!--
+                    Prop.initializer();
+                -->
+                </script>
+
                 <!--end .content_left -->
              </div>
              <!--end .maintContent -->

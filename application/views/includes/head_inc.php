@@ -13,6 +13,7 @@
 <!--========== LIBRARIES ============-->
 <script type="text/JavaScript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/helpers.js"></script>
+<script type="text/javascript" src="js/comun.js"></script>
 <!--========== END LIBRARIES =======-->
 
 

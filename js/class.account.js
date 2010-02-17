@@ -49,7 +49,7 @@ var Account = new (function(){
             if( !error ){
                 working=true;
 
-                $('#ajaxloader').show();
+                popup.show('<p>Enviando formulario de registro.</p><img src="images/ajax-loader5.gif" alt="" />');
 
                 $.ajax({
                     type : 'post',
@@ -78,7 +78,7 @@ var Account = new (function(){
                         alert("ERROR: "+http.responseText);
                     },
                     complete : function(){
-                        $('#ajaxloader').hide();
+                        popup.hide();
                         working=false;
                     }
                 });
@@ -104,7 +104,6 @@ var Account = new (function(){
                 $(selector).replaceWith(data);
             }
         });
-
     };
 
     /*

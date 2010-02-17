@@ -9,14 +9,22 @@ var Prop = new (function(){
      * PUBLIC METHODS
      */
     this.initializer = function(){
-        f = $('#formProp')[0];
+       f = $('#formProp')[0];
+       var p = $('.previewthumb');
 
-        $.validator.setting('#formAccount .validate', {
+       if( p.length>0 ){
+           if( f.prop_id.value!="" ) {
+               p.show();
+           }
+
+           $('input.ajaxupload-input').bind('keypress', function(e){e.preventDefault();});
+       }
+
+        $.validator.setting('#formProp .validate', {
             effect_show     : 'slide',
             validateOne     : true
         });
-
-        $(f.txtName).validator({
+        $("#txtAddress, #txtDesc, #cboCategory, #cboCategory, #cboStates, #txtCity").validator({
             v_required  : true
         });
     };
@@ -25,55 +33,58 @@ var Prop = new (function(){
     this.save = function(){
         if( working ) return false;
 
-        ValidatorProp.validate(function(error){
+        $.validator.validate(function(error){
             if( !error && validServices() && validImages() ){
                 working=true;
                 var propid="";
 
                 if( f.prop_id.value!="" ) propid = "/"+f.prop_id.value;
 
-                $('#ajaxloader').show();
-                $.get(baseURI+'ajax_prop/valid/'+escape(f.txtAddress.value)+propid, function(data){
-                    if( data=="exists" ){
-                        if( $('#contmessage').is(':hidden') ){
-                            $('#contmessage').html('La propiedad ingresada ya existe.');
-                            $('#contmessage').slideToggle('slow');
-                        }
-                        $('#ajaxloader').hide();
-                        working=false;
-                    }else{
-                        var servsel="";
-                        checkServ.each(function(){
-                            servsel+=this.value+",";
-                        });
-                        servsel = servsel.substr(0, servsel.length-1);
+                popup.show('<p>Enviando formulario de registro.</p><img src="images/ajax-loader5.gif" alt="" />');
 
-                        if( f.prop_id.value=="" ){
-                            f.images_new.value = arrayToObject($('input.ajaxupload-input:not(empty)'));
+                $.ajax({
+                    type : 'get',
+                    url  : baseURI+'ajax_prop/valid/'+escape(f.txtAddress.value)+propid,
+                    success : function(){
+                        if( data=="exists" ){
+                            show_error(f.txtAddress, 'La direccion ingresada ya existe.')
+
                         }else{
-                           //Busca Imagenes Nuevas
-                           $('a.ajaxupload-preview:visible').each(function(){
-                               var val = $(this).parent().find('.ajaxupload-input').val();
-                               if( val!="" ) arr_images_new.push();
-                           });
+                            var servsel="";
+                            checkServ.each(function(){
+                                servsel+=this.value+",";
+                            });
+                            servsel = servsel.substr(0, servsel.length-1);
 
-                           f.images_new.value = arrayToObject(arr_images_new);
-                           f.images_deletes.value = arrayToObject(arr_images_delete);
-                           f.images_modified_id.value = arrayToObject(arr_images_modified.id);
-                           f.images_modified_name.value = arrayToObject(arr_images_modified.name);
+                            if( f.prop_id.value=="" ){
+                                f.images_new.value = arrayToObject($('input.ajaxupload-input:not(empty)'));
+                            }else{
+                               //Busca Imagenes Nuevas
+                               $('a.ajaxupload-preview:visible').each(function(){
+                                   var val = $(this).parent().find('.ajaxupload-input').val();
+                                   if( val!="" ) arr_images_new.push();
+                               });
+
+                               f.images_new.value = arrayToObject(arr_images_new);
+                               f.images_deletes.value = arrayToObject(arr_images_delete);
+                               f.images_modified_id.value = arrayToObject(arr_images_modified.id);
+                               f.images_modified_name.value = arrayToObject(arr_images_modified.name);
+                            }
+
+                            f.services.value = servsel;
+                            f.action = (propid=="") ? baseURI+"prop/create" : baseURI+"prop/edit"+propid;
+                            f.submit();
                         }
 
-                        f.services.value = servsel;
-                        f.action = (propid=="") ? baseURI+"prop/create" : baseURI+"prop/edit"+propid;
-                        f.submit();
+                    },
+                    complete : function(){
+                        popup.hide();
+                        working=false;
                     }
-                });
+                })
 
-            }else{
-                alert('Se han encontrado errores.\nPor favor, revise el formulario.');
             }
         });
-        return false;
     };
 
 
@@ -249,24 +260,13 @@ var Prop = new (function(){
             id   : id,
             names : names
         }
-    }
+    };
 
-
-    /*
-     * CONSTRUCTOR
-     */
-    $(document).ready(function(){
-       var p = $('.previewthumb');
-       f = $('#formProp')[0];
-       
-       if( p.length>0 ){
-           if( f.prop_id.value!="" ) {
-               p.show();
-           }
-
-           $('input.ajaxupload-input').bind('keypress', function(e){e.preventDefault();});
-       }
-    });
+    var show_error = function(el, msg){
+        $.validator.show(el,{
+            message : msg
+        });
+    };
 
 })();
 
