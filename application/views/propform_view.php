@@ -30,8 +30,11 @@
                     <h1><?=(!$data) ? "Nueva Propiedad" : "Modificar Propiedad";?></h1>
                 </div>
                 <div class="content_left">
-                    <div id="contmessage"></div>
                     <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
+                        <div id="popup">
+                            <span></span>
+                        </div>
+
                         <div class="row2">
                             <span class="cell">*Dirección:</span>
                             <input type="text" name="txtAddress" id="txtAddress" class="input style_input validate" value="<?=getval($data, 'address');?>" />

@@ -31,11 +31,12 @@
                     <p>En unos segundos se le enviara un email para la activacion del usuario.</p>
 
                  <?php }else{?>
-                    <div id="popup">
-                        <span></span>
-                    </div>
 
                     <form id="formAccount" action="<?=site_url('/registro/create');?>" method="post" enctype="application/x-www-form-urlencoded">
+                        <div id="popup">
+                            <span></span>
+                        </div>
+
                         <p><span class="cell">*Nombre:</span><input type="text" name="txtName" class="input style_input validate" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" name="txtEmail" class="input style_input validate" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" name="txtPhone" class="input style_input" /></p>
