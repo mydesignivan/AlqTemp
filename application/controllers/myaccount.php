@@ -34,8 +34,8 @@ class Myaccount extends Controller{
             $statusUpdate = $this->users_model->update($data, $_POST["user_id"]);
 
             if( $statusUpdate=="ok" ){
+                unset($data['password']);
                 $this->session->set_userdata($data);
-                $this->session->set_flashdata('statusrecord', 'saveok');
                 redirect('/myaccount/');
 
             }else{

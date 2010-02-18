@@ -10,46 +10,47 @@ var Account = new (function(){
      */
     this.initializer = function(){
         f = $('#formAccount')[0];
+        if( f ){
+            $.validator.setting('#formAccount .validate', {
+                effect_show     : 'slide',
+                validateOne     : true
+            });
 
-        $.validator.setting('#formAccount .validate', {
-            effect_show     : 'slide',
-            validateOne     : true
-        });
-
-        $(f.txtName).validator({
-            v_required  : true
-        });
-        $(f.txtEmail).validator({
-            v_required  : true,
-            v_email     : true
-        });
-        $(f.txtUser).validator({
-            v_required  : true,
-            v_user      : [5,10]
-        });
-        $(f.txtPass).validator({
-            v_required  : ($(f.user_id).val()!='') ? false : true,
-            v_password  : [8,10]
-        });
-        $(f.txtPass2).validator({
-            v_required  : ($(f.user_id).val()!='') ? false : true,
-            v_compare   : $(f.txtPass)
-        });
-        if( f.txtCaptcha ){
-            $(f.txtCaptcha).validator({
+            $(f.txtName).validator({
                 v_required  : true
             });
+            $(f.txtEmail).validator({
+                v_required  : true,
+                v_email     : true
+            });
+            $(f.txtUser).validator({
+                v_required  : true,
+                v_user      : [5,10]
+            });
+            $(f.txtPass).validator({
+                v_required  : ($(f.user_id).val()!='') ? false : true,
+                v_password  : [8,10]
+            });
+            $(f.txtPass2).validator({
+                v_required  : ($(f.user_id).val()!='') ? false : true,
+                v_compare   : $(f.txtPass)
+            });
+            if( f.txtCaptcha ){
+                $(f.txtCaptcha).validator({
+                    v_required  : true
+                });
+            }
         }
     };
 
     this.save = function(){
         if( working ) return false;
+        working=true;
 
         $.validator.validate('#formAccount .validate', function(error){
             if( !error ){
-                working=true;
 
-                popup.show('<p>Enviando formulario de registro.</p><img src="images/ajax-loader5.gif" alt="" />');
+                popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
 
                 $.ajax({
                     type : 'post',
@@ -78,13 +79,13 @@ var Account = new (function(){
                         alert("ERROR: "+http.responseText);
                     },
                     complete : function(){
-                        popup.hide();
-                        working=false;
+                        popup.hidden();
                     }
                 });
-
             }
+            working=false;
         });
+        return false;
     };
 
     this.delete_account = function(id){

@@ -21,26 +21,20 @@
       
         
         <?php include('includes/banner_inc.php');?>
-      
+      <?php //$this->session->set_flashdata('statusrecord', "saveok");?>
         <div class="container_mainContent">
             <div id="mainContent">
                 <div class="content_top"><h1>Registrarme</h1></div>
                 <div class="content_left">
                  <?php if( $this->session->flashdata('statusrecord')=='saveok' ){?>
                     <h2>El usuario ha sido creado con &eacute;xito.</h2>
-                    <p>En unos segundos se le enviara un email para la activacion del usuario.</p>
+                    <p class="message1">En unos segundos se le enviara un email para la activacion del usuario.</p>
 
                  <?php }else{?>
 
-                    <form id="formAccount" action="<?=site_url('/registro/create');?>" method="post" enctype="application/x-www-form-urlencoded">
-                        <div id="popup">
-                            <div class="top-popup"></div>
-                            <div class="center-popup">
-                                <span>Desea guardar los cambios?</span>
-                            </div>
-                            <div class="bottom-popup"></div>
-                        </div>
+                    <?php require('includes/popup_inc.php');?>
 
+                    <form id="formAccount" action="<?=site_url('/registro/create');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <p><span class="cell">*Nombre:</span><input type="text" name="txtName" class="input style_input validate" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" name="txtEmail" class="input style_input validate" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" name="txtPhone" class="input style_input" /></p>
@@ -55,7 +49,7 @@
                         </p>
                         <p><span class="cell">*Ingrese C&oacute;digo:</span><input type="text" name="txtCaptcha" class="input style_input validate" /></p>
                     </form>
-                    <div class="container_button3"><a class="button1" href="javascript:Account.save();">Enviar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" /></div>
+                    <div class="container_button3"><a class="button1" href="javascript:void(Account.save());">Enviar</a></div>
                     <br class="clearfloat" />
                     <h3>(*)Campos Obligatorios</h3>
                 <?php }?>

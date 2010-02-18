@@ -65,6 +65,11 @@ font-weight:bold;
     width:208px;
 }
 
+.message1{
+    font-size:110%;
+    color:#5F4E3C;
+}
+
 #contmessage{
     border: 2px solid #FAD4A3;
     background-color: #FAF9F0;
@@ -470,6 +475,7 @@ span.title1{
 
     /**************************** FOTOS ******************************/
     .container_mainContent #mainContent .content_left{
+        position:relative;
         width:390px;
         /*height:600px;*/
         float:left;
@@ -1391,26 +1397,41 @@ span.title1{
 /***********************************POPUP*************************************/
 #popup{
     position:absolute;
-    z-index:100;
-    left:370px;
+    z-index:1100;
+    display:none;
 }
-.top-popup{
-    background:url(../images/windows_top.png) no-repeat top center;
-    width:260px;
-    height:12px;
-}
-.center-popup{
-    background:url(../images/windows_center.png) repeat-y top center;
-    width:260px;
-    text-align:center;
-    padding:10px 0 10px 0;
-    font-size:130%;
-    color:#6C491D;
-}
-.bottom-popup{
-    background:url(../images/windows_bottom.png) no-repeat top center;
-    width:260px;
-    height:12px;
+    #popup .top-popup{
+        background:url(../images/windows_top.png) no-repeat top center;
+        width:260px;
+        height:12px;
+    }
+    #popup .center-popup{
+        background:url(../images/windows_center.png) repeat-y top center;
+        width:260px;
+        text-align:center;
+        padding:10px 0 10px 0;
+        font-size:130%;
+        color:#6C491D;
+    }
+    #popup .bottom-popup{
+        background:url(../images/windows_bottom.png) no-repeat top center;
+        width:260px;
+        height:12px;
+    }
+    #popup p{
+        width:inherit !important;
+        height:inherit !important;
+        float:none !important;
+        margin:inherit !important;
+    }
+#popup-container{
+    position:absolute;
+    display:none;
+    top:0;left:0;
+    width:640px;
+    z-index: 1000;
+    background-color: #fff;
+    display:none;
 }
 /***********************************FIN POPUP*************************************/
 
@@ -1442,3 +1463,4 @@ span.title1{
         .message-error .warning a:hover{
             text-decoration:underline;
         }
+/****************************** END ERROR 404 ****************************/

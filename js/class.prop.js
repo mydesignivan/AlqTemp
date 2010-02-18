@@ -33,21 +33,21 @@ var Prop = new (function(){
     this.save = function(){
         if( working ) return false;
 
-        $.validator.validate(function(error){
+        $.validator.validate('#formProp .validate', function(error){
+            working=true;
             if( !error && validServices() && validImages() ){
-                working=true;
                 var propid="";
 
                 if( f.prop_id.value!="" ) propid = "/"+f.prop_id.value;
 
-                popup.show('<p>Enviando formulario de registro.</p><img src="images/ajax-loader5.gif" alt="" />');
+                popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
 
                 $.ajax({
                     type : 'get',
                     url  : baseURI+'ajax_prop/valid/'+escape(f.txtAddress.value)+propid,
                     success : function(){
                         if( data=="exists" ){
-                            show_error(f.txtAddress, 'La direccion ingresada ya existe.')
+                            show_error(f.txtAddress, 'La direcci&oacute;n ingresada ya existe.')
 
                         }else{
                             var servsel="";
@@ -78,12 +78,12 @@ var Prop = new (function(){
 
                     },
                     complete : function(){
-                        popup.hide();
-                        working=false;
+                        popup.hidden();
                     }
                 })
 
             }
+            working=false;
         });
         return false;
     };
@@ -101,6 +101,7 @@ var Prop = new (function(){
                 return false;
             }
             location.href = baseURI+'prop/form/'+lstProp.val();
+            return false;
         },
 
         del : function(){
@@ -115,6 +116,7 @@ var Prop = new (function(){
             if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
                 location.href = baseURI+'prop/delete/'+data.id;
             }
+            return false;
         },
 
         disting : function(dist, sel, credit, user_credit){
@@ -134,6 +136,7 @@ var Prop = new (function(){
             var data = get_data(lstProp);
 
             location.href = baseURI+"destacarme/disting/"+data.id+"/"+dist;
+            return false;
         }
     }
 
@@ -211,8 +214,7 @@ var Prop = new (function(){
     var validServices = function(){
         checkServ = $("#lstServices").find("li input:checked");
         if( checkServ.length == 0 ){
-            ValidatorProp.message.hidden("#formProp .validate");
-            ValidatorProp.message.show("#contServices", ['Seleccione al menos un servicio.']);
+            show_error("#contServices", "Seleccione al menos un servicio.");
             return false;
         }
         return true;

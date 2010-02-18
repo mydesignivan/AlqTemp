@@ -10,16 +10,6 @@
     <!--END SCRIPT-->
 
     <script type="text/javascript" src="js/class.account.js"></script>
-<?php if( $this->session->flashdata('statusrecord')=='saveok' ) {?>
-    <script type="text/javascript">
-    <!--
-        $(document).ready(function(){
-            $('#contmessage').html('Los datos han sido guardados con &eacute;xito.');
-            $('#contmessage').slideToggle('slow');
-        });
-    -->
-    </script>
-<?php }?>
 </head>
 
 <body>
@@ -37,7 +27,8 @@
                     <h1>Mi Cuenta</h1>
                 </div>
                 <div class="content_left">
-                    <div id="contmessage"></div>
+                    <?php require('includes/popup_inc.php');?>
+                    
                     <form id="formAccount" action="<?=site_url('/myaccount/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <p><span class="cell">*Nombre:</span><input type="text" class="input validate" name="txtName" value="<?=$dataUser['name'];?>" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" class="input validate" name="txtEmail" value="<?=$dataUser['email'];?>" /></p>
@@ -50,7 +41,7 @@
                     </form>
                     <div class="container_button2">
                         <a class="button1" href="javascript:void(Account.save());">Guardar</a>
-                        <a class="button1" href="javascript:void(Account.delete_account(<?=$dataUser['user_id'];?>));">Eliminar</a>
+                        <!--<a class="button1" href="javascript:void(Account.delete_account(<?=$dataUser['user_id'];?>));">Eliminar</a>-->
                     </div>
                     <br class="clearfloat" />
                     <h3>(*)Campos Obligatorios</h3>

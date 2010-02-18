@@ -40,7 +40,7 @@ class Registro extends Controller {
                 $this->email->to($_POST["txtEmail"]);
                 $this->email->subject(EMAIL_REG_SUBJECT);
                 $this->email->message($message);
-                if( $this->email->send() ){
+                if( $this->email->send() ){*/
                     $this->session->set_flashdata('statusrecord', 'saveok');
                     redirect('/registro/');
                 }else {
