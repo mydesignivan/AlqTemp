@@ -41,7 +41,7 @@
                         $html = '
                         <div class="row">
                             <span class="cell">*Foto:</span>
-                            <div class="col">
+                            <div class="col ">
                                 <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
                                 <a href="#" class="previewthumb"><img src="" alt="" width="69" height="60" /></a>
                                 <input type="text" name="" class="input style_input float-left ajaxupload-input" value="" />
@@ -71,7 +71,7 @@
                    ?>
                         <div class="row2">
                                 <a href="#" class="add" onclick="Prop.append_row_file(this); return false;">Adjuntar otro archivo</a>
-                                <p class="aling-right">Archivos (jpg | gif | png) 2MB max &emsp; &emsp;</p>
+                                <p id="au-leyend" class="aling-right">Archivos (jpg | gif | png) 2MB max &emsp; &emsp;</p>
                         </div>
 
 
@@ -151,7 +151,7 @@
                     <p>
                         <div class="container_button">
                             <a class="button1 float-left" href="javascript:void(Prop.save());">Guardar</a>
-                            <a class="button1 float-left" href="<?=site_url('/prop/cancel');?>">Cancelar</a><img id="ajaxloader" src="images/ajax-loader2.gif" alt="" width="22" height="22" />
+                            <a class="button1 float-left" href="<?=site_url('/prop/cancel');?>">Cancelar</a>
                         </div>
                     </p>
 

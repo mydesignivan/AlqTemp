@@ -45,10 +45,10 @@ var Prop = new (function(){
                 $.ajax({
                     type : 'get',
                     url  : baseURI+'ajax_prop/valid/'+escape(f.txtAddress.value)+propid,
-                    success : function(){
+                    success : function(data){
                         if( data=="exists" ){
                             show_error(f.txtAddress, 'La direcci&oacute;n ingresada ya existe.')
-
+                            
                         }else{
                             var servsel="";
                             checkServ.each(function(){
@@ -222,7 +222,7 @@ var Prop = new (function(){
 
     var validImages = function(){
         if( $('a.previewthumb:visible').length==0 ){
-            alert("Debe ingresar al menos una imágen.");
+            show_error('#au-leyend', 'Debe ingresar al menos una im&aacute;gen.');
             return false;
         }
         return true;
@@ -264,6 +264,7 @@ var Prop = new (function(){
         $.validator.show(el,{
             message : msg
         });
+        el.focus();
     };
 
 })();

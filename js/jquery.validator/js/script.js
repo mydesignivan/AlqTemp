@@ -77,7 +77,7 @@ var ClassValidator = function(param1, param2){
 
             $(selector).each(function(){
                 if( !this.validator_options ) this.validator_options = OPTIONS;
-                if( !this.validator_setting ) this.validator_setting = OPTIONS;
+                if( !this.validator_setting ) this.validator_setting = SETTING;
 
                 var obj=false;
                 if( options.container!=null && (typeof options.container=="string"||typeof options.container=="object") ){

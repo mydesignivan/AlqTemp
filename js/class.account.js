@@ -121,6 +121,7 @@ var Account = new (function(){
         $.validator.show(el,{
             message : msg
         });
+        el.focus();
     };
 
 })();

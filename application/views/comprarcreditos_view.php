@@ -20,7 +20,7 @@
                     <h1>Comprar Cr&eacute;dito</h1>
                 </div>
                 <div class="credit">
-                    <div class="credit_attention">El Cr&eacute;dito que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <span class="t2">alquilerestemporarios.org</span></div>
+                    <div class="credit_attention">El Cr&eacute;dito que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <b>alquilerestemporarios.org</b></div>
                 </div>
 
                 <?php if( !$this->session->flashdata('status') ){?>
@@ -41,7 +41,7 @@
                           <option value="40">40</option>
                           <option value="50">50</option>
                         </select>
-                        <input type="text" class="input style_input3" />
+                        <span>&nbsp;2 creditos</span>
                     </div>
                     <div class="container_button"><a class="button2" href="javascript:$('#form1').submit();">Comprar</a></div>
                 </form>

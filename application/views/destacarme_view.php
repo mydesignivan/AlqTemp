@@ -23,7 +23,7 @@
 
             <?php if( $this->session->userdata('credit')>0 ){?>
                 <div class="credit">
-                    <div class="credit_attention">El posicionamiento de la propiedad <span class="t2">se realizar&aacute; unicamente para la secci&oacute;n elegida</span> y la <span class="t2">propiedad seleccionada.</span> La duraci&oacute;n de la posici&oacute;n ser&aacute; de <span class="t2">3 meses</span> desde la fecha de contrataci&oacute;n.</div>
+                    <div class="credit_attention">El posicionamiento de la propiedad <b>se realizar&aacute; unicamente para la secci&oacute;n elegida</b> y la <b>propiedad seleccionada.</b> La duraci&oacute;n de la posici&oacute;n ser&aacute; de <b>1 mes</b> desde la fecha de contrataci&oacute;n.</div>
                 </div>
 
                 <div class="header">
@@ -32,7 +32,7 @@
                     <div class="header_right">Categor&iacute;a</div>
                 </div>
 
-                <div id="tblProp" class="container_scroll table_body">
+                <div id="tblProp" class="container_scroll table_body overflow-x-hidden">
                 <?php
                 if( $listProp->num_rows>0 ){
                     $n=0;
@@ -72,7 +72,7 @@
                     <div class="header_center">Ubicaci&oacute;n</div>
                     <div class="header_right">Categor&iacute;a</div>
                 </div>
-                <div id="tblProp2" class="container_scroll table_body">
+                <div id="tblProp2" class="container_scroll table_body overflow-x-hidden">
                 <?php
                 if( $listPropDisting->num_rows>0 ){
                     $n=0;
