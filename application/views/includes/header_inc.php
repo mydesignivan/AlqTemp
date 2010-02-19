@@ -13,7 +13,7 @@
 
             <?php if( !$this->session->userdata('logged_in') ){?>
             <div class="header-menu-cell2">
-                <a href="<?=site_url('/registro/');?>" class="link-register"><img src="images/button_registrarse2.png" alt="Registrarse" /></a>
+                <a href="<?=site_url('/registro/');?>" class="link-register" onmouseover="this.firstChild.src='images/button_registrarse2_over.png'" onmouseout="this.firstChild.src='images/button_registrarse2.png'"><img src="images/button_registrarse2.png" alt="Registrarse" /></a>
             </div>
             <div id="login-container">
                 <a href="javascript:Login.open_dialog();" class="signin">Login</a>

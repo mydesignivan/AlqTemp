@@ -34,9 +34,8 @@ class Myaccount extends Controller{
             $statusUpdate = $this->users_model->update($data, $_POST["user_id"]);
 
             if( $statusUpdate=="ok" ){
-                unset($data['password']);
-                $this->session->set_userdata($data);
-                redirect('/myaccount/');
+                $this->simplelogin->logout();
+                redirect('/');
 
             }else{
                 show_error(ERR_101);

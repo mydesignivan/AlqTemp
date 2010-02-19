@@ -64,7 +64,7 @@
 
                 <div class="selection">
                     <h2>Propiedades que ya han sido destacadas</h2>
-                    <p>Seleccione las propiedades <br />que desea eliminar del destacado</p>
+                    <p>Seleccione las propiedades que desea eliminar del destacado</p>
                 </div>
 
                 <div class="header">

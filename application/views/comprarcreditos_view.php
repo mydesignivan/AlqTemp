@@ -3,6 +3,8 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
+
+    <script type="text/javascript" src="js/class.creditbuy.js"></script>
 </head>
 
 <body>
@@ -25,6 +27,7 @@
 
                 <?php if( !$this->session->flashdata('status') ){?>
                 <form id="form1" action="<?=site_url('comprarcredito/send/');?>" method="post">
+                    <h3>1 dolar equivale a 3 cr&eacute;ditos.</h3>
                     <div class="column_left">
                         <span class="cell">Forma de pago &emsp;</span>
                         <select name="cboFormaPago" class="input style_input">
@@ -35,16 +38,23 @@
                         </select>
                     </div>
                     <div class="column_right">
-                        <span class="cell">Importe $ &emsp;</span>
-                        <select name="cboImport" class="input style_input2">
+                        <span class="cell">Importe U$S &emsp;</span>
+                        <select name="cboImport" class="input style_input2" onchange="creditBuy.show_credit(this.value)">
                           <option value="20">20</option>
                           <option value="40">40</option>
                           <option value="50">50</option>
                         </select>
-                        <span>&nbsp;2 creditos</span>
+                        <span id="spanCredit"></span>
                     </div>
-                    <div class="container_button"><a class="button2" href="javascript:$('#form1').submit();">Comprar</a></div>
+                    <div class="container_button"><a class="button2" href="javascript:void(creditBuy.send());">Comprar</a></div>
+                    <input type="hidden" name="credit" />
                 </form>
+                    <script type="text/javascript">
+                    <!--
+                        creditBuy.initializer(<?=CREDIT_VALUE;?>);
+                    -->
+                    </script>
+
                 <?php }elseif( $this->session->flashdata('status')=="ok" ){?>
                     <p>La compra ha sido realizada con exito.</p>
                     

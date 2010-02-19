@@ -25,13 +25,13 @@
       
         <div class="container_mainContent">
             <div id="mainContent">
-                <div class="content_top"><h1>Contrase&ntilde;a Login</h1></div>
+                <div class="content_top"><h1>Recordar contrase&ntilde;a</h1></div>
 
                 <?php if( !$status ){?>
                     <div class="content_rememberpass">
-                        <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post" onsubmit="return RememberPass.send(this);">
+                        <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post">
                             <p>Escriba su direcci&oacute;n de correo</p>
-                            <div id="cont-input-email" class="cell1"><input type="text" name="txtEmail" class="input validate" /></div>&nbsp;<input type="submit" value="Enviar" />
+                            <div id="cont-input-email" class="cell1"><input type="text" name="txtEmail" class="input validate" /></div>&nbsp;<a href="javascript:void(RememberPass.send(this));" class="button1">Enviar</a>
                         </form>
                         <br />
                     </div>

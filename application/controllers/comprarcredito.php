@@ -17,7 +17,14 @@ class Comprarcredito extends Controller {
             $user_name = $this->session->userdata('name');
             $user_phone = $this->session->userdata('phone');
 
-            $message = sprintf(EMAIL_BUYCREDIT_MESSAGE, $user_name, $user_phone, $user_email, $_POST['cboFormaPago'], $_POST['cboImport']);
+            $message = sprintf(EMAIL_BUYCREDIT_MESSAGE, 
+                    $user_name,
+                    $user_phone,
+                    $user_email,
+                    $_POST['cboFormaPago'],
+                    $_POST['cboImport'],
+                    $_POST['credit']
+            );
 
             $this->email->from(EMAIL_BUYCREDIT_FROM, "");
             $this->email->to(EMAIL_BUYCREDIT_TO);

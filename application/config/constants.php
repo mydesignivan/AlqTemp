@@ -48,6 +48,7 @@ define('TBL_STATES', 'list_states');
 define('TBL_SERVICES', 'list_services');
 define('TBL_PROPERTIES', 'properties');
 define('TBL_PROPERTIES_SERVS', 'properties_to_services');
+define('TBL_PROPERTIES_DISTING', 'properties_disting');
 define('TBL_USERS', 'users');
 define('TBL_LOGSEARCHES', 'log_searches');
 
@@ -106,13 +107,13 @@ define('EMAIL_CONTACT_MESSAGE', 'Nombre: %s<br>Telefono: %s<br>Consulta:<hr colo
 
 /*
 |--------------------------------------------------------------------------
-| EMAIL CONTACTO
+| EMAIL COMPRAR CREDITO
 |--------------------------------------------------------------------------
 */
 define('EMAIL_BUYCREDIT_FROM', 'ivan@mydesign.com.ar');
 define('EMAIL_BUYCREDIT_TO', 'ivan@mydesign.com.ar');
 define('EMAIL_BUYCREDIT_SUBJECT', 'Pedido');
-define('EMAIL_BUYCREDIT_MESSAGE', '<b>Nombre:</b> %s<hr color="#000000" /><b>Telefono:</b> %s<hr color="#000000" /><b>Email:</b> %s<hr color="#000000" /><b>Forma de Pago:</b> %s<hr color="#000000" /><b>Importe:</b> $ %s');
+define('EMAIL_BUYCREDIT_MESSAGE', '<b>Nombre:</b> %s<hr color="#000000" /><b>Telefono:</b> %s<hr color="#000000" /><b>Email:</b> %s<hr color="#000000" /><b>Forma de Pago:</b> %s<hr color="#000000" /><b>Importe:</b> U$S %s<hr color="#000000" /><b>Total Credito</b> %s');
 
 
 /*
@@ -136,6 +137,7 @@ define('IMAGE_ORIGINAL_HEIGHT', 600);
 | CREDITOS
 |--------------------------------------------------------------------------
 */
+define('CREDIT_VALUE', 3);
 define('CREDIT_PROP', 10);
 
 

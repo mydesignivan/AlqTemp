@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Alquileres temporarios</title>
-    <base href="http://192.168.0.2/trabajos/alqtemp.git/" />
+    <base href="http://www.alquilerestemporarios.org" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link href="images/favicon.ico" rel="stylesheet icon" type="image/ico" />
@@ -37,7 +37,7 @@
                 <a href="http://www.alquilerestemporarios.org"><img src="images/logo_error.png" alt="AlquileresTemporarios.org"/></a>
             </div>
             <div class="warning">
-                <p>Este archivo se puede haber movido o eliminado<br />Asegúrese de revisar la ortograf&iacute;a</p>
+                <p>La p&aacute;gina solicitada no est&aacute; disponible o no existe</p>
                 <a href="http://www.alquilerestemporarios.org">Volver al Inicio</a>
             </div>
         </div>
