@@ -8,13 +8,29 @@ var MoreInfo = new (function(){
     /*
      * PUBLIC METHODS
      */
+    this.initializer = function(){
+        f = $('#formConsult')[0];
+        $.validator.setting('#formConsult .validate', {
+            effect_show     : 'slide',
+            validateOne     : true,
+            addClass        : 'validator'
+        });
+        $(f.txtName).validator({
+            v_required : true
+        });
+        $(f.txtEmail).validator({
+            v_required : true,
+            v_email    : true
+        });
+        $(f.txtConsult).validator({
+            v_required : true
+        });
+    };
+
      this.send_consult = function(){
-         ValidatorEmail.validate(function(error){
-             if( error ){
-                //alert('Se han encontrado errores.\nPor favor, revise el formulario.');
-             }else{
+         $.validator.validate('#formConsult .validate', function(error){
+             if( !error ){
                  ajaxload.show();
-                 var f = $('#formConsult')[0];
                  var data = $('#formConsult').serialize();
 
                  $.ajax({
@@ -25,7 +41,7 @@ var MoreInfo = new (function(){
                          if( data=="ok" ){
                               $('#formConsult .message').html('La consulta ha sido enviada con &eacute;xito.').slideDown('slow');
                          }else{
-                              $('#formConsult .message').html('Ocurrio un error al enviar mensaje.').slideDown('slow');
+                              $('#formConsult .message').html('Ocurrio un error al enviar el mensaje.').slideDown('slow');
                          }
                      },
                      error : function(xml){
@@ -37,12 +53,21 @@ var MoreInfo = new (function(){
                          f.txtEmail.value = "";
                          f.txtPhone.value = "";
                          f.txtConsult.value = "";
+
+                         setTimeout(function(){
+                             $('#formConsult .message').slideUp('slow');
+                         }, 5000);
                      }
                  });                 
              }
          });
 
      };
+
+     /*
+      * PRIVATE PROPERTIES
+      */
+     var f=false;
 
 
     /*
@@ -63,12 +88,3 @@ var MoreInfo = new (function(){
      }
 
 })();
-
-
-
-var ValidatorEmail = new Class_Validator({
-    selectors : '#formConsult .validate',
-    messageClass : 'formError_Account',
-    messagePos : 'up',
-    validationOne : true
-});

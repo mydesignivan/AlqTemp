@@ -30,7 +30,7 @@ class Masinfo extends Controller {
             if( $this->email->send() ){
                 echo "ok";
             }else {
-                show_error(ERR_103);
+                echo "error";
             }
 
         }

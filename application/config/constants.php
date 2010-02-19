@@ -134,11 +134,13 @@ define('IMAGE_ORIGINAL_HEIGHT', 600);
 
 /*
 |--------------------------------------------------------------------------
-| CREDITOS
+| CONFIG
 |--------------------------------------------------------------------------
 */
 define('CREDIT_VALUE', 3);
-define('CREDIT_PROP', 10);
+define('DISTPROP_CREDIT', 10);
+define('DISTPROP_MONTH', 1);
+
 
 
 

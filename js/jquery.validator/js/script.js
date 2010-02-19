@@ -139,8 +139,8 @@ var ClassValidator = function(param1, param2){
     var SETTING = {
         object          :       [],                  // [OBJECT]
         className	:	'jquery-validator',  // [STRING]
-        classArrow      :       'arrow',             // [STRING]
-        classMessage    :       'message',           // [STRING]
+        classArrow      :       '',                  // [STRING]
+        classMessage    :       'jquery-validator-message',           // [STRING]
         addClass        :       '',                  // [STRING]
         effect_show  	:	'fade',              // [STRING]  null, fade, slide, slidefade, toggle
         effect_hide  	:	'fade',              // [STRING]  null, fade, slide, slidefade, toggle
@@ -309,7 +309,7 @@ var ClassValidator = function(param1, param2){
 
     var get_div = function(){
         var div = $('<div class="'+SETTING.className+'"></div>');
-        if( OPTIONS.classArrow!="" ){
+        if( SETTING.classArrow!="" ){
             div.append('<div class="'+SETTING.classArrow+'"></div>');
         }
         div.append('<span class="'+SETTING.classMessage+'"></span>');

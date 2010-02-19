@@ -782,12 +782,24 @@ span.title1{
                 }
             .container_mainContent #mainContent .content_right .contact .message{
                 float:left;
-                width:200px;
+                width:190px;
                 border:1px solid #ccc;
                 padding:5px;
                 margin-bottom:10px;
                 display:none;
             }
+            .container_mainContent #mainContent .content_right .contact .row{
+                float:left;
+                clear:left;
+                position:relative;
+                margin-bottom: 7px;
+            }
+                .container_mainContent #mainContent .content_right .contact .row .validator{
+                    float:left !important;
+                    width:190px;
+                    margin-top:2px !important;
+                    font-size: 90%;
+                }
      /******************* FIN FORMULARIO CONTACTO (sencillo) ******************/
 
 

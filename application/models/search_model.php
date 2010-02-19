@@ -8,18 +8,30 @@ class Search_model extends Model {
     /*
      * FUNCTIONS PUBLIC
      */
-    public function list_disting() {
-        $sql = "prop_id,";
-        $sql.= "address,";
-        $sql.= "description,";
-        $sql.= "CASE category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
-        $sql.= "city,";
-        $sql.= "price,";
+    public function list_disting($limit, $offset) {
+        $sql = TBL_PROPERTIES.".prop_id,";
+        $sql.= TBL_PROPERTIES.".address,";
+        $sql.= TBL_PROPERTIES.".description,";
+        $sql.= "CASE ".TBL_PROPERTIES.".category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
+        $sql.= TBL_PROPERTIES.".city,";
+        $sql.= TBL_PROPERTIES.".price,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_PROPERTIES .".prop_id=". TBL_IMAGES .".prop_id LIMIT 1) as image_thumb";
-        $this->db->where("disting", 1);
+
+        $timestamp = strtotime(date('d-m-Y'));
+        
+
         $this->db->select($sql, false);
+        $this->db->from(TBL_PROPERTIES);
+        $this->db->join(TBL_PROPERTIES_DISTING, TBL_PROPERTIES.".prop_id=".TBL_PROPERTIES_DISTING.".prop_id");
+        $count_rows = $this->db->count_all_results();
+
+        $this->db->select($sql, false);
+        $this->db->join(TBL_PROPERTIES_DISTING, TBL_PROPERTIES.".prop_id=".TBL_PROPERTIES_DISTING.".prop_id");
+        //$this->db->where(TBL_PROPERTIES_DISTING.'.date_end <', $timestamp);
         $this->db->order_by('prop_id', 'desc');
-        return $this->db->get(TBL_PROPERTIES);
+        $result = $this->db->get(TBL_PROPERTIES, $limit, $offset);
+        
+        return array('result'=>$result, 'count_rows'=>3);
     }
     public function search($data, $limit, $offset){
         $sql = "prop_id,";
@@ -89,7 +101,6 @@ class Search_model extends Model {
         $sql.= "price,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ".TBL_IMAGES." WHERE ".TBL_PROPERTIES.".prop_id=".TBL_IMAGES.".prop_id LIMIT 1) as image_thumb";
 
-        $this->db->where("disting", 0);
         $this->db->select($sql, false);
         $this->db->order_by('prop_id', 'desc');
         $result = $this->db->get(TBL_PROPERTIES, $limit);

@@ -34,9 +34,9 @@
 
                 <div id="tblProp" class="container_scroll table_body overflow-x-hidden">
                 <?php
-                if( $listProp->num_rows>0 ){
+                if( $propDisting->num_rows>0 ){
                     $n=0;
-                    foreach( $listProp->result_array() as $row ){
+                    foreach( $propDisting->result_array() as $row ){
                         $n++;
                         $class = $n%2 ? 'table_impar' : 'table_par';
                  ?>
@@ -56,8 +56,8 @@
                 </div>
                 <div class="table_bottom"></div>
 
-                <?php if( $listProp->num_rows>0 ){?>
-                <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left', <?=CREDIT_PROP;?>, <?=$this->session->userdata('credit');?>));" class="button2">Destacar</a></div>
+                <?php if( $propDisting->num_rows>0 ){?>
+                <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left', <?=DISTPROP_CREDIT;?>, <?=$this->session->userdata('credit');?>));" class="button2">Destacar</a></div>
                 <?php }?>
 
                 <br />&nbsp;<br />
@@ -74,9 +74,9 @@
                 </div>
                 <div id="tblProp2" class="container_scroll table_body overflow-x-hidden">
                 <?php
-                if( $listPropDisting->num_rows>0 ){
+                if( $propUndisting->num_rows>0 ){
                     $n=0;
-                    foreach( $listPropDisting->result_array() as $row ){
+                    foreach( $propUndisting->result_array() as $row ){
                         $n++;
                         $class = $n%2 ? 'table_impar' : 'table_par';
                  ?>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="table_bottom"></div>
 
-                <?php if( $listPropDisting->num_rows>0 ){?>
+                <?php if( $propUndisting->num_rows>0 ){?>
                 <div class="container_button"><a href="javascript:void(Prop.action.disting(0, '#tblProp2 .table_left'));" class="button1">Eliminar</a></div>
                 <?php }?>
 
