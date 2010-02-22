@@ -1,13 +1,15 @@
 /* 
- * Clase 
- * 
+ * Clase creditBuy
+ *
+ * Llamada por las vistas: comprarcreidtos_view
+ * Su funcion: Eniva el pedido de compra
+ *
  */
 
 var creditBuy = new (function(){
 
-    /*
-     * PUBLIC METHODS
-     */
+    /* PUBLIC METHODS
+     **************************************************************************/
     this.initializer = function(val){
         f = $('#form1')[0];
         credit = val;
@@ -27,9 +29,8 @@ var creditBuy = new (function(){
     };
 
 
-    /*
-     * PRIVATE PROPERTIES
-     */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
     var credit=0;
     var f=false;
     var This=this;

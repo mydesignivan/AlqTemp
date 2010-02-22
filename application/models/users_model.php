@@ -11,19 +11,13 @@ class Users_model extends Model {
 
         //Insert account into the database
         if( !$this->db->insert(TBL_USERS, $data) ) {
-            //There was a problem!
-            return false;
+            display_error(__FILE__, "create", ERR_DB_INSERT, array(TBL_USERS));
         }
 
         return $this->db->insert_id();
     }
 
     public function update($data = array(), $user_id=null) {
-
-        if( !is_numeric($user_id) ) {
-            //There was a problem
-            return false;
-        }
         
         if( empty($data["password"]) ) unset($data["password"]);
 
@@ -31,10 +25,9 @@ class Users_model extends Model {
         $this->db->where('user_id', $user_id);
 
         if( !$this->db->update(TBL_USERS, $data) ) {
-            //There was a problem!
-            return false;
+            display_error(__FILE__, "update", ERR_DB_UPDATE, array(TBL_USERS));
         }
-        return "ok";
+        return true;
     }
 
     public function delete($user_id) {
@@ -49,11 +42,11 @@ class Users_model extends Model {
                 $prop_id[] = $row['prop_id'];
             }
 
-            return $this->prop_model->delete($prop_id);
+            $this->prop_model->delete($prop_id);
         }else{
-            return false;
+            display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_USERS));
         }
-
+        return true;
     }
 
     public function exists($username, $email, $user_id=''){
@@ -81,15 +74,22 @@ class Users_model extends Model {
         return $this->db->get_where(TBL_USERS, array('user_id'=>$user_id, 'active'=>1));
     }
 
-    public function rememberpass($email){
-        $result = $this->db->get_where(TBL_USERS, array('email'=>$email, 'active'=>0));
+    public function rememberpass($field){
+        $result = $this->db->get_where(TBL_USERS, "(email = '".$field."' or username='".$field."') and active=0");
         if( $result->num_rows >0 ) return array("status"=>"userinactive");
 
-        $result = $this->db->get_where(TBL_USERS, array('email'=>$email, 'active'=>1));
-        if( $result->num_rows==0 ) return array("status"=>"emailnotexists");
+        $result = $this->db->get_where(TBL_USERS, "(email = '".$field."' or username='".$field."') and active=1");
+        if( $result->num_rows==0 ) return array("status"=>"notexists");
 
         $data = $result->row_array();
-        return array("status"=>"ok", "password"=>$this->encpss->decode($data["password"]));
+        $data['token'] = uniqid(time());
+
+        $this->db->where('user_id', $data['user_id']);
+        if( !$this->db->update(TBL_USERS, array('token'=>$data['token'])) ){
+            display_error(__FILE__, "rememberpass", ERR_DB_UPDATE, array(TBL_USERS));
+        }
+
+        return array("status"=>"ok", "data"=>$data);
     }
 
     public function activate($user_id){
@@ -100,10 +100,30 @@ class Users_model extends Model {
             if( $row['active']==1 ) return false;
 
             $this->db->where('user_id', $user_id);
-            return $this->db->update(TBL_USERS, array('active'=>1));
+            if( !$this->db->update(TBL_USERS, array('active'=>1)) ){
+                display_error(__FILE__, "activate", ERR_DB_UPDATE, array(TBL_USERS));
+            }
+            return $result;
             
         }else return false;
 
+    }
+
+    public function check_token($username, $token){
+        $result = $this->db->get_where(TBL_USERS, array('username'=>$username, 'token'=>$token));
+        return $result->num_rows>0;
+    }
+    public function change_pass($post){
+        if( $this->check_token($post['usr'], $post['token']) ){
+            $newpass = $this->encpss->encode($post['txtPass']);
+
+            $this->db->where('username', $post['usr']);
+            if( !$this->db->update(TBL_USERS, array('password'=>$newpass, 'token'=>'')) ){
+                display_error(__FILE__, "change_pass", ERR_DB_UPDATE, array(TBL_USERS));
+            }
+        }else return false;
+
+        return true;
     }
 
 }

@@ -33,11 +33,10 @@ class Prop extends Controller {
             $data['images_new'] = $_POST['images_new'];
             $status = $this->prop_model->create($data);
 
-            if( $status=="ok" ){
+            if( $status ){
                 redirect('/prop/');
-
             }else{
-                show_error(ERR_102);
+                show_error(ERR_PROP_CREATE);
             }
 
         }
@@ -57,7 +56,7 @@ class Prop extends Controller {
             if( $status=="ok" ){
                 redirect('/prop/');
             }else{
-                show_error(ERR_101);
+                show_error(ERR_PROP_EDIT);
             }
 
         }
@@ -70,6 +69,8 @@ class Prop extends Controller {
             
             if( $this->prop_model->delete($id) ){
                 redirect('/prop/');
+            }else{
+                show_error(ERR_PROP_DELETE);
             }
         }
     }
@@ -79,6 +80,11 @@ class Prop extends Controller {
         redirect('/prop/');
     }
 
+    public function check(){
+        if( $this->prop_model->exists($this->uri->segment(3), $this->uri->segment(4)) ){
+            echo "exists";
+        }
+    }
     
     /*
      * FUNCTIONS PRIVATE
@@ -93,7 +99,7 @@ class Prop extends Controller {
             'state_id'        => $_POST["cboStates"],
             'city'            => $_POST["txtCity"],
             'phone'           => $_POST["txtPhone"],
-            'website'         => $_POST["txtWebsite"],
+            'website'         => (strtolower($_POST["txtWebsite"])!="http://") ? $_POST["txtWebsite"] : "",
             'price'           => $_POST["txtPrice"],
             'services'        => $_POST["services"]
         );

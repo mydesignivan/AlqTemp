@@ -17,21 +17,19 @@ class Search_model extends Model {
         $sql.= TBL_PROPERTIES.".price,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_PROPERTIES .".prop_id=". TBL_IMAGES .".prop_id LIMIT 1) as image_thumb";
 
-        $timestamp = strtotime(date('d-m-Y'));
-        
-
         $this->db->select($sql, false);
         $this->db->from(TBL_PROPERTIES);
         $this->db->join(TBL_PROPERTIES_DISTING, TBL_PROPERTIES.".prop_id=".TBL_PROPERTIES_DISTING.".prop_id");
+        $this->db->where("now() <=", TBL_PROPERTIES_DISTING.'.date_end');
         $count_rows = $this->db->count_all_results();
 
         $this->db->select($sql, false);
         $this->db->join(TBL_PROPERTIES_DISTING, TBL_PROPERTIES.".prop_id=".TBL_PROPERTIES_DISTING.".prop_id");
-        //$this->db->where(TBL_PROPERTIES_DISTING.'.date_end <', $timestamp);
+        $this->db->where("now() <=", TBL_PROPERTIES_DISTING.'.date_end');
         $this->db->order_by('prop_id', 'desc');
         $result = $this->db->get(TBL_PROPERTIES, $limit, $offset);
         
-        return array('result'=>$result, 'count_rows'=>3);
+        return array('result'=>$result, 'count_rows'=>$count_rows);
     }
     public function search($data, $limit, $offset){
         $sql = "prop_id,";
@@ -78,13 +76,17 @@ class Search_model extends Model {
         if( isset($data['city']) && !empty($data['city']) ){
             $query = $this->db->query('SELECT hits,id FROM '.TBL_LOGSEARCHES." WHERE search_term='".$data['city']."'");
             if( $query->num_rows==0 ){
-                $this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$data['city'], 'hits'=>1));
+                if( !$this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$data['city'], 'hits'=>1)) ){
+                    display_error(__FILE__, "search", ERR_DB_INSERT, array(TBL_LOGSEARCHES));
+                }
 
             }else{
                 $row = $query->row_array();
                 $hits = $row['hits']+1;
                 $this->db->where('id', $row['id']);
-                $this->db->update(TBL_LOGSEARCHES, array('hits'=>$hits));
+                if( !$this->db->update(TBL_LOGSEARCHES, array('hits'=>$hits)) ){
+                    display_error(__FILE__, "search", ERR_DB_UPDATE, array(TBL_LOGSEARCHES));
+                }
             }
 
         }

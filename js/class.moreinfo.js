@@ -1,13 +1,15 @@
 /* 
- * Clase 
- * 
+ * Clase MoreInfo
+ *
+ * Llamada por las vistas: propdetalle_view
+ * Su funcion: Envia el form de consulta al propietario del inmueble.
+ *
  */
 
 var MoreInfo = new (function(){
 
-    /*
-     * PUBLIC METHODS
-     */
+    /* PUBLIC METHODS
+     **************************************************************************/
     this.initializer = function(){
         f = $('#formConsult')[0];
         $.validator.setting('#formConsult .validate', {
@@ -27,7 +29,7 @@ var MoreInfo = new (function(){
         });
     };
 
-     this.send_consult = function(){
+    this.send_consult = function(){
          $.validator.validate('#formConsult .validate', function(error){
              if( !error ){
                  ajaxload.show();
@@ -64,15 +66,13 @@ var MoreInfo = new (function(){
 
      };
 
-     /*
-      * PRIVATE PROPERTIES
-      */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
      var f=false;
 
 
-    /*
-     * PRIVATE METHODS
-     */
+    /* PRIVATE METHODS
+     **************************************************************************/
      var ajaxload={
          el  : false,
          el2 : false,

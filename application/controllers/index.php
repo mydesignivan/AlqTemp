@@ -13,13 +13,17 @@ class Index extends Controller {
     }
 
     public function index(){
+        $this->display();
+    }
+
+    public function display(){
         $offset = $this->uri->segment(3);
         if( !is_numeric($offset) ) $offset=0;
 
         //$data = $this->search_model->list_disting($this->count_per_page, $offset);
         $data = $this->search_model->last_properties($this->count_per_page);
 
-        $config['base_url'] = site_url('/index/');
+        $config['base_url'] = site_url('/index/display/');
         $config['total_rows'] = $data['count_rows'];
         $config['per_page'] = $this->count_per_page;
         $config['uri_segment'] = 3;

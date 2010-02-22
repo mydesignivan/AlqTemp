@@ -10,7 +10,7 @@
     <!--END SCRIPT-->
 
     <script type="text/javascript" src="js/class.account.js"></script>
-    <script type="text/javascript" src="js/class.search.js"></script>
+    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>
@@ -28,7 +28,10 @@
                 <div class="content_left">
                  <?php if( $this->session->flashdata('statusrecord')=='saveok' ){?>
                     <h2>El usuario ha sido creado con &eacute;xito.</h2>
-                    <p class="message1">En unos segundos se le enviara un email para la activacion del usuario.</p>
+
+                    <p class="message1">Gracias por registrarte, <?=$this->session->flashdata('username');?>. Un correo ha sido enviado a <?=$this->session->flashdata('email');?> con detalles de como activar tu cuenta.</p>
+
+                    <p class="message1">Recibiras un correo en tu bandeja de entrada. Debes seguir el enlace en ese correo antes de logearte.</p>
 
                  <?php }else{?>
 
@@ -43,8 +46,20 @@
                         <p><span class="cell">*Repetir:</span><input type="password" name="txtPass2" class="input style_input validate" /></p>
                         <p>
                             <div class="cell_captcha">
-                                <?php echo $captcha['image'];?>
-                                <a href="javascript:Account.captcha_show('.cell_captcha img');">Otro</a>
+                                <div class="cell">
+                                    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="19" height="19" id="SecurImage_as3" align="middle">
+                                        <param name="allowScriptAccess" value="sameDomain" />
+                                        <param name="allowFullScreen" value="false" />
+                                        <param name="movie" value="images/securimage_play.swf?audio=<?=site_url('/captcha/play/');?>&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5" />
+                                        <param name="quality" value="high" />
+                                        <param name="bgcolor" value="#ffffff" />
+                                        <embed src="images/securimage_play.swf?audio=<?=site_url('/captcha/play/');?>&bgColor1=#777&bgColor2=#fff&iconColor=#000&roundedCorner=5" quality="high" bgcolor="#ffffff" width="19" height="19" name="SecurImage_as3" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+                                    </object>
+                                    <br />
+                                    <a href="javascript:void($('#imgCaptcha').attr('src', '<?=site_url('/captcha/index/');?>/'+Math.random()));" tabindex="-1" title="Mostrar otro"><img src="images/refresh.gif" alt="Mostrar otro" border="0" onclick="this.blur()" align="bottom" /></a>
+                                </div>
+                                <img id="imgCaptcha" src="<?=site_url('/captcha/index/'.md5(time()));?>" align="left" border="0" alt="" />
+
                             </div>
                         </p>
                         <p><span class="cell">*Ingrese C&oacute;digo:</span><input type="text" name="txtCaptcha" class="input style_input validate" /></p>

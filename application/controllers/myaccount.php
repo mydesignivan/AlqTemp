@@ -11,13 +11,8 @@ class Myaccount extends Controller{
 
     public function index(){
         $query = $this->users_model->get_user($this->session->userdata('user_id'));
-
-        if( !$query || $query->num_rows==0 ){
-            show_error(ERR_100);
-        }else {
-            $data = $query->row_array();
-            $this->load->view("micuenta_view", array('dataUser'=>$data));
-        }
+        $data = $query->row_array();
+        $this->load->view("micuenta_view", array('dataUser'=>$data));
     }
 
     public function edit(){
@@ -31,14 +26,13 @@ class Myaccount extends Controller{
                 'password' => $this->encpss->encode($_POST["txtPass"])
             );
 
-            $statusUpdate = $this->users_model->update($data, $_POST["user_id"]);
+            $status = $this->users_model->update($data, $_POST["user_id"]);
 
-            if( $statusUpdate=="ok" ){
+            if( $status ){
                 $this->simplelogin->logout();
                 redirect('/');
-
             }else{
-                show_error(ERR_101);
+                show_error(ERR_USER_EDIT);
             }
 
         }
@@ -50,6 +44,8 @@ class Myaccount extends Controller{
             if( $this->users_model->delete($this->uri->segment(3)) ){
                 $this->simplelogin->logout();
                 redirect('/');
+            }else{
+                show_error(ERR_USER_DELETE);
             }
 
         }

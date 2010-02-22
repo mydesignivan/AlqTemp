@@ -1,13 +1,15 @@
 /* 
- * Clase 
- * 
+ * Clase Account
+ *
+ * Llamada por las vistas: formregistro_view, micuenta_view
+ * Su funcion: Crear, Modificar o Eliminar usuarios
+ *
  */
 
 var Account = new (function(){
 
-    /*
-     * PUBLIC METHODS
-     */
+    /* PUBLIC METHODS
+     **************************************************************************/
     this.initializer = function(){
         f = $('#formAccount')[0];
         if( f ){
@@ -54,7 +56,7 @@ var Account = new (function(){
 
                 $.ajax({
                     type : 'post',
-                    url  : baseURI+'ajax_account/valid/',
+                    url  : baseURI+'registro/check/',
                     data : {
                         username : escape(f.txtUser.value),
                         email    : escape(f.txtEmail.value),
@@ -97,26 +99,15 @@ var Account = new (function(){
         return false;
     };
 
-    this.captcha_show = function(selector){
-        $.ajax({
-            type : 'POST',
-            url  : baseURI+"ajax_account/generatecaptcha",
-            success : function(data){
-                $(selector).replaceWith(data);
-            }
-        });
-    };
 
-    /*
-     * PRIVATE PROPERTIES
-     */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
     var working=false;
     var f=false;
 
 
-    /*
-     * PRIVATE METHODS
-     */
+    /* PRIVATE METHODS
+     **************************************************************************/
     var show_error = function(el, msg){
         $.validator.show(el,{
             message : msg

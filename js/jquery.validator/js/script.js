@@ -324,9 +324,11 @@ var ClassValidator = function(param1, param2){
             if( !el.validator_container_one ){
                 if( div.hasClass('.'+SETTING.className) ){
                     div.find('.'+SETTING.classMessage).html(msg);
-                }else if( div.find('.'+SETTING.className).length>0 ){
-                    div.find('.'+SETTING.className).find('.'+SETTING.classMessage).html(msg);
+                }else{
+                    div = div.find('.'+SETTING.className);
+                    div.find('.'+SETTING.classMessage).html(msg);
                 }
+
             }else{
                 var tag,i,ntag;
 
@@ -350,7 +352,12 @@ var ClassValidator = function(param1, param2){
                 message_show(div);
             }
         }else{
-            if( !SETTING.show_alert ) message_hidden(div);
+            if( !SETTING.show_alert ){
+                if( !div.hasClass('.'+SETTING.className) ){
+                    div = div.find('.'+SETTING.className);
+                }
+                message_hidden(div);
+            }
         }
     };
 

@@ -12,7 +12,7 @@
 
 <!--========== LIBRARIES ============-->
 <script type="text/JavaScript" src="js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="js/helpers.js"></script>
+<script type="text/javascript" src="js/helpers.min.js"></script>
 <script type="text/javascript" src="js/comun.js"></script>
 <!--========== END LIBRARIES =======-->
 
@@ -35,7 +35,7 @@
 </script>
 
 <!--========== CLASS ============-->
-<script type="text/javascript" src="js/class.login.js"></script>
+<script type="text/javascript" src="js/class.login.min.js"></script>
 <!--======= END CLASS =======-->
 
 

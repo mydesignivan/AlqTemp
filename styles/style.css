@@ -637,13 +637,17 @@ span.title1{
         margin:0 auto;
     }
     .container_mainContent #mainContent .content_left .cell_captcha{
-        width:390px;
+        float:right;
+        width:250px;
         text-align:right;
         margin-left:-10px;
+        text-align: right;
+        /*border:1px solid red;*/
     }
-        .container_mainContent #mainContent .content_left .cell_captcha img{
-            margin-right:10px;
-        }
+        .container_mainContent #mainContent .content_left .cell_captcha #imgCaptcha{float:right;}
+        .container_mainContent #mainContent .content_left .cell_captcha .cell{float:right;}
+
+
         .container_mainContent #mainContent .content_left .cell_captcha a{
             font-family:Arial, Helvetica, sans-serif;
             font-size:12px;
@@ -728,6 +732,12 @@ span.title1{
             padding-bottom:80px;
             width:100%;
             text-align: center;
+        }
+        .container_mainContent #mainContent .form_contact .validator{
+            font-size: 90%;
+            margin-top: -10px !important;
+            width: inherit;
+            float: left;
         }
 
     /*********************** FORMULARIO CONTACTO (sencillo) ********************/
@@ -1094,10 +1104,19 @@ span.title1{
     .content_rememberpass .validator{
         float:left;
         font-size: 90%;
-        width:155px;
+        width:225px;
     }
-    .validate{
+    .content_rememberpass .validate{
         width:230px;
+    }
+    .content_rememberpass .row{
+        float:left;
+        clear:left;
+        margin-bottom: 5px;
+        width:400px;
+    }
+    .content_rememberpass .container_button{
+        margin-top:5px;
     }
 
 /******************************* FOOTER *************************************/

@@ -10,7 +10,7 @@
     <!--END SCRIPT-->
 
     <script type="text/javascript" src="js/class.rememberpass.js"></script>
-    <script type="text/javascript" src="js/class.search.js"></script>
+    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>
@@ -27,31 +27,31 @@
             <div id="mainContent">
                 <div class="content_top"><h1>Recordar contrase&ntilde;a</h1></div>
 
-                <?php if( !$status ){?>
-                    <div class="content_rememberpass">
-                        <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post">
-                            <p>Escriba su direcci&oacute;n de correo</p>
-                            <div id="cont-input-email" class="cell1"><input type="text" name="txtEmail" class="input validate" /></div>&nbsp;<a href="javascript:void(RememberPass.send(this));" class="button1">Enviar</a>
-                        </form>
-                        <br />
-                    </div>
+                <div class="content_rememberpass">
+                    <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post">
+                    <?php if( $status=="ok" ){?>
+                        <p class="message1">Muy bien, le hemos enviado las instrucciones a su email. Reviselo!</p>
+                        <p class="message1">Usted puede mantener esta pagina abierta mientras chequea su email. Si usted no recibe las instrucciones en el transcurso de un minuto o dos pruebe <a href="javascript:$('#form1').submit();">Reenviar las instrucciones</a></p>
+                        <input type="hidden" name="txtField" value="<?=$field;?>" />
 
-                    <script type="text/javascript">
-                    <!--
-                        RememberPass.initializer();
-                    -->
-                    </script>
+                    <?php }else{?>
 
-                <?php }elseif( $status=="emailnotexists" ){?>
-                    <p>El email ingresado no existe.</p>
+                        <h2>¿Olvido su Contraseña?</h2>
+                        <p class="message1">AlquileresTemporarios.org le enviara las instrucciones para resetear su contrase&ntilde;a a la direcci&oacute;n de correo asociada a su cuenta.</p>
+                        <p>Por favor escriba su direcci&oacute;n de <b>email</b> o su <b>usuario</b> a continuaci&oacute;n.</p>
 
-                <?php }elseif( $status=="userinactive" ){?>
-                    <p>El usuario no esta activado.</p>
+                        <div id="cont-input-email" class="cell1"><input type="text" name="txtField" class="input validate" /></div>&nbsp;
+                        <a href="javascript:void(RememberPass.send());" class="button1">Enviar</a>
+                    <?php }?>
+                    </form>
+                    <br />
+                </div>
 
-                <?php }elseif( $status=="ok" ){?>
-                    <p>En unos instantes recibira un mail con su contrase&ntilde;a.</p>
-
-                <?php }?>
+                <script type="text/javascript">
+                <!--
+                    RememberPass.initializer('<?=$status;?>');
+                -->
+                </script>
 
             </div>
             <!--end .mainContent-->

@@ -34,10 +34,11 @@
                 </div>
             </div>
 
-            <?php if( $this->session->flashdata('statusLogin') ) {?>
-                <script type="text/javascript">
-                <!--
-                 <?php
+            <script type="text/javascript">
+            <!--
+                Login.initializer();
+             <?php
+                if( $this->session->flashdata('statusLogin') ) {
                     switch($this->session->flashdata('statusLogin')){
                         case "loginfaild":
                             $message = "El usuario y/o password son incorrectos.";
@@ -46,11 +47,11 @@
                             $message = "El usuario no esta activado.";
                         break;
                     }
-                 ?>
-                    Login.message_show('<?=$message;?>');
-                -->
-                </script>
-            <?php }?>
+                    echo 'Login.message_show("'.$message.'");';
+                }
+             ?>
+            -->
+            </script>
 
 
             <?php }else{?>

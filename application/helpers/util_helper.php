@@ -86,4 +86,13 @@ function construct_bloq($config){
         }
     }
 }
+
+function display_error($file, $function, $err, $param=array()){
+    if( count($param)>0 ) {
+        $err = vsprintf($err, $param);
+    }
+    log_message("error", $file." | ".$function." | ".$err);
+    show_error($err);
+}
+
 ?>

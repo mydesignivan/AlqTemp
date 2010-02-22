@@ -3,7 +3,7 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
-    <script type="text/javascript" src="js/class.search.js"></script>
+    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>
@@ -40,7 +40,6 @@
                         <a class="info" href="<?=$url?>">M&aacute;s info</a>
                     </div>
                 </div>
-
                 <?php }
                 
                     echo $this->pagination->create_links();

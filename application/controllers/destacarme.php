@@ -21,11 +21,11 @@ class Destacarme extends Controller {
             array_splice($id, -1);
 
             if( $disting==1 ){
-                $res = $this->disting_model->disting($id);
+                $this->disting_model->disting($id);
             }else{
-                $res = $this->disting_model->undisting($id);
+                $this->disting_model->undisting($id);
             }
-            if( $res ) redirect('/destacarme/');
+            redirect('/destacarme/');
         }
     }
 

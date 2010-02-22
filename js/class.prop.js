@@ -1,13 +1,17 @@
 /* 
- * Clase 
+ * Clase Prop
+ *
+ * Llamada por las vistas: propform_view, proplist_view, destacarme_view
+ * Su funcion:
+ *  - Crear, Modificar o Eliminar propiedades
+ *  - Destaca prop o elimina prop destacadas.
  * 
  */
 
 var Prop = new (function(){
 
-    /*
-     * PUBLIC METHODS
-     */
+    /* PUBLIC METHODS
+     **************************************************************************/
     this.initializer = function(){
        f = $('#formProp')[0];
        var p = $('.previewthumb');
@@ -29,12 +33,11 @@ var Prop = new (function(){
         });
     };
 
-
     this.save = function(){
         if( working ) return false;
+        working=true;
 
         $.validator.validate('#formProp .validate', function(error){
-            working=true;
             if( !error && validServices() && validImages() ){
                 var propid="";
 
@@ -44,7 +47,7 @@ var Prop = new (function(){
 
                 $.ajax({
                     type : 'get',
-                    url  : baseURI+'ajax_prop/valid/'+escape(f.txtAddress.value)+propid,
+                    url  : baseURI+'prop/check/'+escape(f.txtAddress.value)+propid,
                     success : function(data){
                         if( data=="exists" ){
                             show_error(f.txtAddress, 'La direcci&oacute;n ingresada ya existe.')
@@ -88,7 +91,6 @@ var Prop = new (function(){
         return false;
     };
 
-
     this.action={
         edit : function(){
             var lstProp = $("#tblProp .table_left input:checked");
@@ -129,7 +131,7 @@ var Prop = new (function(){
             var newcredit = user_credit - (credit*lstProp.length);
 
             if( newcredit<=0 ){
-                alert("No tiene suficiente credito para destacar.")
+                alert("No tiene suficiente credito para destacar.");
                 return false;
             }
 
@@ -138,7 +140,7 @@ var Prop = new (function(){
             location.href = baseURI+"destacarme/disting/"+data.id+"/"+dist;
             return false;
         }
-    }
+    };
 
     this.append_row_file = function(el){
         var divRow = $('<div class="row"></div>');
@@ -195,9 +197,8 @@ var Prop = new (function(){
 
 
 
-    /*
-     * PRIVATE PROPERTIES
-     */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
     var checkServ;
     var working = false;
     var arr_images_modified = {
@@ -208,9 +209,8 @@ var Prop = new (function(){
     var arr_images_delete = new Array();
     var f=false;
 
-    /*
-     * PRIVATE METHODS
-     */
+    /* PRIVATE METHODS
+     **************************************************************************/
     var validServices = function(){
         checkServ = $("#lstServices").find("li input:checked");
         if( checkServ.length == 0 ){
@@ -248,7 +248,7 @@ var Prop = new (function(){
 
         arr.each(function(i){
             id+=this.value+"/";
-            names+= $(this).parent().parent().find('.table_center').html()+", ";
+            names+= $(this).parent().parent().find('.table_center').text()+", ";
         });
 
         id = id.substr(0, id.length-1);

@@ -15,8 +15,8 @@
     <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
     <!--END SCRIPT-->
 
-    <script type="text/javascript" src="js/class.moreinfo.js"></script>
-    <script type="text/javascript" src="js/class.search.js"></script>
+    <script type="text/javascript" src="js/class.moreinfo.min.js"></script>
+    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>

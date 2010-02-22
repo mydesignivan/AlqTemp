@@ -67,26 +67,73 @@ define('ERR_UPLOAD_NOTUPLOAD', 'El archivo no ha podido llegar al servidor.');
 define('ERR_UPLOAD_MAXSIZE', 'El tamaño del archivo debe ser menor a %s MB.');
 define('ERR_UPLOAD_FILETYPE', 'El tipo de archivo es incompatible.');
 
+define('ERR_DB_UPDATE', 'Ha ocurrido un error al tratar de actualizar la tabla "%s".');
+define('ERR_DB_INSERT', 'Ha ocurrido un error al tratar de insertar datos en la tabla "%s".');
+define('ERR_DB_DELETE', 'Ha ocurrido un error al tratar de eliminar datos en la tabla "%s".');
+
+define('ERR_PROP_CREATE', 'La propiedad no pudo ser guardada. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+define('ERR_PROP_EDIT',   'La propiedad no pudo ser modificada. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+define('ERR_PROP_DELETE', 'La propiedad no pudo ser eliminada. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+define('ERR_PROP_COPY_FAILD', 'La imagen %s no se pudo copiar.');
+define('ERR_PROP_IMAGE_NONEXISTENT', 'La imagen %s no existe.');
+
+define('ERR_USER_EDIT',   'El usuario no pudo ser modificado. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+define('ERR_USER_DELETE', 'El usuario no pudo ser eliminado. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+
 
 /*
 |--------------------------------------------------------------------------
 | EMAIL FORM REGISTRO
 |--------------------------------------------------------------------------
 */
-define('EMAIL_REG_FROM', 'ivan@mydesign.com.ar');
-define('EMAIL_REG_NAME', 'alquilerestemporarios.org');
-define('EMAIL_REG_SUBJECT', 'Activación de Usuario');
-define('EMAIL_REG_MESSAGE', '<a href="%s">Haga clic aqu&iacute; para activar su usuario</a>');
+$msg = 'Hola, %s.<br /><br />';
+$msg.= 'Por favor confirme su cuenta de AlquileresTemporarios.org haciendo click en este link:<br /><br />';
+$msg.= '<a href="%s">%s</a><br /><br />';
+$msg.= 'Una vez confirmado, usted tendra acceso completo a AlquileresTemporarios.org y todas las notificaciones futuras seran enviadas a esta cuenta de email.<br /><br />';
+$msg.= 'Muchas Gracias!<br />AlquileresTemporarios.org';
+
+define('EMAIL_REG_FROM', 'no-reply@alquilerestemporarios.org');
+define('EMAIL_REG_NAME', 'AlquileresTemporarios.org');
+define('EMAIL_REG_SUBJECT', 'Confirme su cuenta de AlquileresTemporarios.org');
+define('EMAIL_REG_MESSAGE', $msg);
+
+/*
+|--------------------------------------------------------------------------
+| EMAIL FORM REGISTRO DE ACTIVACION
+|--------------------------------------------------------------------------
+*/
+$msg = 'Hola, %s.<br /><br />';
+$msg.= 'Gracias por registrarte en AlquileresTemporarios.org.<br /><br />';
+$msg.= 'Tus datos de registro son:<br />';
+$msg.= 'Usuario: %s<br />';
+$msg.= 'Contrase&ntilde;a: %s<br /><br />';
+$msg.= 'Atentamente,<br />';
+$msg.= 'AlquileresTemporarios.org';
+
+define('EMAIL_REGACTIVE_FROM', 'no-reply@alquilerestemporarios.org');
+define('EMAIL_REGACTIVE_NAME', 'AlquileresTemporarios.org');
+define('EMAIL_REGACTIVE_SUBJECT', 'Bienvenido a AlquileresTemporarios.org');
+define('EMAIL_REGACTIVE_MESSAGE', $msg);
 
 /*
 |--------------------------------------------------------------------------
 | EMAIL RECORDAR CONTRASEÑA
 |--------------------------------------------------------------------------
 */
-define('EMAIL_RP_FROM', 'ivan@mydesign.com.ar');
-define('EMAIL_RP_NAME', 'alquilerestemporarios.org');
-define('EMAIL_RP_SUBJECT', 'Recordatorio contraseña');
-define('EMAIL_RP_MESSAGE', 'Su contrase&ntilde;a es %s');
+$msg = "Hola!<br /><br />";
+$msg.= "¿No recuerda su contrase&ntilde;a?<br />";
+$msg.= "Puede sucederle a cualquiera.<br /><br />";
+$msg.= "Por favor abra este link en su navegador:<br /><br />";
+$msg.= '<a href="%s">%s</a><br /><br />';
+$msg.= 'Esto resetear&aacute; su contrase&ntilde;a<br />';
+$msg.= 'Usted puede luego ingresar y cambiarla por alguna que recuerde.<br /><br />';
+$msg.= 'Atentamente,<br />';
+$msg.= 'AlquileresTemporarios.org';
+
+define('EMAIL_RP_FROM', 'no-reply@alquilerestemporario.org');
+define('EMAIL_RP_NAME', 'AlquileresTemporarios.org');
+define('EMAIL_RP_SUBJECT', 'Resetear su contraseña de AlquileresTemporarios.org');
+define('EMAIL_RP_MESSAGE', $msg);
 
 /*
 |--------------------------------------------------------------------------
@@ -138,7 +185,7 @@ define('IMAGE_ORIGINAL_HEIGHT', 600);
 |--------------------------------------------------------------------------
 */
 define('CREDIT_VALUE', 3);
-define('DISTPROP_CREDIT', 10);
+define('DISTPROP_CREDIT', 3);
 define('DISTPROP_MONTH', 1);
 
 

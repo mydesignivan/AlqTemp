@@ -1,13 +1,23 @@
 /* 
- * Clase encargada del logeo
- * 
+ * Clase Login
+ *
+ * Llamada por las vistas: head_inc
+ * Su funcion: Muestra/Oculta el form de login y permite el logeo al panel.
+ *
  */
 
 var Login = new (function(){
 
-    /*
-     * METHODS PUBLIC
-     */
+    /* PUBLIC METHODS
+     **************************************************************************/
+    this.initializer = function(){
+        $(document.body).click(function(){
+            if( !mouse_over && opendialog ){
+                This.close_dialog();
+            }
+        });
+        $('#login-container').hover(function(){mouse_over=true;}, function(){mouse_over=false;});
+    };
     this.open_dialog = function(){
         $('#login-container .signin').hide();
         $('#login-container .container-form').show();
@@ -36,24 +46,11 @@ var Login = new (function(){
         }, 6000);
     };
 
-    /*
-     * PROPERTIES PRIVATE
-     */
+    /* PROPERTIES PRIVATE
+     **************************************************************************/
     var mouse_over=false;
     var opendialog=false;
     var This=this;
     var slideUp=false;
-
-    /*
-     * CONSTRUCTOR
-     */
-    $(document).ready(function(){
-        $(document.body).click(function(){
-            if( !mouse_over && opendialog ){
-                This.close_dialog();
-            }
-        });
-        $('#login-container').hover(function(){mouse_over=true;}, function(){mouse_over=false;});
-    });
 
 })();

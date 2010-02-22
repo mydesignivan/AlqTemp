@@ -97,7 +97,7 @@
                 <div class="table_bottom"></div>
 
                 <?php if( $propUndisting->num_rows>0 ){?>
-                <div class="container_button"><a href="javascript:void(Prop.action.disting(0, '#tblProp2 .table_left'));" class="button1">Eliminar</a></div>
+                <div class="container_button"><a href="javascript:void(Prop.action.disting(0, '#tblProp2 .table_left'));" class="button2">Eliminar</a></div>
                 <?php }?>
 
              <?php }else{?>

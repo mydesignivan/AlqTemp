@@ -3,7 +3,7 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
-    <script type="text/javascript" src="js/class.search.js"></script>
+    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>
@@ -17,11 +17,10 @@
       
         <div class="container_mainContent">
             <div id="mainContent">
-                <div class="content_top"><h1>Activaci&oacute;n de usuario</h1></div>
+                <div class="content_top"><h1>Cuenta Activada</h1></div>
                 <div class="content_left">
 
-                    <p>El usuario ha sido activado con &eacute;xito.</p>
-
+                    <p class="message1">Gracias, <?=$username?>. Tu registro ha sido completado.</p>
 
                 </div>
                 <!--end .content_left-->

@@ -9,10 +9,10 @@
     <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
     <!--END SCRIPT-->
 
-    <script type="text/javascript" src="js/jquery.ajaxupload.js"></script>
+    <script type="text/javascript" src="js/jquery.ajaxupload.min.js"></script>
 
-    <script type="text/javascript" src="js/class.combobox.js"></script>
-    <script type="text/javascript" src="js/class.prop.js"></script>
+    <script type="text/javascript" src="js/class.combobox.min.js"></script>
+    <script type="text/javascript" src="js/class.prop.min.js"></script>
 </head>
 
 <body>
@@ -136,7 +136,7 @@
                         </div>
                         <div class="row2"><span class="cell">*Ciudad:</span><input type="text" name="txtCity" id="txtCity" class="input style_input validate" onblur="$(this).ucFirst();" value="<?=getval($data, 'city');?>" /></div>
                         <div class="row2"><span class="cell">Tel&eacute;fono:</span><input type="text" name="txtPhone" class="input style_input" value="<?=getval($data, 'phone');?>" /></div>
-                        <div class="row2"><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" value="<?=getval($data, 'website');?>" /></div>
+                        <div class="row2"><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" value="<?=@$data==TRUE ? @$data : "http://";?>" /></div>
                         <div class="row2"><span class="cell">Precio:</span><input type="text" name="txtPrice" class="input style_input" value="<?=getval($data, 'price');?>" /></div>
 
 

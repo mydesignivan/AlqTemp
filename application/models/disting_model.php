@@ -30,14 +30,7 @@ class disting_model extends Model {
     }
 
     public function disting($prop_id){
-        $date_end = $this->add_date(date('d-m-Y'), 0, DISTPROP_MONTH);
-        $d = substr($date_end, 0,2);
-        $m = substr($date_end, 3,2);
-        $y = substr($date_end, 6,4);
-        $h = substr($date_end, 11,2);
-        $i = substr($date_end, 14,2);
-        $s = substr($date_end, 17,2);
-        $date_end = gmmktime($h, $i, $s, $m, $d, $y);
+        $date_end = substr($this->add_date(date('d-m-Y'), 0, DISTPROP_MONTH), 0, 10);
 
         $this->credit_model->extract(DISTPROP_CREDIT);
 
@@ -46,17 +39,24 @@ class disting_model extends Model {
             $sql.= "(";
             $sql.= $id.",";
             $sql.= "now(),";
-            $sql.= $date_end;
+            $sql.= "'".$date_end."'";
             $sql.= "),";
         }
         $sql = substr($sql, 0, -1);
         
-        return $this->db->query($sql);
+        if( !$this->db->query($sql) ){
+            display_error(__FILE__, "disting", ERR_DB_INSERT, array(TBL_PROPERTIES_DISTING));
+        }
+
+        return true;
     }
 
     public function undisting($prop_id){
         $this->db->where_in("prop_id", $prop_id);
-        return $this->db->delete(TBL_PROPERTIES_DISTING);
+        if( !$this->db->delete(TBL_PROPERTIES_DISTING) ){
+            display_error(__FILE__, "undisting", ERR_DB_INSERT, array(TBL_PROPERTIES_DISTING));
+        }
+        return true;
     }
 
 

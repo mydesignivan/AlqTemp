@@ -32,6 +32,14 @@ class Search extends Controller {
         $this->display(array('category'=>4, 'page'=>0));
     }
 
+    public function list_states(){
+        get_options_state(array('country_id'=>$this->uri->segment(3)));
+    }
+    public function list_city(){
+        get_options_city($this->uri->segment(3));
+    }
+
+
     /*
      * PRIVATE FUNCTIONS
      */

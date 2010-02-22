@@ -1,25 +1,53 @@
+/* 
+ * Clase Contact
+ *
+ * Llamada por las vistas: contacto_view
+ * Su funcion: Envia formulario de contacto
+ *
+ */
+
 var Contact = new (function(){
 
-    /*
-     * PUBLIC METHODS
-     */
-     this.send = function(){
-         ValidatorContact.validate(function(error){
-             if( error ){
-                alert('Se han encontrado errores.\nPor favor, revise el formulario.');
-             }else{
-                 $('#formContact').submit();
-             }
-         });
+    /* PUBLIC METHODS
+     **************************************************************************/
+     this.initializer = function(){
+        f = $('#formContact')[0];
+        $.validator.setting('#formContact .validate', {
+            effect_show     : 'slide',
+            validateOne     : true,
+            addClass        : 'validator'
+        });
+
+        $(f.txtName).validator({
+            v_required  : true
+        });
+        $(f.txtEmail).validator({
+            v_required  : true,
+            v_email     : true
+        });
+        $(f.txtConsult).validator({
+            v_required  : true
+        });
 
      };
 
+     this.send = function(){
+        if( working ) return false;
+        working=true;
+
+        $.validator.validate('#formContact .validate', function(error){
+             if( !error ){
+                 f.submit();
+             }
+         });
+         working=false;
+
+         return false;
+     };
+
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+     var f=false;
+     var working=false;
+
 })();
-
-
-var ValidatorContact = new Class_Validator({
-    selectors : '#formContact .validate',
-    messageClass : 'formError_Account',
-    messagePos : 'up',
-    validationOne : true
-});

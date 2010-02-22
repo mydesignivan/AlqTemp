@@ -4,7 +4,13 @@
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
 
-    <script type="text/javascript" src="js/class.contact.js"></script>
+    <!--SCRIPT "VALIDADOR DE FORMULARIOS"-->
+    <link type="text/css" href="js/jquery.validator/css/style.css" rel="stylesheet"  />
+    <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
+    <!--END SCRIPT-->
+
+    <script type="text/javascript" src="js/class.search.min.js"></script>
+    <script type="text/javascript" src="js/class.contact.min.js"></script>
 </head>
 
 <body>
@@ -35,8 +41,8 @@
                     <?php }else{?>
                     <form id="formContact" action="<?=site_url('/contacto/send');?>" enctype="application/x-www-form-urlencoded" method="post">
                         <div class="form_left">
-                            <p>*Nombre:<input type="text" class="input validate {v_required:true}" name="txtName" /></p>
-                            <p>*E-mail:<input type="text" class="input validate {v_required:true, v_email:true}" name="txtEmail" /></p>
+                            <p>*Nombre:<input type="text" class="input validate" name="txtName" /></p>
+                            <p>*E-mail:<input type="text" class="input validate" name="txtEmail" /></p>
                         </div>
                         <div class="form_right">
                             <p>Tel&eacute;fono:<input type="text" class="input" name="txtPhone" /></p>
@@ -51,11 +57,18 @@
                         <div class="form_center">
                             <p>
                                 *Consulta:<br />
-                                <textarea class="input validate {v_required:true}" name="txtConsult" rows="22" cols="4"></textarea>
+                                <textarea class="input validate" name="txtConsult" rows="22" cols="4"></textarea>
                             </p>
                         </div>
                         <div class="container_button"><a class="button1" href="javascript:void(Contact.send());">Enviar</a></div>
                     </form>
+
+                    <script type="text/javascript">
+                    <!--
+                        Contact.initializer();
+                    -->
+                    </script>
+
                     <br class="clearfloat"/>
                     <h3>(*) Campos Obligatorios</h3>
                     <?php }?>
