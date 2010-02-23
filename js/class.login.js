@@ -17,6 +17,13 @@ var Login = new (function(){
             }
         });
         $('#login-container').hover(function(){mouse_over=true;}, function(){mouse_over=false;});
+        
+        if( typeof login_message!="undefined" ){
+            $('#login-container .container-form').css("background", "url(images/background_login2.png) no-repeat");
+            $('#login-error').html(login_message);
+            This.open_dialog();
+        }
+
     };
     this.open_dialog = function(){
         $('#login-container .signin').hide();
@@ -30,7 +37,7 @@ var Login = new (function(){
         opendialog=false;
     };
 
-    this.message_show = function(msg){
+    /*this.message_show = function(msg){
         slideUp=false;
         $('#message-login').html(msg)
                            .show()
@@ -44,7 +51,8 @@ var Login = new (function(){
         setTimeout(function(){
             $('#message-login').animate({top : '-=34'}, 'slow', function(){$(this).hide();});
         }, 6000);
-    };
+    };*/
+
 
     /* PROPERTIES PRIVATE
      **************************************************************************/

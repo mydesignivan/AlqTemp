@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="address">
-                        <?php if( !empty($data['web_site']) ){?><p><img src="images/icon_web.png" alt="" border="0"/><?=$data['web_site'];?></p><?php }?>
+                        <?php if( !empty($data['website']) ){?><p><img src="images/icon_web.png" alt="" border="0"/><a href="<?=$data['website'];?>"><?=$data['website'];?></a></p><?php }?>
                         <p><img src="images/icon_address.png" alt="" border="0"/><?=$data['address'];?></p>
                         <?php if( !empty($data['phone']) ){?><p><img src="images/icon_phone.png" alt="" border="0"/><?=$data['phone'];?></p><?php }?>
                         <!--<p><a class="link1" href="#"><img src="images/icon_map.png" alt="" border="0"/>Ver mapa</a></p>-->

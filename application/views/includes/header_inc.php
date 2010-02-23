@@ -1,4 +1,4 @@
-    <div id="message-login"></div>
+    <!--<div id="message-login"></div>-->
 
     <div class="top_left">
         <div class="logo"><a href="<?=site_url('/');?>"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" /></a></div>
@@ -22,21 +22,22 @@
                     <form id="formLogin" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post">
                         <div class="row">
                             <span class="title1">Usuario</span><br />
-                            <input type="text" name="txtLoginUser" id="txtLoginUser" value="" class="input_login float-left" />
+                            <input type="text" name="txtLoginUser" id="txtLoginUser" value="" class="input_login float-left validate" />
                         </div>
                         <div class="row">
                             <span class="title1">Contrase&ntilde;a</span><br />
-                            <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left" />
+                            <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left validate" />
                         </div>
                         <div class="row"><input type="submit" id="btnLogin" value="Entrar" class="button-enter-login" /></div>
                         <div class="row"><a href="<?=site_url('/rememberpass/');?>" class="link3">¿Olvido su Contraseña?</a></div>
                     </form>
+
+                    <div id="login-error"></div>
                 </div>
             </div>
 
             <script type="text/javascript">
             <!--
-                Login.initializer();
              <?php
                 if( $this->session->flashdata('statusLogin') ) {
                     switch($this->session->flashdata('statusLogin')){
@@ -47,9 +48,10 @@
                             $message = "El usuario no esta activado.";
                         break;
                     }
-                    echo 'Login.message_show("'.$message.'");';
+                    echo 'var login_message = "'.$message.'";';
                 }
              ?>
+                Login.initializer();
             -->
             </script>
 

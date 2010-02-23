@@ -4,7 +4,7 @@
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
 
-    <script type="text/javascript" src="js/class.prop.min.js"></script>
+    <script type="text/javascript" src="js/class.prop.js"></script>
 </head>
 
 <body>
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="buttons">
-                    <a href="<?=site_url('/prop/form');?>" class="button1">Nuevo</a>
+                    <a href="javascript:void(Prop.action.newprop());" class="button1">Nuevo</a>
                 <?php if( $listProp->num_rows>0 ){?>
                     <a href="javascript:void(Prop.action.edit());" class="button1">Modificar</a>
                     <a href="javascript:void(Prop.action.del());" class="button1">Eliminar</a>
