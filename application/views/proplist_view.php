@@ -22,6 +22,15 @@
                     <h1>Propiedades</h1>
                 </div>
 
+            <?php if( $listProp=="showmessage" ){?>
+
+                <p>
+                    Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres propiedades.<br />
+                    En caso que desee cargar mas propiedades, debera obtener una <a href="<?=site_url('/cuentaplus/');?>">Cuenta Plus</a>.
+                </p>
+
+            <?php }else{?>
+
                 <div class="buttons">
                     <a href="javascript:void(Prop.action.newprop());" class="button1">Nuevo</a>
                 <?php if( $listProp->num_rows>0 ){?>
@@ -57,7 +66,10 @@
                 <?php }?>
                 </div>
                 <!--end .table_body -->
+
                 <div class="table_bottom"></div>
+
+                <?php }?>
             </div>
             <!--end .maintContent -->
             <div class="background_bottom"></div>

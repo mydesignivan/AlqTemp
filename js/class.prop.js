@@ -93,16 +93,10 @@ var Prop = new (function(){
 
     this.action={
         newprop : function(){
-                var msg = 'Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres propiedades.\n'
-                    msg+= 'En caso que desee cargar mas propiedades, debera obtener una Cuenta Plus.';
-                alert(msg);
-                return;
             if( $('#tblProp input[type=checkbox]').length<=3 ){
                 location.href = baseURI+'prop/form';
             }else{
-                var msg = 'Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres propiedades.\n';
-                    msg+= 'En caso que desee cargar mas propiedades, debera obtener una Cuenta Plus.';
-                alert(msg);
+                location.href = baseURI+'prop/message';
             }
         },
         edit : function(){

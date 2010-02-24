@@ -17,6 +17,11 @@ class Prop extends Controller {
         $this->load->view('proplist_view', array('listProp'=>$data));
     }
 
+    public function message(){
+        $data = $this->prop_model->get_list_prop();
+        $this->load->view('proplist_view', array('listProp'=>'showmessage'));
+    }
+
     public function form(){
         $data = false;
         if( $this->uri->segment(3) ){
