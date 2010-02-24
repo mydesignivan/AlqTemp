@@ -23,12 +23,11 @@ class Prop extends Controller {
     }
 
     public function form(){
-        $data = false;
-        if( $this->uri->segment(3) ){
-            $data = $this->prop_model->get_prop($this->uri->segment(3));
-        }
+        $data = $this->uri->segment(3) ? $this->prop_model->get_prop($this->uri->segment(3)) : false;
         $services = $this->prop_model->get_services();
-        $this->load->view('propform_view', array('services' => $services->result_array(), 'data'=>$data));
+        $total_prop = !$this->uri->segment(3) ? $this->prop_model->get_total_prop() : 0;
+
+        $this->load->view('propform_view', array('services' => $services->result_array(), 'data'=>$data, 'total_prop'=>$total_prop));
     }
 
     public function create(){

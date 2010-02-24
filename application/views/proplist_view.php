@@ -22,14 +22,11 @@
                     <h1>Propiedades</h1>
                 </div>
 
-            <?php if( $listProp=="showmessage" ){?>
+            <?php if( $listProp=="showmessage" ){
 
-                <p>
-                    Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres propiedades.<br />
-                    En caso que desee cargar mas propiedades, debera obtener una <a href="<?=site_url('/cuentaplus/');?>">Cuenta Plus</a>.
-                </p>
+                    include('includes/message_inc.php');
 
-            <?php }else{?>
+                }else{?>
 
                 <div class="buttons">
                     <a href="javascript:void(Prop.action.newprop());" class="button1">Nuevo</a>
@@ -57,7 +54,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row["prop_id"];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" class="link1" target="_blank"><?=$row["address"];?></a></div>
+                        <div class="table_center"><a href="<?=site_url('/prop/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row["category"];?></div>
                     </div>
                 <?php }

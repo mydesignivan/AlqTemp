@@ -31,6 +31,8 @@ var Prop = new (function(){
         $("#txtAddress, #txtDesc, #cboCategory, #cboCategory, #cboStates, #txtCity").validator({
             v_required  : true
         });
+
+        $('a.previewthumb').fancybox();
     };
 
     this.save = function(){
@@ -157,7 +159,7 @@ var Prop = new (function(){
             input.bind('keypress', function(e){e.preventDefault();});
 
         divCol.append('<div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>')
-              .append('<a href="#" class="previewthumb ajaxupload-preview"><img src="" alt="" width="69" height="60" /></a>')
+              .append('<a href="#" class="previewthumb ajaxupload-preview" rel="group"><img src="" alt="" width="69" height="60" /></a>')
               .append(input)
               .append(button)
               .append('<a class="button2 float-left" onclick="Prop.remove_row_file(this); return false;">Eliminar</a>');
@@ -185,8 +187,8 @@ var Prop = new (function(){
                         arr_images_modified.id.unset_array(key);
                         arr_images_modified.name.unset_array(key);
                     }
-
                 }
+                $('a.previewthumb').fancybox();
             }
             
         }else{
@@ -296,27 +298,28 @@ if( typeof ClassAjaxUpload!="undefined" ){
             return true;
         },
         onComplete : function(response, input){
+            try{
+                eval('var filename='+response);
+            }catch(e){
+                divCol.find('input.style_input').val('');
+                alert(response);
+                return false;
+            }
+
             var divCol = $(input).parent().parent();
 
             divCol.find('div.ajaxloader2').hide();
             divCol.find('div.btnexamin, input.style_input').show();
 
-            if( /^(filename:)/.test(response) ){
-                var filename = response.substr(9);
-                var a = divCol.find('a.previewthumb');
-                var img = a.find(':first');
-                img.attr('src', filename);
-                a.show();
-                if( $(input).parent()[0].id ){
-                    Prop.add_image_modified(parseInt($(input).parent()[0].id.substr(1)), divCol.find('input.style_input').val());
-                }
-                
-
-            }else{
-                divCol.find('input.style_input').val('');
-                alert(response);
+            var a = divCol.find('a.previewthumb');
+            var img = a.find(':first');
+            img.attr('src', filename.thumb);
+            a.attr('href', filename.complete);
+            a.show();
+            if( $(input).parent()[0].id ){
+                Prop.add_image_modified(parseInt($(input).parent()[0].id.substr(1)), divCol.find('input.style_input').val());
             }
-
+            a.fancybox();
         }
     });
 }

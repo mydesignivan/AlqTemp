@@ -35,7 +35,7 @@
 </script>
 
 <!--========== CLASS ============-->
-<script type="text/javascript" src="js/class.login.js"></script>
+<script type="text/javascript" src="js/class.login.min.js"></script>
 <!--======= END CLASS =======-->
 
 

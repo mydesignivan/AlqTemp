@@ -270,7 +270,7 @@ span.title1{
         margin-top:-10px
     }
         #header .column_panel .menu_panel{
-            width:600px;
+            width:950px;
             height:48px;
             float:left;
             margin-left:8px;
@@ -1214,6 +1214,15 @@ span.title1{
     font-family:Arial, Helvetica, sans-serif;
     font-size:12px;
 }
+.input2{
+    border:1px #FAD4A3 solid;
+    background-color:#FAF8E9;
+    padding:2px 2px 2px 2px;
+    text-align:left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:100%;
+    text-align: center;
+}
 .add{
     text-decoration:underline;
     font-style:italic;
@@ -1257,9 +1266,27 @@ span.title1{
     .button2:hover{
         background:url(../images/button1_over.png) no-repeat center left;
     }
+.button3{
+    display:inline-block;
+    width:121px;
+    height:27px;
+    background:url(../images/button_canjear_puntos.png) no-repeat center left;
+    border:none;
+    text-align:center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:12px;
+    color:#6C491D;
+    font-weight:bold;
+    padding-top:14px;
+    padding-bottom: 4px;
+    margin-top: -5px;
+}
+    .button3:hover{
+        background:url(../images/button_canjear_puntos_over.png) no-repeat center left;
+    }
 .container_button{
     width:600px;
-    height:30px;
+    height:50px;
     float:left;
     text-align:center;
 }

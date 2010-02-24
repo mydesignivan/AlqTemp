@@ -8,11 +8,15 @@
     <link type="text/css" href="js/jquery.validator/css/style.css" rel="stylesheet"  />
     <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
     <!--END SCRIPT-->
+    <!--SCRIPT "FANCYBOX"-->
+    <link type="text/css" href="js/jquery.fancybox/jquery.fancybox.css" rel="stylesheet"  />
+    <script type="text/javascript" src="js/jquery.fancybox/jquery.fancybox-1.2.1.pack.js"></script>
+    <!--END SCRIPT-->
 
     <script type="text/javascript" src="js/jquery.ajaxupload.min.js"></script>
 
     <script type="text/javascript" src="js/class.combobox.min.js"></script>
-    <script type="text/javascript" src="js/class.prop.min.js"></script>
+    <script type="text/javascript" src="js/class.prop.js"></script>
 </head>
 
 <body>
@@ -30,6 +34,12 @@
                     <h1><?=(!$data) ? "Nueva Propiedad" : "Modificar Propiedad";?></h1>
                 </div>
                 <div class="content_left">
+                <?php if( @$total_prop>=3 ){
+
+                    include("includes/message_inc.php");
+
+                }else{?>
+                    
                     <?php require('includes/popup_inc.php');?>
 
                     <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
@@ -43,7 +53,7 @@
                             <span class="cell">*Foto:</span>
                             <div class="col ">
                                 <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
-                                <a href="#" class="previewthumb"><img src="" alt="" width="69" height="60" /></a>
+                                <a href="#" class="previewthumb" rel="group"><img src="" alt="" width="69" height="60" /></a>
                                 <input type="text" name="" class="input style_input float-left ajaxupload-input" value="" />
                                 <div class="button2 btnexamin">Examinar</div>
                             </div>
@@ -60,7 +70,7 @@
                                 if( $n==1 ) echo '<span class="cell">*Foto:</span>';
                                 echo '<div class="col">';
                                 echo '  <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>';
-                                echo '  <a href="#" class="previewthumb"><img src="'. $image['name_thumb'] .'" alt="" width="69" height="60" /></a>';
+                                echo '  <a href="'.$image['name'].'" class="previewthumb" rel="group"><img src="'. $image['name_thumb'] .'" alt="" width="69" height="60" /></a>';
                                 echo '  <input type="text" name="" class="input style_input float-left ajaxupload-input" value="'.$image['name_original'].'" />';
                                 echo '  <div id="b'.$image['image_id'].'" class="button2 float-left btnexamin">Examinar</div>';
                                 if( $n>1 ) echo '<a class="button2 float-left" onclick="Prop.remove_row_file(this,'. $image['image_id'] .'); return false;">Eliminar</a>';
@@ -156,6 +166,8 @@
                     </p>
 
                     <div class="warning"><h3>(*) Campos Obligatorios </h3></div>
+
+                <?php }?>
                 </div>
 
                 <script type="text/javascript">

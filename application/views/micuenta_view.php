@@ -41,7 +41,6 @@
                     </form>
                     <div class="container_button2">
                         <a class="button1" href="javascript:void(Account.save());">Guardar</a>
-                        <!--<a class="button1" href="javascript:void(Account.delete_account(<?=$dataUser['user_id'];?>));">Eliminar</a>-->
                     </div>
                     <br class="clearfloat" />
                     <h3>(*)Campos Obligatorios</h3>
@@ -55,7 +54,7 @@
                 </div>
 
                 <div class="content_right">
-                    <!--<div class="cuenta_plus"><a href="#"><img src="images/cuenta_plus.png" alt="Obtene tu Cuenta Plus" /></a></div>-->
+                    <!--<div class="cuenta_plus"><a href="<?=site_url('/cuentaplus/');?>"><img src="images/cuenta_plus.png" alt="Obtene tu Cuenta Plus" /></a></div>-->
                 </div>  
             </div>
             <!--end .maintContent -->

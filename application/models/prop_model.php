@@ -241,6 +241,12 @@ class Prop_model extends Model {
         return $query->row_array();
     }
 
+    public function get_total_prop(){
+        $this->db->where("user_id", $this->session->userdata('user_id'));
+        $query = $this->db->get(TBL_PROPERTIES);
+        return $query->num_rows;
+    }
+
 
     /*
      * FUNCTIONS PRIVATE

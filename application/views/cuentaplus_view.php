@@ -21,7 +21,7 @@
                 </div>
                 <div class="container_center">
                     <div class="plus1">
-                        <span class="t1">"Canjee Cr&eacute;ditos</span> y podr&aacute; obtener su <span class="t1">CUENTA PLUS</span>
+                        <span class="t1">"Canjee fondos</span> y podr&aacute; obtener su <span class="t1">CUENTA PLUS</span>
                         <br />permitiendole acceder a servicios adicionales<span class="t1">"</span>
                     </div>
                     <div class="plus2">
@@ -32,11 +32,18 @@
                                 <li>Agregar hasta <span class="t2">8 fotos por propiedad.</span></li>
                                 <li>Ubicar su propiedad en un <span class="t2">mapa de google.</span></li><br /><span class="t2">y MUCHO M&Aacute;S!!!</span>
                             </ul>
+                            <center><img src="images/cuenta_plus.png" alt="Obtene tu CUENTA PLUS por solo $100 ANUALES " /></center>
                         </div>
+
+
+
                     </div>
                     <!--end .plus2 -->
 
-                    <div class="container_button"><a class="button2" href="#">Canjear Puntos</a></div>
+                    <div class="container_button">
+                        <br />
+                        <a class="button3" href="#"></a>
+                    </div>
                 </div>
                 <!--end .container_center -->
             </div>

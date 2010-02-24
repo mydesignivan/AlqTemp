@@ -57,7 +57,6 @@ var ClassImageGallery = function(options){
                     data.widthPreview = element.preview.width();
                     data.heightPreview = element.preview.height();
                 }
-
              }else error=true;            
          }else error=true;
     });

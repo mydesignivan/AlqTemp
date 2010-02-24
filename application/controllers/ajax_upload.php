@@ -42,8 +42,12 @@ class Ajax_upload extends Controller {
 
             $ext = substr($filename, (strripos($filename, ".")-strlen($filename))+1);
             $basename = substr($filename, 0, strripos($filename, "."));
-            echo "filename:".UPLOAD_DIR_TMP.$basename."_thumb.".$ext;
+            //echo "filename:".UPLOAD_DIR_TMP.$basename."_thumb.".$ext;
 
+            echo json_encode(array(
+                'thumb'=>UPLOAD_DIR_TMP.$basename."_thumb.".$ext,
+                'complete'=>UPLOAD_DIR_TMP.$basename.".".$ext
+            ));
         }
     }
 

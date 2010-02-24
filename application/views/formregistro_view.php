@@ -21,7 +21,7 @@
       
         
         <?php include('includes/banner_inc.php');?>
-      <?php //$this->session->set_flashdata('statusrecord', "saveok");?>
+        
         <div class="container_mainContent">
             <div id="mainContent">
                 <div class="content_top"><h1>Registrarme</h1></div>

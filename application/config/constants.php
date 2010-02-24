@@ -58,11 +58,6 @@ define('TBL_LOGSEARCHES', 'log_searches');
 | MENSAJES DE ERROR
 |--------------------------------------------------------------------------
 */
-define('ERR_100', 'Se produjo un error interno en la base de dato.');
-define('ERR_101', 'La actualizacion de los datos no pudo ser completado.');
-define('ERR_102', 'Los datos no pudieron ser guardados.');
-define('ERR_103', 'El usuario ha sido creado satisfactoriamente pero no se ha podido enviar el email de activaci&oacute;n del mismo');
-
 define('ERR_UPLOAD_NOTUPLOAD', 'El archivo no ha podido llegar al servidor.');
 define('ERR_UPLOAD_MAXSIZE', 'El tamaño del archivo debe ser menor a %s MB.');
 define('ERR_UPLOAD_FILETYPE', 'El tipo de archivo es incompatible.');

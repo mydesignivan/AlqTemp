@@ -34,11 +34,18 @@ class Comprarcredito extends Controller {
                 $this->session->set_flashdata('status', 'ok');
                 redirect('/comprarcredito/');
             }else {
-                show_error(ERR_103);
+                //show_error(ERR_103);
             }
         }
-
     }
+
+    public function success(){
+        $this->load->view('comprarcreditos_view', array('result_buy'=>'success'));
+    }
+    public function cancel(){
+        $this->load->view('comprarcreditos_view', array('result_buy'=>'cancel'));
+    }
+
 
 }
 
