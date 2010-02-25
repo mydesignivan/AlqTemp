@@ -54,7 +54,10 @@
                 </div>
 
                 <div class="content_right">
-                    <!--<div class="cuenta_plus"><a href="<?=site_url('/cuentaplus/');?>"><img src="images/cuenta_plus.png" alt="Obtene tu Cuenta Plus" /></a></div>-->
+                    <div class="cont-saldo">
+                        <label class="text1">Saldo Disponible</label><br />
+                        <input type="text" class="input2" value="U$S <?=$this->session->userdata('fondo');?>" onkeypress="return false;" size="13" />
+                    </div>
                 </div>  
             </div>
             <!--end .maintContent -->

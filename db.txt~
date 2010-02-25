@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-02-2010 a las 18:11:10
+-- Tiempo de generación: 22-02-2010 a las 03:44:49
 -- Versión del servidor: 5.1.37
 -- Versión de PHP: 5.3.0
 
@@ -12,48 +12,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Base de datos: `alqtemp`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `ci_sessions`
---
-
-CREATE TABLE IF NOT EXISTS `ci_sessions` (
-  `session_id` varchar(40) NOT NULL DEFAULT '0',
-  `ip_address` varchar(16) NOT NULL DEFAULT '0',
-  `user_agent` varchar(50) NOT NULL,
-  `last_activity` int(10) unsigned NOT NULL DEFAULT '0',
-  `user_data` varchar(500) NOT NULL,
-  PRIMARY KEY (`session_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Volcar la base de datos para la tabla `ci_sessions`
---
-
-INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('acc15ae9bc81cf401e2c45b8fabcc231', '0.0.0.0', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1267098432, ''),
-('33b59389ccd8d8b557a609fd03d6bd13', '192.168.0.2', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1267110583, 'a:9:{s:7:"user_id";s:1:"1";s:8:"username";s:8:"mydesign";s:4:"name";s:12:"Ivan Mattoni";s:5:"email";s:19:"iwmattoni@yahoo.com";s:5:"phone";s:7:"4442192";s:6:"active";s:1:"1";s:5:"fondo";s:3:"900";s:5:"token";s:0:"";s:9:"logged_in";s:1:"1";}');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cuentaplus`
---
-
-CREATE TABLE IF NOT EXISTS `cuentaplus` (
-  `cuentaplus_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `date_start` datetime NOT NULL,
-  `date_end` char(10) NOT NULL,
-  PRIMARY KEY (`cuentaplus_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Volcar la base de datos para la tabla `cuentaplus`
---
-
 
 -- --------------------------------------------------------
 
@@ -68,15 +26,27 @@ CREATE TABLE IF NOT EXISTS `images` (
   `name_thumb` varchar(255) NOT NULL,
   `name_original` varchar(255) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
 -- Volcar la base de datos para la tabla `images`
 --
 
 INSERT INTO `images` (`image_id`, `prop_id`, `name`, `name_thumb`, `name_original`) VALUES
-(37, 27, '1_7_sanra2.jpg', '1_7_sanra2_thumb.jpg', '7_sanra2.jpg'),
-(38, 28, '1_casa_madera_villa_blanca_grande.jpg', '1_casa_madera_villa_blanca_grande_thumb.jpg', 'casa_madera_villa_blanca_grande.jpg');
+(27, 10, '1_casa1.jpg', '1_casa1_thumb.jpg', 'casa1.jpg'),
+(29, 12, '1_7_sanra2.jpg', '1_7_sanra2_thumb.jpg', '7_sanra2.jpg'),
+(30, 13, '1_44c4a49e_casa_acebuche_cacer.jpg', '1_44c4a49e_casa_acebuche_cacer_thumb.jpg', '44c4a49e_casa_acebuche_cacer.jpg'),
+(31, 13, '1_casa_iberadria.jpg', '1_casa_iberadria_thumb.jpg', 'casa_iberadria.jpg'),
+(32, 13, '1_casas_de_madera.jpg', '1_casas_de_madera_thumb.jpg', 'casas_de_madera.jpg'),
+(33, 14, '1_dos_casas_rurales_en_avila_7.jpg', '1_dos_casas_rurales_en_avila_7_thumb.jpg', 'Dos casas rurales en Avila 7.JPG'),
+(34, 15, '1_exterioelllanon.jpg', '1_exterioelllanon_thumb.jpg', 'exterioelllanon.jpg'),
+(51, 13, '1_002.jpg', '1_002_thumb.jpg', '002.jpg'),
+(52, 13, '1_003.jpg', '1_003_thumb.jpg', '003.jpg'),
+(53, 13, '1_004.jpg', '1_004_thumb.jpg', '004.jpg'),
+(54, 25, '1_7_sanra2.jpg', '1_7_sanra2_thumb.jpg', '7_sanra2.jpg'),
+(55, 25, '1_8_valle.jpg', '1_8_valle_thumb.jpg', '8_valle.jpg'),
+(56, 25, '1_171028g.jpg', '1_171028g_thumb.jpg', '171028g.jpg'),
+(28, 11, '1_8_valle.jpg', '1_8_valle_thumb.jpg', '8_valle.jpg');
 
 -- --------------------------------------------------------
 
@@ -4684,14 +4654,20 @@ CREATE TABLE IF NOT EXISTS `log_searches` (
   `search_term` varchar(200) NOT NULL,
   `hits` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Volcar la base de datos para la tabla `log_searches`
 --
 
 INSERT INTO `log_searches` (`id`, `search_term`, `hits`) VALUES
-(10, 'Mendoza', 1);
+(1, 'Gdfgf', 2),
+(2, 'Mendoza', 10),
+(3, 'Asdasd', 6),
+(4, 'Maipu', 2),
+(5, 'San rafael', 1),
+(6, 'Sdfasdf', 2),
+(9, 's', 6);
 
 -- --------------------------------------------------------
 
@@ -4711,16 +4687,22 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `phone` char(30) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `website` char(100) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
   `price` char(11) CHARACTER SET latin1 COLLATE latin1_spanish_ci NOT NULL,
+  `disting` int(1) NOT NULL,
   PRIMARY KEY (`prop_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
 
 --
 -- Volcar la base de datos para la tabla `properties`
 --
 
-INSERT INTO `properties` (`prop_id`, `user_id`, `category`, `address`, `description`, `country_id`, `state_id`, `city`, `phone`, `website`, `price`) VALUES
-(27, 1, 1, 'propiedad1', 'sdfasdf asdfasdf adf\nasdfasdfasdf', 13, 180, 'Maipu', '', 'http://www.mydesign.com.ar', ''),
-(28, 1, 1, 'propiedad2', 'sdfsdgdfg\ndfgdsfgdsfgds', 13, 180, 'Mendoza', '', '', '');
+INSERT INTO `properties` (`prop_id`, `user_id`, `category`, `address`, `description`, `country_id`, `state_id`, `city`, `phone`, `website`, `price`, `disting`) VALUES
+(11, 1, 3, 'Valle de uco', 'Cabañas totalmente equipadas en la ruta de las nieves y el vino.\nEn medio de la montaña y atravesadas por el arroyo PIRKAS en un barrio privado donde lo natural aun existe y el silencio es lo mas importante además de la fauna y los pájaros.\nToda la aventura un solo lugar\nSe pueden hacer cabalgatas por arroyos y en medio de cerros, parapente y admirar el valle desde arriba, escalada y ver toda la fauna y un paisaje incomparable, rapel, excursiones 4x4,\nTirolesa, rafting por el rio Tunuyan con toda la adrenalina ,mountain bike ,pesca deportiva.\nTodo eso y los caminos del vino de altura tenemos mas de 50 bodegas donde degustar los mejores vinos de altura del mundo,\nLas cabañas tienen toda la infraestructura como para que usted disfrute de las mejores vacaciones de su vida tenemos piscina y puede disfrutar de aguas naturales del arroyo.', 13, 180, 'Mendoza', '', '', '210.00', 0),
+(12, 1, 1, 'San Rafael', 'ALQUILO DEPARTAMENTO AMOBLADO CON TODOS LOS SERVICIOS, COCHERA TECHADA, CHURRASQUERA, TV X CABLE CON PILETA. A PASOS DEL PARQUE. IDEAL PARA DISFRUTAR TUS VACACIONES EN SAN RAFAEL MENDOZA', 13, 180, 'San rafael', '', '', '130.00', 0),
+(13, 1, 1, 'propiedad1', 'fasdfas fasdfasf\nasd\nfsad fsa df sadf s', 13, 180, 'Maipu', '', '', '0.00', 0),
+(14, 1, 4, 'propiedad2', 'fasfasfa\nfdasf\nsadf', 13, 182, 'Sdfasdf', '', '', '0.00', 1),
+(15, 1, 4, 'propiedad3', 'dfasfas\nfasdfasfd', 17, 208, 'Asdasd', '', '', '450.00', 0),
+(25, 1, 1, 'dfgdsfg', 'hdfghdfghdfgh', 13, 183, 'Gdfgf', '', '', '0.00', 0),
+(10, 1, 2, 'San Lorenzo Apartments', 'departamentos en pleno centro de mendoza', 13, 180, 'Mendoza', '', '', '250.00', 0);
 
 -- --------------------------------------------------------
 
@@ -4740,6 +4722,11 @@ CREATE TABLE IF NOT EXISTS `properties_disting` (
 -- Volcar la base de datos para la tabla `properties_disting`
 --
 
+INSERT INTO `properties_disting` (`propdisting_id`, `prop_id`, `date_start`, `date_end`) VALUES
+(20, 25, '2010-02-19 19:38:50', '19-03-2010'),
+(21, 15, '2010-02-19 19:38:50', '19-03-2010'),
+(22, 14, '2010-02-19 19:38:50', '19-03-2010'),
+(23, 13, '2010-02-19 19:38:50', '19-03-2010');
 
 -- --------------------------------------------------------
 
@@ -4757,10 +4744,19 @@ CREATE TABLE IF NOT EXISTS `properties_to_services` (
 --
 
 INSERT INTO `properties_to_services` (`prop_id`, `service_id`) VALUES
-(27, 3),
-(27, 1),
-(28, 2),
-(28, 3);
+(11, 3),
+(10, 4),
+(10, 3),
+(10, 1),
+(12, 1),
+(13, 4),
+(13, 2),
+(13, 1),
+(14, 1),
+(15, 1),
+(25, 2),
+(25, 3),
+(25, 4);
 
 -- --------------------------------------------------------
 
@@ -4775,18 +4771,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `phone` char(30) DEFAULT NULL,
-  `active` int(1) NOT NULL DEFAULT '0',
-  `fondo` int(6) NOT NULL DEFAULT '0',
+  `active` int(1) NOT NULL,
+  `credit` int(3) NOT NULL,
   `token` char(23) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
 -- Volcar la base de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `email`, `phone`, `active`, `fondo`, `token`) VALUES
-(1, 'mydesign', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', 'iwmattoni@yahoo.com', '4442192', 1, 900, ''),
-(3, 'valeria', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', 'valeria@mydesign.com.ar', '', 1, 50, ''),
-(5, 'jsuarez', 'XSefDr9qBEzqXYhTFH5guxyDCbk=', 'juan', 'jsuarez@mydesign.com.ar', '', 0, 0, '');
+INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `email`, `phone`, `active`, `credit`, `token`) VALUES
+(1, 'ivan', '1oNQKj3dUZ0RjwuY9D5KsEeqnVI=', 'Ivan Mattoni', 'ivan@mydesign.com.ar', '4442192', 1, 929, ''),
+(10, 'jbasaez', 'PoP67DByi3gYfcVsCYTnFs33IRU=', 'janet basez', 'iwmattoni@gmail.com', '4442192', 1, 0, ''),
+(13, 'mydesign', 'KTjCnbuF26ADc8YUCfydlDS2wtiHxHUi', 'usuario de prueba', 'iwmattoni@yahoo.com', '', 0, 0, '');
 

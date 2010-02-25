@@ -1,15 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Credit_model extends Model {
+class Fondos_model extends Model {
 
     function  __construct() {
         parent::Model();
     }
 
-    public function extract($credit){
-        $new_credit = (int)$this->session->userdata('credit')-$credit;
-        $this->session->set_userdata('credit', $new_credit);
+    public function extract($fondo){
+        $new_fondo = (int)$this->session->userdata('fondo')-$fondo;
+        $this->session->set_userdata('fondo', $new_fondo);
         $this->db->where('user_id', $this->session->userdata('user_id'));
-        if( !$this->db->update(TBL_USERS, array('credit'=>$new_credit)) ){
+        if( !$this->db->update(TBL_USERS, array('fondo'=>$new_fondo)) ){
             display_error(__FILE__, "extract", ERR_DB_UPDATE, array(TBL_USERS));
         }
     }

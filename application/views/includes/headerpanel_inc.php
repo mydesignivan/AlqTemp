@@ -10,7 +10,7 @@
             </div>
             
             <div class="header-menu-cell3">
-                <span>Usuario:<?=$this->session->userdata('name');?></span>
+                <span class="title2">Usuario:&nbsp;</span> <span class="title1"><?=$this->session->userdata('name');?></span>
             </div>
             <div class="header-menu-salir">
                 <a href="<?=site_url('/login/logout/');?>" class="button1">Salir</a>

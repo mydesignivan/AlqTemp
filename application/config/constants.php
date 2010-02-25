@@ -51,6 +51,7 @@ define('TBL_PROPERTIES_SERVS', 'properties_to_services');
 define('TBL_PROPERTIES_DISTING', 'properties_disting');
 define('TBL_USERS', 'users');
 define('TBL_LOGSEARCHES', 'log_searches');
+define('TBL_CUENTAPLUS', 'cuentaplus');
 
 
 /*
@@ -149,13 +150,23 @@ define('EMAIL_CONTACT_MESSAGE', 'Nombre: %s<br>Telefono: %s<br>Consulta:<hr colo
 
 /*
 |--------------------------------------------------------------------------
-| EMAIL COMPRAR CREDITO
+| EMAIL AGREGAR FONDOS
 |--------------------------------------------------------------------------
 */
 define('EMAIL_BUYCREDIT_FROM', 'ivan@mydesign.com.ar');
 define('EMAIL_BUYCREDIT_TO', 'ivan@mydesign.com.ar');
 define('EMAIL_BUYCREDIT_SUBJECT', 'Pedido');
 define('EMAIL_BUYCREDIT_MESSAGE', '<b>Nombre:</b> %s<hr color="#000000" /><b>Telefono:</b> %s<hr color="#000000" /><b>Email:</b> %s<hr color="#000000" /><b>Forma de Pago:</b> %s<hr color="#000000" /><b>Importe:</b> U$S %s<hr color="#000000" /><b>Total Credito</b> %s');
+
+/*
+|--------------------------------------------------------------------------
+| EMAIL CUENTA PLUS
+|--------------------------------------------------------------------------
+*/
+define('EMAIL_CUENTAPLUS_FROM', 'ivan@mydesign.com.ar');
+define('EMAIL_CUENTAPLUS_NAME', 'AlquileresTemporarios.org');
+define('EMAIL_CUENTAPLUS_SUBJECT', 'Gracias por adquirir nuestros servicios.');
+define('EMAIL_CUENTAPLUS_MESSAGE', 'asda sd as d asd');
 
 
 /*
@@ -178,10 +189,11 @@ define('IMAGE_ORIGINAL_HEIGHT', 600);
 |--------------------------------------------------------------------------
 | CONFIG
 |--------------------------------------------------------------------------
+* CFG_VALUE_xxxx es el importe del servicio (Esta expresado en dolares)
 */
-define('CREDIT_VALUE', 3);
-define('DISTPROP_CREDIT', 3);
-define('DISTPROP_MONTH', 1);
+define('CFG_VALUE_PROPDISTING', 5);
+define('CFG_VALUE_PROP', 10);
+define('CFG_VALUE_CUENTAPLUS', 100);
 
 
 

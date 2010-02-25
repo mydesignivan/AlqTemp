@@ -130,17 +130,17 @@ var Prop = new (function(){
             return false;
         },
 
-        disting : function(dist, sel, credit, user_credit){
+        disting : function(dist, sel, fondo, user_fondo){
             var lstProp = $(sel+" input:checked");
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad.");
                 return false;
             }
 
-            var newcredit = user_credit - (credit*lstProp.length);
+            var newfondo = user_fondo - (fondo*lstProp.length);
 
-            if( newcredit<=0 ){
-                alert("No tiene suficiente credito para destacar.");
+            if( newfondo<=0 ){
+                alert("El saldo disponible no es suficiente para destacar una propiedad.");
                 return false;
             }
 

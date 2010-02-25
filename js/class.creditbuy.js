@@ -10,9 +10,8 @@ var creditBuy = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(val){
+    this.initializer = function(){
         f = $('#form1')[0];
-        credit = val;
         This.show_credit(f.cboImport.value);
     };
 
@@ -42,16 +41,9 @@ var creditBuy = new (function(){
         return false;
     };
 
-    this.show_credit = function(value){
-        var res = parseInt(value)*parseInt(credit);
-        f.credit.value = res;
-        $('#totalCredit').val(res);
-    };
-
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
-    var credit=0;
     var f=false;
     var This=this;
 

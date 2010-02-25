@@ -20,6 +20,13 @@
                     <h1>Cuenta Plus</h1>
                 </div>
                 <div class="container_center">
+       <?php if( $this->session->userdata('fondo')==0 ){?>
+
+                    <p class="message1">Usted no posee saldo para adquirir esta cuenta plus, para realizar esta operaci&oacute;n tiene que agregar fondos a su cuenta.</p>
+
+       <?php }else{
+                  if( !$this->session->flashdata('cp_status') ){?>
+
                     <div class="plus1">
                         <span class="t1">"Canjee fondos</span> y podr&aacute; obtener su <span class="t1">CUENTA PLUS</span>
                         <br />permitiendole acceder a servicios adicionales<span class="t1">"</span>
@@ -32,18 +39,28 @@
                                 <li>Agregar hasta <span class="t2">8 fotos por propiedad.</span></li>
                                 <li>Ubicar su propiedad en un <span class="t2">mapa de google.</span></li><br /><span class="t2">y MUCHO M&Aacute;S!!!</span>
                             </ul>
-                            <center><img src="images/cuenta_plus.png" alt="Obtene tu CUENTA PLUS por solo $100 ANUALES " /></center>
+                            <center><img src="images/cuenta_plus.png" alt="Obtene tu CUENTA PLUS por solo U$S 100 ANUALES " /></center>
                         </div>
-
-
-
                     </div>
                     <!--end .plus2 -->
 
                     <div class="container_button">
                         <br />
-                        <a class="button3" href="#"></a>
+                        <a class="button3" href="<?=site_url('/cuentaplus/shipping/');?>">Obtener Cuenta</a>
                     </div>
+
+
+                <?php }elseif( $this->session->flashdata('cp_status')=="insufficient_amount" ){?>
+
+                    <p class="message1">Usted no posee saldo suficiente para adquirir esta cuenta plus, para realizar esta operaci&oacute;n tiene que agregar fondos a su cuenta.</p>
+
+                <?php }elseif( $this->session->flashdata('cp_status')=="ok" ){?>
+
+                    <p class="message1">Gracias por adquirir una Cuenta Plus</p>
+
+                <?php }
+       }?>
+
                 </div>
                 <!--end .container_center -->
             </div>

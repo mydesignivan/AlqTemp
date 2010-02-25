@@ -3,7 +3,7 @@ class disting_model extends Model {
 
     function  __construct() {
         parent::Model();
-        $this->load->model('credit_model');
+        $this->load->model('fondos_model');
     }
 
     /*
@@ -30,9 +30,9 @@ class disting_model extends Model {
     }
 
     public function disting($prop_id){
-        $date_end = substr($this->add_date(date('d-m-Y'), 0, DISTPROP_MONTH), 0, 10);
+        $date_end = substr(add_date(date('d-m-Y'), 0, CFG_DISTPROP_MONTH), 0, 10);
 
-        $this->credit_model->extract(DISTPROP_CREDIT);
+        $this->fondos_model->extract(CFG_VALUE_PROPDISTING);
 
         $sql = "INSERT INTO ".TBL_PROPERTIES_DISTING."(prop_id, date_start, date_end) VALUES";
         foreach ( $prop_id as $id ){
@@ -59,17 +59,6 @@ class disting_model extends Model {
         return true;
     }
 
-
-    /*
-     * FUNCTION PRIVATE
-     */
-    function add_date($givendate, $day=0, $mth=0, $yr=0) {
-        $cd = strtotime($givendate);
-        $newdate = date('d-m-Y h:i:s', mktime(date('h',$cd),
-        date('i',$cd), date('s',$cd), date('m',$cd)+$mth,
-        date('d',$cd)+$day, date('Y',$cd)+$yr));
-        return $newdate;
-    }
 
 
 }

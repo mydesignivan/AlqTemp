@@ -19,30 +19,32 @@
         <div class="container_mainContent">
             <div id="mainContent">
                 <div class="content_top">
-                    <h1>Comprar Cr&eacute;dito</h1>
+                    <h1>Agregar Fondos</h1>
                 </div>
 
                 <?php if( !isset($result_buy) ){?>
                 <div class="credit">
-                    <div class="credit_attention">El Cr&eacute;dito que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <b>alquilerestemporarios.org</b></div>
+                    <div class="credit_attention">El fondo que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <b>alquilerestemporarios.org</b></div>
                 </div>
 
                 <form id="form1" action="<?=site_url('comprarcredito/send/');?>" method="post">
 
-                    <div class="column_left">
-                        <span class="cell" style="margin-left: 0;">Saldo Disponible</span><br />
-                        <input type="text" class="input2" value="U$S 100" onkeypress="return false;" size="13" />
-                    </div>
-                    <div class="column_right">
-                        <span class="cell">Agregar Fondos &emsp;</span><br />
-                        <span class="cell">Saldo</span>
-                        <select name="cboImport" id="cboImport" class="input style_input2" onchange="creditBuy.show_credit(this.value)">
-                          <option value="5">5</option>
-                          <option value="10">10</option>
-                          <option value="20">20</option>
-                          <option value="30">30</option>
-                          <option value="50">50</option>
-                        </select>
+                    <div class="comprarcredito-form">
+                        <div class="cc-col-left">
+                            <label class="text1">Saldo Disponible</label><br />
+                            <input type="text" class="input2" value="U$S <?=$this->session->userdata('fondo');?>" onkeypress="return false;" size="13" />
+                        </div>
+                        <div class="cc-col-right">
+                            <label class="text1">Agregar Fondos&nbsp;</label><br />
+                            <label class="text1">Importe&nbsp;</label>
+                            <select name="cboImport" id="cboImport" class="input style_input2">
+                              <option value="5">5</option>
+                              <option value="10">10</option>
+                              <option value="20">20</option>
+                              <option value="30">30</option>
+                              <option value="50">50</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="container_button">
@@ -54,7 +56,7 @@
                 </form>
                     <script type="text/javascript">
                     <!--
-                        creditBuy.initializer(<?=CREDIT_VALUE;?>);
+                        creditBuy.initializer();
                     -->
                     </script>
 

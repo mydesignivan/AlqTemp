@@ -21,7 +21,7 @@
                     <h1>Destacarme</h1>
                 </div>
 
-            <?php if( $this->session->userdata('credit')>0 ){?>
+            <?php if( $this->session->userdata('fondo')>0 ){?>
                 <div class="credit">
                     <div class="credit_attention">El posicionamiento de la propiedad <b>se realizar&aacute; unicamente para la secci&oacute;n elegida</b> y la <b>propiedad seleccionada.</b> La duraci&oacute;n de la posici&oacute;n ser&aacute; de <b>1 mes</b> desde la fecha de contrataci&oacute;n.</div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="table_bottom"></div>
 
                 <?php if( $propDisting->num_rows>0 ){?>
-                <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left', <?=DISTPROP_CREDIT;?>, <?=$this->session->userdata('credit');?>));" class="button2">Destacar</a></div>
+                <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left', <?=CFG_VALUE_PROPDISTING;?>, <?=$this->session->userdata('fondo');?>));" class="button2">Destacar</a></div>
                 <?php }?>
 
                 <br />&nbsp;<br />
@@ -102,7 +102,7 @@
 
              <?php }else{?>
 
-                <p>No posee creditos para destacar propiedades.</p>
+                <p class="message1">Usted no posee saldo para destacar una propiedad, para realizar esta operaci&oacute;n tiene que agregar fondos a su cuenta.</p>
 
             <?php }?>
              </div>

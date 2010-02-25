@@ -102,6 +102,11 @@ span.title1{
     font-weight:bold;
     font-size: 60% !important;
 }
+span.title2{
+    color:#FF7D00;
+    font-weight:bold;
+    font-size: 60% !important;
+}
 .button-enter-login {
     background:url(../images/button_enter_login.png) center no-repeat;
     width:69px;
@@ -116,6 +121,11 @@ span.title1{
 }
 .aling-right{
     text-align: right;
+}
+.text1{
+    color: #A25B1D;
+    font-size: 100%;
+    font-weight: bold;
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -1527,3 +1537,25 @@ span.title1{
             text-decoration:underline;
         }
 /****************************** END ERROR 404 ****************************/
+
+
+/********************* COMPRAR CREDITO ***********************/
+.comprarcredito-form{
+    padding-bottom: 70px;
+}
+.comprarcredito-form .cc-col-left{
+    float:left;
+    width:180px;
+    margin-left: 180px;
+}
+.comprarcredito-form .cc-col-right{
+    float:left;
+    width:180px;
+}
+/******************* END COMPRAR CREDITO *********************/
+
+.cont-saldo{
+    width:120px;
+    margin:auto;
+    padding-top:70px;
+}
