@@ -12,6 +12,11 @@ class Cuentaplus extends Controller {
         $this->load->view('cuentaplus_view');
     }
 
+    public function confirm(){
+        $check = $this->cuentaplus_model->check();
+        $this->load->view('cuentaplus_view', array('action'=>'confirm_buy', 'cuentaplus'=>$check));
+    }
+
     public function shipping(){
 
         $fondo = $this->session->userdata('fondo');
@@ -37,7 +42,11 @@ class Cuentaplus extends Controller {
                 $this->session->set_flashdata('cp_status', 'ok');
             }
         }
-        redirect('/cuentaplus_view/');
+        redirect('/cuentaplus/');
+    }
+
+    public function cancel(){
+        $this->load->view('cuentaplus_view', array('action'=>'cancel'));
     }
 
 }

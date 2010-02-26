@@ -30,7 +30,7 @@
 
 <script type="text/javascript">
 <!--
-    var baseURI = $("base").attr("href")+"<?=index_page();?>/";
+    var baseURI = $("base").attr("href")+"<?=index_page();?>";
 -->
 </script>
 

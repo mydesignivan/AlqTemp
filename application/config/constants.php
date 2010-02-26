@@ -191,6 +191,8 @@ define('IMAGE_ORIGINAL_HEIGHT', 600);
 |--------------------------------------------------------------------------
 * CFG_VALUE_xxxx es el importe del servicio (Esta expresado en dolares)
 */
+define('CFG_DISTPROP_PERIODO', 1);
+define('CFG_CUENTAPLUS_PERIODO', 1);
 define('CFG_VALUE_PROPDISTING', 5);
 define('CFG_VALUE_PROP', 10);
 define('CFG_VALUE_CUENTAPLUS', 100);

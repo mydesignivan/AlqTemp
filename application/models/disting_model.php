@@ -30,7 +30,7 @@ class disting_model extends Model {
     }
 
     public function disting($prop_id){
-        $date_end = substr(add_date(date('d-m-Y'), 0, CFG_DISTPROP_MONTH), 0, 10);
+        $date_end = substr(add_date(date('d-m-Y'), 0, CFG_DISTPROP_PERIODO), 0, 10);
 
         $this->fondos_model->extract(CFG_VALUE_PROPDISTING);
 

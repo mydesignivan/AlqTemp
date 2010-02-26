@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-02-2010 a las 18:11:10
+-- Tiempo de generación: 27-02-2010 a las 00:57:05
 -- Versión del servidor: 5.1.37
 -- Versión de PHP: 5.3.0
 
@@ -33,8 +33,8 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('acc15ae9bc81cf401e2c45b8fabcc231', '0.0.0.0', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1267098432, ''),
-('33b59389ccd8d8b557a609fd03d6bd13', '192.168.0.2', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1267110583, 'a:9:{s:7:"user_id";s:1:"1";s:8:"username";s:8:"mydesign";s:4:"name";s:12:"Ivan Mattoni";s:5:"email";s:19:"iwmattoni@yahoo.com";s:5:"phone";s:7:"4442192";s:6:"active";s:1:"1";s:5:"fondo";s:3:"900";s:5:"token";s:0:"";s:9:"logged_in";s:1:"1";}');
+('db833ac215a5351f2391a3ce5c336e75', '0.0.0.0', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1267184377, ''),
+('95bdf8b03fcbaf1f2e7a798f8c94b34d', '192.168.0.2', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1267192792, 'a:9:{s:7:"user_id";s:1:"1";s:8:"username";s:8:"mydesign";s:4:"name";s:12:"Ivan Mattoni";s:5:"email";s:19:"iwmattoni@yahoo.com";s:5:"phone";s:7:"4442192";s:6:"active";s:1:"1";s:5:"fondo";s:3:"700";s:5:"token";s:0:"";s:9:"logged_in";s:1:"1";}');
 
 -- --------------------------------------------------------
 
@@ -4786,7 +4786,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `email`, `phone`, `active`, `fondo`, `token`) VALUES
-(1, 'mydesign', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', 'iwmattoni@yahoo.com', '4442192', 1, 900, ''),
+(1, 'mydesign', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', 'iwmattoni@yahoo.com', '4442192', 1, 700, ''),
 (3, 'valeria', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', 'valeria@mydesign.com.ar', '', 1, 50, ''),
 (5, 'jsuarez', 'XSefDr9qBEzqXYhTFH5guxyDCbk=', 'juan', 'jsuarez@mydesign.com.ar', '', 0, 0, '');
 

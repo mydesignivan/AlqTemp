@@ -12,22 +12,42 @@ class cuentaplus_model extends Model {
     public function debit(){
         $this->fondos_model->extract(CFG_VALUE_CUENTAPLUS);
         $user_id = $this->session->userdata('user_id');
-        $data = array(
-            'user_id'=>$user_id,
-            'date_start'=>'now()',
-            'date_end'=>add_date(date('d-m-Y'), 0,0,1)
-        );
-        if( !$this->db->simple_query('SELECT * FROM '.TBL_CUENTAPLUS." WHERE user_id=".$user_id) ){
-            if( !$this->db->insert(TBL_CUENTAPLUS, $data) ){
+        $date_end = add_date(date('d-m-Y'), 0,0,CFG_CUENTAPLUS_PERIODO);
+
+        $query = $this->db->get_where(TBL_CUENTAPLUS, array('user_id'=>$user_id));
+        if( $query->num_rows==0 ){
+
+            $sql = "INSERT INTO ".TBL_CUENTAPLUS."(user_id, date_start, date_end) VALUES(";
+            $sql.= $user_id.",";
+            $sql.= "now(),";
+            $sql.= "'".$date_end."'";
+            $sql.= ")";
+
+            if( !$this->db->query($sql) ){
                 display_error(__FILE__, "debit", ERR_DB_INSERT, array(TBL_CUENTAPLUS));
             }
         }else{
-            unset($data['user_id']);
-            if( !$this->db->update(TBL_CUENTAPLUS, $data) ){
+            $sql = "UPDATE ".TBL_CUENTAPLUS." SET ";
+            $sql.= "date_start = now(),";
+            $sql.= "date_end = '".$date_end."' ";
+            $sql.= "WHERE user_id".$user_id;
+
+            if( !$this->db->query($sql) ){
                 display_error(__FILE__, "debit", ERR_DB_UPDATE, array(TBL_CUENTAPLUS));
             }
         }
         return true;
+    }
+
+    public function check(){
+        $query = $this->db->get_where(TBL_CUENTAPLUS, array('user_id'=>$this->session->userdata('user_id')));
+
+        if( $query->num_rows>0 ){
+            $data = $query->row_array();
+            return $data['date_end'];
+        }
+
+        return false;
     }
 
 
