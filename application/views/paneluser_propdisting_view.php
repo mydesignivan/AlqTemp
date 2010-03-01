@@ -18,7 +18,7 @@
         <div class="container_mainContent">
             <div id="mainContent">
                 <div class="content_top">
-                    <h1>Destacarme</h1>
+                    <h1>Destacar Propiedades</h1>
                 </div>
 
             <?php if( $this->session->userdata('fondo')>0 ){?>
@@ -46,7 +46,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><a href="<?=site_url('/prop/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
+                        <div class="table_center"><a href="<?=site_url('/propiedades/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row['category'];?></div>
                     </div>
                 <?php }
@@ -86,7 +86,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><a href="<?=site_url('/prop/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
+                        <div class="table_center"><a href="<?=site_url('/propiedades/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row['category'];?></div>
                     </div>
                 <?php } 

@@ -1,7 +1,7 @@
 /* 
  * Clase Account
  *
- * Llamada por las vistas: formregistro_view, paneluser_myaccount_view
+ * Llamada por las vistas: front_formregistro_view, paneluser_myaccount_view
  * Su funcion: Crear, Modificar o Eliminar usuarios
  *
  */

@@ -7,7 +7,7 @@ class Condicionesdeuso extends Controller {
     }
 
     public function index(){
-        $this->load->view('condiciones_view');
+        $this->load->view('front_condiciones_view');
     }
 
 }

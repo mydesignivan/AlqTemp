@@ -22,8 +22,8 @@
         <div class="menu_panel">
             <ul>
                 <li><a href="<?=site_url('/micuenta/');?>">Mi Cuenta</a></li>
-                <li><a href="<?=site_url('/prop/');?>">Propiedades</a></li>
-                <li><a href="<?=site_url('/destacarme/');?>">Destacar</a></li>
+                <li><a href="<?=site_url('/propiedades/');?>">Propiedades</a></li>
+                <li><a href="<?=site_url('/destacar/');?>">Destacar</a></li>
                 <li><a href="<?=site_url('/cuentaplus/');?>">Cuenta Plus</a></li>
                 <li><a href="<?=site_url('/agregarfondos/');?>">Agregar Fondos</a></li>
             </ul>

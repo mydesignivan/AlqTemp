@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Destacarme extends Controller {
+class Destacar extends Controller {
 
     function __construct(){
         parent::Controller();
@@ -10,7 +10,7 @@ class Destacarme extends Controller {
     public function index(){
         $data1 = $this->disting_model->get_list(0);
         $data2 = $this->disting_model->get_list(1);
-        $this->load->view('paneluser_destacarme_view', array('propDisting'=>$data1, 'propUndisting'=>$data2));
+        $this->load->view('paneluser_propdisting_view', array('propDisting'=>$data1, 'propUndisting'=>$data2));
     }
 
     public function disting(){
@@ -25,7 +25,7 @@ class Destacarme extends Controller {
             }else{
                 $this->disting_model->undisting($id);
             }
-            redirect('/destacarme/');
+            redirect('/destacar/');
         }
     }
 

@@ -9,7 +9,7 @@ class Rememberpass extends Controller {
     }
 
     public function index(){
-        $this->load->view('rememberpass_view', array('status'=>false));
+        $this->load->view('front_rememberpass_view', array('status'=>false));
     }
 
     public function send(){
@@ -18,7 +18,7 @@ class Rememberpass extends Controller {
             $result = $this->users_model->rememberpass(trim($_POST["txtField"]));
             if( $result['status']=="ok" ){
                 $data = $result['data'];
-                $link = site_url('/rememberpass/password_reset/'.urlencode($data['username']).'/'.$data['token']);
+                $link = site_url('/recordarcontrasenia/password_reset/'.urlencode($data['username']).'/'.$data['token']);
                 $message = sprintf(EMAIL_RP_MESSAGE,
                     $link,
                     $link
@@ -34,7 +34,7 @@ class Rememberpass extends Controller {
                     die($err);
                 }
             }
-            $this->load->view('rememberpass_view', array('status'=>$result['status'], 'field'=>$_POST['txtField']));
+            $this->load->view('front_rememberpass_view', array('status'=>$result['status'], 'field'=>$_POST['txtField']));
         }
     }
 
@@ -44,7 +44,7 @@ class Rememberpass extends Controller {
 
         if( $param1 && $param2 ){
             if( $this->users_model->check_token($param1, $param2) ){
-                $this->load->view('passwordreset_view', array('username'=>$param1, 'token'=>$param2));
+                $this->load->view('front_passwordreset_view', array('username'=>$param1, 'token'=>$param2));
             }else redirect('/');
         }else redirect('/');
     }
@@ -59,7 +59,7 @@ class Rememberpass extends Controller {
                         'password'=>$this->encpss->encode($_POST['txtPass'])
                      )
                 );
-                $this->load->view('passwordreset_view', $data);
+                $this->load->view('front_passwordreset_view', $data);
             }else redirect('/');
         }
     }

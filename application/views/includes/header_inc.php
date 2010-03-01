@@ -29,7 +29,7 @@
                             <input type="password" name="txtLoginPass" id="txtLoginPass" value="" class="input_login float-left validate" />
                         </div>
                         <div class="row"><input type="submit" id="btnLogin" value="Entrar" class="button-enter-login" /></div>
-                        <div class="row"><a href="<?=site_url('/rememberpass/');?>" class="link3">¿Olvido su Contraseña?</a></div>
+                        <div class="row"><a href="<?=site_url('/recordarcontrasenia/');?>" class="link3">¿Olvido su Contraseña?</a></div>
                     </form>
 
                     <div id="login-error"></div>
@@ -128,7 +128,7 @@
             <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
         </div>
 
-        <?php $url = !$this->session->userdata('logged_in') ? site_url('/registro/') : site_url('/prop/form/');?>
+        <?php $url = !$this->session->userdata('logged_in') ? site_url('/registro/') : site_url('/propiedades/form/');?>
 
         <div class="button_publicar"><a href="<?=$url;?>"><img src="images/button_publique_gratis.png" alt="publique gratis" border="0" onmouseover="this.src='images/button_publique_gratis_over.png'" onmouseout="this.src='images/button_publique_gratis.png'" /></a></div>
     </div>

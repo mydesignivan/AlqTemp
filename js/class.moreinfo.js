@@ -1,7 +1,7 @@
 /* 
  * Clase MoreInfo
  *
- * Llamada por las vistas: propdetalle_view
+ * Llamada por las vistas: front_moreinfo_view
  * Su funcion: Envia el form de consulta al propietario del inmueble.
  *
  */

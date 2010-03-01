@@ -28,7 +28,7 @@
                 <div class="content_top"><h1>Recordar contrase&ntilde;a</h1></div>
 
                 <div class="content_rememberpass">
-                    <form id="form1" action="<?=site_url('/rememberpass/send/');?>" method="post">
+                    <form id="form1" action="<?=site_url('/recordarcontrasenia/send/');?>" method="post">
                     <?php if( $status=="ok" ){?>
                         <p class="message1">Muy bien, le hemos enviado las instrucciones a su email. Reviselo!</p>
                         <p class="message1">Usted puede mantener esta pagina abierta mientras chequea su email. Si usted no recibe las instrucciones en el transcurso de un minuto o dos pruebe <a href="javascript:$('#form1').submit();">Reenviar las instrucciones</a></p>

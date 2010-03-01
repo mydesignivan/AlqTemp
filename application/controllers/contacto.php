@@ -7,7 +7,7 @@ class Contacto extends Controller {
     }
 
     public function index(){
-        $this->load->view('contact_view');
+        $this->load->view('front_contact_view');
     }
 
     public function send(){

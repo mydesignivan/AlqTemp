@@ -41,7 +41,7 @@
                         </form>
 
                         <?php }else{?>
-                        <form id="form2" action="<?=site_url('/rememberpass/send_newpass/'.$this->uri->segment(3)."/".$this->uri->segment(4));?>" method="post">
+                        <form id="form2" action="<?=site_url('/recordarcontrasenia/send_newpass/'.$this->uri->segment(3)."/".$this->uri->segment(4));?>" method="post">
                             <p class="message1">
                                 Cambie su Contrase&ntilde;a<br />
                                 Por favor, elija una contrase&ntilde;a para usar con su cuenta de AlquileresTemporarios.org

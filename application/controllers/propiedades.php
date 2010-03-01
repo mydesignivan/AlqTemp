@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Prop extends Controller {
+class Propiedades extends Controller {
 
     function __construct(){
         parent::Controller();
@@ -53,7 +53,7 @@ class Prop extends Controller {
             $status = $this->prop_model->create($data);
 
             if( $status ){
-                redirect('/prop/');
+                redirect('/propiedades/');
             }else{
                 show_error(ERR_PROP_CREATE);
             }
@@ -73,7 +73,7 @@ class Prop extends Controller {
             $status = $this->prop_model->update($data, $this->uri->segment(3));
 
             if( $status=="ok" ){
-                redirect('/prop/');
+                redirect('/propiedades/');
             }else{
                 show_error(ERR_PROP_EDIT);
             }
@@ -87,7 +87,7 @@ class Prop extends Controller {
             array_splice($id, 0,2);
             
             if( $this->prop_model->delete($id) ){
-                redirect('/prop/');
+                redirect('/propiedades/');
             }else{
                 show_error(ERR_PROP_DELETE);
             }
@@ -96,7 +96,7 @@ class Prop extends Controller {
 
     public function cancel(){
         delete_images_temp();
-        redirect('/prop/');
+        redirect('/propiedades/');
     }
 
     public function check(){

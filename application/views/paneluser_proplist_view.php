@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="buttons">
-                    <a href="<?=site_url('/prop/form/');?>" class="button1">Nuevo</a>
+                    <a href="<?=site_url('/propiedades/form/');?>" class="button1">Nuevo</a>
                 <?php if( $listProp->num_rows>0 ){?>
                     <a href="javascript:void(Prop.action.edit());" class="button1">Modificar</a>
                     <a href="javascript:void(Prop.action.del());" class="button1">Eliminar</a>
@@ -48,7 +48,7 @@
                                 <input type="checkbox" name="checkbox" value="<?=$row["prop_id"];?>" />
                                 <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                             </div>
-                            <div class="table_center"><a href="<?=site_url('/prop/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
+                            <div class="table_center"><a href="<?=site_url('/propiedades/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
                             <div class="table_right"><?=$row["category"];?></div>
                         </div>
                     <?php }

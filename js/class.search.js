@@ -2,8 +2,8 @@
  * Clase Search
  *
  * Llamada por las vistas:
- * useractivation_view, moreinfo_view, passwordreset_view, formregistro_view,
- * rememberpass_view, condiciones_view, index_view, contact_view
+ * front_useractivation_view, front_moreinfo_view, front_passwordreset_view, front_formregistro_view,
+ * front_rememberpass_view, front_condiciones_view, front_index_view, front_contact_view
  *
  * Su funcion: Busca propiedades.
  *

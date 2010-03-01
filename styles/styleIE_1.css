@@ -299,7 +299,7 @@ h3 {
 /****************************** FIN CUENTA PLUS *******************************/
 	
 	
-/***************** TABLAS (editar propiedades, destacarme) *********************/
+/***************** TABLAS (editar propiedades, destacar) *********************/
     .container_mainContent #mainContent .buttons{
         float:right;
         width:200px;
@@ -423,7 +423,7 @@ h3 {
             .container_mainContent #mainContent .selection span{
                 font-weight:bold;
             }
-/**************** FIN TABLAS (editar propiedades, destacarme) ********************/
+/**************** FIN TABLAS (editar propiedades, destacar) ********************/
 	
 	
 

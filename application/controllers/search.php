@@ -74,7 +74,7 @@ class Search extends Controller {
 
         $result_searches = $this->search_model->get_searches();
 
-        $this->load->view('index_view', array("listProp"=>$data['result'], "section_title"=>$title, "listSearches"=>$result_searches));
+        $this->load->view('front_index_view', array("listProp"=>$data['result'], "section_title"=>$title, "listSearches"=>$result_searches));
     }
 
 }
