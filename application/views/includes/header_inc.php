@@ -61,7 +61,7 @@
                 <span class="title2">Usuario:&nbsp;</span><span class="title1"><?=$this->session->userdata('name');?></span>
             </div>
             <div class="header-menu-cell3">
-                <a href="<?=site_url('/myaccount/');?>" class="link3">(mi cuenta)</a>
+                <a href="<?=site_url('/micuenta/');?>" class="link3">(mi cuenta)</a>
             </div>
             <div class="header-menu-salir">
                 <a href="<?=site_url('/login/logout/');?>" class="button1">Salir</a>

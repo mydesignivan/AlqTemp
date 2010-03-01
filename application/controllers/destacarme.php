@@ -3,14 +3,14 @@ class Destacarme extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
         $this->load->model('disting_model');
     }
 
     public function index(){
         $data1 = $this->disting_model->get_list(0);
         $data2 = $this->disting_model->get_list(1);
-        $this->load->view('destacarme_view', array('propDisting'=>$data1, 'propUndisting'=>$data2));
+        $this->load->view('paneluser_destacarme_view', array('propDisting'=>$data1, 'propUndisting'=>$data2));
     }
 
     public function disting(){
@@ -26,6 +26,17 @@ class Destacarme extends Controller {
                 $this->disting_model->undisting($id);
             }
             redirect('/destacarme/');
+        }
+    }
+
+    public function check_saldo_distingprop(){
+        $totalprop = $this->disting_model->get_list(0)->num_rows;
+        $saldo = (int)$this->session->userdata('fondo');
+        $new_saldo = $saldo - (CFG_COSTO_PROPDISTING*$totalprop);
+        if( $new_saldo<=0 ){
+            die("error");
+        }else{
+            die("ok");
         }
     }
 

@@ -1,8 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Myaccount extends Controller{
+class Micuenta extends Controller{
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
         
         $this->load->model('users_model');
         $this->load->library('encpss');
@@ -12,7 +12,7 @@ class Myaccount extends Controller{
     public function index(){
         $query = $this->users_model->get_user($this->session->userdata('user_id'));
         $data = $query->row_array();
-        $this->load->view("micuenta_view", array('dataUser'=>$data));
+        $this->load->view("paneluser_myaccount_view", array('dataUser'=>$data));
     }
 
     public function edit(){

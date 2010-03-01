@@ -29,10 +29,9 @@ class Simplelogin{
 
 
         //Check against user table
-        $this->CI->db->where('username', $user);
-        $query = $this->CI->db->getwhere($this->user_table);
+        $query = $this->CI->db->get_where($this->user_table, array('username'=>$user));
 
-        if ($query->num_rows() > 0) {
+        if ($query->num_rows > 0) {
             $row = $query->row_array();
             //Check against password
 
@@ -40,7 +39,7 @@ class Simplelogin{
                 return 'loginfaild';
             }
 
-            if( $row['active']==0 ){
+            if( $row['level']==0 && $row['active']==0 ){
                 return 'userinactive';
             }
 

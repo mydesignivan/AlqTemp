@@ -21,11 +21,11 @@
     <div class="column_panel">
         <div class="menu_panel">
             <ul>
-                <li><a href="<?=site_url('/myaccount/');?>">Mi Cuenta</a></li>
+                <li><a href="<?=site_url('/micuenta/');?>">Mi Cuenta</a></li>
                 <li><a href="<?=site_url('/prop/');?>">Propiedades</a></li>
                 <li><a href="<?=site_url('/destacarme/');?>">Destacar</a></li>
                 <li><a href="<?=site_url('/cuentaplus/');?>">Cuenta Plus</a></li>
-                <li><a href="<?=site_url('/comprarcredito/');?>">Agregar Fondos</a></li>
+                <li><a href="<?=site_url('/agregarfondos/');?>">Agregar Fondos</a></li>
             </ul>
         </div>
     </div>

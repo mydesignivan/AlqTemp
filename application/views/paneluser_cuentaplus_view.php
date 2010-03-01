@@ -62,7 +62,7 @@
                 <?php }
                     }else{
 
-                        if( $action=="confirm_buy" && !$cuentaplus){?>
+                        if( $action=="confirm_buy" && !$check_cuentaplus['result']){?>
 
                             <div class="plus1">
                                 <p>Se va realizar una compra de la Cuenta Plus por un valor de U$S 100</p>
@@ -71,9 +71,9 @@
                                 <a class="button2" href="<?=site_url('/cuentaplus/cancel/');?>">Cancelar</a>
                             </div>
 
-                    <?php }elseif( $action=="confirm_buy" && $cuentaplus ){?>
+                    <?php }elseif( $action=="confirm_buy" && $check_cuentaplus['result'] ){?>
 
-                        <p>Usted ya posee el servicio de cuenta plus hasta el <?=$cuentaplus;?>. Si desea extender su plazo haga clic <a href="<?=site_url('/cuentaplus/shipping/');?>">aqu&iacute;</a></p>
+                        <p>Usted ya posee el servicio de cuenta plus hasta el <?=$check_cuentaplus['date'];?>. Si desea extender su plazo haga clic <a href="<?=site_url('/cuentaplus/shipping/');?>">aqu&iacute;</a></p>
 
                     <?php }elseif( $action=="cancel" ){?>
 

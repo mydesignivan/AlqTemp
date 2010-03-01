@@ -1,14 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Comprarcredito extends Controller {
+class Agregarfondos extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
         $this->load->library('email');
     }
 
     public function index(){
-        $this->load->view('comprarcreditos_view');
+        $this->load->view('paneluser_addfondo_view');
     }
 
     public function send(){
@@ -32,7 +32,7 @@ class Comprarcredito extends Controller {
             $this->email->message($message);
             if( $this->email->send() ){
                 $this->session->set_flashdata('status', 'ok');
-                redirect('/comprarcredito/');
+                redirect('/agregarfondos/');
             }else {
                 //show_error(ERR_103);
             }
@@ -40,10 +40,10 @@ class Comprarcredito extends Controller {
     }
 
     public function success(){
-        $this->load->view('comprarcreditos_view', array('result_buy'=>'success'));
+        $this->load->view('paneluser_addfondo_view', array('result_buy'=>'success'));
     }
     public function cancel(){
-        $this->load->view('comprarcreditos_view', array('result_buy'=>'cancel'));
+        $this->load->view('paneluser_addfondo_view', array('result_buy'=>'cancel'));
     }
 
 

@@ -3,24 +3,24 @@ class Cuentaplus extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
         $this->load->model('cuentaplus_model');
         $this->load->library('email');
     }
 
     public function index(){
-        $this->load->view('cuentaplus_view');
+        $this->load->view('paneluser_cuentaplus_view');
     }
 
     public function confirm(){
-        $check = $this->cuentaplus_model->check();
-        $this->load->view('cuentaplus_view', array('action'=>'confirm_buy', 'cuentaplus'=>$check));
+        $check_cuentaplus = $this->cuentaplus_model->check();        
+        $this->load->view('paneluser_cuentaplus_view', array('action'=>'confirm_buy', 'check_cuentaplus'=>$check_cuentaplus));
     }
 
     public function shipping(){
 
         $fondo = $this->session->userdata('fondo');
-        $newfondo = (int)$fondo-CFG_VALUE_CUENTAPLUS;
+        $newfondo = (int)$fondo-CFG_COSTO_CUENTAPLUS;
         if( $newfondo<=0 ){
             $this->session->set_flashdata('cp_status', 'insufficient_amount');
 
@@ -46,7 +46,7 @@ class Cuentaplus extends Controller {
     }
 
     public function cancel(){
-        $this->load->view('cuentaplus_view', array('action'=>'cancel'));
+        $this->load->view('paneluser_cuentaplus_view', array('action'=>'cancel'));
     }
 
 }

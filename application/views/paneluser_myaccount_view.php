@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Alquileres temporarios</title>
@@ -29,7 +30,7 @@
                 <div class="content_left">
                     <?php require('includes/popup_inc.php');?>
                     
-                    <form id="formAccount" action="<?=site_url('/myaccount/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="formAccount" action="<?=site_url('/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <p><span class="cell">*Nombre:</span><input type="text" class="input validate" name="txtName" value="<?=$dataUser['name'];?>" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" class="input validate" name="txtEmail" value="<?=$dataUser['email'];?>" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" value="<?=$dataUser['phone'];?>" /></p>

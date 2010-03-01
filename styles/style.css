@@ -1539,20 +1539,20 @@ span.title2{
 /****************************** END ERROR 404 ****************************/
 
 
-/********************* COMPRAR CREDITO ***********************/
-.comprarcredito-form{
+/********************* AGREGAR FONDOS ***********************/
+.addfondo-form{
     padding-bottom: 70px;
 }
-.comprarcredito-form .cc-col-left{
+.addfondo-form .cc-col-left{
     float:left;
     width:180px;
     margin-left: 180px;
 }
-.comprarcredito-form .cc-col-right{
+.addfondo-form .cc-col-right{
     float:left;
     width:180px;
 }
-/******************* END COMPRAR CREDITO *********************/
+/******************* END AGREGAR FONDOS *********************/
 
 .cont-saldo{
     width:120px;

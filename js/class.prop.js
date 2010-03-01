@@ -1,7 +1,7 @@
 /* 
  * Clase Prop
  *
- * Llamada por las vistas: propform_view, proplist_view, destacarme_view
+ * Llamada por las vistas: paneluser_propform_view, paneluser_proplist_view, paneluser_destacarme_view
  * Su funcion:
  *  - Crear, Modificar o Eliminar propiedades
  *  - Destaca prop o elimina prop destacadas.
@@ -94,13 +94,6 @@ var Prop = new (function(){
     };
 
     this.action={
-        newprop : function(){
-            if( $('#tblProp input[type=checkbox]').length<=3 ){
-                location.href = baseURI+'prop/form';
-            }else{
-                location.href = baseURI+'prop/message';
-            }
-        },
         edit : function(){
             var lstProp = $("#tblProp .table_left input:checked");
             if( lstProp.length==0 ){
@@ -130,44 +123,73 @@ var Prop = new (function(){
             return false;
         },
 
-        disting : function(dist, sel, fondo, user_fondo){
-            var lstProp = $(sel+" input:checked");
+        disting : function(dist, selector){
+            if( working ) return false;
+
+            var lstProp = $(selector+" input:checked");
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad.");
                 return false;
             }
+            var info = get_data(lstProp);
+            var url = baseURI+"destacarme/disting/"+info.id+"/"+dist;
 
-            var newfondo = user_fondo - (fondo*lstProp.length);
-
-            if( newfondo<=0 ){
-                alert("El saldo disponible no es suficiente para destacar una propiedad.");
-                return false;
+            if( dist==1 ){
+                working=true;
+                $.get(baseURI+'destacarme/check_saldo_distingprop', function(data){
+                    if( data=="error" ){
+                        alert("El saldo disponible no es suficiente para destacar una propiedad.");
+                        return false;
+                    }else if( data=="ok" ){
+                        location.href = url;
+                    }else{
+                        alert("ERROR:\n"+data);
+                    }
+                    working=false;
+                });
+            }else{
+                location.href = url;
             }
 
-            var data = get_data(lstProp);
-
-            location.href = baseURI+"destacarme/disting/"+data.id+"/"+dist;
             return false;
         }
     };
 
     this.append_row_file = function(el){
-        var divRow = $('<div class="row"></div>');
-        var divCol = $('<div class="col"></div>');
-        var button = $('<div class="button2 float-left btnexamin">Examinar</div>');
-        var input  = $('<input type="text" name="" class="input style_input float-left ajaxupload-input" value="" />');
-            input.bind('keypress', function(e){e.preventDefault();});
+        if( working ) return false;
+        working=true;
+        
+        var total_img = $('input.ajaxupload-input:not(empty)').length;
 
-        divCol.append('<div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>')
-              .append('<a href="#" class="previewthumb ajaxupload-preview" rel="group"><img src="" alt="" width="69" height="60" /></a>')
-              .append(input)
-              .append(button)
-              .append('<a class="button2 float-left" onclick="Prop.remove_row_file(this); return false;">Eliminar</a>');
-              
-        divRow.append(divCol);
+        $.get(baseURI+'prop/check_total_images/'+total_img, function(data){
+           if( data=="limitexceeded" ){
+               alert('Ha superado el limite para cargar imagenes.');
+           }else if( data=="accesdenied" ){
+               alert('Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres imágenes.\nEn caso que desee cargar mas imágenes, debera obtener una "Cuenta Plus"');
+           }else if( data=="ok" ){
+                var divRow = $('<div class="row"></div>');
+                var divCol = $('<div class="col"></div>');
+                var button = $('<div class="button2 float-left btnexamin">Examinar</div>');
+                var input  = $('<input type="text" name="" class="input style_input float-left ajaxupload-input" value="" />');
+                    input.bind('keypress', function(e){e.preventDefault();});
 
-        $(el).parent().before(divRow);
-        AjaxUpload.append_input(button);
+                divCol.append('<div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>')
+                      .append('<a href="#" class="previewthumb ajaxupload-preview" rel="group"><img src="" alt="" width="69" height="60" /></a>')
+                      .append(input)
+                      .append(button)
+                      .append('<a class="button2 float-left" onclick="Prop.remove_row_file(this); return false;">Eliminar</a>');
+
+                divRow.append(divCol);
+
+                $(el).parent().before(divRow);
+                AjaxUpload.append_input(button);
+           }else{
+               alert('ERROR\n'+data);
+           }
+           working=false;
+        });
+
+        return false;
     };
 
     this.remove_row_file = function(el, image_id){

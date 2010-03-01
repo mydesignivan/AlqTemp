@@ -57,7 +57,7 @@
                 <div class="table_bottom"></div>
 
                 <?php if( $propDisting->num_rows>0 ){?>
-                <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left', <?=CFG_VALUE_PROPDISTING;?>, <?=$this->session->userdata('fondo');?>));" class="button2">Destacar</a></div>
+                <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left'));" class="button2">Destacar</a></div>
                 <?php }?>
 
                 <br />&nbsp;<br />
@@ -97,7 +97,7 @@
                 <div class="table_bottom"></div>
 
                 <?php if( $propUndisting->num_rows>0 ){?>
-                <div class="container_button"><a href="javascript:void(Prop.action.disting(0, '#tblProp2 .table_left'));" class="button2">Eliminar</a></div>
+                <div class="container_button"><a href="javascript:void(Prop.action.disting(0, '#tblProp2 .table_left'));" class="button3">Quitar Destacado</a></div>
                 <?php }?>
 
              <?php }else{?>

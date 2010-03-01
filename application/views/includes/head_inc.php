@@ -30,7 +30,11 @@
 
 <script type="text/javascript">
 <!--
-    var baseURI = $("base").attr("href")+"<?=index_page();?>";
+<?php 
+    $indexphp = index_page();
+    if( !empty($indexphp) ) $indexphp.="/";
+?>
+    var baseURI = $("base").attr("href")+"<?=$indexphp;?>";
 -->
 </script>
 

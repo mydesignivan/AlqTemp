@@ -1,7 +1,7 @@
 /* 
  * Clase ComboBox
  *
- * Llamada por las vistas: propform_view
+ * Llamada por las vistas: paneluser_propform_view
  * Su funcion: Mostrar el listado de los Estados/Provincias
  * 
  */

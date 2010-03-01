@@ -70,7 +70,7 @@ class Registro extends Controller {
                 $this->email->subject(EMAIL_REGACTIVE_SUBJECT);
                 $this->email->message($message);
                 if( $this->email->send() ){
-                    $this->load->view('activacion_view', array('username'=>$user['username']));
+                    $this->load->view('useractivation_view', array('username'=>$user['username']));
                 }else {
                     $err = $this->email->print_debugger();
                     log_message("error", $err);

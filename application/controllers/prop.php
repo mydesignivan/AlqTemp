@@ -3,10 +3,11 @@ class Prop extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
 
         $this->load->helper('combobox');
         $this->load->model('prop_model');
+        $this->load->model('cuentaplus_model');
     }
 
     /*
@@ -14,20 +15,34 @@ class Prop extends Controller {
      */
     public function index(){
         $data = $this->prop_model->get_list_prop();
-        $this->load->view('proplist_view', array('listProp'=>$data));
-    }
-
-    public function message(){
-        $data = $this->prop_model->get_list_prop();
-        $this->load->view('proplist_view', array('listProp'=>'showmessage'));
+        $this->load->view('paneluser_proplist_view', array('listProp'=>$data));
     }
 
     public function form(){
-        $data = $this->uri->segment(3) ? $this->prop_model->get_prop($this->uri->segment(3)) : false;
-        $services = $this->prop_model->get_services();
-        $total_prop = !$this->uri->segment(3) ? $this->prop_model->get_total_prop() : 0;
+        if( !$this->uri->segment(3) ){
+            $check = $this->check_total_propfree();
 
-        $this->load->view('propform_view', array('services' => $services->result_array(), 'data'=>$data, 'total_prop'=>$total_prop));
+            if( $check['result'] ){
+                $arr = array(
+                    'action'=>'show',
+                    'data'=>false,
+                    'services'=>$this->prop_model->get_services()->result_array()
+                );
+            }else{
+                $arr = array(
+                    'action'=>$check['error'],
+                    'data'=>false
+                );
+            }
+        }else{
+            $arr = array(
+                'action'=>'show',
+                'data'=>$this->prop_model->get_prop($this->uri->segment(3)),
+                'services'=>$this->prop_model->get_services()->result_array()
+            );
+        }
+        $this->load->view('paneluser_propform_view', $arr);
+
     }
 
     public function create(){
@@ -89,7 +104,25 @@ class Prop extends Controller {
             echo "exists";
         }
     }
-    
+
+    public function check_total_images(){
+        if( is_numeric($this->uri->segment(3)) ){
+            $check_cp = $this->cuentaplus_model->check();
+            $total_images = $this->uri->segment(3);
+
+            if( $check_cp['result'] ){ //Hay cuenta plus
+                if( $total_images>=CFG_CUENTAPLUS_TOTAL_IMAGES ) {
+                    die('limitexceeded');
+                }
+            }else{
+                if( $total_images>=CFG_FREE_TOTAL_IMAGES ) {
+                    die('accesdenied');
+                }
+            }
+            die("ok");
+        }
+    }
+
     /*
      * FUNCTIONS PRIVATE
      */
@@ -109,6 +142,29 @@ class Prop extends Controller {
         );
         return $data;
     }
+
+    private function check_total_propfree(){
+        $check_cp = $this->cuentaplus_model->check();
+        $total_prop = $this->prop_model->get_total_prop();
+
+        if( $check_cp['result'] ){ //Hay cuenta plus
+            if( $total_prop>=CFG_CUENTAPLUS_TOTAL_PROP ) {
+                return array(
+                    'result'=>false,
+                    'error'=>'limitexceeded'
+                );
+            }
+        }else{
+            if( $total_prop>=CFG_FREE_TOTAL_PROP ) {
+                return array(
+                    'result'=>false,
+                    'error'=>'accesdenied'
+                );
+            }
+        }
+        return array('result'=>true);
+    }
+
 }
 
 ?>

@@ -1,7 +1,7 @@
 /* 
  * Clase Account
  *
- * Llamada por las vistas: formregistro_view, micuenta_view
+ * Llamada por las vistas: formregistro_view, paneluser_myaccount_view
  * Su funcion: Crear, Modificar o Eliminar usuarios
  *
  */
@@ -94,7 +94,7 @@ var Account = new (function(){
         var msg = "Si elimina su usuario se eliminara también las propiedades associadas.\n";
         msg+= "¿Está seguro de confirmar la eliminación del usuario?.";
         if( confirm(msg) ){
-            location.href = baseURI+"myaccount/delete/"+id;
+            location.href = baseURI+"micuenta/delete/"+id;
         }
         return false;
     };

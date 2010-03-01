@@ -191,11 +191,14 @@ define('IMAGE_ORIGINAL_HEIGHT', 600);
 |--------------------------------------------------------------------------
 * CFG_VALUE_xxxx es el importe del servicio (Esta expresado en dolares)
 */
-define('CFG_DISTPROP_PERIODO', 1);
-define('CFG_CUENTAPLUS_PERIODO', 1);
-define('CFG_VALUE_PROPDISTING', 5);
-define('CFG_VALUE_PROP', 10);
-define('CFG_VALUE_CUENTAPLUS', 100);
+define('CFG_TIME_DISTPROP', 1);      // Tiempo que dura una propiedad destacada (expresado en meses)
+define('CFG_TIME_CUENTAPLUS', 1);    // Tiempo que dura una Cuenta Plus (expresado en años)
+define('CFG_COSTO_PROPDISTING', 5);  // Costo para destacar propiedad
+define('CFG_COSTO_CUENTAPLUS', 100); // Costo para adquirir una cuenta plus
+define('CFG_FREE_TOTAL_PROP', 3);    // Cantidad de propiedad gratis
+define('CFG_FREE_TOTAL_IMAGES', 3);  // Cantidad de imagenes gratis
+define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS
+define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS
 
 
 

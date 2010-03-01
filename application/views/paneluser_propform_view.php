@@ -34,11 +34,20 @@
                     <h1><?=(!$data) ? "Nueva Propiedad" : "Modificar Propiedad";?></h1>
                 </div>
                 <div class="content_left">
-                <?php if( @$total_prop>=3 ){
+                <?php if( @$action=="accesdenied" ){?>
 
-                    include("includes/message_inc.php");
+                    <p class="message1">
+                        Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres propiedades.<br />
+                        En caso que desee cargar mas propiedades, debera obtener una <a href="<?=site_url('/cuentaplus/');?>">Cuenta Plus</a>.
+                    </p>
 
-                }else{?>
+                <?php }elseif( @$action=="limitexceeded" ){?>
+
+                    <p class="message1">
+                        Ha superado el limite para cargar propiedades.
+                    </p>
+
+                <?php }else{?>
                     
                     <?php require('includes/popup_inc.php');?>
 

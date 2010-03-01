@@ -1,18 +1,17 @@
 /* 
- * Clase creditBuy
+ * Clase Fondo
  *
- * Llamada por las vistas: comprarcreidtos_view
- * Su funcion: Eniva el pedido de compra
+ * Llamada por las vistas: paneluser_addfondo_view
+ * Su funcion: Envia el pedido de compra
  *
  */
 
-var creditBuy = new (function(){
+var Fondo = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
     this.initializer = function(){
         f = $('#form1')[0];
-        This.show_credit(f.cboImport.value);
     };
 
     this.buy = function(){
