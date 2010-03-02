@@ -4,6 +4,7 @@ class Propiedades extends Controller {
     function __construct(){
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        set_useronline();
 
         $this->load->helper('combobox');
         $this->load->model('prop_model');
@@ -50,6 +51,8 @@ class Propiedades extends Controller {
 
             $data = $this->request_fields();
             $data['images_new'] = $_POST['images_new'];
+            $data['date_added'] = "now()";
+
             $status = $this->prop_model->create($data);
 
             if( $status ){
@@ -69,6 +72,7 @@ class Propiedades extends Controller {
             $data['images_deletes'] = $_POST['images_deletes'];
             $data['images_modified_id'] = $_POST['images_modified_id'];
             $data['images_modified_name'] = $_POST['images_modified_name'];
+            $data['last_modified'] = "now()";
 
             $status = $this->prop_model->update($data, $this->uri->segment(3));
 

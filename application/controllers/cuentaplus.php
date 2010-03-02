@@ -4,6 +4,8 @@ class Cuentaplus extends Controller {
     function __construct(){
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        set_useronline();
+
         $this->load->model('cuentaplus_model');
         $this->load->library('email');
     }

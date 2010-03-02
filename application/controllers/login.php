@@ -16,7 +16,7 @@ class Login extends Controller{
             if( $this->session->userdata('level')==0 ){
                 redirect('/');
             }else{
-                redirect('/panel/');
+                redirect('/inicio/');
             }
         }
     }

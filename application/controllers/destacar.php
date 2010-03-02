@@ -4,6 +4,8 @@ class Destacar extends Controller {
     function __construct(){
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        set_useronline();
+
         $this->load->model('disting_model');
     }
 

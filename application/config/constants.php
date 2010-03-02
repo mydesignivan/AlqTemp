@@ -52,6 +52,7 @@ define('TBL_PROPERTIES_DISTING', 'properties_disting');
 define('TBL_USERS', 'users');
 define('TBL_LOGSEARCHES', 'log_searches');
 define('TBL_CUENTAPLUS', 'cuentaplus');
+define('TBL_USERSONLINE', 'users_online');
 
 
 /*

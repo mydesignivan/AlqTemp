@@ -17,11 +17,12 @@ class Registro extends Controller {
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             
             $data = array(
-                'name'     => $_POST["txtName"],
-                'email'    => $_POST["txtEmail"],
-                'phone'    => $_POST["txtPhone"],
-                'username' => $_POST["txtUser"],
-                'password' => $this->encpss->encode($_POST["txtPass"])
+                'name'       => $_POST["txtName"],
+                'email'      => $_POST["txtEmail"],
+                'phone'      => $_POST["txtPhone"],
+                'username'   => $_POST["txtUser"],
+                'password'   => $this->encpss->encode($_POST["txtPass"]),
+                'date_added' => 'now()'
             );
 
             $user_id = $this->users_model->create($data);

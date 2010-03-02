@@ -3,6 +3,7 @@ class Micuenta extends Controller{
     function __construct(){
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        set_useronline();
         
         $this->load->model('users_model');
         $this->load->library('encpss');
@@ -19,11 +20,12 @@ class Micuenta extends Controller{
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             
             $data = array(
-                'name'     => $_POST["txtName"],
-                'email'    => $_POST["txtEmail"],
-                'phone'    => $_POST["txtPhone"],
-                'username' => $_POST["txtUser"],
-                'password' => $this->encpss->encode($_POST["txtPass"])
+                'name'          => $_POST["txtName"],
+                'email'         => $_POST["txtEmail"],
+                'phone'         => $_POST["txtPhone"],
+                'username'      => $_POST["txtUser"],
+                'password'      => $this->encpss->encode($_POST["txtPass"]),
+                'last_modified' => 'now()'
             );
 
             $status = $this->users_model->update($data, $_POST["user_id"]);

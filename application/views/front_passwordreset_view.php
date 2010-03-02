@@ -21,7 +21,7 @@
         <!-- end #header -->
       
         
-        <?php include('includes/banner_inc.php');?>
+        <?php include('includes/banner_vertical_inc.php');?>
       
         <div class="container_mainContent">
             <div id="mainContent">
