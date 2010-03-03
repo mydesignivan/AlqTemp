@@ -58,7 +58,7 @@
                                     <br />
                                     <a href="javascript:void($('#imgCaptcha').attr('src', '<?=site_url('/captcha/index/');?>/'+Math.random()));" tabindex="-1" title="Mostrar otro"><img src="images/refresh.gif" alt="Mostrar otro" border="0" onclick="this.blur()" align="bottom" /></a>
                                 </div>
-                                <img id="imgCaptcha" src="<?=site_url('/captcha/index/'.md5(time()));?>" align="left" border="0" alt="" />
+                                <img id="imgCaptcha" src="<?=site_url('/captcha/index/'.md5(time()));?>" align="left" border="1" alt="" />
 
                             </div>
                         </p>

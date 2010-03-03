@@ -36,15 +36,9 @@
                         <legend>Info. Propiedades</legend>
 
                         <p><b>Cant. prop. nuevas en el dia de hoy:</b> <?=$info['prop']['count_prop_day'];?></p>
-                        <p><b>Total de propiedades:</b> 200</p>
+                        <p><b>Total de propiedades:</b> <?=$info['prop']['total_prop'];?></p>
 
                     </fieldset>
-
-                    <script type="text/javascript">
-                    <!--
-                        //Account.initializer();
-                    -->
-                    </script>
                 </div>
 
                 <div class="content_right">

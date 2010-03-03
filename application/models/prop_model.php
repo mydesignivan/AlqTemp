@@ -198,6 +198,16 @@ class Prop_model extends Model {
         $this->db->order_by('address', 'asc');
         return $this->db->get(TBL_PROPERTIES);
     }
+    public function get_list2_prop($user_id){
+        $sql = "prop_id, address,user_id,";
+        $sql.= "(SELECT username FROM ".TBL_USERS." WHERE user_id = ".TBL_PROPERTIES.".user_id) as username";
+        $this->db->select($sql, false);
+        $this->db->where("user_id", $user_id);
+        $this->db->order_by('prop_id', 'desc');
+        $this->db->order_by('address', 'asc');
+        $this->db->order_by('username', 'asc');
+        return $this->db->get(TBL_PROPERTIES);
+    }
 
 
     public function get_prop($prop_id){

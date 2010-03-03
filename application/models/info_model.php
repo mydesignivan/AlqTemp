@@ -42,9 +42,6 @@ class info_model extends Model {
         $count = $this->db->query("SELECT count(*) as total FROM ".TBL_PROPERTIES)->row_array();
         $data['total_prop'] = $count['total'];
 
-
-
-
         return $data;
     }
 
