@@ -14,23 +14,23 @@ class Login extends Controller{
             $this->session->set_flashdata('statusLogin', $statusLogin);
 
             if( $this->session->userdata('level')==0 ){
-                redirect('/');
+                redirect('/index/');
             }else{
-                redirect('/inicio/');
+                redirect('/paneladmin/informacion/');
             }
         }
     }
 
     public function logout(){
         $this->simplelogin->logout();
-        redirect('/');
+        redirect('/index/');
     }
 
     public function account_access(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             $this->load->library('encpss');
             if( $this->simplelogin->login($this->encpss->decode($_POST["p1"]), $this->encpss->decode($_POST["p2"])) ){
-                redirect('/micuenta/');
+                redirect('/panel/micuenta/');
             }
         }
     }

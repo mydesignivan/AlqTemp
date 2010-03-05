@@ -30,7 +30,7 @@
                 <div class="content_left">
                     <?php require('includes/popup_inc.php');?>
                     
-                    <form id="formAccount" action="<?=site_url('/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
+                    <form id="formAccount" action="<?=site_url('/panel/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <p><span class="cell">*Nombre:</span><input type="text" class="input validate" name="txtName" value="<?=$dataUser['name'];?>" /></p>
                         <p><span class="cell">*E-Mail:</span><input type="text" class="input validate" name="txtEmail" value="<?=$dataUser['email'];?>" /></p>
                         <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" value="<?=$dataUser['phone'];?>" /></p>

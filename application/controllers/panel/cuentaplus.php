@@ -3,7 +3,7 @@ class Cuentaplus extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
         set_useronline();
 
         $this->load->model('cuentaplus_model');
@@ -44,7 +44,7 @@ class Cuentaplus extends Controller {
                 $this->session->set_flashdata('cp_status', 'ok');
             }
         }
-        redirect('/cuentaplus/');
+        redirect('/panel/cuentaplus/');
     }
 
     public function cancel(){

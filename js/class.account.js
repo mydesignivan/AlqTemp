@@ -94,7 +94,7 @@ var Account = new (function(){
         var msg = "Si elimina su usuario se eliminara también las propiedades associadas.\n";
         msg+= "¿Está seguro de confirmar la eliminación del usuario?.";
         if( confirm(msg) ){
-            location.href = baseURI+"micuenta/delete/"+id;
+            location.href = baseURI+"panel/micuenta/delete/"+id;
         }
         return false;
     };

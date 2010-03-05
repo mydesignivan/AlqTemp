@@ -3,7 +3,7 @@ class Agregarfondos extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
         set_useronline();
         $this->load->library('email');
     }
@@ -33,7 +33,7 @@ class Agregarfondos extends Controller {
             $this->email->message($message);
             if( $this->email->send() ){
                 $this->session->set_flashdata('status', 'ok');
-                redirect('/agregarfondos/');
+                redirect('/panel/agregarfondos/');
             }else {
                 //show_error(ERR_103);
             }

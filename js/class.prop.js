@@ -49,7 +49,7 @@ var Prop = new (function(){
 
                 $.ajax({
                     type : 'get',
-                    url  : baseURI+'propiedades/check/'+escape(f.txtAddress.value)+propid,
+                    url  : baseURI+'panel/propiedades/check/'+escape(f.txtAddress.value)+propid,
                     success : function(data){
                         if( data=="exists" ){
                             show_error(f.txtAddress, 'La direcci&oacute;n ingresada ya existe.')
@@ -77,7 +77,7 @@ var Prop = new (function(){
                             }
 
                             f.services.value = servsel;
-                            f.action = (propid=="") ? baseURI+"propiedades/create" : baseURI+"propiedades/edit"+propid;
+                            f.action = (propid=="") ? baseURI+"panel/propiedades/create" : baseURI+"panel/propiedades/edit"+propid;
                             f.submit();
                         }
 
@@ -132,11 +132,11 @@ var Prop = new (function(){
                 return false;
             }
             var info = get_data(lstProp);
-            var url = baseURI+"destacar/disting/"+info.id+"/"+dist;
+            var url = baseURI+"panel/destacar/disting/"+info.id+"/"+dist;
 
             if( dist==1 ){
                 working=true;
-                $.get(baseURI+'destacar/check_saldo_distingprop', function(data){
+                $.get(baseURI+'panel/destacar/check_saldo_distingprop', function(data){
                     if( data=="error" ){
                         alert("El saldo disponible no es suficiente para destacar una propiedad.");
                         return false;

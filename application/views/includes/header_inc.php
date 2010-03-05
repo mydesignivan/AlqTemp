@@ -1,13 +1,13 @@
     <!--<div id="message-login"></div>-->
 
     <div class="top_left">
-        <div class="logo"><a href="<?=site_url('/');?>"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" /></a></div>
+        <div class="logo"><a href="<?=site_url('/index/');?>"><img src="images/logo_alquilerestemp.png" alt="www.alquilerestemporarios.org" /></a></div>
     </div>
 
     <div class="top_right">
         <div class="registro">
             <div class="header-menu-cell1">
-                <a href="<?=site_url('/');?>" class="link2"><img src="images/icono_inicio.png" alt="" /> Inicio</a>
+                <a href="<?=site_url('/index/');?>" class="link2"><img src="images/icono_inicio.png" alt="" /> Inicio</a>
                 <a href="<?=site_url('/contacto/');?>" class="link2"><img src="images/icono_contacto.png" alt="" /> Contacto</a>
             </div>
 
@@ -61,7 +61,7 @@
                 <span class="title2">Usuario:&nbsp;</span><span class="title1"><?=$this->session->userdata('name');?></span>
             </div>
             <div class="header-menu-cell3">
-                <a href="<?=site_url('/micuenta/');?>" class="link3">(mi cuenta)</a>
+                <a href="<?=site_url('/panel/micuenta/');?>" class="link3">(mi cuenta)</a>
             </div>
             <div class="header-menu-salir">
                 <a href="<?=site_url('/login/logout/');?>" class="button1">Salir</a>
@@ -118,7 +118,7 @@
 
         <?php include('banner_horizontal_inc.php');?>
 
-        <?php $url = !$this->session->userdata('logged_in') ? site_url('/registro/') : site_url('/propiedades/form/');?>
+        <?php $url = !$this->session->userdata('logged_in') ? site_url('/registro/') : site_url('/panel/propiedades/form/');?>
 
         <div class="button_publicar"><a href="<?=$url;?>"><img src="images/button_publique_gratis.png" alt="publique gratis" border="0" onmouseover="this.src='images/button_publique_gratis_over.png'" onmouseout="this.src='images/button_publique_gratis.png'" /></a></div>
     </div>

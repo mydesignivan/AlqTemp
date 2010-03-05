@@ -30,7 +30,7 @@ var RememberPass = new (function(){
             if( error=="userinactive"||error=="notexists" ){
                 var msg="";
                 if( error=="userinactive" ) msg = "El usuario se encuentra inactivo.";
-                else msg = 'La direccion de correo electr&oacute;nico o el usuario que has puesto no la reconocemos. Por favor int&eacute;ntalo de nuevo o ponte en contacto con el <a href="'+baseURI+'contacto">administrador</a>.';
+                else msg = 'La direcci&oacute;n de correo electr&oacute;nico o el usuario que has puesto no la reconocemos. Por favor int&eacute;ntalo de nuevo o ponte en contacto con el <a href="'+baseURI+'contacto">administrador</a>.';
 
                 $.validator.show(f.txtField, {
                     message : msg

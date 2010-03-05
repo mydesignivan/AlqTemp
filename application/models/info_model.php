@@ -19,7 +19,10 @@ class info_model extends Model {
         $count = $this->db->query("SELECT count(*) as total FROM ".TBL_USERS." WHERE level=0")->row_array();
         $data['total_users'] = $count['total'];
 
-        // Total de usuarios registrados
+        // Total de usuarios online
+        if( !$this->db->delete(TBL_USERSONLINE, array('TIME <'=>(time()-(5*60)))) ){
+            display_error(__FILE__, "getinfo_user", ERR_DB_DELETE, array(TBL_USERSONLINE));
+        }
         $count = $this->db->query("SELECT count(*) as total FROM ".TBL_USERSONLINE)->row_array();
         $data['total_users_online'] = $count['total'];
 

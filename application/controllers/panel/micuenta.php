@@ -2,7 +2,7 @@
 class Micuenta extends Controller{
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
         set_useronline();
         
         $this->load->model('users_model');
@@ -32,7 +32,7 @@ class Micuenta extends Controller{
 
             if( $status ){
                 $this->simplelogin->logout();
-                redirect('/');
+                redirect('/index/');
             }else{
                 show_error(ERR_USER_EDIT);
             }
@@ -45,7 +45,7 @@ class Micuenta extends Controller{
 
             if( $this->users_model->delete($this->uri->segment(3)) ){
                 $this->simplelogin->logout();
-                redirect('/');
+                redirect('/index/');
             }else{
                 show_error(ERR_USER_DELETE);
             }

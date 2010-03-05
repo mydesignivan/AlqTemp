@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Rememberpass extends Controller {
+class Recordarcontrasenia extends Controller {
 
     function __construct(){
         parent::Controller();
@@ -45,8 +45,8 @@ class Rememberpass extends Controller {
         if( $param1 && $param2 ){
             if( $this->users_model->check_token($param1, $param2) ){
                 $this->load->view('front_passwordreset_view', array('username'=>$param1, 'token'=>$param2));
-            }else redirect('/');
-        }else redirect('/');
+            }else redirect('/index/');
+        }else redirect('/index/');
     }
     public function send_newpass(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
@@ -60,7 +60,7 @@ class Rememberpass extends Controller {
                      )
                 );
                 $this->load->view('front_passwordreset_view', $data);
-            }else redirect('/');
+            }else redirect('/index/');
         }
     }
 

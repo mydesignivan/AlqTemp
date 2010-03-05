@@ -27,7 +27,7 @@
                     <div class="credit_attention">El fondo que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <b>alquilerestemporarios.org</b></div>
                 </div>
 
-                <form id="form1" action="<?=site_url('agregarfondos/send/');?>" method="post">
+                <form id="form1" action="<?=site_url('panel/agregarfondos/send/');?>" method="post">
 
                     <div class="addfondo-form">
                         <div class="cc-col-left">

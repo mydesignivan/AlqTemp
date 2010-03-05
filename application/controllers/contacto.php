@@ -23,7 +23,9 @@ class Contacto extends Controller {
             if( $this->email->send() ){
                 $this->session->set_flashdata('statusmail', 'ok');
             }else {
-                $this->session->set_flashdata('statusmail', 'error');
+                $err = $this->email->print_debugger();
+                log_message("error", $err);
+                die($err);
             }
             redirect('/contacto/');
         }

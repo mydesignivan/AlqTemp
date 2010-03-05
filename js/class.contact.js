@@ -1,7 +1,7 @@
 /* 
  * Clase Contact
  *
- * Llamada por las vistas: contacto_view
+ * Llamada por las vistas: front_contacto_view
  * Su funcion: Envia formulario de contacto
  *
  */
@@ -38,9 +38,8 @@ var Contact = new (function(){
         $.validator.validate('#formContact .validate', function(error){
              if( !error ){
                  f.submit();
-             }
-         });
-         working=false;
+             }else working=false;
+         });         
 
          return false;
      };

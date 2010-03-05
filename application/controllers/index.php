@@ -34,7 +34,6 @@ class Index extends Controller {
         $this->pagination->initialize($config);
 
         $result_searches = $this->search_model->get_searches();
-
         $this->load->view('front_index_view', array('listProp'=>$data['result'], 'section_title'=>'Alquileres Destacados', "listSearches"=>$result_searches));
     }
 

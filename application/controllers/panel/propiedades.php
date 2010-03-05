@@ -3,7 +3,7 @@ class Propiedades extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
         set_useronline();
 
         $this->load->helper('combobox');
@@ -56,7 +56,7 @@ class Propiedades extends Controller {
             $status = $this->prop_model->create($data);
 
             if( $status ){
-                redirect('/propiedades/');
+                redirect('/panel/propiedades/');
             }else{
                 show_error(ERR_PROP_CREATE);
             }
@@ -77,7 +77,7 @@ class Propiedades extends Controller {
             $status = $this->prop_model->update($data, $this->uri->segment(3));
 
             if( $status=="ok" ){
-                redirect('/propiedades/');
+                redirect('/panel/propiedades/');
             }else{
                 show_error(ERR_PROP_EDIT);
             }
@@ -91,7 +91,7 @@ class Propiedades extends Controller {
             array_splice($id, 0,2);
             
             if( $this->prop_model->delete($id) ){
-                redirect('/propiedades/');
+                redirect('/panel/propiedades/');
             }else{
                 show_error(ERR_PROP_DELETE);
             }
@@ -100,7 +100,7 @@ class Propiedades extends Controller {
 
     public function cancel(){
         delete_images_temp();
-        redirect('/propiedades/');
+        redirect('/panel/propiedades/');
     }
 
     public function check(){

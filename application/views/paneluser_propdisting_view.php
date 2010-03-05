@@ -46,7 +46,7 @@
                             <input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" />
                             <div class="miniatura"><img src="<?=$row['image'];?>" alt="" width="85" /></div>
                         </div>
-                        <div class="table_center"><a href="<?=site_url('/propiedades/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
+                        <div class="table_center"><a href="<?=site_url('panel/propiedades/form/'.$row['prop_id']);?>" class="link1"><?=$row["address"];?></a></div>
                         <div class="table_right"><?=$row['category'];?></div>
                     </div>
                 <?php }

@@ -31,12 +31,6 @@
                         <p>Muchas gracias por comunicarse,</p>
                         <p>En breve estaremos en contacto.</p>
                     </div>
-                    <?php }elseif( $this->session->flashdata('statusmail')=="error" ){?>
-
-                    <div class="message">
-                        <p>Formulario no enviado.</p>
-                        <p>Ha ocurrido un error durante el envio del formulario.</p>
-                    </div>
 
                     <?php }else{?>
                     <form id="formContact" action="<?=site_url('/contacto/send');?>" enctype="application/x-www-form-urlencoded" method="post">
@@ -60,6 +54,10 @@
                                 <textarea class="input validate" name="txtConsult" rows="22" cols="4"></textarea>
                             </p>
                         </div>
+
+                        <br class="clearfloat"/>
+                        <h3>(*) Campos Obligatorios</h3>
+                        
                         <div class="container_button"><a class="button1" href="javascript:void(Contact.send());">Enviar</a></div>
                     </form>
 
@@ -69,8 +67,6 @@
                     -->
                     </script>
 
-                    <br class="clearfloat"/>
-                    <h3>(*) Campos Obligatorios</h3>
                     <?php }?>
                  </div>
             </div>

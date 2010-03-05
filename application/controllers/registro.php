@@ -57,7 +57,7 @@ class Registro extends Controller {
             $seg = base64_decode($this->uri->segment(3));
             $res = $this->users_model->activate($seg);
             if( !$res ){
-                redirect('/');
+                redirect('/index/');
             }else{
                 $user = $res->row_array();
                 $message = sprintf(EMAIL_REGACTIVE_MESSAGE,
@@ -79,7 +79,7 @@ class Registro extends Controller {
                 }
 
             }
-        }else redirect('/');
+        }else redirect('/index/');
     }
 
     public function check(){

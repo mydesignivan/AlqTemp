@@ -19,7 +19,7 @@
         <div class="container_mainContent">
             <div id="mainContent">
                 <div class="content_top">
-                    <h1>Inicio</h1>
+                    <h1>Informaci&oacute;n</h1>
                 </div>
                 <div class="content_left">
 
@@ -37,8 +37,8 @@
 
                         <p><b>Cant. prop. nuevas en el dia de hoy:</b> <?=$info['prop']['count_prop_day'];?></p>
                         <p><b>Total de propiedades:</b> <?=$info['prop']['total_prop'];?></p>
-
                     </fieldset>
+                    <p><a href="javascript:location.reload(true);" class="button2">Refrescar</a></p>
                 </div>
 
                 <div class="content_right">

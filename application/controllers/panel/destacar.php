@@ -3,7 +3,7 @@ class Destacar extends Controller {
 
     function __construct(){
         parent::Controller();
-        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/');
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
         set_useronline();
 
         $this->load->model('disting_model');
@@ -27,7 +27,7 @@ class Destacar extends Controller {
             }else{
                 $this->disting_model->undisting($id);
             }
-            redirect('/destacar/');
+            redirect('/panel/destacar/');
         }
     }
 
