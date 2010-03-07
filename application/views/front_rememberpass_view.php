@@ -10,7 +10,6 @@
     <!--END SCRIPT-->
 
     <script type="text/javascript" src="js/class.rememberpass.js"></script>
-    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +28,7 @@
 
                 <div class="content_rememberpass">
                     <form id="form1" action="<?=site_url('/recordarcontrasenia/send/');?>" method="post">
-                    <?php if( $status=="ok" ){?>
+                    <?php if( @$status=="ok" ){?>
                         <p class="message1">Muy bien, le hemos enviado las instrucciones a su email. Reviselo!</p>
                         <p class="message1">Usted puede mantener esta pagina abierta mientras chequea su email. Si usted no recibe las instrucciones en el transcurso de un minuto o dos pruebe <a href="javascript:$('#form1').submit();">Reenviar las instrucciones</a></p>
                         <input type="hidden" name="txtField" value="<?=$field;?>" />
@@ -49,7 +48,7 @@
 
                 <script type="text/javascript">
                 <!--
-                    RememberPass.initializer('<?=$status;?>');
+                    RememberPass.initializer('<?=@$status;?>');
                 -->
                 </script>
 

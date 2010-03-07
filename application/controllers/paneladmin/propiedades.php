@@ -17,9 +17,9 @@ class Propiedades extends Controller {
     }
 
     public function delete(){
-        if( $this->uri->segment(3) ){
+        if( $this->uri->segment(4) ){
             $id = $this->uri->segment_array();
-            array_splice($id, 0,2);
+            array_splice($id, 0,3);
 
             if( $this->prop_model->delete($id) ){
                 redirect('/paneladmin/propiedades/');

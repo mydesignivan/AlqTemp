@@ -17,7 +17,7 @@ a.link1:visited,
 a.link1:active{
     color:#FC7F07 !important;
 }
-
+.border{border: 1px solid red;}
 a.link2{
     color:#684C1D !important;
     font-weight:bold;
@@ -307,7 +307,7 @@ fieldset{
                     display:inline;
                     padding-right:1px;
                 }
-                    #header .column_panel .menu_panel ul li a{
+                    #header .column_panel .menu_panel ul li .menu{
                         background:url(../images/button_menu.png) no-repeat top center;
                         float:left;
                         width:145px;
@@ -322,6 +322,9 @@ fieldset{
                         color:#5F4E37;
                     }
     /******************************* FIN MENU PANEL ****************************/
+
+
+
     .sidebar{
         float:right;
         margin-right:60px;
@@ -1571,3 +1574,111 @@ fieldset{
     margin:auto;
     padding-top:70px;
 }
+
+/*.tbl-header{
+    float:left;
+    width:625px;
+    height:21px;
+    background:url(../images/background_top_table.png) repeat-x top;
+    font-family:Arial, Helvetica, sans-serif;
+    color:#6C491D;
+    font-size: 120%;
+    font-weight: bold;
+    margin-top:18px;
+}
+    .tbl-header .tbl-td{
+        padding:3px 0 4px 10px;
+    }
+
+.tbl-body{
+    float:left;
+    clear:left;
+    width:625px;
+    font-size: 90%;
+    font-weight:normal;
+    text-align: left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    font-weight: normal;
+}
+    .tbl-body .tbl-td{
+        padding:5px 0 4px 10px;
+        height: 100%;
+    }
+
+.tbl-body-row{
+    background-color: #FAF8E9;
+    overflow: hidden;
+    color:#FA9C3B;
+    height: 50px;
+}
+.tbl-body-row-odd{
+    background-color: #FDFDF5;
+    overflow: hidden;
+    color:#FA9C3B;
+    height: 50px;
+}
+.border-rb{
+    border-right:1px solid #CFD0CB;
+    border-bottom:1px solid #CFD0CB;    
+}
+.border-r{border-right:1px solid #CFD0CB;}
+.border-b{border-bottom:1px solid #CFD0CB;}
+
+.cell-1{width:24px; float:left; position: relative; padding-left: 0 !important; text-align:center;}
+    .cell-1 input{margin:0 !important;}
+.cell-2{width:100px; float:left; position: relative;}
+.cell-3{width:477px; float:left; position: relative;}*/
+
+/*---------------------------------------------------------------------
+ *                          ESTILO PARA TABLAS
+ *---------------------------------------------------------------------*/
+.table{
+    border:none;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 120%;
+    margin-top:18px;
+    width:620px;
+    border-bottom: 1px solid #CFD0CB;
+}
+    .table thead{
+        height:21px;
+        background:url(../images/background_top_table.png) repeat-x top;
+        color:#6C491D;
+        font-weight: bold;
+    }
+        .table thead td{padding:3px 0 4px 10px;}
+    .table tbody{
+        color:#6C491D;
+        cursor:default;
+    }
+        .table tbody td{padding:5px 0 5px 10px;}
+        .table tbody tr.over:hover{
+            background-color: #F1CB65;
+        }
+        .table tbody .table-row{background-color: #FAF8E9;}
+        .table tbody .table-row-odd{background-color: #FDFDF5;}
+
+/*-----------------------------------------------------------------------*/
+
+
+/*---------------------------------------------------------------------
+ *                              CELDAS
+ *---------------------------------------------------------------------*/
+.cell-1{width:24px; padding-left: 0 !important; text-align:center;}
+    .cell-1 input{margin:0 !important;}
+.cell-2{width:80px;}
+.cell-3{width:516px;}
+.cell-4{width:200px;}
+.cell-5{width:110px;}
+.cell-6{width:140px;}
+/*-----------------------------------------------------------------------*/
+
+
+
+.border-rb{
+    border-right:1px solid #CFD0CB;
+    border-bottom:1px solid #CFD0CB;
+}
+.border-r{border-right:1px solid #CFD0CB;}
+.border-b{border-bottom:1px solid #CFD0CB;}

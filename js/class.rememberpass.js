@@ -62,8 +62,7 @@ var RememberPass = new (function(){
         $.validator.validate('#'+f.id+' .validate', function(error){
             if( !error ){
                 f.submit();
-            }
-            working=false;
+            }else working=false;
         });
 
         return false;

@@ -4,13 +4,19 @@ class Registro extends Controller {
     function __construct(){
         parent::Controller();
         $this->load->model('users_model');
-        $this->load->helper('combobox');
+        $this->load->model('lists_model');
+        $this->load->helper('form');
         $this->load->library('encpss');
         $this->load->library('email');
+        die($this->encpss->decode('Gy0ZIqm2sU9m0E1dwz3PFcHLgf0='));
     }
 
+    /*
+     * FUNCTIONS PUBLIC
+     */
     public function index(){
-        $this->load->view('front_formregistro_view');
+        $data = $this->get_data();
+        $this->load->view('front_formregistro_view', $data);
     }
 
     public function create(){
@@ -22,7 +28,7 @@ class Registro extends Controller {
                 'phone'      => $_POST["txtPhone"],
                 'username'   => $_POST["txtUser"],
                 'password'   => $this->encpss->encode($_POST["txtPass"]),
-                'date_added' => 'now()'
+                'date_added' => date('Y-m-d H:i:s')
             );
 
             $user_id = $this->users_model->create($data);
@@ -61,7 +67,7 @@ class Registro extends Controller {
             }else{
                 $user = $res->row_array();
                 $message = sprintf(EMAIL_REGACTIVE_MESSAGE,
-                    $user['name'],
+                    $user['username'],
                     $user['username'],
                     $this->encpss->decode($user['password'])
                 );
@@ -71,7 +77,12 @@ class Registro extends Controller {
                 $this->email->subject(EMAIL_REGACTIVE_SUBJECT);
                 $this->email->message($message);
                 if( $this->email->send() ){
-                    $this->load->view('front_useractivation_view', array('username'=>$user['username']));
+
+                    $data = $this->get_data();
+                    $data['username'] = $user['username'];
+
+                    $this->load->view('front_useractivation_view', $data);
+
                 }else {
                     $err = $this->email->print_debugger();
                     log_message("error", $err);
@@ -82,7 +93,7 @@ class Registro extends Controller {
         }else redirect('/index/');
     }
 
-    public function check(){
+    public function ajax_check(){
         $this->load->library('captcha/securimage');
 
         $status = $this->users_model->exists($_POST['username'], $_POST['email'], $_POST['userid']);
@@ -97,6 +108,23 @@ class Registro extends Controller {
         }
 
         die("ok");
+    }
+
+    /*
+     * FUNCTIONS PRIVATE
+     */
+    private function get_data(){
+        $comboCountry = $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses"));
+        $comboStates = $this->lists_model->get_states_search(array("0"=>"Estados / Provincias"));
+        $comboCity = $this->lists_model->get_city_search(array("0"=>"Ciudades"));
+        $comboCategory = $this->lists_model->get_category(array("0"=>"Categor&iacute;as"));
+
+        return array(
+            'comboCountry'    =>  $comboCountry,
+            'comboCategory'   =>  $comboCategory,
+            'comboStates'     =>  $comboStates,
+            'comboCity'       =>  $comboCity
+        );
     }
 
 }

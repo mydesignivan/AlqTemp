@@ -47,16 +47,15 @@ var Account = new (function(){
 
     this.save = function(){
         if( working ) return false;
-        working=true;
+
+        ajaxloader.show();
 
         $.validator.validate('#formAccount .validate', function(error){
             if( !error ){
 
-                popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
-
                 $.ajax({
                     type : 'post',
-                    url  : baseURI+'registro/check/',
+                    url  : baseURI+'registro/ajax_check/',
                     data : {
                         username : escape(f.txtUser.value),
                         email    : escape(f.txtEmail.value),
@@ -75,17 +74,19 @@ var Account = new (function(){
 
                         }else if( data=="ok" ){
                             f.submit();
+                        }else{
+                            alert("ERROR: \n"+data);
                         }
                     },
-                    error   : function(http){
-                        alert("ERROR: "+http.responseText);
+                    error   : function(result){
+                        alert("ERROR: \n"+result.responseText);
                     },
                     complete : function(){
-                        popup.hidden();
+                        ajaxloader.hidden();
                     }
                 });
-            }
-            working=false;
+            }else ajaxloader.hidden();
+            
         });
         return false;
     };
@@ -105,14 +106,17 @@ var Account = new (function(){
     var working=false;
     var f=false;
 
-
     /* PRIVATE METHODS
      **************************************************************************/
-    var show_error = function(el, msg){
-        $.validator.show(el,{
-            message : msg
-        });
-        el.focus();
-    };
+    var ajaxloader = {
+        show : function(){
+            working=true;
+            popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
+        },
+        hidden : function(){
+            popup.hidden();
+            working=false;
+        }
+    }
 
 })();

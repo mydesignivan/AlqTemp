@@ -31,14 +31,14 @@
                     <?php require('includes/popup_inc.php');?>
                     
                     <form id="formAccount" action="<?=site_url('/panel/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
-                        <p><span class="cell">*Nombre:</span><input type="text" class="input validate" name="txtName" value="<?=$dataUser['name'];?>" /></p>
-                        <p><span class="cell">*E-Mail:</span><input type="text" class="input validate" name="txtEmail" value="<?=$dataUser['email'];?>" /></p>
-                        <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" value="<?=$dataUser['phone'];?>" /></p>
-                        <p><span class="cell">*Usuario:</span><input type="text" class="input validate" name="txtUser" value="<?=$dataUser['username'];?>" /></p>
+                        <p><span class="cell">*Nombre:</span><input type="text" class="input validate" name="txtName" value="<?=$data['name'];?>" /></p>
+                        <p><span class="cell">*E-Mail:</span><input type="text" class="input validate" name="txtEmail" value="<?=$data['email'];?>" /></p>
+                        <p><span class="cell">Teléfono:</span><input type="text" class="input" name="txtPhone" value="<?=$data['phone'];?>" /></p>
+                        <p><span class="cell">*Usuario:</span><input type="text" class="input validate" name="txtUser" value="<?=$data['username'];?>" /></p>
                         <p><span class="cell">*Contraseña:</span><input type="password" class="input validate" name="txtPass" /></p>
                         <p><span class="cell">*Repetir:</span><input type="password" class="input validate" name="txtPass2" /></p>
 
-                        <input type="hidden" name="user_id" value="<?=$dataUser['user_id'];?>" />
+                        <input type="hidden" name="user_id" value="<?=$data['user_id'];?>" />
                     </form>
                     <div class="container_button2">
                         <a class="button1" href="javascript:void(Account.save());">Guardar</a>

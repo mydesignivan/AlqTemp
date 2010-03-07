@@ -146,12 +146,15 @@ class Prop_model extends Model {
 
         $this->db->trans_start(); // INICIO TRANSACCION
 
-        // ELIMINA DATOS EN (properties, properties_to_services, images)
+        // ELIMINA DATOS EN (properties, properties_to_services, properties_disting, images, log_searches)
         if( !$this->db->query('DELETE FROM '.TBL_PROPERTIES.' WHERE prop_id in('. implode(",", $prop_id) .')') ){
             display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_PROPERTIES));
         }
         if( !$this->db->query('DELETE FROM '.TBL_PROPERTIES_SERVS.' WHERE prop_id in('. implode(",", $prop_id) .')') ){
             display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_PROPERTIES_SERVS));
+        }
+        if( !$this->db->query('DELETE FROM '.TBL_PROPERTIES_DISTING.' WHERE prop_id in('. implode(",", $prop_id) .')') ){
+            display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_PROPERTIES_DISTING));
         }
         if( !$this->db->query('DELETE FROM '.TBL_IMAGES.' WHERE prop_id in('. implode(",", $prop_id) .')') ){
             display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_IMAGES));
@@ -172,24 +175,16 @@ class Prop_model extends Model {
         return $result->num_rows==0 ? false : true;
     }
 
-    public function get_services(){
-        return $this->db->get("list_services");
-    }
-
     public function get_service_associate($prop_id){
-        if( !is_numeric($prop_id) ) {
-            //There was a problem
-            return false;
-        }
         $this->db->select(TBL_SERVICES.'.service_id');
         $this->db->select(TBL_SERVICES.'.name');
         $this->db->join(TBL_PROPERTIES_SERVS, TBL_SERVICES.'.service_id = '. TBL_PROPERTIES_SERVS .'.service_id');
-        return $this->db->get_where(TBL_SERVICES, array('prop_id'=>$prop_id));
+        return $this->db->get_where(TBL_SERVICES, array('prop_id'=>$prop_id))->result_array();
     }
 
     public function get_list_prop($where=array()){
         $sql = "prop_id, address,";
-        $sql.= "CASE category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
+        $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."',name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_IMAGES .".prop_id=". TBL_PROPERTIES .".prop_id LIMIT 1) as image";
         $this->db->select($sql, false);
         $this->db->where("user_id", $this->session->userdata('user_id'));
@@ -198,15 +193,22 @@ class Prop_model extends Model {
         $this->db->order_by('address', 'asc');
         return $this->db->get(TBL_PROPERTIES);
     }
-    public function get_list2_prop($user_id){
-        $sql = "prop_id, address,user_id,";
-        $sql.= "(SELECT username FROM ".TBL_USERS." WHERE user_id = ".TBL_PROPERTIES.".user_id) as username";
+    public function get_list2_prop($user_id=null){
+        $sql = TBL_PROPERTIES.".prop_id,";
+        $sql.= TBL_PROPERTIES.".address,";
+        $sql.= "date_format(" .TBL_PROPERTIES. ".date_added, '%d-%m-%Y %H:%i:%s') as date_added,";
+        $sql.= "date_format(" .TBL_PROPERTIES. ".last_modified, '%d-%m-%Y %H:%i:%s') as last_modified,";
+        $sql.= TBL_USERS.".user_id,";
+        $sql.= TBL_USERS.".username";
         $this->db->select($sql, false);
-        $this->db->where("user_id", $user_id);
+        $this->db->from(TBL_PROPERTIES);
+        $this->db->join(TBL_USERS, TBL_PROPERTIES.'.user_id = '.TBL_USERS.'.user_id');
+        if( $user_id!=null ) $this->db->where("user_id", $user_id);
+        $this->db->group_by('username');
         $this->db->order_by('prop_id', 'desc');
         $this->db->order_by('address', 'asc');
         $this->db->order_by('username', 'asc');
-        return $this->db->get(TBL_PROPERTIES);
+        return $this->db->get();
     }
 
 

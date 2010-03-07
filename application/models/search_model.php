@@ -12,7 +12,7 @@ class Search_model extends Model {
         $sql = TBL_PROPERTIES.".prop_id,";
         $sql.= TBL_PROPERTIES.".address,";
         $sql.= TBL_PROPERTIES.".description,";
-        $sql.= "CASE ".TBL_PROPERTIES.".category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
+        $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= TBL_PROPERTIES.".city,";
         $sql.= TBL_PROPERTIES.".price,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_PROPERTIES .".prop_id=". TBL_IMAGES .".prop_id LIMIT 1) as image_thumb";
@@ -31,11 +31,11 @@ class Search_model extends Model {
         
         return array('result'=>$result, 'count_rows'=>$count_rows);
     }
-    public function search($data, $limit, $offset){
+    public function search($limit, $offset, $category_id=0){
         $sql = "prop_id,";
         $sql.= "address,";
         $sql.= "description,";
-        $sql.= "CASE category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
+        $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "city,";
         $sql.= "price,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_PROPERTIES .".prop_id=". TBL_IMAGES .".prop_id LIMIT 1) as image_thumb";
@@ -44,17 +44,18 @@ class Search_model extends Model {
         $like = array();
         $or_like = array();
 
-        if( is_array($data) ){
-            $where = array();
-            if( isset($data['search'] ) && $data['search']!="empty" ) {
-                $like = array('address'=>utf8_encode($data["search"]));
-                $or_like = array('description'=>utf8_encode($data["search"]));
-            }
-            if( isset($data['country']) && $data['country']!=0 ) $where = array("country"=>$data["country"]);
-            if( isset($data['states']) && $data['states']!=0 )   $where = array("states"=>$data["states"]);
-            if( isset($data['city']) && !empty($data['city']) )  $like = array("city"=>utf8_encode($data['city']));
-            if( isset($data['category']) && $data['category']!=0 ) $where = array("category"=>$data["category"]);
-            //if( count($where)>0 ) $this->db->where(implode(" AND ", $where), false);
+        if( !empty($_POST['txtSearch']) ) {
+            $like = array('address'=>$_POST["txtSearch"]);
+            $or_like = array('description'=>$_POST["txtSearch"]);
+        }
+
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            if( $_POST['cboCountry']!=0 )  $where = array("country_id"=>$_POST["cboCountry"]);
+            if( $_POST['cboStates']!=0 )   $where = array("state_id"=>$_POST["cboStates"]);
+            if( $_POST['cboCity']!=0 )     $like = array("city"=>$_POST['cboCity']);
+            if( $_POST['cboCategory']!=0 ) $where = array("category_id"=>$_POST["cboCategory"]);
+        }else{
+            $where = array("category_id"=>$category_id);
         }
 
         $this->db->like($like);
@@ -73,22 +74,23 @@ class Search_model extends Model {
         $result = $this->db->get(TBL_PROPERTIES, $limit, $offset);
 
         // GUARDO LA PALABRA
-        if( isset($data['city']) && !empty($data['city']) ){
-            $query = $this->db->query('SELECT hits,id FROM '.TBL_LOGSEARCHES." WHERE search_term='".$data['city']."'");
-            if( $query->num_rows==0 ){
-                if( !$this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$data['city'], 'hits'=>1)) ){
-                    display_error(__FILE__, "search", ERR_DB_INSERT, array(TBL_LOGSEARCHES));
-                }
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            if( $_POST['cboCity']!=0 ){
+                $query = $this->db->query('SELECT hits,id FROM '.TBL_LOGSEARCHES." WHERE search_term='".$_POST['cboCity']."'");
+                if( $query->num_rows==0 ){
+                    if( !$this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$_POST['cboCity'], 'hits'=>1)) ){
+                        display_error(__FILE__, "search", ERR_DB_INSERT, array(TBL_LOGSEARCHES));
+                    }
 
-            }else{
-                $row = $query->row_array();
-                $hits = $row['hits']+1;
-                $this->db->where('id', $row['id']);
-                if( !$this->db->update(TBL_LOGSEARCHES, array('hits'=>$hits)) ){
-                    display_error(__FILE__, "search", ERR_DB_UPDATE, array(TBL_LOGSEARCHES));
+                }else{
+                    $row = $query->row_array();
+                    $hits = (int)$row['hits']+1;
+                    $this->db->where('id', $row['id']);
+                    if( !$this->db->update(TBL_LOGSEARCHES, array('hits'=>$hits)) ){
+                        display_error(__FILE__, "search", ERR_DB_UPDATE, array(TBL_LOGSEARCHES));
+                    }
                 }
             }
-
         }
 
         return array('result'=>$result, 'count_rows'=>$count_rows);
@@ -98,7 +100,7 @@ class Search_model extends Model {
         $sql = "prop_id,";
         $sql.= "address,";
         $sql.= "description,";
-        $sql.= "CASE category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
+        $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "city,";
         $sql.= "price,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ".TBL_IMAGES." WHERE ".TBL_PROPERTIES.".prop_id=".TBL_IMAGES.".prop_id LIMIT 1) as image_thumb";

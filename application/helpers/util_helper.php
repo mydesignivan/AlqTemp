@@ -1,11 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function getval($var, $val){
-    if( $var ){
-        return isset($var[$val]) ? $var[$val] : "";
-    }
-}
-
 function file_search_special($dir, $filename_search){
     if( substr($dir,-1)=="/" ) $dir = substr($dir, 0, strlen($dir)-1);
     if( is_dir($dir) ){
@@ -52,12 +46,32 @@ function delete_images_temp(){
     }
 }
 
+function order_dates($str_date, $order='asc', $format='d-m-Y'){
+    if( !is_array($str_date) ) (array)$str_date;
+
+    $str_date_new = array();
+    foreach( $str_date as $key=>$val ){
+        $str_date_new[$key] = strtotime($val);
+    }
+
+    if( $order=="asc" || ($order!='asc'&&$order!='desc') ) arsort($str_date_new);
+    elseif( $order=="desc" ) asort($str_date_new);
+
+    $str_date = array();
+    foreach( $str_date_new as $key=>$val ){
+        $d = date($format, $val);
+        $str_date[$key] = $d;
+    }
+    return $str_date;
+}
+
 function construct_bloq($config){
     // ===== [config] =====
     // result            : array
     // tag_open          : string
     // tag_close         : string
     // tag_open_special  : string
+    // tag_link          : boolean
     // field             : string
     // total_row         : integer
     
@@ -75,7 +89,7 @@ function construct_bloq($config){
 
         if( $n<=$config['total_row'] ){
             $name = $row[$config['field']];
-            $tag = isset($config['tag_link']) ? '<a href="'.site_url('/search/index/city/'.$name.'/page/0').'" class="link1">'.$name.'</a>' : $name;
+            $tag = isset($config['tag_link']) ? '<a href="javascript:void(search_city(\''.$name.'\'))" class="link1">'.$name.'</a>' : $name;
             echo '<li>'. $tag .'</li>';
         }
 
@@ -101,6 +115,21 @@ function add_date($givendate, $day=0, $mth=0, $yr=0) {
     date('i',$cd), date('s',$cd), date('m',$cd)+$mth,
     date('d',$cd)+$day, date('Y',$cd)+$yr));
     return $newdate;
+}
+
+function is_date($strdate){
+    $timestamp = strtotime($strdate);
+    if( $timestamp === false ) return false;
+
+    $time = strtotime($strdate);
+    return checkdate(date('m', $time), date('d', $time), date('Y', $time));
+}
+
+function arr_search ( $array, $expression ) {
+    $result = array();
+    $expression = preg_replace ( "/([^\s]+?)(=|<|>|!)/", "\$a['$1']$2", $expression );
+    foreach ( $array as $a ) if ( eval ( "return $expression;" ) ) $result[] = $a;
+    return $result;
 }
 
 ?>

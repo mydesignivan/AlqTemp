@@ -35,7 +35,9 @@ class Agregarfondos extends Controller {
                 $this->session->set_flashdata('status', 'ok');
                 redirect('/panel/agregarfondos/');
             }else {
-                //show_error(ERR_103);
+                $err = $this->email->print_debugger();
+                log_message("error", $err);
+                die($err);
             }
         }
     }

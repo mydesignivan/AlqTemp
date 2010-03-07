@@ -13,7 +13,7 @@ class disting_model extends Model {
         $param = $disting==1 ? "right" : "left";
 
         $sql = TBL_PROPERTIES.".prop_id, ".TBL_PROPERTIES.".address,";
-        $sql.= "CASE ".TBL_PROPERTIES.".category WHEN 1 THEN 'Casas' WHEN 2 THEN 'Departamentos' WHEN 3 THEN 'Cabañas' WHEN 4 THEN 'Otros' END as category,";
+        $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."',name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_IMAGES .".prop_id=". TBL_PROPERTIES .".prop_id LIMIT 1) as image";
         $this->db->select($sql, false);
         $this->db->from(TBL_PROPERTIES);

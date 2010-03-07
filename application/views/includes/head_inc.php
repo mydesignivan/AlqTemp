@@ -39,7 +39,7 @@
 </script>
 
 <!--========== CLASS ============-->
-<script type="text/javascript" src="js/class.login.min.js"></script>
+<script type="text/javascript" src="js/class.login.js"></script>
 <!--======= END CLASS =======-->
 
 
@@ -57,4 +57,4 @@
 <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
 <![endif]-->
 
-<?php $execscript=false;?>
+<?php $execscript=true;?>

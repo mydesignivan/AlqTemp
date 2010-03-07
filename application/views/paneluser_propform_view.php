@@ -15,7 +15,6 @@
 
     <script type="text/javascript" src="js/jquery.ajaxupload.min.js"></script>
 
-    <script type="text/javascript" src="js/class.combobox.min.js"></script>
     <script type="text/javascript" src="js/class.prop.js"></script>
 </head>
 
@@ -31,7 +30,7 @@
         <div class="container_mainContent">
             <div id="mainContent">
                 <div class="content_top">
-                    <h1><?=(!$data) ? "Nueva Propiedad" : "Modificar Propiedad";?></h1>
+                    <h1><?=(!@$data) ? "Nueva Propiedad" : "Modificar Propiedad";?></h1>
                 </div>
                 <div class="content_left">
                 <?php if( @$action=="accesdenied" ){?>
@@ -54,7 +53,7 @@
                     <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="row2">
                             <span class="cell">*Dirección:</span>
-                            <input type="text" name="txtAddress" id="txtAddress" class="input style_input validate" value="<?=getval($data, 'address');?>" />
+                            <input type="text" name="txtAddress" id="txtAddress" class="input style_input validate" value="<?=@$data['address'];?>" />
                         </div>
                     <?php
                         $html = '
@@ -68,7 +67,7 @@
                             </div>
                         </div>';
 
-                        $images = getval($data, 'images');
+                        $images = @$data['images'];
                         if( empty($images) ) echo $html;
                         else{
                             $n=0;
@@ -94,18 +93,11 @@
                         </div>
 
 
-                        <div class="row2"><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" id="txtDesc" class="input style_textarea  validate" cols="20" rows="5"><?=getval($data, 'description');?></textarea></div>
+                        <div class="row2"><span class="cell">*Descripci&oacute;n:</span><textarea name="txtDesc" id="txtDesc" class="input style_textarea  validate" cols="20" rows="5"><?=@$data['description'];?></textarea></div>
 
                         <div class="row2">
                             <span class="cell">*Categor&iacute;a:</span>
-                            <select name="cboCategory" id="cboCategory" class="select2 float-right validate">
-                                <option value="0">Seleccione categor&iacute;a</option>
-                            <?php $val = getval($data, 'category');?>
-                                <option value="1" <?php if($val==1) echo 'selected="selected"';?>>Casas</option>
-                                <option value="2" <?php if($val==2) echo 'selected="selected"';?>>Departamentos</option>
-                                <option value="3" <?php if($val==3) echo 'selected="selected"';?>>Caba&ntilde;as</option>
-                                <option value="4" <?php if($val==4) echo 'selected="selected"';?>>Otros</option>
-                            </select>
+                            <?=form_dropdown('cboCategory', $comboCategory, @$data["category_id"], 'class="select2 float-right validate" id="cboCategory"');?>
                         </div>
 
                         <div class="row2">
@@ -115,18 +107,12 @@
                             <?php
                                 $n=0;
                                 $checked="";
-                                $services_associate = getval($data, 'services');
-                                $service_id = array();
-                                if( $services_associate ){
-                                    foreach( $services_associate->result_array() as $rowserv ){
-                                        $service_id[] = $rowserv['service_id'];
-                                    }
-                                }
-
-                                foreach( $services as $row ){
+                                foreach( $comboServices as $row ){
                                     $n++;
                                     $class = $n%2 ? 'class="impar"' : "";
-                                    if( $service_id!="" ) $checked = in_array($row["service_id"], $service_id) ? 'checked="checked"' : "";
+                                    if( @$data['services'] ){
+                                        $checked = arr_search($data['services'], 'service_id=='.$row['service_id']) ? ' checked="checked"' : '';
+                                    }
                              ?>
 
                                     <li <?=$class;?>><input type="checkbox" name="checkbox" class="checkbox" value="<?=$row['service_id'];?>" <?=$checked;?> /><span><?=$row['name'];?></span></li>
@@ -138,25 +124,16 @@
 
                         <div class="row2">
                             <span class="cell">*Pais:</span>
-                            <select name="cboCountry" id="cboCategory" class="select2 float-right validate" onchange="ComboBox.states(this, 'Seleccione una Provincia');">
-                                <option value="0">Seleccione un Pa&iacute;s</option>
-                                <?php get_options_country(getval($data, 'country_id'));?>
-                            </select>
+                            <?=form_dropdown('cboCountry', $comboCountry, @$data["country_id"], 'id="cboCountry" class="select2 float-right validate" onchange="Prop.show_states(this);"');?>
                         </div>
                         <div class="row2">
                             <span class="cell">*Provincia</span>
-                            <select name="cboStates" id="cboStates" class="select2 float-right validate">
-                                <?php
-                                    if( !$data ) echo '<option value="0">Seleccione un Pa&iacute;s</option>';
-                                    $val = getval($data, 'state_id');
-                                    if( $val!='' ) get_options_state(array('country_id'=>getval($data, 'country_id'), 'selected'=>$val));
-                                ?>
-                            </select>
+                            <?=form_dropdown('cboStates', $comboStates, @$data['state_id'], 'id="cboStates" class="select2 float-right validate"');?>
                         </div>
-                        <div class="row2"><span class="cell">*Ciudad:</span><input type="text" name="txtCity" id="txtCity" class="input style_input validate" onblur="$(this).ucFirst();" value="<?=getval($data, 'city');?>" /></div>
-                        <div class="row2"><span class="cell">Tel&eacute;fono:</span><input type="text" name="txtPhone" class="input style_input" value="<?=getval($data, 'phone');?>" /></div>
-                        <div class="row2"><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" value="<?=(@$data['website']==FALSE || empty($data['website'])) ? "http://" : $data['website'];?>" /></div>
-                        <div class="row2"><span class="cell">Precio:</span><input type="text" name="txtPrice" class="input style_input" value="<?=getval($data, 'price');?>" /></div>
+                        <div class="row2"><span class="cell">*Ciudad:</span><input type="text" name="txtCity" id="txtCity" class="input style_input validate" onblur="$(this).ucFirst();" value="<?=@$data['city'];?>" /></div>
+                        <div class="row2"><span class="cell">Tel&eacute;fono:</span><input type="text" name="txtPhone" class="input style_input" value="<?=@$data['phone'];?>" /></div>
+                        <div class="row2"><span class="cell">P&aacute;gina Web:</span><input type="text" name="txtWebsite"  class="input style_input" onblur="$(this).formatURL();" value="<?=(@$data['website']==FALSE || @$data['website']=='') ? "http://" : @$data['website'];?>" /></div>
+                        <div class="row2"><span class="cell">Precio:</span><input type="text" name="txtPrice" class="input style_input" value="<?=@$data['price'];?>" /></div>
 
 
                         <input type="hidden" name="services" value="" />
@@ -164,13 +141,13 @@
                         <input type="hidden" name="images_deletes" value="" />
                         <input type="hidden" name="images_modified_id" value="" />
                         <input type="hidden" name="images_modified_name" value="" />
-                        <input type="hidden" name="prop_id" value="<?=getval($data, 'prop_id');?>" />
+                        <input type="hidden" name="prop_id" value="<?=@$data['prop_id'];?>" />
                     </form>
 
                     <p>
                         <div class="container_button">
                             <a class="button1 float-left" href="javascript:void(Prop.save());">Guardar</a>
-                            <a class="button1 float-left" href="<?=site_url('/prop/cancel');?>">Cancelar</a>
+                            <a class="button1 float-left" href="<?=site_url('/panel/propiedades/cancel');?>">Cancelar</a>
                         </div>
                     </p>
 

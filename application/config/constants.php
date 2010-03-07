@@ -45,6 +45,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 define('TBL_IMAGES', 'images');
 define('TBL_COUNTRY', 'list_country');
 define('TBL_STATES', 'list_states');
+define('TBL_CATEGORY', 'list_category');
 define('TBL_SERVICES', 'list_services');
 define('TBL_PROPERTIES', 'properties');
 define('TBL_PROPERTIES_SERVS', 'properties_to_services');
@@ -77,6 +78,8 @@ define('ERR_PROP_IMAGE_NONEXISTENT', 'La imagen %s no existe.');
 define('ERR_USER_EDIT',   'El usuario no pudo ser modificado. Si el error coninua por favor, comuniquelo al administrador del sitio.');
 define('ERR_USER_DELETE', 'El usuario no pudo ser eliminado. Si el error coninua por favor, comuniquelo al administrador del sitio.');
 
+define('ERR_LOG_DELETE',     'Error al eliminar los log seleccionado(s)');
+define('ERR_LOG_DELETE_LOG', 'Error al eliminar el archivo log "%s"');
 
 /*
 |--------------------------------------------------------------------------
@@ -137,17 +140,24 @@ define('EMAIL_RP_MESSAGE', $msg);
 | EMAIL FORMULARIO CONSULTA DE LA PROP
 |--------------------------------------------------------------------------
 */
-define('EMAIL_CONSULTPROP_SUBJECT', 'Consulta propiedad');
-define('EMAIL_CONSULTPROP_MESSAGE', 'Propiedad: %s<br>Nombre persona: %s<br>Telefono: %s<br>Consulta:<hr color="#000000" />%s');
+$msg = "<b>Propiedad:</b> %s<br /><br />";
+$msg.= "<b>Nombre:</b> %s<br /><br />";
+$msg.= "<b>Telefono:</b> %s<br /><br />";
+$msg.= '<b>Consulta:</b><hr color="#000000" />%s';
+
+define('EMAIL_CONSULTPROP_SUBJECT', 'AlquileresTemporarios.org - Consulta Propiedad');
+define('EMAIL_CONSULTPROP_MESSAGE', $msg);
 
 /*
 |--------------------------------------------------------------------------
 | EMAIL CONTACTO
 |--------------------------------------------------------------------------
 */
-define('EMAIL_CONTACT_TO', 'ivan@mydesign.com.ar');
-define('EMAIL_CONTACT_SUBJECT', 'Formulario de consulta');
-define('EMAIL_CONTACT_MESSAGE', 'Nombre: %s<br>Telefono: %s<br>Consulta:<hr color="#000000" />%s');
+$msg = '<b>Nombre:</b> %s<br /><br />';
+$msg.= '<b>Telefono:</b> %s<br /><br />';
+$msg.= '<b>Consulta:</b><hr color="#000000" />%s';
+define('EMAIL_CONTACT_SUBJECT', 'Formulario de Consulta');
+define('EMAIL_CONTACT_MESSAGE', $msg);
 
 /*
 |--------------------------------------------------------------------------
@@ -200,9 +210,6 @@ define('CFG_FREE_TOTAL_PROP', 3);    // Cantidad de propiedad gratis
 define('CFG_FREE_TOTAL_IMAGES', 3);  // Cantidad de imagenes gratis
 define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS
 define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS
-
-
-
 
 
 /* End of file constants.php */

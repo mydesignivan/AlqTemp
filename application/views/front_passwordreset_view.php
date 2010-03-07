@@ -10,7 +10,6 @@
     <!--END SCRIPT-->
 
     <script type="text/javascript" src="js/class.rememberpass.js"></script>
-    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>

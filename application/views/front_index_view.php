@@ -3,7 +3,6 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
-    <script type="text/javascript" src="js/class.search.min.js"></script>
 </head>
 
 <body>
@@ -33,7 +32,7 @@
                         <?php $url=site_url('/masinfo/index/'.$row['prop_id']);?>
 
                         <h2><a class="link1" href="<?=$url;?>"><?=$row['address'];?></a></h2>
-                        <p><?=character_limiter($row['description'], 150);?></p>
+                        <p><?=character_limiter(nl2br($row['description']), 150);?></p>
                         <b>Categor&iacute;a:</b> <?=$row['category'];?><br />
                         <b>Ciudad:</b> <?=$row['city'];?>
                         <?php if( !empty($row['price']) ){?><span><br />Precio: <?=$row['price'];?></span><?php }?>

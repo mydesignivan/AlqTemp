@@ -11,9 +11,8 @@ class Micuenta extends Controller{
     }
 
     public function index(){
-        $query = $this->users_model->get_user($this->session->userdata('user_id'));
-        $data = $query->row_array();
-        $this->load->view("paneluser_myaccount_view", array('dataUser'=>$data));
+        $data = $this->users_model->get_user($this->session->userdata('user_id'));
+        $this->load->view("paneluser_myaccount_view", array('data'=>$data));
     }
 
     public function edit(){
@@ -25,7 +24,7 @@ class Micuenta extends Controller{
                 'phone'         => $_POST["txtPhone"],
                 'username'      => $_POST["txtUser"],
                 'password'      => $this->encpss->encode($_POST["txtPass"]),
-                'last_modified' => 'now()'
+                'last_modified' => date('Y-m-d H:i:s')
             );
 
             $status = $this->users_model->update($data, $_POST["user_id"]);
@@ -41,9 +40,9 @@ class Micuenta extends Controller{
     }
 
     public function delete(){
-        if( $this->uri->segment(3)!="" ){
+        if( $this->uri->segment(4)!="" ){
 
-            if( $this->users_model->delete($this->uri->segment(3)) ){
+            if( $this->users_model->delete($this->uri->segment(4)) ){
                 $this->simplelogin->logout();
                 redirect('/index/');
             }else{

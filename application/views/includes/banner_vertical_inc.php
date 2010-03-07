@@ -2,7 +2,7 @@
     <div class="background_sidebar_top"></div>
     <div id="sidebar1">
         <div class="publicity_horizontal">
-            <?php if( $execscript ){?><iframe width="240" height="340" src="http://www.bbvaopentalent.com/scripts/pagina-miniwidgets2ed.php?p=2368" frameborder="0" scrolling="no"> </iframe><?php }?>
+            <?php if( $execscript ){?><!--<iframe width="240" height="340" src="http://www.bbvaopentalent.com/scripts/pagina-miniwidgets2ed.php?p=2368" frameborder="0" scrolling="no"> </iframe>--><?php }?>
         </div>
         <div class="publicity_horizontal">
         <?php if( $execscript ){?>
@@ -19,8 +19,6 @@
             <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
         <?php }?>
         </div>
-        <div class="publicity_horizontal">publicidad</div>
-        <div class="publicity_horizontal">publicidad</div>
     </div>
     <div class="background_sidebar_bottom"></div>
 </div>

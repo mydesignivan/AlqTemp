@@ -9,8 +9,7 @@
     <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
     <!--END SCRIPT-->
 
-    <script type="text/javascript" src="js/class.search.min.js"></script>
-    <script type="text/javascript" src="js/class.contact.min.js"></script>
+    <script type="text/javascript" src="js/class.contact.js"></script>
 </head>
 
 <body>

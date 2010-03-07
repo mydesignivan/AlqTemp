@@ -73,46 +73,31 @@
         <!--<div class="banner_top_cuadrado"><h1>Espacio para publicitar</h1></div>-->
     </div>
     <div class="search">
-        <form id="formSearch" action="" method="post">
+        <form id="formSearch" action="<?=site_url("/index/result/");?>" method="post">
             <div class="search_top">
                 <div class="img_search"><img src="images/icono_buscar.png" alt="buscar" border="0" /></div>
-                <div class="div1">Buscador:&nbsp;<input type="text" class="input" name="txtSearch" value="<?=getval($_POST, "txtSearch");?>" onkeypress="javascript:if(getKeyCode(event)==13) Search.search();" /></div>
-                <a href="#" class="button1" onclick="Search.search(); return false;">Buscar</a>
+                <div class="div1">Buscador:&nbsp;<input type="text" class="input" name="txtSearch" value="<?=@$_POST["txtSearch"];?>" onkeypress="if(getKeyCode(event)==13) $('#formSearch').submit();" /></div>
+                <a href="javascript:$('#formSearch').submit();" class="button1">Buscar</a>
             </div>
             <div class="search_left">
-                <select name="cboCountry" class="select1">
-                    <option value="0">Paises</option>
-                    <?php get_options_search_country(getval($_POST, "cboCountry"));?>
-                </select>
+                <?=form_dropdown('cboCountry', $comboCountry, @$_POST["cboCountry"], 'class="select1" title="Pa&iacute;ses"');?>
                 <br />
-                <select name="cboStates" id="cboStates" class="select1">
-                    <option value="0">Estados / Provincias</option>
-                    <?php get_options_search_states(getval($_POST, "cboStates"));?>
-                </select>
+                <?=form_dropdown('cboStates', $comboStates, @$_POST["cboStates"], 'class="select1" title="Estados / Provincias"');?>
             </div>
             <div class="search_right">
-                <select name="cboCity" id="cboCity" class="select1">
-                    <option value="0">Ciudades</option>
-                    <?php get_options_search_city(getval($_POST, "cboCity"));?>
-                </select>
+                <?=form_dropdown('cboCity', $comboCity, @$_POST['cboCity'], 'class="select1" title="Ciudades"');?>
                 <br />
-                <select name="cboCategory" class="select1">
-                    <option value="0">Categor&iacute;as</option>
-                    <option value="1" <?php if( getval($_POST, "cboCategory")==1 ) echo 'selected="selected"';?>>Casas</option>
-                    <option value="2" <?php if( getval($_POST, "cboCategory")==2 ) echo 'selected="selected"';?>>Caba&ntilde;as</option>
-                    <option value="3" <?php if( getval($_POST, "cboCategory")==3 ) echo 'selected="selected"';?>>Departamentos</option>
-                    <option value="4" <?php if( getval($_POST, "cboCategory")==4 ) echo 'selected="selected"';?>>Otros</option>
-                </select>
+                <?=form_dropdown('cboCategory', $comboCategory, @$_POST['cboCategory'], 'class="select1" title="Cetegor&iacute;as"');?>
             </div>
         </form>
     </div>
     <div class="column1">
         <div class="main_menu">
             <ul>
-                <li><a class="menu-option" href="<?=site_url("/search/casas/");?>">Casas</a></li>
-                <li><a class="menu-option" href="<?=site_url("/search/departamentos/");?>">Departamentos</a></li>
-                <li><a class="menu-option" href="<?=site_url("/search/cabanias/");?>">Cabañas</a></li>
-                <li><a class="menu-option" href="<?=site_url("/search/otros/");?>">Otros</a></li>
+                <li><a class="menu-option" href="<?=site_url("/index/casas/");?>">Casas</a></li>
+                <li><a class="menu-option" href="<?=site_url("/index/departamentos/");?>">Departamentos</a></li>
+                <li><a class="menu-option" href="<?=site_url("/index/cabanias/");?>">Cabañas</a></li>
+                <li><a class="menu-option" href="<?=site_url("/index/otros/");?>">Otros</a></li>
             </ul>
         </div>
 

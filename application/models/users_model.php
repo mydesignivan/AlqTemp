@@ -67,11 +67,8 @@ class Users_model extends Model {
     }
 
     public function get_user($user_id) {
-        if( !is_numeric($user_id) ) {
-            //There was a problem
-            return false;
-        }
-        return $this->db->get_where(TBL_USERS, array('user_id'=>$user_id, 'active'=>1));
+        $data = $this->db->get_where(TBL_USERS, array('user_id'=>$user_id, 'active'=>1))->row_array();
+        return $data;
     }
 
     public function rememberpass($field){

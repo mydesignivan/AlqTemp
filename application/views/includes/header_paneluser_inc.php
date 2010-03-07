@@ -21,11 +21,11 @@
     <div class="column_panel">
         <div class="menu_panel">
             <ul>
-                <li><a href="<?=site_url('/panel/micuenta/');?>">Mi Cuenta</a></li>
-                <li><a href="<?=site_url('/panel/propiedades/');?>">Propiedades</a></li>
-                <li><a href="<?=site_url('/panel/destacar/');?>">Destacar</a></li>
-                <li><a href="<?=site_url('/panel/cuentaplus/');?>">Cuenta Plus</a></li>
-                <li><a href="<?=site_url('/panel/agregarfondos/');?>">Agregar Fondos</a></li>
+                <li><a href="<?=site_url('/panel/micuenta/');?>" class="menu">Mi Cuenta</a></li>
+                <li><a href="<?=site_url('/panel/propiedades/');?>" class="menu">Propiedades</a></li>
+                <!--<li><a href="<?=site_url('/panel/destacar/');?>" class="menu">Destacar</a></li>
+                <li><a href="<?=site_url('/panel/cuentaplus/');?>" class="menu">Cuenta Plus</a></li>
+                <li><a href="<?=site_url('/panel/agregarfondos/');?>" class="menu">Agregar Fondos</a></li>-->
             </ul>
         </div>
     </div>

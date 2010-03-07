@@ -30,14 +30,16 @@ var MoreInfo = new (function(){
     };
 
     this.send_consult = function(){
+        if( working ) return false;
+
+         ajaxloader.show();
          $.validator.validate('#formConsult .validate', function(error){
              if( !error ){
-                 ajaxload.show();
                  var data = $('#formConsult').serialize();
 
                  $.ajax({
                      type : 'post',
-                     url  : baseURI+'masinfo/sendconsult',
+                     url  : baseURI+'masinfo/ajax_sendconsult',
                      data : data,
                      success : function(data){
                          if( data=="ok" ){
@@ -46,11 +48,11 @@ var MoreInfo = new (function(){
                               $('#formConsult .message').html('Ocurrio un error al enviar el mensaje.').slideDown('slow');
                          }
                      },
-                     error : function(xml){
-                         alert("ERROR; "+xml.responseText);
+                     error : function(result){
+                         alert("ERROR; \n"+result.responseText);
                      },
                      complete : function(){
-                         ajaxload.hidden();
+                         ajaxloader.hidden();
                          f.txtName.value = "";
                          f.txtEmail.value = "";
                          f.txtPhone.value = "";
@@ -60,8 +62,8 @@ var MoreInfo = new (function(){
                              $('#formConsult .message').slideUp('slow');
                          }, 5000);
                      }
-                 });                 
-             }
+                 });
+             }else ajaxloader.hidden();
          });
 
      };
@@ -69,19 +71,22 @@ var MoreInfo = new (function(){
     /* PRIVATE PROPERTIES
      **************************************************************************/
      var f=false;
+     var working=false;
 
 
     /* PRIVATE METHODS
      **************************************************************************/
-     var ajaxload={
+     var ajaxloader={
          el  : false,
          el2 : false,
          show : function(){
+             working=true;
              this.el = $('<div class="ajaxload-mask" />');
              this.el2 = $('<div class="ajaxload-message"><img src="images/ajax-loader4.gif" alt=""><p>Enviando consulta...</p></div>');
              $('#contFormConsult').append(this.el, this.el2);
          },
          hidden : function(){
+            working=false;
             this.el.remove();
             this.el2.remove();
          }

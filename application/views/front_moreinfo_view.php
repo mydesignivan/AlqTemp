@@ -15,8 +15,7 @@
     <script type="text/javascript" src="js/jquery.validator/js/script.js"></script>
     <!--END SCRIPT-->
 
-    <script type="text/javascript" src="js/class.moreinfo.min.js"></script>
-    <script type="text/javascript" src="js/class.search.min.js"></script>
+    <script type="text/javascript" src="js/class.moreinfo.js"></script>
 </head>
 
 <body>
@@ -106,7 +105,7 @@
                 <div class="services">
                     <h2>Servicios</h2>
                     <?php
-                        $config['result'] = $data['services']->result_array();
+                        $config['result'] = $data['services'];
                         $config['total_row'] = 3;
                         $config['field'] = "name";
                         $config['tag_open'] = '<div class="services_details">';

@@ -6,43 +6,57 @@ class Propiedades extends Controller {
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
         set_useronline();
 
-        $this->load->helper('combobox');
         $this->load->model('prop_model');
         $this->load->model('cuentaplus_model');
+        $this->load->model('lists_model');
+        $this->load->helper('form');
     }
 
     /*
      * FUNCTIONS PUBLIC
      */
     public function index(){
-        $data = $this->prop_model->get_list_prop();
-        $this->load->view('paneluser_proplist_view', array('listProp'=>$data));
+        $listProp = $this->prop_model->get_list_prop();
+        $this->load->view('paneluser_proplist_view', array('listProp'=>$listProp));
     }
 
     public function form(){
-        if( !$this->uri->segment(3) ){
+        if( !$this->uri->segment(4) ){
             $check = $this->check_total_propfree();
 
             if( $check['result'] ){
-                $arr = array(
+                $data = array(
                     'action'=>'show',
-                    'data'=>false,
-                    'services'=>$this->prop_model->get_services()->result_array()
+                    'data'=>false
                 );
             }else{
-                $arr = array(
+                $data = array(
                     'action'=>$check['error'],
                     'data'=>false
                 );
             }
         }else{
-            $arr = array(
+            $data = array(
                 'action'=>'show',
-                'data'=>$this->prop_model->get_prop($this->uri->segment(3)),
-                'services'=>$this->prop_model->get_services()->result_array()
+                'data'=>$this->prop_model->get_prop($this->uri->segment(4))
             );
         }
-        $this->load->view('paneluser_propform_view', $arr);
+
+        $comboCategory = $this->lists_model->get_category(array("0"=>"Seleccione una Categor&iacute;a"));
+        $comboCountry = $this->lists_model->get_country(array("0"=>"Seleccione un Pa&iacute;s"));
+        $comboServices = $this->lists_model->get_services();
+        if( !$this->uri->segment(4) ){
+            $comboStates = array('0'=>'Seleccione un Pa&iacute;s');
+        }else{
+            $comboStates = $this->lists_model->get_states($data['data']['country_id'], array("0"=>"Seleccione una Provincia"));
+        }
+
+        $data['comboCategory'] = $comboCategory;
+        $data['comboServices'] = $comboServices;
+        $data['comboCountry'] = $comboCountry;
+        $data['comboStates'] = $comboStates;
+
+        $this->load->view('paneluser_propform_view', $data);
 
     }
 
@@ -51,7 +65,7 @@ class Propiedades extends Controller {
 
             $data = $this->request_fields();
             $data['images_new'] = $_POST['images_new'];
-            $data['date_added'] = "now()";
+            $data['date_added'] = date('Y-m-d H:i:s');
 
             $status = $this->prop_model->create($data);
 
@@ -72,9 +86,9 @@ class Propiedades extends Controller {
             $data['images_deletes'] = $_POST['images_deletes'];
             $data['images_modified_id'] = $_POST['images_modified_id'];
             $data['images_modified_name'] = $_POST['images_modified_name'];
-            $data['last_modified'] = "now()";
+            $data['last_modified'] = date('Y-m-d H:i:s');
 
-            $status = $this->prop_model->update($data, $this->uri->segment(3));
+            $status = $this->prop_model->update($data, $this->uri->segment(4));
 
             if( $status=="ok" ){
                 redirect('/panel/propiedades/');
@@ -86,10 +100,10 @@ class Propiedades extends Controller {
     }
 
     public function delete(){
-        if( $this->uri->segment(3) ){
+        if( $this->uri->segment(4) ){
             $id = $this->uri->segment_array();
-            array_splice($id, 0,2);
-            
+            array_splice($id, 0,3);
+
             if( $this->prop_model->delete($id) ){
                 redirect('/panel/propiedades/');
             }else{
@@ -103,16 +117,18 @@ class Propiedades extends Controller {
         redirect('/panel/propiedades/');
     }
 
-    public function check(){
-        if( $this->prop_model->exists($this->uri->segment(3), $this->uri->segment(4)) ){
-            echo "exists";
+    public function ajax_check(){
+        if( $this->prop_model->exists($this->uri->segment(4), $this->uri->segment(5)) ){
+            die("exists");
+        }else{
+            die("notexists");
         }
     }
 
-    public function check_total_images(){
-        if( is_numeric($this->uri->segment(3)) ){
+    public function ajax_check_total_images(){
+        if( is_numeric($this->uri->segment(4)) ){
             $check_cp = $this->cuentaplus_model->check();
-            $total_images = $this->uri->segment(3);
+            $total_images = $this->uri->segment(4);
 
             if( $check_cp['result'] ){ //Hay cuenta plus
                 if( $total_images>=CFG_CUENTAPLUS_TOTAL_IMAGES ) {
@@ -127,14 +143,24 @@ class Propiedades extends Controller {
         }
     }
 
+    public function ajax_show_states(){
+        $listStates = $this->lists_model->get_states($this->uri->segment(4));
+        echo '<option value="0">Seleccione una Provincia</option>';
+        foreach( $listStates as $row ){
+            echo '<option value="'.$row['state_id'].'">'.$row['name'].'</option>\n';
+        }
+        die();
+    }
+
+
     /*
      * FUNCTIONS PRIVATE
      */
     private function request_fields(){
-        $data = array(
+        return array(
             'user_id'         => $this->session->userdata('user_id'),
             'address'         => $_POST["txtAddress"],
-            'category'        => $_POST["cboCategory"],
+            'category_id'     => $_POST["cboCategory"],
             'description'     => $_POST["txtDesc"],
             'country_id'      => $_POST["cboCountry"],
             'state_id'        => $_POST["cboStates"],
@@ -144,7 +170,6 @@ class Propiedades extends Controller {
             'price'           => $_POST["txtPrice"],
             'services'        => $_POST["services"]
         );
-        return $data;
     }
 
     private function check_total_propfree(){

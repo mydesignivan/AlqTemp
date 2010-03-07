@@ -10,18 +10,19 @@ class Destacar extends Controller {
     }
 
     public function index(){
-        $data1 = $this->disting_model->get_list(0);
-        $data2 = $this->disting_model->get_list(1);
-        $this->load->view('paneluser_propdisting_view', array('propDisting'=>$data1, 'propUndisting'=>$data2));
+        $data = array(
+            'listDisting'   => $this->disting_model->get_list(0),
+            'listUndisting' => $this->disting_model->get_list(1)
+        );
+        $this->load->view('paneluser_propdisting_view', $data);
     }
 
     public function disting(){
-        if( $this->uri->segment(3) ){
+        if( $this->uri->segment(4) ){
             $id = $this->uri->segment_array();
             $disting = $id[count($id)];
-            array_splice($id, 0, 2);
-            array_splice($id, -1);
-
+            array_splice($id, 0,3);
+            
             if( $disting==1 ){
                 $this->disting_model->disting($id);
             }else{
@@ -31,7 +32,7 @@ class Destacar extends Controller {
         }
     }
 
-    public function check_saldo_distingprop(){
+    public function ajax_check_saldo_distingprop(){
         $totalprop = $this->disting_model->get_list(0)->num_rows;
         $saldo = (int)$this->session->userdata('fondo');
         $new_saldo = $saldo - (CFG_COSTO_PROPDISTING*$totalprop);

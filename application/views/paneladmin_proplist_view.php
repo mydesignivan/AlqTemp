@@ -22,44 +22,48 @@
                 </div>
 
                 <div class="buttons">
-                    <a href="javascript:void(Prop.action.del());" class="button1">Eliminar</a>
+                    <?php if( $listProp->num_rows>0 ){?>
+                        <a href="javascript:void(Prop.action.del2());" class="button1">Eliminar</a>
+                    <?php }?>
                 </div>
 
-    <?php if( $listProp->num_rows>0 ){?>
-                <div class="tbl-header">
-                    <div class="cell-1">&nbsp;</div>
-                    <div class="cell-2">Propiedad</div>
-                    <div class="cell-3">Usuario</div>
-                    <div class="cell-4">Acci&oacute;n</div>
-                </div>
+                <table id="tblList" class="table" cellpadding="0" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <td class="border-rb cell-1">&nbsp;</td>
+                            <td class="border-rb cell-4">Propiedad</td>
+                            <td class="border-rb cell-5">Usuario</td>
+                            <td class="border-rb cell-6">Fecha Creaci&oacute;n</td>
+                            <td class="border-rb cell-6">Fecha Modificaci&oacute;n</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if( $listProp->num_rows>0 ){$n=0;?>
 
-                <div id="tblProp" class="tbl-body">
-    <?php
-        $n=0;
-        foreach( $listProp->result_array() as $row ){
-            $n++;
-            $class = $n%2 ? 'table_impar' : 'table_par';
-    ?>
+                        <?php foreach( $listProp->result_array() as $row ){$n++;
+                            $class = $n%2 ? "table-row" : "table-row-odd";
+                         ?>
+                            <tr class="<?=$class;?>">
+                                <td class="border-r cell-1"><input type="checkbox" value="<?=$row['prop_id'];?>" /></td>
+                                <td class="border-r cell-4"><a href="#"><?=nl2br($row['address']);?></a></td>
+                                <td class="border-r cell-5"><?=$row['username'];?></td>
+                                <td class="border_r cell-6"><?=$row['date_added'];?></td>
+                                <td class="cell-6"><?=$row['last_modified'];?></td>
+                            </tr>
+                        <?php }?>
 
-                <div class="<?=$class;?>">
-                    <div class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row["prop_id"];?>" /></div>
-                    <div class="cell-2"><a href="#" class="link1"><?=$row['address'];?></a></div>
-                    <div class="cell-3"><?=$row['username'];?></div>
-                    <div class="cell-4"><a href="#" class="link1">Eliminar</a></div>
-                </div>
-    <?php }
+                        <?php }else{?>
+                            <tr>
+                                <td><center><h2>No hay Propiedades cargadas.</h2></center></td>
+                            </tr>
+                        <?php }?>
+                    </tbody>
+                </table>
 
-                }else{?>
-                    <center><h3>No hay propiedades cargadas.</h3></center>
-                <?php }?>
-                </div>
-                <!--end .table_body -->
-                <div class="table_bottom"></div>
             </div>
-            <!--end .maintContent -->
+            <!--end .table_body -->
             <div class="background_bottom"></div>
         </div>
-        <!-- end .container_mainContent -->
       
     	<br class="clearfloat" />
     	

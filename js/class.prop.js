@@ -37,24 +37,22 @@ var Prop = new (function(){
 
     this.save = function(){
         if( working ) return false;
-        working=true;
+
+        ajaxloader.show();
 
         $.validator.validate('#formProp .validate', function(error){
             if( !error && validServices() && validImages() ){
-                var propid="";
-
-                if( f.prop_id.value!="" ) propid = "/"+f.prop_id.value;
-
-                popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
+                                
+                var propid = $(f.prop_id).val();
 
                 $.ajax({
                     type : 'get',
-                    url  : baseURI+'panel/propiedades/check/'+escape(f.txtAddress.value)+propid,
+                    url  : baseURI+'panel/propiedades/ajax_check/'+escape(f.txtAddress.value)+"/"+propid,
                     success : function(data){
                         if( data=="exists" ){
                             show_error(f.txtAddress, 'La direcci&oacute;n ingresada ya existe.')
                             
-                        }else{
+                        }else if( data=="notexists" ){
                             var servsel="";
                             checkServ.each(function(){
                                 servsel+=this.value+",";
@@ -77,25 +75,28 @@ var Prop = new (function(){
                             }
 
                             f.services.value = servsel;
-                            f.action = (propid=="") ? baseURI+"panel/propiedades/create" : baseURI+"panel/propiedades/edit"+propid;
+                            f.action = (propid=="") ? baseURI+"panel/propiedades/create" : baseURI+"panel/propiedades/edit/"+propid;
                             f.submit();
-                        }
+
+                        }else alert("ERROR:\n"+data);
 
                     },
+                    error : function(result){
+                        alert("ERROR:\n"+result.responseText);
+                    },
                     complete : function(){
-                        popup.hidden();
+                        ajaxloader.hidden();
                     }
                 })
 
-            }
-            working=false;
+            }else ajaxloader.hidden();
         });
         return false;
     };
 
     this.action={
         edit : function(){
-            var lstProp = $("#tblProp .table_left input:checked");
+            var lstProp = get_list();
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad para modificar.");
                 return true;
@@ -104,12 +105,12 @@ var Prop = new (function(){
                 alert("Debe seleccionar una sola propiedad.");
                 return false;
             }
-            location.href = baseURI+'prop/form/'+lstProp.val();
+            location.href = baseURI+'panel/propiedades/form/'+lstProp.val();
             return false;
         },
 
         del : function(){
-            var lstProp = $("#tblProp .table_left input:checked");
+            var lstProp = get_list();
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad.");
                 return false;
@@ -118,7 +119,21 @@ var Prop = new (function(){
             var data = get_data(lstProp);
 
             if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
-                location.href = baseURI+'prop/delete/'+data.id;
+                location.href = baseURI+'panel/propiedades/delete/'+data.id;
+            }
+            return false;
+        },
+        del2 : function(){
+            var lstProp = $("#tblList input:checked");
+            if( lstProp.length==0 ){
+                alert("Debe seleccionar una propiedad.");
+                return false;
+            }
+
+            var data = get_data(lstProp);
+
+            if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
+                location.href = baseURI+'paneladmin/propiedades/delete/'+data.id;
             }
             return false;
         },
@@ -136,7 +151,7 @@ var Prop = new (function(){
 
             if( dist==1 ){
                 working=true;
-                $.get(baseURI+'panel/destacar/check_saldo_distingprop', function(data){
+                $.get(baseURI+'panel/destacar/ajax_check_saldo_distingprop', function(data){
                     if( data=="error" ){
                         alert("El saldo disponible no es suficiente para destacar una propiedad.");
                         return false;
@@ -161,7 +176,7 @@ var Prop = new (function(){
         
         var total_img = $('input.ajaxupload-input:not(empty)').length;
 
-        $.get(baseURI+'prop/check_total_images/'+total_img, function(data){
+        $.get(baseURI+'panel/propiedades/ajax_check_total_images/'+total_img, function(data){
            if( data=="limitexceeded" ){
                alert('Ha superado el limite para cargar imagenes.');
            }else if( data=="accesdenied" ){
@@ -226,6 +241,15 @@ var Prop = new (function(){
         }
     };
 
+    this.show_states = function(el){
+        el.disabled = true;
+        $.get(baseURI+'panel/propiedades/ajax_show_states/'+el.value,'', function(data){
+            $('#cboStates').empty()
+                           .append(data);
+
+            el.disabled = false;
+        });
+    };
 
 
     /* PRIVATE PROPERTIES
@@ -291,12 +315,20 @@ var Prop = new (function(){
         }
     };
 
-    var show_error = function(el, msg){
-        $.validator.show(el,{
-            message : msg
-        });
-        el.focus();
+    var get_list = function(){
+        return $("#tblProp .table_left input:checked");
     };
+
+    var ajaxloader = {
+        show : function(){
+            working=true;
+            popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
+        },
+        hidden : function(){
+            popup.hidden();
+            working=false;
+        }
+    }
 
 })();
 

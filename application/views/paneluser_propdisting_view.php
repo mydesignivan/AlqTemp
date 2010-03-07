@@ -34,9 +34,9 @@
 
                 <div id="tblProp" class="container_scroll table_body overflow-x-hidden">
                 <?php
-                if( $propDisting->num_rows>0 ){
+                if( $listDisting->num_rows>0 ){
                     $n=0;
-                    foreach( $propDisting->result_array() as $row ){
+                    foreach( $listDisting->result_array() as $row ){
                         $n++;
                         $class = $n%2 ? 'table_impar' : 'table_par';
                  ?>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="table_bottom"></div>
 
-                <?php if( $propDisting->num_rows>0 ){?>
+                <?php if( $listDisting->num_rows>0 ){?>
                 <div class="container_button"><a href="javascript:void(Prop.action.disting(1, '#tblProp .table_left'));" class="button2">Destacar</a></div>
                 <?php }?>
 
@@ -74,9 +74,9 @@
                 </div>
                 <div id="tblProp2" class="container_scroll table_body overflow-x-hidden">
                 <?php
-                if( $propUndisting->num_rows>0 ){
+                if( $listUndisting->num_rows>0 ){
                     $n=0;
-                    foreach( $propUndisting->result_array() as $row ){
+                    foreach( $listUndisting->result_array() as $row ){
                         $n++;
                         $class = $n%2 ? 'table_impar' : 'table_par';
                  ?>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="table_bottom"></div>
 
-                <?php if( $propUndisting->num_rows>0 ){?>
+                <?php if( $listUndisting->num_rows>0 ){?>
                 <div class="container_button"><a href="javascript:void(Prop.action.disting(0, '#tblProp2 .table_left'));" class="button3">Quitar Destacado</a></div>
                 <?php }?>
 

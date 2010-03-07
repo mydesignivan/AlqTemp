@@ -21,12 +21,13 @@
     <div class="column_panel">
         <div class="menu_panel">
             <ul>
-                <li><a href="<?=site_url('/paneladmin/informacion/');?>">Informacion</a></li>
-                <li><a href="<?=site_url('/paneladmin/propiedades/');?>">Propiedades</a></li>
-                <li><a href="<?=site_url('/paneladmin/usuarios/');?>">Usuarios</a></li>
-                <li><a href="<?=site_url('/paneladmin/destacados/');?>">Destacados</a></li>
-                <li><a href="<?=site_url('/paneladmin/fondos/');?>">Fondos</a></li>
-                <li><a href="<?=site_url('/paneladmin/banner/');?>">Banner</a></li>
+                <li><a href="<?=site_url('/paneladmin/informacion/');?>" class="menu">Informaci&oacute;n</a></li>
+                <!--<li><a href="<?=site_url('/paneladmin/propiedades/');?>" class="menu">Propiedades</a></li>
+                <li><a href="<?=site_url('/paneladmin/usuarios/');?>" class="menu">Usuarios</a></li>
+                <li><a href="<?=site_url('/paneladmin/destacados/');?>" class="menu">Destacados</a></li>
+                <li><a href="<?=site_url('/paneladmin/fondos/');?>" class="menu">Fondos</a></li>
+                <li><a href="<?=site_url('/paneladmin/banner/');?>" class="menu">Banner</a></li>-->
+                <li><a href="<?=site_url('/paneladmin/log/');?>" class="menu">Log</a></li>
             </ul>
         </div>
     </div>
