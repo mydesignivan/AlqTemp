@@ -1,7 +1,5 @@
 <base href="<?=base_url();?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="description" content="" />
-<meta name="keywords" content="alquiler apartamentos, alquiler cabañas, alquiler bungalows, alquiler temporario, alquiler fin de semana, alquiler vacaciones, alquiler casas" />
 
 <link href="images/favicon.ico" rel="stylesheet icon" type="image/ico" />
 <link href="styles/style.css" rel="stylesheet" type="text/css" />

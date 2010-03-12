@@ -174,10 +174,96 @@ define('EMAIL_BUYCREDIT_MESSAGE', '<b>Nombre:</b> %s<hr color="#000000" /><b>Tel
 | EMAIL CUENTA PLUS
 |--------------------------------------------------------------------------
 */
-define('EMAIL_CUENTAPLUS_FROM', 'ivan@mydesign.com.ar');
+$msg = 'Hola %s<br /><br />
+
+Tu cuenta plus ha sido activada!<br />
+A partir de este momento puedes disfrutar de los beneficios que la misma te<br />
+brinda como:<br />
+%s<br /><br />
+
+Mantente informado, ya que estaremos agregando cada vez mas servicios para que
+puedas tener mas y mejores herramientas para manejar tus alquileres<br /><br />
+
+Atte<br />
+AlquileresTemporarios.org';
+
+define('EMAIL_CUENTAPLUS_FROM', 'no-reply@alquilerestemporario.org');
 define('EMAIL_CUENTAPLUS_NAME', 'AlquileresTemporarios.org');
 define('EMAIL_CUENTAPLUS_SUBJECT', 'Gracias por adquirir nuestros servicios.');
-define('EMAIL_CUENTAPLUS_MESSAGE', 'asda sd as d asd');
+define('EMAIL_CUENTAPLUS_MESSAGE', $msg);
+
+/*
+|--------------------------------------------------------------------------
+| EMAIL AVISO DE VENCIMIENTO "CUENTA PLUS"
+|--------------------------------------------------------------------------
+*/
+$msg = 'Hola %s<br /><br />
+
+Tu cuenta plus esta por vencer.<br />
+Para no perder tus beneficios, no olvides renovarla a traves de la secci&oacute;n<br />
+"Cuenta Plus" en nuestra web o a traves de este <a href="%s">%s</a><br />
+
+recuerda que la "Cuenta Plus" te permite:
+-(listar lo que permite la cuenta plus)
+
+Atte
+AlquileresTemporarios.org';
+
+define('EMAIL_VENC_CUENTAPLUS_FROM', 'no-reply@alquilerestemporario.org');
+define('EMAIL_VENC_CUENTAPLUS_NAME', 'AlquileresTemporarios.org');
+define('EMAIL_VENC_CUENTAPLUS_SUBJECT', 'Aviso de Vencimiento.');
+define('EMAIL_VENC_CUENTAPLUS_MESSAGE', $msg);
+
+/*
+|--------------------------------------------------------------------------
+| EMAIL AVISO DE VENCIMIENTO "PROPIEDAD"
+|--------------------------------------------------------------------------
+*/
+$msg = 'Hola %s<br /><br />
+
+El destaque de tu propiedad %s esta por vencer.<br />
+Para no perder tu posicionamiento, no olvides renovar el destaque a traves de la<br />
+seccion "Destacarme" en nuestra web o a traves de este <a href="%s">%s</a><br /><br />
+
+Recuerda que el "Destacarme" te permite estar entre los primeros resultados de<br />
+b&uacute;squeda y asi lograr tener una cantidad de visitas y consultas mucho mayor<br />
+sobre tu alquiler<br /><br />
+
+Atte<br />
+AlquileresTemporarios.org';
+
+define('EMAIL_VENC_PROP_FROM', 'no-reply@alquilerestemporario.org');
+define('EMAIL_VENC_PROP_NAME', 'AlquileresTemporarios.org');
+define('EMAIL_VENC_PROP_SUBJECT', 'Aviso de Vencimiento.');
+define('EMAIL_VENC_PROP_MESSAGE', $msg);
+
+
+/*
+|--------------------------------------------------------------------------
+| EMAIL PEDIDOS
+|--------------------------------------------------------------------------
+*/
+$msg = 'Hola %s<br /><br />
+
+Te informamos que segun lo solicitado, se le han acreditado fondos en su cuenta <br />
+por un total de U\$S %s<br />
+A partir de este momento ya puede hacer uso de los mismas <a href="%s">Accediendo a su cuenta</a><br /><br />
+
+Muchas gracias por utilizar nuestros servicios<br /><br />
+
+<font color="#ccc">
+Recuerde que los mismos solo pueden ser utilizados para servicios prestados por<br />
+AlquileresTemporarios.org<br />
+Los mismos no son transferibles ni reembolsables bajo ningun concepto.
+</font><br /><br />
+
+Atte.<br />
+AlquileresTemporarios.org';
+
+define('EMAIL_ORDERS_FROM', 'no-reply@alquilerestemporario.org');
+define('EMAIL_ORDERS_NAME', 'AlquileresTemporarios.org');
+define('EMAIL_ORDERS_SUBJECT', 'Tu pago ha sido acreditado.');
+define('EMAIL_ORDERS_MESSAGE', $msg);
 
 
 /*
@@ -205,7 +291,7 @@ define('IMAGE_ORIGINAL_HEIGHT', 600);
 define('CFG_TIME_DISTPROP', 1);      // Tiempo que dura una propiedad destacada (expresado en meses)
 define('CFG_TIME_CUENTAPLUS', 1);    // Tiempo que dura una Cuenta Plus (expresado en años)
 define('CFG_COSTO_PROPDISTING', 5);  // Costo para destacar propiedad
-define('CFG_COSTO_CUENTAPLUS', 100); // Costo para adquirir una cuenta plus
+define('CFG_COSTO_CUENTAPLUS', 30); // Costo para adquirir una cuenta plus
 define('CFG_FREE_TOTAL_PROP', 3);    // Cantidad de propiedad gratis
 define('CFG_FREE_TOTAL_IMAGES', 3);  // Cantidad de imagenes gratis
 define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS

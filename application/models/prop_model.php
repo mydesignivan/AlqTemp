@@ -280,6 +280,7 @@ class Prop_model extends Model {
         $user_id = $this->session->userdata('user_id');
         $prefix = $user_id."_";
         $data = array();
+
         foreach( $images_new as $name_original ){
             $name = preg_replace("/\s+/", "_", strtolower($name_original));
 

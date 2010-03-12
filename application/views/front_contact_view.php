@@ -3,6 +3,8 @@
 <head>
     <title>Alquileres temporarios</title>
     <?php require('includes/head_inc.php');?>
+    <meta name="description" content="" />
+    <meta name="keywords" content="alquiler apartamentos, alquiler cabañas, alquiler bungalows, alquiler temporario, alquiler fin de semana, alquiler vacaciones, alquiler casas" />
 
     <!--SCRIPT "VALIDADOR DE FORMULARIOS"-->
     <link type="text/css" href="js/jquery.validator/css/style.css" rel="stylesheet"  />

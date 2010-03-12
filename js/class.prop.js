@@ -65,7 +65,7 @@ var Prop = new (function(){
                                //Busca Imagenes Nuevas
                                $('a.ajaxupload-preview:visible').each(function(){
                                    var val = $(this).parent().find('.ajaxupload-input').val();
-                                   if( val!="" ) arr_images_new.push();
+                                   if( val!="" ) arr_images_new.push(val);
                                });
 
                                f.images_new.value = arrayToObject(arr_images_new);
@@ -290,6 +290,7 @@ var Prop = new (function(){
 
             $(arr).each(function(i){
                 var val = !isObject ? this : this.value;
+                if( val.toString().indexOf('\\')>-1 ) val = basename(val);
                 str+='"'+(i)+'":"'+val+'",';
             });
             str = str.substr(0, str.length-1);

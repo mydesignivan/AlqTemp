@@ -2,6 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Alquileres temporarios</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="alquiler apartamentos, alquiler cabañas, alquiler bungalows, alquiler temporario, alquiler fin de semana, alquiler vacaciones, alquiler casas" />
+
     <?php require('includes/head_inc.php');?>
 </head>
 

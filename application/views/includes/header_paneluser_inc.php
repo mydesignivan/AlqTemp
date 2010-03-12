@@ -23,9 +23,11 @@
             <ul>
                 <li><a href="<?=site_url('/panel/micuenta/');?>" class="menu">Mi Cuenta</a></li>
                 <li><a href="<?=site_url('/panel/propiedades/');?>" class="menu">Propiedades</a></li>
-                <!--<li><a href="<?=site_url('/panel/destacar/');?>" class="menu">Destacar</a></li>
+        <?php if( $this->session->userdata('username')=="iwmattoni"||$this->session->userdata('username')=="difiesta"||$this->session->userdata('username')=="jbasaez" ){?>
+                <li><a href="<?=site_url('/panel/destacar/');?>" class="menu">Destacar</a></li>
                 <li><a href="<?=site_url('/panel/cuentaplus/');?>" class="menu">Cuenta Plus</a></li>
-                <li><a href="<?=site_url('/panel/agregarfondos/');?>" class="menu">Agregar Fondos</a></li>-->
+                <li><a href="<?=site_url('/panel/agregarfondos/');?>" class="menu">Agregar Fondos</a></li>
+        <?php }?>
             </ul>
         </div>
     </div>

@@ -8,7 +8,6 @@ class Registro extends Controller {
         $this->load->helper('form');
         $this->load->library('encpss');
         $this->load->library('email');
-        die($this->encpss->decode('Gy0ZIqm2sU9m0E1dwz3PFcHLgf0='));
     }
 
     /*
