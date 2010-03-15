@@ -55,4 +55,4 @@
 <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
 <![endif]-->
 
-<?php $execscript=true;?>
+<?php $execscript=false;?>

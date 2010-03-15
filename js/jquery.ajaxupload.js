@@ -98,6 +98,7 @@ var ClassAjaxUpload=function(options){
             opacity : 0
         });
 
+        if( $.browser.opera ) i.css('margin', '5px 0 0 -518px');
         if( $.browser.msie ) i.css('margin', '0 0 0 -518px');
 
         i.bind('change', function(){
