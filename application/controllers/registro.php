@@ -32,7 +32,7 @@ class Registro extends Controller {
 
             $user_id = $this->users_model->create($data);
 
-            $link = site_url('/registro/confirm_email/'.base64_encode($user_id));
+            $link = site_url('/registro/confirm_email/'.$this->encpss->urlsafe_base64_encode($user_id));
             $message = sprintf(EMAIL_REG_MESSAGE,
                 $_POST["txtUser"],
                 $link,
@@ -59,7 +59,7 @@ class Registro extends Controller {
 
     public function confirm_email(){
         if( $this->uri->segment(3) ){
-            $seg = base64_decode($this->uri->segment(3));
+            $seg = $this->encpss->urlsafe_base64_decode($this->uri->segment(3));
             $res = $this->users_model->activate($seg);
             if( !$res ){
                 redirect('/index/');
