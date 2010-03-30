@@ -2,21 +2,35 @@
 
 class Login extends Controller{
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function __construct(){
         parent::Controller();
         $this->load->library("simplelogin");
     }
 
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function index(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             $statusLogin = $this->simplelogin->login($_POST["txtLoginUser"], $_POST["txtLoginPass"]);
             
-            $this->session->set_flashdata('statusLogin', $statusLogin);
-
-            if( $this->session->userdata('level')==0 ){
+            if( $statusLogin['status']=="error" ){
+                if( $statusLogin['error']=="loginfaild" ){
+                    $message = "El usuario y/o password son incorrectos.";
+                }elseif( $statusLogin['error']=="userinactive" ){
+                    $message = "El usuario no esta activado.";
+                }                
+                $this->session->set_flashdata('message_login', $message);                
                 redirect('/index/');
+
             }else{
-                redirect('/paneladmin/informacion/');
+
+                if( $this->session->userdata('level')==0 ){
+                    redirect('/index/');
+                }else{
+                    redirect('/paneladmin/informacion/');
+                }
             }
         }
     }
@@ -30,7 +44,7 @@ class Login extends Controller{
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             $this->load->library('encpss');
             if( $this->simplelogin->login($this->encpss->decode($_POST["p1"]), $this->encpss->decode($_POST["p2"])) ){
-                redirect('/panel/micuenta/');
+                redirect('/paneluser/micuenta/');
             }
         }
     }

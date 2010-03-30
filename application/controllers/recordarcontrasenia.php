@@ -1,19 +1,37 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Recordarcontrasenia extends Controller {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function __construct(){
         parent::Controller();
         $this->load->model('users_model');
         $this->load->model('lists_model');
         $this->load->library('email');
         $this->load->helper('form');
+        $this->load->library('dataview', array(
+            'tlp_title'       =>  TITLE_RECORDARCONTRA,
+            'tlp_script'      =>  array('validator', 'rememberpass'),
+            'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
+            'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
+            'comboStates'     =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),
+            'comboCity'       =>  $this->lists_model->get_city_search(array("0"=>"Ciudades"))
+        ));
+        $this->_data = $this->dataview->get_data();
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $_data;
+
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function index(){
-        $this->load->view('front_rememberpass_view', $this->get_data());
+        $this->_data = $this->dataview->set_data(array(
+            'tlp_section'       => 'frontpage/rememberpass_view.php',
+            'tlp_title_section' => "Recordar Contrase&ntilde;a",
+        ));
+        $this->load->view('template_frontpage_view', $this->_data);
     }
 
     public function password_reset(){
@@ -23,11 +41,13 @@ class Recordarcontrasenia extends Controller {
         if( $param1 && $param2 ){
             if( $this->users_model->check_token($param1, $param2) ){
 
-                $data = $this->get_data();
-                $data['username'] = $param1;
-                $data['token'] = $param2;
-
-                $this->load->view('front_passwordreset_view', $data);
+                $this->_data = $this->dataview->set_data(array(
+                    'tlp_section'       => 'frontpage/passwordreset_view.php',
+                    'tlp_title_section' => "Recordar Contrase&ntilde;a",
+                    'username'          => $param1,
+                    'token'             => $param2
+                ));
+                $this->load->view('template_frontpage_view', $this->_data);
 
             }else redirect('/index/');
         }else redirect('/index/');
@@ -55,7 +75,13 @@ class Recordarcontrasenia extends Controller {
                     die($err);
                 }
             }
-            $this->load->view('front_rememberpass_view', array('status'=>$result['status'], 'field'=>$_POST['txtField']));
+            $this->_data = $this->dataview->set_data(array(
+                'tlp_section'       => 'frontpage/rememberpass_view.php',
+                'tlp_title_section' => "Recordar Contrase&ntilde;a",
+                'status'            => $result['status'],
+                'field'             => $_POST['txtField']
+            ));
+            $this->load->view('template_frontpage_view', $this->_data);
         }
     }
 
@@ -63,34 +89,19 @@ class Recordarcontrasenia extends Controller {
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             if( $this->users_model->change_pass($_POST) ){
                 $this->load->library('encpss');
-                $data = array(
-                    'status'=>'ok',
-                    'data'=>array(
+                $this->_data = $this->dataview->set_data(array(
+                    'tlp_section'       => 'frontpage/passwordreset_view.php',
+                    'tlp_title_section' => "Recordar Contrase&ntilde;a",
+                    'status'            => 'ok',
+                    'info' => array(
                         'username'=>$this->encpss->encode($_POST['usr']),
                         'password'=>$this->encpss->encode($_POST['txtPass'])
                      )
-                );
-                $this->load->view('front_passwordreset_view', $data);
+                ));
+                $this->load->view('template_frontpage_view', $this->_data);
             }else redirect('/index/');
         }
     }
-
-    /*
-     * FUNCTIONS PRIVATE
-     */
-     private function get_data(){
-        $comboCountry = $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses"));
-        $comboStates = $this->lists_model->get_states_search(array("0"=>"Estados / Provincias"));
-        $comboCity = $this->lists_model->get_city_search(array("0"=>"Ciudades"));
-        $comboCategory = $this->lists_model->get_category(array("0"=>"Categor&iacute;as"));
-
-        return array(
-            'comboCountry'    =>  $comboCountry,
-            'comboCategory'   =>  $comboCategory,
-            'comboStates'     =>  $comboStates,
-            'comboCity'       =>  $comboCity
-        );
-     }
+    
 }
-
 ?>

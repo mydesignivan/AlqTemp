@@ -46,9 +46,12 @@ function search_city(city){
     }
 }
 
-function show_error(el, msg){
+function show_error(el, msg, container){
+    if( typeof container=="undefined" ) container=null;
     $.validator.show(el,{
-        message : msg
+        message : msg,
+        container : container
     });
-    el.focus();
+    try{el.focus();}
+    catch(e){}
 }

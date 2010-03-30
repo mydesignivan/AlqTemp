@@ -9,8 +9,8 @@ class Captcha extends Controller {
     public function index(){
         // Change some settings
 
-        $this->securimage->image_width = 160;
-        $this->securimage->image_height = 60;
+        $this->securimage->image_width = 180;
+        $this->securimage->image_height = 65;
         //$img->perturbation = 0.9; // 1.0 = high distortion, higher numbers = more distortion
         //$img->image_bg_color = new Securimage_Color("#0099CC");
         //$img->text_color = new Securimage_Color("#EAEAEA");

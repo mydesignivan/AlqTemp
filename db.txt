@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 07-03-2010 a las 23:24:15
+-- Tiempo de generación: 30-03-2010 a las 19:08:04
 -- Versión del servidor: 5.1.37
 -- Versión de PHP: 5.3.0
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('bd50ccc98c698ef3baab0542cb58cf8e', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.7', 1267986763, '');
+('fea15ba896a55fd07e52e9d0cc0474e0', '0.0.0.0', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1269967983, '');
 
 -- --------------------------------------------------------
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `cuentaplus` (
   `date_start` datetime NOT NULL,
   `date_end` char(10) NOT NULL,
   PRIMARY KEY (`cuentaplus_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `cuentaplus`
@@ -67,17 +67,15 @@ CREATE TABLE IF NOT EXISTS `images` (
   `name_thumb` varchar(255) NOT NULL,
   `name_original` varchar(255) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Volcar la base de datos para la tabla `images`
 --
 
 INSERT INTO `images` (`image_id`, `prop_id`, `name`, `name_thumb`, `name_original`) VALUES
-(66, 33, '1_casas_de_madera.jpg', '1_casas_de_madera_thumb.jpg', 'casas_de_madera.jpg'),
-(63, 31, '1_1_galeria_+1.jpg', '1_1_galeria_+1_thumb.jpg', '1_galeria_+1.jpg'),
-(64, 31, '1_7_sanra2.jpg', '1_7_sanra2_thumb.jpg', '7_sanra2.jpg'),
-(65, 32, '1_casa_iberadria.jpg', '1_casa_iberadria_thumb.jpg', 'casa_iberadria.jpg');
+(40, 34, '1_8_valle.jpg', '1_8_valle_thumb.jpg', '8_valle.jpg'),
+(41, 34, '1_casas_de_madera.jpg', '1_casas_de_madera_thumb.jpg', 'casas_de_madera.jpg');
 
 -- --------------------------------------------------------
 
@@ -4707,12 +4705,14 @@ CREATE TABLE IF NOT EXISTS `log_searches` (
   `search_term` varchar(200) NOT NULL,
   `hits` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Volcar la base de datos para la tabla `log_searches`
 --
 
+INSERT INTO `log_searches` (`id`, `search_term`, `hits`) VALUES
+(10, 'Mendoza', 2);
 
 -- --------------------------------------------------------
 
@@ -4735,16 +4735,14 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`prop_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
 
 --
 -- Volcar la base de datos para la tabla `properties`
 --
 
 INSERT INTO `properties` (`prop_id`, `user_id`, `category_id`, `address`, `description`, `country_id`, `state_id`, `city`, `phone`, `website`, `price`, `date_added`, `last_modified`) VALUES
-(32, 1, 1, 'propiedad2', 'asdfasdf', 13, 180, 'Mendoza', '', '', '', '2010-03-07 12:57:01', '0000-00-00 00:00:00'),
-(31, 1, 1, 'propiedad1', 'asdfasdfasdfsa df sadf sa df sadf\nsadf\nsa\ndfsadf', 13, 180, 'Mendoza', '', '', '', '0000-00-00 00:00:00', '2010-03-07 13:00:48'),
-(33, 1, 2, 'propiedad3', 'fsdfsdf', 3, 53, 'Edwew', '', '', '', '2010-03-07 13:27:01', '0000-00-00 00:00:00');
+(34, 1, 2, 'propiedad1', 'asdadas\nda\nsdasd', 13, 180, 'Mendoza', '', '', '', '2010-03-12 14:55:02', '2010-03-12 15:03:14');
 
 -- --------------------------------------------------------
 
@@ -4758,7 +4756,7 @@ CREATE TABLE IF NOT EXISTS `properties_disting` (
   `date_start` datetime NOT NULL,
   `date_end` char(10) NOT NULL,
   PRIMARY KEY (`propdisting_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Volcar la base de datos para la tabla `properties_disting`
@@ -4781,10 +4779,7 @@ CREATE TABLE IF NOT EXISTS `properties_to_services` (
 --
 
 INSERT INTO `properties_to_services` (`prop_id`, `service_id`) VALUES
-(33, 4),
-(32, 4),
-(32, 3),
-(31, 4);
+(34, 4);
 
 -- --------------------------------------------------------
 
@@ -4800,23 +4795,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(50) DEFAULT NULL,
   `phone` char(30) DEFAULT NULL,
   `active` int(1) NOT NULL DEFAULT '0',
-  `fondo` int(3) NOT NULL DEFAULT '0',
+  `fondo` int(6) NOT NULL DEFAULT '0',
   `token` char(23) NOT NULL,
   `level` int(1) NOT NULL DEFAULT '0' COMMENT '0=User, 1=Admin',
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Volcar la base de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `email`, `phone`, `active`, `fondo`, `token`, `level`, `date_added`, `last_modified`) VALUES
-(1, 'ivan', '1oNQKj3dUZ0RjwuY9D5KsEeqnVI=', 'Ivan Mattoni', 'ivan@mydesign.com.ar', '4442192', 1, 409, '', 0, '2010-03-02 16:13:33', '0000-00-00 00:00:00'),
-(10, 'jbasaez', 'PoP67DByi3gYfcVsCYTnFs33IRU=', 'janet basez', 'iwmattoni@gmail.com', '4442192', 1, 0, '', 0, '2010-03-02 16:13:33', '0000-00-00 00:00:00'),
-(13, 'mydesign', 'KTjCnbuF26ADc8YUCfydlDS2wtiHxHUi', 'usuario de prueba', 'iwmattoni@yahoo.com', '', 0, 0, '', 0, '2010-03-02 16:13:33', '0000-00-00 00:00:00'),
-(14, 'admin', '1oNQKj3dUZ0RjwuY9D5KsEeqnVI=', 'Ivan Mattoni', NULL, NULL, 0, 0, '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'iwmattoni', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', 'iwmattoni@yahoo.com', '4442192', 1, 700, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
+(3, 'valeria', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', 'valeria@mydesign.com.ar', '', 1, 50, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
+(5, 'jsuarez', 'XSefDr9qBEzqXYhTFH5guxyDCbk=', 'juan', 'jsuarez@mydesign.com.ar', '', 0, 0, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
+(6, 'admin', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', NULL, NULL, 0, 0, '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -4836,5 +4831,5 @@ CREATE TABLE IF NOT EXISTS `users_online` (
 --
 
 INSERT INTO `users_online` (`user_id`, `ip`, `time`) VALUES
-(1, '127.0.0.1', 1267983562);
+(1, '0.0.0.0', 1269877511);
 

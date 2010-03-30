@@ -2,37 +2,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <link href="images/favicon.ico" rel="stylesheet icon" type="image/ico" />
-<link href="styles/style.css" rel="stylesheet" type="text/css" />
 
-<!--[if IE]>
-<link href="styles/styleIE.css" rel="stylesheet" type="text/css" />
+<!-- Framework CSS (BLUE PRINT) -->
+<link rel="stylesheet" href="css/blueprint/screen.min.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/>
+<!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/><![endif]-->
+<!-- END FRAMEWORK -->
+
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+<link href="css/styleIE7.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<!--[if IE 6]>
+<link href="css/styleIE6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
 
 <!--========== LIBRARIES ============-->
-<script type="text/JavaScript" src="js/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/helpers.min.js"></script>
 <script type="text/javascript" src="js/comun.js"></script>
 <!--========== END LIBRARIES =======-->
 
 
-<!--============ SCRIPT: SUPERFISH (Menus Desplegables) =================-->
-<!--<link rel="stylesheet" type="text/css" href="js/jquery.superfish/css/superfish.css" media="screen">
-<script type="text/javascript" src="js/jquery.superfish/js/hoverIntent.js"></script>
-<script type="text/javascript" src="js/jquery.superfish/js/superfish.js"></script>
-<script type="text/javascript">
-    jQuery(function(){
-        jQuery('ul.sf-menu').superfish();
-    });
-</script>-->
-<!--======= END SCRIPT =======-->
-
 <script type="text/javascript">
 <!--
-<?php 
-    $indexphp = index_page();
-    if( !empty($indexphp) ) $indexphp.="/";
-?>
+<?php $indexphp = index_page();if( !empty($indexphp) ) $indexphp.="/";?>
     var baseURI = $("base").attr("href")+"<?=$indexphp;?>";
+
+    if( $.browser.opera ) $('head').append($('<link href="css/styleOpera.css" rel="stylesheet" type="text/css" />'));
+    if( $.browser.safari ) $('head').append($('<link href="css/styleSafari.css" rel="stylesheet" type="text/css" />'));
 -->
 </script>
 
@@ -43,7 +41,6 @@
 
 <!--[if IE 6]>
 <script type="text/javascript">
-    /*Load jQuery if not already loaded*/ if(typeof jQuery == 'undefined'){ document.write("<script type=\"text/javascript\"   src=\"js/ie6update/jquery.min.js\"></"+"script>"); var __noconflict = true; }
     var IE6UPDATE_OPTIONS = {
         icons_path: "js/ie6update/ie6update/images/"
     }
@@ -54,5 +51,3 @@
 <!--[if IE 6]>
 <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
 <![endif]-->
-
-<?php $execscript=false;?>

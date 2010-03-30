@@ -1,7 +1,6 @@
 /* 
  * Clase MoreInfo
  *
- * Llamada por las vistas: front_moreinfo_view
  * Su funcion: Envia el form de consulta al propietario del inmueble.
  *
  */
@@ -27,25 +26,30 @@ var MoreInfo = new (function(){
         $(f.txtConsult).validator({
             v_required : true
         });
+
+        $('#formConsult .ajaxloader-mask').css('opacity', '0.5');
     };
 
     this.send_consult = function(){
         if( working ) return false;
 
-         ajaxloader.show();
+         ajaxloader.show('Validando Formulario');
+
+         var cartel = false;
          $.validator.validate('#formConsult .validate', function(error){
              if( !error ){
-                 var data = $('#formConsult').serialize();
-
+                 ajaxloader.show('Enviando consulta...');
                  $.ajax({
                      type : 'post',
                      url  : baseURI+'masinfo/ajax_sendconsult',
-                     data : data,
+                     data : $('#formConsult').serialize(),
                      success : function(data){
                          if( data=="ok" ){
-                              $('#formConsult .message').html('La consulta ha sido enviada con &eacute;xito.').slideDown('slow');
+                             cartel = $('#formConsult .success');
+                             cartel.html('La consulta ha sido enviada con &eacute;xito.').slideDown('slow');
                          }else{
-                              $('#formConsult .message').html('Ocurrio un error al enviar el mensaje.').slideDown('slow');
+                             cartel = $('#formConsult .error');
+                             cartel.html('Ocurrio un error al enviar el mensaje.').slideDown('slow');
                          }
                      },
                      error : function(result){
@@ -59,7 +63,7 @@ var MoreInfo = new (function(){
                          f.txtConsult.value = "";
 
                          setTimeout(function(){
-                             $('#formConsult .message').slideUp('slow');
+                             cartel.slideUp('slow');
                          }, 5000);
                      }
                  });
@@ -77,18 +81,14 @@ var MoreInfo = new (function(){
     /* PRIVATE METHODS
      **************************************************************************/
      var ajaxloader={
-         el  : false,
-         el2 : false,
-         show : function(){
+         show : function(msg){
              working=true;
-             this.el = $('<div class="ajaxload-mask" />');
-             this.el2 = $('<div class="ajaxload-message"><img src="images/ajax-loader4.gif" alt=""><p>Enviando consulta...</p></div>');
-             $('#contFormConsult').append(this.el, this.el2);
+             $('#formConsult .ajaxloader-mask').show();
+             $('#formConsult .ajaxloader').html('<img src="images/ajax-loader4.gif" alt=""><p>'+msg+'</p>').show();
          },
          hidden : function(){
             working=false;
-            this.el.remove();
-            this.el2.remove();
+            $('#formConsult .ajaxloader-mask, #formConsult .ajaxloader').hide();
          }
      }
 

@@ -1,0 +1,1 @@
+    <p>Su compra no pudo ser procesada</p>

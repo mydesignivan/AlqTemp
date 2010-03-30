@@ -1,5 +1,5 @@
-<div class="banner_top_horizontal">
-<?php if( $execscript ){?>
+<div class="banner-horizontal">
+<?php if( $this->config->item('banner_visible') ){?>
     <script type="text/javascript">
     <!--
         google_ad_client = "pub-8532219450775915";

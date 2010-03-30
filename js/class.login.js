@@ -1,7 +1,6 @@
 /* 
  * Clase Login
  *
- * Llamada por las vistas: head_inc
  * Su funcion: Muestra/Oculta el form de login y permite el logeo al panel.
  *
  */
@@ -10,7 +9,7 @@ var Login = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(){
+    this.initializer = function(login_message){
         $(document.body).click(function(){
             if( !mouse_over && opendialog ){
                 This.close_dialog();
@@ -18,23 +17,29 @@ var Login = new (function(){
         });
         $('#login-container').hover(function(){mouse_over=true;}, function(){mouse_over=false;});
         
-        if( typeof login_message!="undefined" ){
-            $('#login-container .container-form').css("background", "url(images/background_login2.png) no-repeat");
+        if( login_message!="" ){
+            $('#login-container').css("background", "url(images/bg_login2.png) no-repeat");
             $('#login-error').html(login_message);
             This.open_dialog();
         }
 
     };
     this.open_dialog = function(){
-        $('#login-container .signin').hide();
-        $('#login-container .container-form').show();
-        $('#formLogin')[0].txtLoginUser.focus();
+        $('#buttonLogin').hide();
+        $('#login-container').show();
+        $('#txtLoginUser').focus();
+
+        $(document.body).keyup(function(e){
+            if( e.keyCode==27 ) This.close_dialog();
+        });
+
         opendialog=true;
     };
     this.close_dialog = function(){
-        $('#login-container .signin').show();
-        $('#login-container .container-form').hide();
+        $('#login-container').hide();
+        $('#buttonLogin').show();
         opendialog=false;
+        $(document.body).unbind('keyup');
     };
 
 

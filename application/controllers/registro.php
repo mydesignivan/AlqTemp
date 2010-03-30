@@ -1,6 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Registro extends Controller {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function __construct(){
         parent::Controller();
         $this->load->model('users_model');
@@ -8,14 +10,30 @@ class Registro extends Controller {
         $this->load->helper('form');
         $this->load->library('encpss');
         $this->load->library('email');
+
+        $this->load->library('dataview', array(
+            'tlp_title'       =>  TITLE_REGISTRO,
+            'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
+            'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
+            'comboStates'     =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),
+            'comboCity'       =>  $this->lists_model->get_city_search(array("0"=>"Ciudades"))
+        ));
+        $this->_data = $this->dataview->get_data();
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $_data;
+
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function index(){
-        $data = $this->get_data();
-        $this->load->view('front_formregistro_view', $data);
+        $this->_data = $this->dataview->set_data(array(
+            'tlp_section'         =>  'frontpage/registro_view.php',
+            'tlp_title_section'   =>  'Registrarme',
+            'tlp_script'          =>  array('validator', 'account'),
+        ));
+        $this->load->view('template_frontpage_view', $this->_data);
     }
 
     public function create(){
@@ -77,10 +95,12 @@ class Registro extends Controller {
                 $this->email->message($message);
                 if( $this->email->send() ){
 
-                    $data = $this->get_data();
-                    $data['username'] = $user['username'];
-
-                    $this->load->view('front_useractivation_view', $data);
+                    $this->_data = $this->dataview->set_data(array(
+                        'tlp_section'       => 'frontpage/useractivation_view.php',
+                        'tlp_title_section' => 'Cuenta Activada',
+                        'username'          => $user['username']
+                    ));
+                    $this->load->view('template_frontpage_view', $this->_data);
 
                 }else {
                     $err = $this->email->print_debugger();
@@ -92,6 +112,8 @@ class Registro extends Controller {
         }else redirect('/index/');
     }
 
+    /* AJAX FUNCTIONS
+     **************************************************************************/
     public function ajax_check(){
         $this->load->library('captcha/securimage');
 
@@ -109,23 +131,5 @@ class Registro extends Controller {
         die("ok");
     }
 
-    /*
-     * FUNCTIONS PRIVATE
-     */
-    private function get_data(){
-        $comboCountry = $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses"));
-        $comboStates = $this->lists_model->get_states_search(array("0"=>"Estados / Provincias"));
-        $comboCity = $this->lists_model->get_city_search(array("0"=>"Ciudades"));
-        $comboCategory = $this->lists_model->get_category(array("0"=>"Categor&iacute;as"));
-
-        return array(
-            'comboCountry'    =>  $comboCountry,
-            'comboCategory'   =>  $comboCategory,
-            'comboStates'     =>  $comboStates,
-            'comboCity'       =>  $comboCity
-        );
-    }
-
 }
-
 ?>

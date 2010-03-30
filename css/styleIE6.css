@@ -1,0 +1,118 @@
+/*------------------------------------------------------------------------------
+ - ESTILO GENERAL
+ -----------------------------------------------------------------------------*/
+h2{
+    font-size: 150% !important;
+}
+.prepend-left-small{margin-left:2px !important;}
+p{margin-bottom:10px;}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL HEADER
+ -----------------------------------------------------------------------------*/
+.header-col-right{
+    overflow: hidden;
+}
+.header-top{
+    width: 555px;
+}
+.header-col-left a.logo{
+    position:absolute;
+    margin:45px 0 0 15px;
+}
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LINK
+ -----------------------------------------------------------------------------*/
+a.link2{
+    color:#684C1D;
+    font-size: 75%;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA INPUT y TEXTAREA
+ -----------------------------------------------------------------------------*/
+input.input-contact2, textarea.textarea-contact2, input.input-form, input.input-phonearea, input.input-phone, input.input-captcha{
+    border:1px #FAD4A3 solid;
+    background-color:#FAF8E9;
+}
+input.input-form{
+    width: 220px;
+}
+input.input-captcha{
+    width: 180px;
+    font-size: 120%;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA SELECT
+ -----------------------------------------------------------------------------*/
+select.select-contact2{
+    background-color: #FAF8E9;
+}
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL LOGIN
+ -----------------------------------------------------------------------------*/
+.form-login{
+    margin: -8px 0 0 -105px;
+}
+    .form-login .form{
+        margin:10px 0 0 8px;
+    }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL SEARCH
+ -----------------------------------------------------------------------------*/
+.search{
+    margin:-8px 0 0 6px;
+}
+    .search .row2 .span-4 {
+        width: 160px;
+        margin-right: 15px;
+    }
+
+
+/*------------------------------------------------------------------------------
+- ESTILOS PARA EL CONTAINER CENTRAL
+-----------------------------------------------------------------------------*/
+.main-container .column-left .row-top{
+    margin-left: 2px;
+}
+.main-container .column-left .row-center{
+    margin-left:4px;
+}
+.main-container .column-left .row-bottom{
+    margin-left: 2px;
+}
+.main-container .column-right .row-center{
+    margin:-3px 0 0 1px;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA LISTAS
+ -----------------------------------------------------------------------------*/
+ul.ul-list{
+    font-size: 90%;
+}
+    ul.ul-list li span{
+        padding-left: 8px;
+    }
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA SECCION (MAS INFO)
+ -----------------------------------------------------------------------------*/
+.more-info .column-1 .photo-gallery .content-photo{
+    margin: 20px 0 0 13px;
+}
+.more-info .column-1 .thumbs{
+    margin-left: 8px;
+}
+.more-info .column-2 .slide{
+    width: 230px;
+}

@@ -1,7 +1,6 @@
 /* 
  * Clase Account
  *
- * Llamada por las vistas: front_formregistro_view, paneluser_myaccount_view
  * Su funcion: Crear, Modificar o Eliminar usuarios
  *
  */
@@ -10,7 +9,8 @@ var Account = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(){
+    this.initializer = function(mode){
+        mode_edit = mode;
         f = $('#formAccount')[0];
         if( f ){
             $.validator.setting('#formAccount .validate', {
@@ -18,7 +18,7 @@ var Account = new (function(){
                 validateOne     : true
             });
 
-            $(f.txtName).validator({
+            $("input[name='txtFirstName'], input[name='txtLastName']").validator({
                 v_required  : true
             });
             $(f.txtEmail).validator({
@@ -30,11 +30,11 @@ var Account = new (function(){
                 v_user      : [5,10]
             });
             $(f.txtPass).validator({
-                v_required  : ($(f.user_id).val()!='') ? false : true,
+                v_required  : !mode_edit,
                 v_password  : [8,10]
             });
             $(f.txtPass2).validator({
-                v_required  : ($(f.user_id).val()!='') ? false : true,
+                v_required  : !mode_edit,
                 v_compare   : $(f.txtPass)
             });
             if( f.txtCaptcha ){
@@ -105,6 +105,7 @@ var Account = new (function(){
      **************************************************************************/
     var working=false;
     var f=false;
+    var mode_edit = false;
 
     /* PRIVATE METHODS
      **************************************************************************/

@@ -2,7 +2,8 @@
 
 class Encpss{
 
-    private $CI;
+    /* CONSTRUCTOR
+     **************************************************************************/
     function  __construct() {
         $this->CI =& get_instance();
         $this->CI->load->library('encrypt');
@@ -10,6 +11,12 @@ class Encpss{
         $this->CI->encrypt->set_mode(MCRYPT_MODE_CFB);
     }
 
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $CI;
+
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function encode($pss){
         if( empty($pss) ) return '';
 
@@ -20,11 +27,11 @@ class Encpss{
         return $this->CI->encrypt->decode($pss);
     }
 
-    function urlsafe_base64_encode($string) {
+    public function urlsafe_base64_encode($string) {
         return str_replace(array('+','/','='),array('-','_',''), base64_encode($string));
     }
 
-    function urlsafe_base64_decode($string) {
+    public function urlsafe_base64_decode($string) {
 
         $data = str_replace(array('-','_'),array('+','/'), $string);
         $mod4 = strlen($data) % 4;
@@ -35,6 +42,5 @@ class Encpss{
 
         return base64_decode($data);
     }
-
 }
 ?>

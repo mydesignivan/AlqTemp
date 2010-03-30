@@ -1,5 +1,12 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+function print_array($arr, $die=FALSE){
+    echo "<pre>";
+    print_r($arr);
+    echo "</pre>";
+    if( $die ) die();
+}
+
 function file_search_special($dir, $filename_search){
     if( substr($dir,-1)=="/" ) $dir = substr($dir, 0, strlen($dir)-1);
     if( is_dir($dir) ){
@@ -65,42 +72,6 @@ function order_dates($str_date, $order='asc', $format='d-m-Y'){
     return $str_date;
 }
 
-function construct_bloq($config){
-    // ===== [config] =====
-    // result            : array
-    // tag_open          : string
-    // tag_close         : string
-    // tag_open_special  : string
-    // tag_link          : boolean
-    // field             : string
-    // total_row         : integer
-    
-    $n=0;
-    $col=0;
-    foreach( $config['result'] as $row ){
-        $n++;
-        if( $n==1 ){
-            if( $col<2 ) echo $config['tag_open'].'<ul>';
-            elseif( $col==2 && !empty($config['tag_open_special']) ){
-                echo $config['tag_open_special'].'<ul>';
-                $col=0;
-            }
-        }
-
-        if( $n<=$config['total_row'] ){
-            $name = $row[$config['field']];
-            $tag = isset($config['tag_link']) ? '<a href="javascript:void(search_city(\''.$name.'\'))" class="link1">'.$name.'</a>' : $name;
-            echo '<li>'. $tag .'</li>';
-        }
-
-        if( $n==$config['total_row'] || $n==count($config['result']) ){
-            echo '</ul>'.$config['tag_close'];
-            $n=0;
-            $col++;
-        }
-    }
-}
-
 function display_error($file, $function, $err, $param=array()){
     if( count($param)>0 ) {
         $err = vsprintf($err, $param);
@@ -125,11 +96,50 @@ function is_date($strdate){
     return checkdate(date('m', $time), date('d', $time), date('Y', $time));
 }
 
+/*
+ * @example : arr_search($myarray, 'keyname==4)
+ */
 function arr_search ( $array, $expression ) {
     $result = array();
     $expression = preg_replace ( "/([^\s]+?)(=|<|>|!)/", "\$a['$1']$2", $expression );
     foreach ( $array as $a ) if ( eval ( "return $expression;" ) ) $result[] = $a;
     return $result;
+}
+
+function construct_bloq($config){
+    // ===== [config] =====
+    // result            : array
+    // tag_open          : string
+    // tag_close         : string
+    // tag_open_special  : string
+    // tag_link          : boolean
+    // field             : string
+    // total_row         : integer
+
+    $n=0;
+    $col=0;
+    foreach( $config['result'] as $row ){
+        $n++;
+        if( $n==1 ){
+            if( $col<2 ) echo $config['tag_open'];
+            elseif( $col==2 && !empty($config['tag_open_special']) ){
+                echo $config['tag_open_special'];
+                $col=0;
+            }
+        }
+
+        if( $n<=$config['total_row'] ){
+            $name = $row[$config['field']];
+            $tag = isset($config['tag_link']) ? '<a href="javascript:void(search_city(\''.$name.'\'))" class="link1">'.$name.'</a>' : $name;
+            echo '<li>'. $tag .'</li>';
+        }
+
+        if( $n==$config['total_row'] || $n==count($config['result']) ){
+            echo $config['tag_close'];
+            $n=0;
+            $col++;
+        }
+    }
 }
 
 ?>

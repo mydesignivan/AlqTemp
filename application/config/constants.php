@@ -298,5 +298,32 @@ define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS
 define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS
 
 
+/*
+|--------------------------------------------------------------------------
+| TITULOS DE CADA SECCION
+|--------------------------------------------------------------------------
+*/
+define('TITLE_GLOBAL', 'AlquileresTemporarios.org'); // Titulo para todas las secciones
+define('TITLE_INDEX', '');
+define('TITLE_MASINFO', '');
+define('TITLE_CONTACTO', '');
+define('TITLE_REGISTRO', '');
+define('TITLE_MICUENTA', '');
+define('TITLE_PROPIEDADES', '');
+define('TITLE_DESTACADOS', '');
+define('TITLE_CUENTAPLUS', '');
+define('TITLE_AGREGAR FONDOS', '');
+define('TITLE_CONDICIONES', '');     // Condiciones de Uso
+define('TITLE_RECORDARCONTRA', '');  // Recordar Contraseña
+
+/*
+|--------------------------------------------------------------------------
+| META - Palabras Claves y Descripcion de la web
+|--------------------------------------------------------------------------
+*/
+define('META_KEYWORDS', '');
+define('META_DESCRIPTION', '');
+
+
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

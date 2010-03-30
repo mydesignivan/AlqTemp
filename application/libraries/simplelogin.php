@@ -3,44 +3,48 @@
  * Simplelogin Class
  **/
 class Simplelogin{
-    private $CI;
-    private $user_table;
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function __construct(){
         $this->user_table = TBL_USERS;
         $this->CI =& get_instance();
         $this->CI->load->library('encpss');
     }
 
-    /**
-     * @return	boolean
-     */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $CI;
+    private $user_table;
+
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function login($user = '', $password = '') {
         //Make sure login info was sent
         if( $user == '' OR $password == '' ) {
-            return 'loginfaild';
+            return array('error'=>false, 'message'=>'loginfaild');
         }
 
         //Check if already logged in
         if( $this->CI->session->userdata('username') == $user ) {
             //User is already logged in.
-            return 'loginfaild';
+            return array('error'=>false, 'message'=>'loginfaild');
         }
 
 
         //Check against user table
         $query = $this->CI->db->get_where($this->user_table, array('username'=>$user));
 
-        if ($query->num_rows > 0) {
+        if( $query->num_rows > 0 ) {
             $row = $query->row_array();
             //Check against password
 
             if( $password != $this->CI->encpss->decode($row['password']) ) {
-                return 'loginfaild';
+                return array('status'=>'error', 'error'=>'loginfaild');
             }
 
             if( $row['level']==0 && $row['active']==0 ){
-                return 'userinactive';
+                return array('status'=>'error', 'error'=>'userinactive');
             }
 
             //Destroy old session
@@ -59,16 +63,13 @@ class Simplelogin{
             $this->CI->session->set_userdata(array('logged_in' => true));
 
             //Login was successful
-            return true;
+            return array('status'=>'ok');
         } else {
             //No database result found
-            return 'loginfaild';
+            return array('status'=>'error', 'error'=>'loginfaild');
         }
     }
 
-    /**
-     * @return	void
-     */
     public function logout() {
         //Destroy session
         $this->CI->session->sess_destroy();

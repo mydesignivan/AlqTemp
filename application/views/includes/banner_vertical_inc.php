@@ -1,12 +1,8 @@
-<div class="sidebar">
-    <div class="background_sidebar_top"></div>
-    <div id="sidebar1">
-        <div class="publicity_horizontal">
-            <?php if( $execscript ){?><!--<iframe width="240" height="340" src="http://www.bbvaopentalent.com/scripts/pagina-miniwidgets2ed.php?p=2368" frameborder="0" scrolling="no"> </iframe>--><?php }?>
-        </div>
-        <div class="publicity_horizontal">
-        <?php if( $execscript ){?>
-
+<div class="column-right last">
+    <div class="row-top"></div>
+    <div class="row-center">
+    <?php if( $this->config->item('banner_visible') ){?>
+        <div class="publicity">
             <script type="text/javascript">
             <!--
                 google_ad_client = "pub-8532219450775915";
@@ -17,8 +13,8 @@
             //-->
             </script>
             <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-        <?php }?>
         </div>
+    <?php }?>
     </div>
-    <div class="background_sidebar_bottom"></div>
+    <div class="row-bottom"></div>
 </div>
