@@ -1,14 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class cuentaplus_model extends Model {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function  __construct() {
         parent::Model();
         $this->load->model('fondos_model');
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function debit(){
         $this->fondos_model->extract(CFG_COSTO_CUENTAPLUS);
         $user_id = $this->session->userdata('user_id');

@@ -1,7 +1,6 @@
 /* 
  * Clase Contact
  *
- * Llamada por las vistas: front_contacto_view
  * Su funcion: Envia formulario de contacto
  *
  */

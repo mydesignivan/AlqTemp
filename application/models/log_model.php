@@ -1,21 +1,21 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class log_model extends Model {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function  __construct() {
         parent::Model();
-        $this->dir = 'application/logs/';
+        $this->_dir = 'application/logs/';
     }
 
-    /*
-     * PROPERTIES PRIVATE
-     */
-    private $dir;
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $_dir;
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function get_list($date, $offset=0, $limit=null){
-        $rows = $this->get_rows($date);
+        $rows = $this->_get_rows($date);
 
         $new_rows = array();
         $last_row = count($rows)-1;
@@ -42,8 +42,8 @@ class log_model extends Model {
     }
 
     public function delete($date, $arr_index){
-        $rows = $this->get_rows($date);
-        $f = fopen($this->dir."log-".$date.".php", "w");
+        $rows = $this->_get_rows($date);
+        $f = fopen($this->_dir."log-".$date.".php", "w");
         $out = "<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>\n\n";
         $n=0;
 
@@ -59,25 +59,23 @@ class log_model extends Model {
     }
 
     public function delete_date($date){
-        if( !unlink($this->dir."log-".$date.".php") ){
+        if( !unlink($this->_dir."log-".$date.".php") ){
             return false;
         }
         return true;
     }
 
 
-
-    /*
-     * FUNCTION PRIVATE
-     */
-    private function get_rows($date){
-        $d=opendir($this->dir);
+    /* PRIVATE FUNCTIONS
+     **************************************************************************/
+    private function _get_rows($date){
+        $d=opendir($this->_dir);
         $ret = array();
         while( $file = readdir($d) ) {
             if( $file!="." AND $file!=".." ) {
                 $filename_compare = "log-".$date.".php";
                 if( $file==$filename_compare ) {
-                    $rows = file($this->dir.$file);
+                    $rows = file($this->_dir.$file);
                     unset($rows[0]);
                     unset($rows[1]);
 

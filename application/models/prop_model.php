@@ -1,16 +1,17 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Prop_model extends Model {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function  __construct() {
         parent::Model();
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function create($data = array()) {
         $services = explode(",", $data['services']);
-        $images_new = json_decode($data['images_new']);
+        $images_new = $data['extra_post']['images_new'];
 
         unset($data['services']);
         unset($data['images_new']);
@@ -25,10 +26,10 @@ class Prop_model extends Model {
         $prop_id = $this->db->insert_id();
 
         // INSERTA LOS SERVICIOS
-        $this->create_servprop($services, $prop_id);
+        $this->_create_servprop($services, $prop_id);
 
         // COPIA LAS IMAGENES NUEVAS
-        $data = $this->copy_images($images_new, $prop_id);
+        $data = $this->_copy_images($images_new, $prop_id);
         if( !$data ) return false;
 
         // GUARDA LAS IMAGENES EN LA BASE DE DATO
@@ -75,7 +76,7 @@ class Prop_model extends Model {
         }
 
         // INSERTA LOS SERVICIOS
-        $this->create_servprop($services, $prop_id);
+        $this->_create_servprop($services, $prop_id);
 
         // ELIMINA IMAGENES
         if( $images_deletes!="" ){
@@ -95,7 +96,7 @@ class Prop_model extends Model {
 
         // COPIA LAS IMAGENES NUEVAS
         if( $images_new!="" ){
-            $data = $this->copy_images($images_new, $prop_id);
+            $data = $this->_copy_images($images_new, $prop_id);
             if( !$data ) return false;
 
             // GUARDA LAS IMAGENES EN LA BASE DE DATO
@@ -108,7 +109,7 @@ class Prop_model extends Model {
 
         // COPIA Y MODIFICA LAS IMAGENES
         if( $images_modified_name!="" ){
-            $data = $this->copy_images($images_modified_name, $prop_id);
+            $data = $this->_copy_images($images_modified_name, $prop_id);
             if( !$data ) return false;
 
             // MODIFICA LAS IMAGENES EN LA BASE DE DATO
@@ -260,10 +261,9 @@ class Prop_model extends Model {
     }
 
 
-    /*
-     * FUNCTIONS PRIVATE
-     */
-     private function create_servprop($services, $prop_id){
+    /* PRIVATE FUNCTIONS
+     **************************************************************************/
+     private function _create_servprop($services, $prop_id){
         $sql = "INSERT INTO ".TBL_PROPERTIES_SERVS."(prop_id,service_id) VALUES ";
         foreach ( $services as $service ){
             $sql.="(";
@@ -276,7 +276,7 @@ class Prop_model extends Model {
         return true;
      }
 
-     private function copy_images($images_new, $prop_id){
+     private function _copy_images($images_new, $prop_id){
         $user_id = $this->session->userdata('user_id');
         $prefix = $user_id."_";
         $data = array();

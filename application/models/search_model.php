@@ -1,13 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Search_model extends Model {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function  __construct() {
         parent::Model();
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function list_disting($limit, $offset) {
         $sql = TBL_PROPERTIES.".prop_id,";
         $sql.= TBL_PROPERTIES.".address,";

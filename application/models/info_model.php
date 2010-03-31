@@ -1,13 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class info_model extends Model {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function  __construct() {
         parent::Model();
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function getinfo_user(){
         $data = array();
 
@@ -47,8 +48,6 @@ class info_model extends Model {
 
         return $data;
     }
-
-
 
 }
 ?>

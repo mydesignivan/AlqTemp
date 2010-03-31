@@ -17,17 +17,11 @@
                 <a href="<?=site_url('/registro/');?>" onmouseover="this.firstChild.src='images/btn_register_over.png'" onmouseout="this.firstChild.src='images/btn_register.png'"><img src="images/btn_register.png" alt="Registrarse" /></a>
             </div>
 
-    <?php }else{?>
+    <?php }else{
 
-            <div class="float-left">
-                <label class="label-user">Usuario:&nbsp;</label>
-                <span class="text-small"><?=$this->session->userdata('name');?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <a href="<?=site_url('/panel/micuenta/');?>" class="link2">(mi cuenta)</a>
-            </div>
-            <div class="float-right append-right-small">
-                <button type="button" class="button-small" onclick="location.href='<?=site_url('/login/logout/');?>';">Salir</button>
-            </div>
-    <?php }?>
+            require('header_login_inc.php');
+
+          }?>
             <!-- =============== END LINKS HEADER TOP =============== -->
 
             <!-- =============== LOGIN =============== -->
@@ -101,7 +95,7 @@
     <?php require('banner_horizontal_inc.php');?>
     <!-- =============== END BANNER HORIZONTAL =============== -->
     <div class="header-publique">
-        <?php $url = !$this->session->userdata('logged_in') ? site_url('/registro/') : site_url('/panel/propiedades/form/');?>
+        <?php $url = !$this->session->userdata('logged_in') ? site_url('/registro/') : site_url('/paneluser/propiedades/form/');?>
         <a href="<?=$url;?>"><img src="images/btn_publique_gratis.png" alt="publique gratis" onmouseover="this.src='images/btn_publique_gratis_over.png'" onmouseout="this.src='images/btn_publique_gratis.png'" /></a>
     </div>
 </div>

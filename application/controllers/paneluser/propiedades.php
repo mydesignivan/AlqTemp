@@ -1,6 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Propiedades extends Controller {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function __construct(){
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
@@ -10,67 +12,74 @@ class Propiedades extends Controller {
         $this->load->model('cuentaplus_model');
         $this->load->model('lists_model');
         $this->load->helper('form');
+
+        $this->load->library('dataview', array(
+            'tlp_section'       =>  'paneluser/prop_list_view.php',
+            'tlp_title'         =>  TITLE_PROPIEDADES
+        ));
+        $this->_data = $this->dataview->get_data();
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $_data;
+
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function index(){
-        $listProp = $this->prop_model->get_list_prop();
-        $this->load->view('paneluser_proplist_view', array('listProp'=>$listProp));
+        $this->_data = $this->dataview->set_data(array(
+            'tlp_title_section' =>  "Propiedades",
+            'tlp_script'        =>  'prop_list',
+            'listProp'          =>  $this->prop_model->get_list_prop()
+        ));
+        $this->load->view('template_paneluser_view', $this->_data);
     }
 
     public function form(){
         if( !$this->uri->segment(4) ){
-            $check = $this->check_total_propfree();
+            $check = $this->_check_total_propfree();
 
+            $info   = false;
             if( $check['result'] ){
-                $data = array(
-                    'action'=>'show',
-                    'data'=>false
-                );
+                $action = 'show';
             }else{
-                $data = array(
-                    'action'=>$check['error'],
-                    'data'=>false
-                );
+                $action = $check['error'];
             }
         }else{
-            $data = array(
-                'action'=>'show',
-                'data'=>$this->prop_model->get_prop($this->uri->segment(4))
-            );
+            $action = 'show';
+            $info   = $this->prop_model->get_prop($this->uri->segment(4));
         }
 
-        $comboCategory = $this->lists_model->get_category(array("0"=>"Seleccione una Categor&iacute;a"));
-        $comboCountry = $this->lists_model->get_country(array("0"=>"Seleccione un Pa&iacute;s"));
-        $comboServices = $this->lists_model->get_services();
         if( !$this->uri->segment(4) ){
             $comboStates = array('0'=>'Seleccione un Pa&iacute;s');
         }else{
-            $comboStates = $this->lists_model->get_states($data['data']['country_id'], array("0"=>"Seleccione una Provincia"));
+            $comboStates = $this->lists_model->get_states($info['country_id'], array("0"=>"Seleccione una Provincia"));
         }
 
-        $data['comboCategory'] = $comboCategory;
-        $data['comboServices'] = $comboServices;
-        $data['comboCountry'] = $comboCountry;
-        $data['comboStates'] = $comboStates;
-
-        $this->load->view('paneluser_propform_view', $data);
-
+        $this->_data = $this->dataview->set_data(array(
+            'tlp_section'       =>  'paneluser/prop_form_view.php',
+            'tlp_title_section' =>  (!$info) ? "Nueva Propiedad" : "Modificar Propiedad",
+            'tlp_script'        =>  array('validator', 'fancybox', 'json', 'prop_form'),
+            'comboCategory'     =>  $this->lists_model->get_category(array("0"=>"Seleccione una Categor&iacute;a")),
+            'comboCountry'      =>  $this->lists_model->get_country(array("0"=>"Seleccione un Pa&iacute;s")),
+            'comboStates'       =>  $comboStates,
+            'listServices'      =>  $this->lists_model->get_services(),
+            'action'            =>  $action,
+            'info'              =>  $info
+        ));
+        $this->load->view('template_paneluser_view', $this->_data);
     }
 
     public function create(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
 
-            $data = $this->request_fields();
-            $data['images_new'] = $_POST['images_new'];
+            $data = $this->_request_fields();
             $data['date_added'] = date('Y-m-d H:i:s');
 
             $status = $this->prop_model->create($data);
 
             if( $status ){
-                redirect('/panel/propiedades/');
+                redirect('/paneluser/propiedades/');
             }else{
                 show_error(ERR_PROP_CREATE);
             }
@@ -81,7 +90,7 @@ class Propiedades extends Controller {
     public function edit(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
 
-            $data = $this->request_fields();
+            $data = $this->_request_fields();
             $data['images_new'] = $_POST['images_new'];
             $data['images_deletes'] = $_POST['images_deletes'];
             $data['images_modified_id'] = $_POST['images_modified_id'];
@@ -91,7 +100,7 @@ class Propiedades extends Controller {
             $status = $this->prop_model->update($data, $this->uri->segment(4));
 
             if( $status=="ok" ){
-                redirect('/panel/propiedades/');
+                redirect('/paneluser/propiedades/');
             }else{
                 show_error(ERR_PROP_EDIT);
             }
@@ -105,7 +114,7 @@ class Propiedades extends Controller {
             array_splice($id, 0,3);
 
             if( $this->prop_model->delete($id) ){
-                redirect('/panel/propiedades/');
+                redirect('/paneluser/propiedades/');
             }else{
                 show_error(ERR_PROP_DELETE);
             }
@@ -114,9 +123,11 @@ class Propiedades extends Controller {
 
     public function cancel(){
         delete_images_temp();
-        redirect('/panel/propiedades/');
+        redirect('/paneluser/propiedades/');
     }
 
+    /* AJAX FUNCTIONS
+     **************************************************************************/
     public function ajax_check(){
         if( $this->prop_model->exists($this->uri->segment(4), $this->uri->segment(5)) ){
             die("exists");
@@ -153,10 +164,9 @@ class Propiedades extends Controller {
     }
 
 
-    /*
-     * FUNCTIONS PRIVATE
-     */
-    private function request_fields(){
+    /* PRIVATE FUNCTIONS
+     **************************************************************************/
+    private function _request_fields(){
         return array(
             'user_id'         => $this->session->userdata('user_id'),
             'address'         => $_POST["txtAddress"],
@@ -168,11 +178,12 @@ class Propiedades extends Controller {
             'phone'           => $_POST["txtPhone"],
             'website'         => (strtolower($_POST["txtWebsite"])!="http://") ? $_POST["txtWebsite"] : "",
             'price'           => $_POST["txtPrice"],
-            'services'        => $_POST["services"]
+            'services'        => $_POST["services"],
+            'extra_post'      => json_decode($_POST['extra_post'])
         );
     }
 
-    private function check_total_propfree(){
+    private function _check_total_propfree(){
         $check_cp = $this->cuentaplus_model->check();
         $total_prop = $this->prop_model->get_total_prop();
 

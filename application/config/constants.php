@@ -310,11 +310,12 @@ define('TITLE_CONTACTO', '');
 define('TITLE_REGISTRO', '');
 define('TITLE_MICUENTA', '');
 define('TITLE_PROPIEDADES', '');
-define('TITLE_DESTACADOS', '');
+define('TITLE_DESTACAR', '');
 define('TITLE_CUENTAPLUS', '');
-define('TITLE_AGREGAR FONDOS', '');
+define('TITLE_AGREGAR_FONDOS', '');
 define('TITLE_CONDICIONES', '');     // Condiciones de Uso
 define('TITLE_RECORDARCONTRA', '');  // Recordar Contraseña
+
 
 /*
 |--------------------------------------------------------------------------

@@ -1,7 +1,6 @@
 /* 
  * Clase RememberPass
  *
- * Llamada por las vistas: front_passwordreset_view, front_rememberpass_view
  * Su funcion:
  *  - Envia form para pedir el reseteo de contraseña.
  *  - Envia form para resetear la contraseña.

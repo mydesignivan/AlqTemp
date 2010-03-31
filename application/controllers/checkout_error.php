@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Checkout_success extends Controller {
+class Checkout_error extends Controller {
 
     /* CONSTRUCTOR
      **************************************************************************/
@@ -8,7 +8,7 @@ class Checkout_success extends Controller {
         $this->load->helper('form');
         $this->load->model('lists_model');
         $this->load->library('dataview', array(
-            'tlp_section'       =>  'frontpage/checkout_succes_view.php',
+            'tlp_section'       =>  'frontpage/checkout_error_view.php',
             'tlp_title'         =>  TITLE_INDEX,
             'tlp_title_section' =>  "Resultado Compra",
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),

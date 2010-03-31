@@ -1,7 +1,6 @@
 /* 
  * Clase Fondo
  *
- * Llamada por las vistas: paneluser_addfondo_view
  * Su funcion: Envia el pedido de compra
  *
  */

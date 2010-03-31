@@ -15,7 +15,8 @@ body {
 .tag-center{margin: 0 auto !important;}
 .text-center{text-align: center !important;}
 .prepend-left-small{margin-left:15px !important;}
-.append-right-small{margin-right: 15px !important;}
+.append-right-small2{margin-right: 5px !important;}
+.append-top-small{margin-bottom: 15px !important;}
 .border{border:1px solid red !important;}
 
 p{margin-bottom:0;}
@@ -50,9 +51,12 @@ strong{color:#FC7F07;}
     margin-top: 30px;
 }
 
-.row-photo{
-    float:left;
-    width: 473px;
+.column-photo{
+    float:right;
+    /*width: 438px;*/
+    width: 480px;
+    margin-bottom: 5px;
+    /*border:1px solid red;*/
 }
 
 
@@ -240,7 +244,6 @@ textarea.textarea-form{
  - ESTILOS PARA BUTTON
  -----------------------------------------------------------------------------*/
 button{
-    font-family:Arial, Helvetica, sans-serif;
     border:none;
     font-size: 80%;
     font-weight:bold;
@@ -286,6 +289,23 @@ button.button-contact{
 }
     button.button-contact:hover{
         background:url(../images/btn_send_over.png) no-repeat center left;
+    }
+
+.button-examin{
+    float:left;
+    background:url(../images/btn_small.png) no-repeat center left;
+    width:76px;
+    height:20px;
+    padding-top:6px;
+    color:#6C491D;
+    cursor: pointer;
+    font-size: 80%;
+    font-weight:bold;
+    text-align:center;
+    overflow: hidden;
+}
+    .button-examin:hover{
+        background:url(../images/btn_small_over.png) no-repeat center left;
     }
 
 /*------------------------------------------------------------------------------
@@ -463,7 +483,6 @@ ul.menu{
             margin:-5px 0 0 -10px;
             padding-top: 12px;
             text-align: center;
-            font-family:Arial, Helvetica, sans-serif;
             font-size: 90%;
             font-weight:bold;
             color:#5F4E37;
@@ -553,7 +572,6 @@ ul.menu{
  - ESTILOS PARA EL FOOTER
  -----------------------------------------------------------------------------*/
 .footer{
-    font-family:Arial, Helvetica, sans-serif;
     font-size: 75%;
     font-weight: bold;
     color: #666666;
@@ -817,6 +835,8 @@ ul.ul-list-cuentaplus{
     float:left;
     display: none;
     margin-right: 10px;
+    font-size: 80%;
+    width:290px;
 }
 
 

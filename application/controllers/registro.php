@@ -40,9 +40,11 @@ class Registro extends Controller {
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             
             $data = array(
-                'name'       => $_POST["txtName"],
+                'firstname'  => $_POST["txtFirstName"],
+                'lastname'   => $_POST["txtLastName"],
                 'email'      => $_POST["txtEmail"],
                 'phone'      => $_POST["txtPhone"],
+                'phone_area' => $_POST["txtPhoneArea"],
                 'username'   => $_POST["txtUser"],
                 'password'   => $this->encpss->encode($_POST["txtPass"]),
                 'date_added' => date('Y-m-d H:i:s')

@@ -7,29 +7,15 @@
 
 var ClassAjaxUpload=function(options){
 
-    /* CONSTRUCTOR
+    /* PUBLIC METHODS
      **************************************************************************/
-    var DEFAULTS={
-        selector            :   '',         // [STRING]
-        action              :   '',         // [STRING]
-        autoSubmit          :   true,       // [BOOLEAN]
-        multifile           :   false,      // [BOOLEAN]
-        onSubmit            :   Function(), // [FUNCTION]
-        onComplete          :   Function()  // [FUNCTION]
-    };
-
-    options = $.extend({}, DEFAULTS, {}, options);
-
-    $(document).ready(function(){
+    this.initializer = function(){
         button = $(options.selector);
         error = button.length==0;
         start();
-    });
+    };
 
-
-    /* PUBLIC METHODS
-     **************************************************************************/
-     this.append_input = function(el){
+    this.append_input = function(el){
         if( error || working ) return false;
         if( !el.css ) el = $(el);
 
@@ -40,9 +26,9 @@ var ClassAjaxUpload=function(options){
         el.append(create_input());
 
         return false;
-     };
+    };
 
-     this.submit = function(){
+    this.submit = function(){
         if( error || working ) return false;
         
          form.empty().append(create_iframe());
@@ -52,11 +38,19 @@ var ClassAjaxUpload=function(options){
 
          form.submit();
          return false;
-     };
+    };
 
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
+    var DEFAULTS={
+        selector            :   '',         // [STRING]
+        action              :   '',         // [STRING]
+        autoSubmit          :   true,       // [BOOLEAN]
+        multifile           :   false,      // [BOOLEAN]
+        onSubmit            :   Function(), // [FUNCTION]
+        onComplete          :   Function()  // [FUNCTION]
+    };
     var button=false;
     var error=false;
     var working=false;
@@ -89,13 +83,14 @@ var ClassAjaxUpload=function(options){
         i.attr('size', '200');
         i.css({
             position : 'absolute',
-            margin: '0',
-            padding : '0',
-            left : 0,
-            top : 0,
-            width : '600px',
-            cursor : 'pointer',
-            opacity : 0
+            margin   : 0,
+            padding  : 0,
+            left     : 0,
+            top      : 0,
+            zIndex   : 1000,
+            width    : '600px',
+            cursor   : 'pointer',
+            opacity  : 0
         });
 
         if( $.browser.opera ) i.css('margin', '5px 0 0 -518px');
@@ -156,5 +151,9 @@ var ClassAjaxUpload=function(options){
         working=false;
         return false;
     };
+
+    /* CONSTRUCTOR
+     **************************************************************************/
+    options = $.extend({}, DEFAULTS, {}, options);
 
 }

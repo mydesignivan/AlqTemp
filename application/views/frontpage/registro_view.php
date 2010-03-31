@@ -7,7 +7,7 @@
 
     <?php }else{?>
 
-                <form id="formAccount" class="prepend-left-small" action="<?=site_url('/panel/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
+                <form id="formAccount" class="prepend-left-small" action="<?=site_url('/paneluser/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
                     <?php require(APPPATH . 'views/includes/popup_inc.php');?>
 
                     <p class="span-10">

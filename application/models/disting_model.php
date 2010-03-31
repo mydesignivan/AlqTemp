@@ -1,14 +1,15 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class disting_model extends Model {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function  __construct() {
         parent::Model();
         $this->load->model('fondos_model');
     }
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function get_list($disting){
         $param = $disting==1 ? "right" : "left";
 
