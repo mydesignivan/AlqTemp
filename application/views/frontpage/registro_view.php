@@ -11,32 +11,32 @@
                     <?php require(APPPATH . 'views/includes/popup_inc.php');?>
 
                     <p class="span-10">
-                        <label class="label3 float-left">*Nombre:</label>
+                        <label class="label-form float-left">*Nombre:</label>
                         <input type="text" name="txtFirstName" class="input-form float-right validate" tabindex="1" />
                     </p>
                     <p class="span-10 clear">
-                        <label class="label3 float-left">*Apellido:</label>
+                        <label class="label-form float-left">*Apellido:</label>
                         <input type="text" name="txtLastName" class="input-form float-right validate" tabindex="2" />
                     </p>
                     <p class="span-10 clear">
-                        <label class="label3 float-left">*Email:</label>
+                        <label class="label-form float-left">*Email:</label>
                         <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="3" />
                     </p>
                     <p class="span-10 clear">
-                        <label class="label3 float-left">Tel&eacute;fono:</label>
+                        <label class="label-form float-left">Tel&eacute;fono:</label>
                         <input type="text" name="txtPhone" class="input-phone float-right" tabindex="5" />
                         <input type="text" name="txtPhoneArea" class="input-phonearea float-right" tabindex="4" />
                     </p>
                     <p class="span-10 clear">
-                        <label class="label3 float-left">*Usuario:</label>
+                        <label class="label-form float-left">*Usuario:</label>
                         <input type="text" name="txtUser" class="input-form float-right validate" tabindex="6" />
                     </p>
                     <p class="span-10 clear">
-                        <label class="label3 float-left">*Password:</label>
+                        <label class="label-form float-left">*Password:</label>
                         <input type="password" name="txtPass" class="input-form float-right validate" tabindex="7" />
                     </p>
                     <p class="span-10 clear">
-                        <label class="label3 float-left">*Repetir Contrase&ntilde;a:</label>
+                        <label class="label-form float-left">*Repetir Contrase&ntilde;a:</label>
                         <input type="password" name="txtPass2" class="input-form float-right validate" tabindex="8" />
                     </p>
 
@@ -55,7 +55,7 @@
                         <img id="imgCaptcha" src="<?=site_url('/captcha/index/'.md5(time()));?>" align="left" width="180" height="65" alt="" class="float-right" />
                     </div>
                     <p class="span-10 clear">
-                        <label class="label3 float-left">*Ingrese C&oacute;digo:</label>
+                        <label class="label-form float-left">*Ingrese C&oacute;digo:</label>
                         <input type="text" name="txtCaptcha" maxlength="6" class="input-captcha validate" tabindex="9" />
                     </p>
 

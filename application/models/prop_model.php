@@ -10,11 +10,10 @@ class Prop_model extends Model {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function create($data = array()) {
-        $services = explode(",", $data['services']);
-        $images_new = $data['extra_post']['images_new'];
+        $images_new = $data['extra_post']->images_new;
+        $services = $data['extra_post']->services;
 
-        unset($data['services']);
-        unset($data['images_new']);
+        unset($data['extra_post']);
 
         $this->db->trans_start(); // INICIO TRANSACCION
 
@@ -47,20 +46,16 @@ class Prop_model extends Model {
         return "ok";
     }
 
-    public function update($data = array(), $prop_id=null) {
+    public function edit($data = array(), $prop_id=null) {
         if( !is_numeric($prop_id) ) return false;
 
-        $services = explode(",", $data['services']);
-        $images_new = json_decode($data['images_new']);
-        $images_deletes = json_decode($data['images_deletes']);
-        $images_modified_id = json_decode($data['images_modified_id']);
-        $images_modified_name = json_decode($data['images_modified_name']);
+        $services = $data['extra_post']->services;
+        $images_new = $data['extra_post']->images_new;
+        $images_deletes = $data['extra_post']->images_delete;
+        $images_modified_id = $data['extra_post']->images_modified_id;
+        $images_modified_name = $data['extra_post']->images_modified_name;
 
-        unset($data['services']);
-        unset($data['images_new']);
-        unset($data['images_deletes']);
-        unset($data['images_modified_id']);
-        unset($data['images_modified_name']);
+        unset($data['extra_post']);
 
         $this->db->trans_start(); // INICIO TRANSACCION
 
@@ -79,23 +74,22 @@ class Prop_model extends Model {
         $this->_create_servprop($services, $prop_id);
 
         // ELIMINA IMAGENES
-        if( $images_deletes!="" ){
-            foreach( $images_deletes as $image_id ){
-                $row = $this->db->query("SELECT name, name_thumb FROM ". TBL_IMAGES ." WHERE image_id=".$image_id)->row_array();
+        foreach( $images_deletes as $image_id ){
+            echo $image_id."<br>";
+            $row = $this->db->query("SELECT name, name_thumb FROM ". TBL_IMAGES ." WHERE image_id=".$image_id)->row_array();
 
-                @unlink(UPLOAD_DIR.$row['name']);
-                @unlink(UPLOAD_DIR.$row['name_thumb']);
+            @unlink(UPLOAD_DIR.$row['name']);
+            @unlink(UPLOAD_DIR.$row['name_thumb']);
 
-                if( $images_modified_id=="" ){
-                    if( !$this->db->delete(TBL_IMAGES, array('image_id'=>$image_id)) ){
-                        display_error(__FILE__, "update", ERR_DB_DELETE, array(TBL_IMAGES));
-                    }
+            if( count($images_modified_id)==0 ){
+                if( !$this->db->delete(TBL_IMAGES, array('image_id'=>$image_id)) ){
+                    display_error(__FILE__, "update", ERR_DB_DELETE, array(TBL_IMAGES));
                 }
             }
         }
 
         // COPIA LAS IMAGENES NUEVAS
-        if( $images_new!="" ){
+        if( count($images_new)>0 ){
             $data = $this->_copy_images($images_new, $prop_id);
             if( !$data ) return false;
 
@@ -103,12 +97,12 @@ class Prop_model extends Model {
             foreach( $data as $dat ){
                 if( !$this->db->insert(TBL_IMAGES, $dat) ) {
                     display_error(__FILE__, "update", ERR_DB_INSERT, array(TBL_IMAGES));
-                }            
+                }
             }
         }
 
         // COPIA Y MODIFICA LAS IMAGENES
-        if( $images_modified_name!="" ){
+        if( count($images_modified_name)>0 ){
             $data = $this->_copy_images($images_modified_name, $prop_id);
             if( !$data ) return false;
 
@@ -129,7 +123,6 @@ class Prop_model extends Model {
         delete_images_temp();
 
         $this->db->trans_complete(); // COMPLETO LA TRANSACCION
-
         return "ok";
     }
 
@@ -211,7 +204,6 @@ class Prop_model extends Model {
         $this->db->order_by('username', 'asc');
         return $this->db->get();
     }
-
 
     public function get_prop($prop_id){
         if( !is_numeric($prop_id) ) {

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
-    <title><?=TITLE_GLOBAL . $tlp_title;?></title>
+    <title><?=TITLE_GLOBAL . @$tlp_title;?></title>
     <meta name="description" content="<?=META_DESCRIPTION;?>" />
     <meta name="keywords" content="<?=META_KEYWORDS;?>" />
     <?php require('includes/head_inc.php');?>

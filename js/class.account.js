@@ -43,9 +43,12 @@ var Account = new (function(){
                 });
             }
         }
+        popup.initializer();
     };
 
     this.save = function(){
+        ajaxloader.show('Validando Formulario.');
+        return;
         if( working ) return false;
 
         ajaxloader.show();
@@ -110,9 +113,19 @@ var Account = new (function(){
     /* PRIVATE METHODS
      **************************************************************************/
     var ajaxloader = {
-        show : function(){
+        show : function(msg){
             working=true;
-            popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
+
+            var html = '<div class="text-center">';
+                html+= '<p>'+msg+'</p>';
+                html+= '<img src="images/ajax-loader5.gif" alt="" />';
+                html+= '</div>';
+
+            popup.load({html : html}, {
+                reload  : true,
+                bloqEsc : true,
+                effectClose : false
+            });
         },
         hidden : function(){
             popup.hidden();

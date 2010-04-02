@@ -1,6 +1,6 @@
 <div class="span-24 last">
     <div class="header-col-left">
-        <a href="http://www.alquilerestemporarios.org" class="logo"><img src="images/logo_alquilerestemp.png" alt="AlquileresTemporarios.org" /></a>
+        <a href="<?=$this->config->item('base_url');?>" class="logo"><img src="images/logo_alquilerestemp.png" alt="AlquileresTemporarios.org" /></a>
     </div>
 
     <div class="header-col-right">

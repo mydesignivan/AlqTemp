@@ -1,8 +1,6 @@
 /* 
  * Clase Log
  *
- * Llamada por las vistas: paneladmin_log_view
- *
  */
 
 var Log = new (function(){
@@ -11,12 +9,13 @@ var Log = new (function(){
      **************************************************************************/
     this.action={
         del : function(){
-            var list = $('#tblList').find('input:checked');
             var index = new Array();
-            list.each(function(){
-                index.push(this.value);
-            });
-            location.href = baseURI+'paneladmin/log/delete/'+$('#cboDate').val()+'/'+index.join('/');
+                index = $('#tblList tbody input:checked').toArrayValue();
+            if( index.length>0 ){
+                location.href = baseURI+'paneladmin/log/delete/'+$('#cboDate').val()+'/'+index.join('/');
+            }else{
+                alert("Debe seleccionar al menos un item.");
+            }
         },
         del_date : function(){
             var dname = $('#cboDate').val();

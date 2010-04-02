@@ -17,14 +17,14 @@
 
             <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                 <p class="span-10">
-                    <label class="label3 float-left">*Direcci&oacute;n:</label>
+                    <label class="label-form float-left">*Direcci&oacute;n:</label>
                     <input type="text" name="txtAddress" id="txtAddress" class="input-form float-right validate" tabindex="1" value="<?=@$info['address'];?>" />
                 </p>
 
                 <?php
                     $html = '
                     <div class="span-16">
-                        <label class="label3 float-left">*Foto:</label>
+                        <label class="label-form float-left">*Foto:</label>
                         <div class="column-photo">
                             <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
                             <a href="#" class="append-right-small2 float-left hide jq-thumb" rel="group"><img src="" alt="" width="69" height="60" /></a>
@@ -41,7 +41,7 @@
                             $n++;
 
                             echo '<div class="clear span-16">';
-                            if( $n==1 ) echo '<label class="label3 float-left">*Foto:</label>';
+                            if( $n==1 ) echo '<label class="label-form float-left">*Foto:</label>';
                             echo '<div class="column-photo">';
                             echo '  <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>';
                             echo '  <a href="'.$image['name'].'" class="append-right-small2 float-left jq-thumb" rel="group"><img src="'. $image['name_thumb'] .'" alt="" width="69" height="60" /></a>';
@@ -56,22 +56,23 @@
 
                 <div class="clear span-10 append-bottom prepend-top">
                     <div class="float-right">
-                        <a href="#" class="link-attachments" onclick="Prop.append_row_file(this); return false;">Adjuntar otro archivo</a>
-                        <p id="au-leyend" class="text-small">Archivos (jpg | gif | png) 2MB max &emsp; &emsp;</p>
+                        <div id="msgbox_images" class="clear"></div>
+                        <a href="#" class="link-attachments" onclick="Prop.append_row_file(this); return false;" tabindex="2">Adjuntar otro archivo</a>
+                        <p class="text-small">Archivos (jpg | gif | png) 2MB max &emsp; &emsp;</p>
                     </div>
                 </div>
 
                 <p class="clear span-10">
-                    <label class="label3 float-left">*Descripci&oacute;n:</label>
-                    <textarea name="txtDesc" id="txtDesc" class="textarea-form float-right validate" cols="22" rows="5"><?=@$info['description'];?></textarea>
+                    <label class="label-form float-left">*Descripci&oacute;n:</label>
+                    <textarea name="txtDesc" id="txtDesc" class="textarea-form float-right validate" cols="22" rows="5" tabindex="3"><?=@$info['description'];?></textarea>
                 </p>
                 <p class="clear span-10">
-                    <label class="label3 float-left">*Categor&iacute;a:</label>
-                    <?=form_dropdown('cboCategory', $comboCategory, @$info["category_id"], 'class="select-form float-right" id="cboCategory"');?>
+                    <label class="label-form float-left">*Categor&iacute;a:</label>
+                    <?=form_dropdown('cboCategory', $comboCategory, @$info["category_id"], 'class="select-form float-right" id="cboCategory" tabindex="4"');?>
                 </p>
 
-                <div class="clear span-10">
-                    <label class="label3 float-left">*Servicios:</label>
+                <div class="clear span-10 prepend-top-small">
+                    <label class="label-form float-left">*Servicios:</label>
 
                     <div class="list-servicios">
                         <ul id="listServices">
@@ -92,31 +93,32 @@
             <?php }?>
                         </ul>
                     </div>
+                    <div id="msgbox_services" class="clear"></div>
                 </div>
 
                 <p class="clear span-10">
-                    <label class="label3 float-left">*Pa&iacute;s:</label>
-                    <?=form_dropdown('cboCountry', $comboCountry, @$info["country_id"], 'id="cboCountry" class="select-form float-right validate" onchange="Prop.show_states(this);"');?>
+                    <label class="label-form float-left">*Pa&iacute;s:</label>
+                    <?=form_dropdown('cboCountry', $comboCountry, @$info["country_id"], 'id="cboCountry" class="select-form float-right validate" onchange="Prop.show_states(this);" tabindex="5"');?>
                 </p>
                 <p class="clear span-10">
-                    <label class="label3 float-left">*Provincia:</label>
-                    <?=form_dropdown('cboStates', $comboStates, @$info['state_id'], 'id="cboStates" class="select-form float-right validate"');?>
+                    <label class="label-form float-left">*Provincia:</label>
+                    <?=form_dropdown('cboStates', $comboStates, @$info['state_id'], 'id="cboStates" class="select-form float-right validate" tabindex="6"');?>
                 </p>
                 <p class="clear span-10">
-                    <label class="label3 float-left">*Ciudad:</label>
-                    <input type="text" name="txtCity" id="txtCity" class="input-form float-right validate" onblur="$(this).ucFirst();" value="<?=@$info['city'];?>" />
+                    <label class="label-form float-left">*Ciudad:</label>
+                    <input type="text" name="txtCity" id="txtCity" class="input-form float-right validate" onblur="$(this).ucFirst();" value="<?=@$info['city'];?>" tabindex="7" />
                 </p>
                 <p class="clear span-10">
-                    <label class="label3 float-left">Telefono:</label>
-                    <input type="text" name="txtPhone" class="input-form float-right" value="<?=@$info['phone'];?>" />
+                    <label class="label-form float-left">Telefono:</label>
+                    <input type="text" name="txtPhone" class="input-form float-right" value="<?=@$info['phone'];?>" tabindex="8" />
                 </p>
                 <p class="clear span-10">
-                    <label class="label3 float-left">P&aacute;gina Web:</label>
-                    <input type="text" name="txtWebsite" class="input-form float-right" onblur="$(this).formatURL();" value="<?=(@$info['website']==FALSE || @$info['website']=='') ? "http://" : @$info['website'];?>" />
+                    <label class="label-form float-left">P&aacute;gina Web:</label>
+                    <input type="text" name="txtWebsite" class="input-form float-right" onblur="$(this).formatURL();" value="<?=(@$info['website']==FALSE || @$info['website']=='') ? "http://" : @$info['website'];?>" tabindex="9" />
                 </p>
                 <p class="clear span-10">
-                    <label class="label3 float-left">Precio:</label>
-                    <input type="text" name="txtPrice" class="input-form float-right" value="<?=@$info['price'];?>" />
+                    <label class="label-form float-left">Precio:</label>
+                    <input type="text" name="txtPrice" class="input-form float-right" value="<?=@$info['price'];?>" tabindex="10" />
                 </p>
 
                 <div class="span-10 clear"><label class="label-legend">(*) Campo obligatorios</label></div>
@@ -126,17 +128,12 @@
                     <button type="button" class="button-large" onclick="location.href='<?=site_url('/paneluser/propiedades/cancel');?>';">Cancelar</button>
                 </div>
 
-                <input type="hidden" name="services" value="" />
-                <input type="hidden" name="images_new" value="" />
-                <input type="hidden" name="images_deletes" value="" />
-                <input type="hidden" name="images_modified_id" value="" />
-                <input type="hidden" name="images_modified_name" value="" />
                 <input type="hidden" name="extra_post" value="" />
                 <input type="hidden" name="prop_id" value="<?=@$info['prop_id'];?>" />
             </form>
             <script type="text/javascript">
             <!--
-                Prop.initializer(<?=!@info ? "false" : "true";?>);
+                Prop.initializer(<?=!@$info ? "false" : "true";?>);
             -->
             </script>
 <?php }?>

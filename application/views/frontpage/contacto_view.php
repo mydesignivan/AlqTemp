@@ -10,21 +10,21 @@
                     <form id="formContact" action="<?=site_url('/contacto/send');?>" method="post" enctype="application/x-www-form-urlencoded">
                         <div class="span-7">
                             <p>
-                                <label class="label3">*Nombre:</label><br />
+                                <label class="label-form">*Nombre:</label><br />
                                 <input type="text" class="input-contact2 validate" name="txtName" />
                             </p>
                             <p>
-                                <label class="label3">*Email:</label><br />
+                                <label class="label-form">*Email:</label><br />
                                 <input type="text" class="input-contact2 validate" name="txtEmail" />
                             </p>
                         </div>
                         <div class="span-6">
                             <p>
-                                <label class="label3">Tel&eacute;fono:</label><br />
+                                <label class="label-form">Tel&eacute;fono:</label><br />
                                 <input type="text" class="input-contact2 input" name="txtPhone" />
                             </p>
                             <p>
-                                <label class="label3">Area de Consulta:</label><br />
+                                <label class="label-form">Area de Consulta:</label><br />
                                 <select name="cboArea" class="select-contact2">
                                     <option value="jbasaez@mydesign.com.ar">Publicidad</option>
                                     <option value="jbasaez@mydesign.com.ar">Consultas</option>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="clear span-13">
                             <p>
-                                <label class="label3">*Consulta:</label><br />
+                                <label class="label-form">*Consulta:</label><br />
                                 <textarea class="textarea-contact2 validate" name="txtConsult" rows="22" cols="6"></textarea>
                             </p>
                         </div>

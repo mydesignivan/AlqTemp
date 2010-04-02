@@ -1,8 +1,6 @@
 /* 
  * Clase Fondo
  *
- * Su funcion: Envia el pedido de compra
- *
  */
 
 var Fondo = new (function(){

@@ -18,7 +18,6 @@
 <![endif]-->
 
 <!--========== LIBRARIES ============-->
-<!--<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>-->
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript" src="js/helpers.min.js"></script>
 <script type="text/javascript" src="js/comun.js"></script>

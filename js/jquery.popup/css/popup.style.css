@@ -1,0 +1,46 @@
+/*
+ * Script: Popup
+ * Autor: Ivan Mattoni
+ * Empresa: MyDesign
+ * Año: 2010
+ */
+
+.jquery-popup{
+    position: fixed;
+    width: 260px;
+    height: inherit;
+    z-index: 2000;
+    display: none;
+}
+    .jquery-popup .jquery-popup-top{
+        float: left;
+        background: url(../img/popup_top.png) no-repeat top left;
+        width: 260px;
+        height: 11px;
+    }
+    .jquery-popup .jquery-popup-middle{
+        float: left;
+        clear: left;
+        background: url(../img/popup_middle.png) repeat-y left;
+        width: 260px;
+        height: inherit;
+        padding: 10px 0 10px 0;
+        text-align: center;
+        font-size: 90%;
+        /*border: 1px solid;*/
+    }
+    .jquery-popup .jquery-popup-bottom{
+        float: left;
+        clear: left;
+        background: url(../img/popup_bottom.png) no-repeat top left;
+        width: 260px;
+        height: 11px;
+    }
+
+.jquery-popup-mask{
+    background-color: #fff;
+    z-index: 1000;
+    display: none;
+    width: 100% !important;
+    height: 100% !important;
+}

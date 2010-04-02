@@ -1,24 +1,27 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Ajax_upload extends Controller {
 
-    private $file;
+    /* CONSTRUCTOR
+     **************************************************************************/
     function __construct(){
         parent::Controller();
         $this->load->helper('form');
-        $this->file = $_FILES[key($_FILES)];
         $this->load->library('image_lib');
+        $this->_file = $_FILES[key($_FILES)];
     }
 
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $_file;
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function index(){
-        if( $this->validate() ){
-            $filename = $this->get_filename();
+        if( $this->_validate() ){
+            $filename = $this->_get_filename();
 
             // Muevo la imagen original
-            move_uploaded_file($this->file['tmp_name'], UPLOAD_DIR_TMP.$filename);
+            move_uploaded_file($this->_file['tmp_name'], UPLOAD_DIR_TMP.$filename);
 
             // Creo una copia y dimensiono la imagen  (THUMB)
             $config['image_library'] = 'GD2';
@@ -51,21 +54,20 @@ class Ajax_upload extends Controller {
         }
     }
 
-    /*
-     * FUNCTIONS PRIVATE
-     */
-    private function validate(){
-        if( !is_uploaded_file($this->file['tmp_name']) ) show_error(ERR_UPLOAD_NOTUPLOAD);
+    /* PRIVATE FUNCTIONS
+     **************************************************************************/
+    private function _validate(){
+        if( !is_uploaded_file($this->_file['tmp_name']) ) show_error(ERR_UPLOAD_NOTUPLOAD);
         $size = (int)UPLOAD_MAXSIZE;
-        if( round($this->file['size']/1024, 2) > (int)UPLOAD_MAXSIZE ) {
+        if( round($this->_file['size']/1024, 2) > (int)UPLOAD_MAXSIZE ) {
             die(sprintf(ERR_UPLOAD_MAXSIZE, (string)($size/1024)) );
         }
-        if( !$this->is_allowed_filetype() ) show_error(ERR_UPLOAD_FILETYPE);
+        if( !$this->_is_allowed_filetype() ) show_error(ERR_UPLOAD_FILETYPE);
 
         return true;
     }
 
-    private function is_allowed_filetype(){
+    private function _is_allowed_filetype(){
         require_once(APPPATH.'config/mimes'.EXT);
 
         $extention = explode("|", UPLOAD_FILETYPE);
@@ -73,19 +75,18 @@ class Ajax_upload extends Controller {
             $mime = $mimes[$ext];
 
             if( is_array($mime) ){
-                if( in_array($this->file['type'], $mime) ) return true;
+                if( in_array($this->_file['type'], $mime) ) return true;
             }else{
-                if( $mime==$this->file['type'] ) return true;
+                if( $mime==$this->_file['type'] ) return true;
             }
         }
         return false;
     }
 
-    private function get_filename(){
-        $name = preg_replace("/\s+/", "_", strtolower($this->file['name']));
+    private function _get_filename(){
+        $name = preg_replace("/\s+/", "_", strtolower($this->_file['name']));
         return $this->session->userdata('user_id') ."_". uniqid(time()) ."__". $name;
     }
 
 }
-
 ?>

@@ -54,6 +54,16 @@ jQuery.fn.extend({
                 }
             }
         });
+    },
+    
+    toArrayValue : function(){
+        var arr = new Array();
+        this.each(function(){
+            var t = $(this);
+            if( t.is(':input') ) arr.push(t.val());
+            else arr.push(t.text());
+        });
+        return arr;
     }
 });
 

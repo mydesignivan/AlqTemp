@@ -15,6 +15,7 @@ body {
 .tag-center{margin: 0 auto !important;}
 .text-center{text-align: center !important;}
 .prepend-left-small{margin-left:15px !important;}
+.prepend-top-small{margin-top:10px !important;}
 .append-right-small2{margin-right: 5px !important;}
 .append-top-small{margin-bottom: 15px !important;}
 .border{border:1px solid red !important;}
@@ -53,7 +54,6 @@ strong{color:#FC7F07;}
 
 .column-photo{
     float:right;
-    /*width: 438px;*/
     width: 480px;
     margin-bottom: 5px;
     /*border:1px solid red;*/
@@ -101,12 +101,12 @@ a.link4:link{
         color:blue;
     }
 
-a.link5{
+a.link-title{
     color:#FC7F07;
     font-weight:bold;
     font-size: 90% !important;
 }
-    a.link5:hover{
+    a.link-title:hover{
         text-decoration: underline;
     }
 
@@ -143,15 +143,15 @@ label.label-search{
     font-size: 90%;
     font-style: italic;
 }
-label.label1{
+label.label-black{
     font-size: 90%;
     color: #000;
 }
-label.label2{
+label.label-contact{
     font-size: 70%;
     color: #80694D;
 }
-label.label3{
+label.label-form{
     font-size: 80%;
     color: #6C491E;
 }
@@ -244,6 +244,7 @@ textarea.textarea-form{
  - ESTILOS PARA BUTTON
  -----------------------------------------------------------------------------*/
 button{
+    font-family:Arial, Helvetica, sans-serif;
     border:none;
     font-size: 80%;
     font-weight:bold;
@@ -336,6 +337,22 @@ select.select-form{
     text-align: center;
 }
 
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA FIELDSET
+ -----------------------------------------------------------------------------*/
+fieldset{
+    padding: 10px;
+    font-size: 90%;
+    border:1px #E7B969 solid;
+}
+fieldset legend{
+    font-size: 90%;
+}
+fieldset.fieldset-information{
+    float:left;
+    width: 270px;
+    margin-right: 20px;
+}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA EL HEADER
@@ -865,7 +882,8 @@ table tbody{
         background-color: #FDFDF5;
     }
     table tbody .row-hover:hover{
-        background-color: #E3C8B9;
+        cursor: default;
+        background-color: #F1CB65;
     }
     /*table tbody td{border-right: 1px solid red;}*/
 
@@ -897,3 +915,24 @@ table tbody{
     .tbl-prop tbody tr .cell-4{
         color:#FC7F07;
     }
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TABLAS "LOG"
+ -----------------------------------------------------------------------------*/
+.tbl-log{
+    margin-top: 20px;
+}
+    .tbl-log .cell-1{
+        width: 10px;
+        border-right: 1px solid #CFD0CB;
+        padding-left:5px;
+    }
+        .tbl-log .cell-1 input{margin:0;padding:0;}
+    .tbl-log .cell-2{
+        width: 120px;
+        border-right: 1px solid #CFD0CB;
+    }
+    /*.tbl-log .cell-3{
+        width: 150px;
+        border-right: 1px solid #CFD0CB;
+    }*/

@@ -9,7 +9,7 @@
                         </div>
                         <div class="span-4 last">
                             <label class="label-large">Agregar Fondos</label><br />
-                            <label class="label3">Importe&nbsp;</label>
+                            <label class="label-form">Importe&nbsp;</label>
                             <select name="cboImport" id="cboImport">
                                 <option value="5">5</option>
                                 <option value="10">10</option>

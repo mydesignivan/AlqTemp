@@ -26,7 +26,7 @@
                         <tr <?=$class;?>>
                             <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" /></td>
                             <td class="cell-2"><img src="<?=$row['image'];?>" alt="" width="85" height="70" /></td>
-                            <td class="cell-3"><a href="<?=site_url('/paneluser/propiedades/form/'.$row['prop_id']);?>" class="link5"><?=$row["address"];?></a></td>
+                            <td class="cell-3"><a href="<?=site_url('/paneluser/propiedades/form/'.$row['prop_id']);?>" class="link-title"><?=$row["address"];?></a></td>
                             <td class="cell-4"><?=$row['category'];?></td>
                         </tr>
             <?php }?>
@@ -64,7 +64,7 @@
                         <tr <?=$class;?>>
                             <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" /></td>
                             <td class="cell-2"><img src="<?=$row['image'];?>" alt="" width="85" height="70" /></td>
-                            <td class="cell-3"><a href="<?=site_url('paneluser/propiedades/form/'.$row['prop_id']);?>" class="link5"><?=$row["address"];?></a></td>
+                            <td class="cell-3"><a href="<?=site_url('paneluser/propiedades/form/'.$row['prop_id']);?>" class="link-title"><?=$row["address"];?></a></td>
                             <td class="cell-4"><?=$row['category'];?></td>
                         </tr>
             <?php }?>

@@ -1,6 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Log extends Controller {
 
+    /* CONSTRUCTOR
+     **************************************************************************/
     function __construct(){
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==0 ) redirect('/index/');
@@ -9,17 +11,22 @@ class Log extends Controller {
         $this->load->helper('form');
         $this->load->library('pagination');
 
-        $this->count_per_page=10;
+        $this->load->library('dataview', array(
+            'tlp_section'       =>  'paneladmin/log_view.php',
+            'tlp_title_section' =>  'Listado de Errores',
+            'tlp_script'        =>  'log'
+        ));
+        $this->_data = $this->dataview->get_data();
+
+        $this->_count_per_page=10;
     }
 
-    /*
-     *  PROPERTIES PRIVATE
-     */
-    private $count_per_page;
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    private $_count_per_page;
 
-    /*
-     * FUNCTIONS PUBLIC
-     */
+    /* PUBLIC FUNCTIONS
+     **************************************************************************/
     public function index(){
         $this->display();
     }
@@ -38,16 +45,20 @@ class Log extends Controller {
 
         $listDate = $this->lists_model->logs_dates();
         //$listDate = array();
-        $result = $this->log_model->get_list($date, $offset, $this->count_per_page);
+        $result = $this->log_model->get_list($date, $offset, $this->_count_per_page);
         $listLog = $result['result'];
 
         $config['base_url'] = site_url('/paneladmin/log/display/'.$date);
         $config['total_rows'] = $result['total_rows'];
-        $config['per_page'] = $this->count_per_page;
+        $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $uri_segment;
         $this->pagination->initialize($config);
 
-        $this->load->view('paneladmin_log_view', array('listDate'=>$listDate, 'listLog'=>$listLog));
+        $this->_data = $this->dataview->set_data(array(
+            'listDate'  =>  $listDate,
+            'listLog'   =>  $listLog
+        ));
+        $this->load->view("template_paneladmin_view", $this->_data);
     }
 
     public function delete(){

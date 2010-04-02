@@ -21,7 +21,7 @@ class Users_model extends Model {
         return $this->db->insert_id();
     }
 
-    public function update($data = array(), $user_id=null) {
+    public function edit($data = array(), $user_id=null) {
         
         if( empty($data["password"]) ) unset($data["password"]);
 

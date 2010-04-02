@@ -1,12 +1,14 @@
-<?php
-    $url = $this->session->userdata('level')==0 ? site_url("/paneluser/micuenta/") : site_url("/paneladmin/index/");
-?>
-
-        <div class="float-left">
-            <label class="label-user">Usuario:&nbsp;</label>
-            <span class="text-small"><?=$this->session->userdata('username');?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <a href="<?=$url;?>" class="link2">(mi cuenta)</a>
-        </div>
-        <div class="float-right append-right-small">
-            <button type="button" class="button-small" onclick="location.href='<?=site_url('/login/logout/');?>';">Salir</button>
-        </div>
+    <div class="float-left">
+        <label class="label-user">Usuario:&nbsp;</label>
+        <span class="text-small"><?=$this->session->userdata('username');?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <?php if( $this->session->userdata('level')==0 ){?>
+        <a href="<?=site_url("/paneluser/micuenta/");?>" class="link2">(mi cuenta)</a>
+    <?php }else{
+            if( $this->uri->segment(1)!="paneladmin" ){?>
+                <a href="<?=site_url("/paneladmin/index/");?>" class="link2">(Volver al panel)</a>
+    <?php   }
+          }?>
+    </div>
+    <div class="float-right append-right-small">
+        <button type="button" class="button-small" onclick="location.href='<?=site_url('/login/logout/');?>';">Salir</button>
+    </div>

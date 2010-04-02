@@ -31,19 +31,19 @@
                             <div class="ajaxloader-mask"></div>
                             <div class="ajaxloader"></div>
                             <p>
-                                <label class="label2">*Nombre</label><br />
+                                <label class="label-contact">*Nombre</label><br />
                                 <input type="text" name="txtName" class="input-contact validate" />
                             </p>
                             <p>
-                                <label class="label2">*E-mail</label><br />
+                                <label class="label-contact">*E-mail</label><br />
                                 <input type="text" name="txtEmail" class="input-contact validate" />
                             </p>
                             <p>
-                                <label class="label2">N&uacute;mero de Contacto</label><br />
+                                <label class="label-contact">N&uacute;mero de Contacto</label><br />
                                 <input type="text" name="txtPhone" class="input-contact" />
                             </p>
                             <p>
-                                <label class="label2">*Consulta</label>
+                                <label class="label-contact">*Consulta</label>
                                 <textarea class="textarea-contact validate" name="txtConsult" cols="10" rows="3"></textarea>
                             </p>
                             <p class="text-center">

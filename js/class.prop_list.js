@@ -11,7 +11,7 @@ var Prop = new (function(){
      **************************************************************************/
     this.action={
         edit : function(){
-            var lstProp = get_list();
+            var lstProp = $("#tblList tbody input:checked");
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad para modificar.");
                 return true;
@@ -25,7 +25,7 @@ var Prop = new (function(){
         },
 
         del : function(){
-            var lstProp = get_list();
+            var lstProp = $("#tblList tbody input:checked");
             if( lstProp.length==0 ){
                 alert("Debe seleccionar una propiedad.");
                 return false;
@@ -35,20 +35,6 @@ var Prop = new (function(){
 
             if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
                 location.href = baseURI+'paneluser/propiedades/delete/'+data.id;
-            }
-            return false;
-        },
-        del2 : function(){
-            var lstProp = $("#tblList input:checked");
-            if( lstProp.length==0 ){
-                alert("Debe seleccionar una propiedad.");
-                return false;
-            }
-
-            var data = get_data(lstProp);
-
-            if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
-                location.href = baseURI+'paneladmin/propiedades/delete/'+data.id;
             }
             return false;
         }
@@ -61,24 +47,17 @@ var Prop = new (function(){
     /* PRIVATE METHODS
      **************************************************************************/
     var get_data = function(arr){
-        var names="", id="";
+        var names = [], id = [];
 
         arr.each(function(i){
-            id+=this.value+"/";
-            names+= $(this).parent().parent().find('.table_center').text()+", ";
+            id.push(this.value);
+            names.push($(this).parent().parent().find('.cell-3').text());
         });
 
-        id = id.substr(0, id.length-1);
-        names = names.substr(0, names.length-2);
-
         return {
-            id   : id,
+            id    : id,
             names : names
         }
-    };
-
-    var get_list = function(){
-        return $("#tblProp .table_left input:checked");
     };
 
 })();

@@ -55,8 +55,7 @@ var Prop = new (function(){
                             var extra_post = {};
 
                             if( !mode_edit ){
-                                extra_post.images_new = $('input.jq-uploadinput:not(empty)').toArray();
-
+                                extra_post.images_new = $('input.jq-uploadinput:not(empty)').toArrayValue();
                             }else{
                                //Busca Imagenes Nuevas
                                $('a.jq-thumbnew:visible').each(function(){
@@ -70,8 +69,7 @@ var Prop = new (function(){
                                extra_post.images_modified_name = arr_images_modified.name;
                             }
 
-
-                            extra_post.servicios = extract_id_servicios();
+                            extra_post.services = $("#listServices").find("li input:checked").toArrayValue();
 
                             f.extra_post.value = json_encode(extra_post);
                             f.action = (propid=="") ? baseURI+"paneluser/propiedades/create" : baseURI+"paneluser/propiedades/edit/"+propid;
@@ -190,27 +188,19 @@ var Prop = new (function(){
     /* PRIVATE METHODS
      **************************************************************************/
     var validServices = function(){
-        var checkServ = $("#listServices").find("li input:checked");
-        if( checkServ.length == 0 ){
-            show_error("#contServices", "Seleccione al menos un servicio.");
+        if( $("#listServices").find("li input:checked").length == 0 ){
+            show_error("#msgbox_services", "Seleccione al menos un servicio.", "#validator_msg_services");
             return false;
-        }
+        }else $.validator.hide('#msgbox_services');
         return true;
     };
 
     var validImages = function(){
         if( $('a.jq-thumb:visible').length==0 ){
-            show_error('#au-leyend', 'Debe ingresar al menos una im&aacute;gen.');
+            show_error('#msgbox_images', 'Debe ingresar al menos una im&aacute;gen.', '#msgbox_images');
             return false;
-        }
+        }else $.validator.hide('#msgbox_images');
         return true;
-    };
-
-    var extract_id_servicios = function(){
-        var checkServ = $("#listServices").find("li input:checked");
-        var arr = new Array();
-        checkServ.each(function(){arr.push(this);});
-        return arr;
     };
 
     var ajaxloader = {
@@ -236,7 +226,7 @@ var AjaxUpload = new ClassAjaxUpload({
             return false;
         } else {
             var divCol = $(input).parent().parent();
-            divCol.find('div.button-examin, input.input-form').hide();
+            divCol.find('div.button-examin, input.input-form, a.jq-thumb, button').hide();
             divCol.find('div.ajaxloader2').show();
             divCol.find('input.input-form').val(input.value);
         }
@@ -254,7 +244,7 @@ var AjaxUpload = new ClassAjaxUpload({
         var divCol = $(input).parent().parent();
 
         divCol.find('div.ajaxloader2').hide();
-        divCol.find('div.button-examin, input.input-form').show();
+        divCol.find('div.button-examin, input.input-form, button').show();
 
         var a = divCol.find('a.jq-thumb');
         var img = a.find(':first');

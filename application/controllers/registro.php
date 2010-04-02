@@ -31,7 +31,7 @@ class Registro extends Controller {
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'         =>  'frontpage/registro_view.php',
             'tlp_title_section'   =>  'Registrarme',
-            'tlp_script'          =>  array('validator', 'account'),
+            'tlp_script'          =>  array('validator', 'popup', 'account'),
         ));
         $this->load->view('template_frontpage_view', $this->_data);
     }

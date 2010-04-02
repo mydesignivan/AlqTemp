@@ -13,9 +13,9 @@
 
                     <h2><a href="<?=$url;?>" class="link4"><?=$row['address'];?></a></h2>
                     <p><?=character_limiter(nl2br($row['description']), 150);?></p>
-                    <label class="label1">Categor&iacute;a:&nbsp;</label><span><?=$row['category'];?></span><br />
-                    <label class="label1">Ciudad:&nbsp;</label><span><?=$row['city'];?></span><br />
-                    <?php if( !empty($row['price']) ){?><div class="float-left"><label class="label1">Precio:&nbsp;</label><span><?=$row['price'];?></span></div><?php }?>
+                    <label class="label-black">Categor&iacute;a:&nbsp;</label><span><?=$row['category'];?></span><br />
+                    <label class="label-black">Ciudad:&nbsp;</label><span><?=$row['city'];?></span><br />
+                    <?php if( !empty($row['price']) ){?><div class="float-left"><label class="label-black">Precio:&nbsp;</label><span><?=$row['price'];?></span></div><?php }?>
                 </div>
                 <div class="float-right">
                     <button type="button" class="button-small" onclick="location.href='<?=$url?>';">M&aacute;s info</button>

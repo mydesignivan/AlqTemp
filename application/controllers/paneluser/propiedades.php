@@ -91,14 +91,12 @@ class Propiedades extends Controller {
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
 
             $data = $this->_request_fields();
-            $data['images_new'] = $_POST['images_new'];
-            $data['images_deletes'] = $_POST['images_deletes'];
-            $data['images_modified_id'] = $_POST['images_modified_id'];
-            $data['images_modified_name'] = $_POST['images_modified_name'];
+
+            //print_array($data['extra_post'], true);
+
             $data['last_modified'] = date('Y-m-d H:i:s');
 
-            $status = $this->prop_model->update($data, $this->uri->segment(4));
-
+            $status = $this->prop_model->edit($data, $this->uri->segment(4));
             if( $status=="ok" ){
                 redirect('/paneluser/propiedades/');
             }else{
@@ -178,7 +176,6 @@ class Propiedades extends Controller {
             'phone'           => $_POST["txtPhone"],
             'website'         => (strtolower($_POST["txtWebsite"])!="http://") ? $_POST["txtWebsite"] : "",
             'price'           => $_POST["txtPrice"],
-            'services'        => $_POST["services"],
             'extra_post'      => json_decode($_POST['extra_post'])
         );
     }

@@ -29,7 +29,7 @@ class Login extends Controller{
                 if( $this->session->userdata('level')==0 ){
                     redirect('/index/');
                 }else{
-                    redirect('/paneladmin/informacion/');
+                    redirect('/paneladmin/index/');
                 }
             }
         }

@@ -5,7 +5,7 @@
                         Por favor asegurese de memorizarla o anotarla en un lugar seguro.
                     </p>
                     <br />
-                    <a href="javascript:$('form3').submit();" class="link5">Acceder a su cuenta</a>
+                    <a href="javascript:$('form3').submit();" class="link-title">Acceder a su cuenta</a>
 
                     <input type="hidden" name="p1" value="<?=$info['username'];?>" />
                     <input type="hidden" name="p2" value="<?=$info['password'];?>" />
@@ -19,11 +19,11 @@
                     </p>
 
                     <p class="span-11">
-                        <label class="label3 float-left">Nueva Contrase&ntilde;a:</label>
+                        <label class="label-form float-left">Nueva Contrase&ntilde;a:</label>
                         <input type="password" name="txtPass" id="txtPass" class="input-form float-right validate" />
                     </p>
                     <p class="clear span-11">
-                        <label class="label3 float-left">Verifique Nueva Contrase&ntilde;a:</label>
+                        <label class="label-form float-left">Verifique Nueva Contrase&ntilde;a:</label>
                         <input type="password" name="txtPass2" class="input-form float-right validate" />
                     </p>
 

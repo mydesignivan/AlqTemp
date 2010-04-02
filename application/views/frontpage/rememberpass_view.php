@@ -10,7 +10,7 @@
                 <p>Por favor escriba su direcci&oacute;n de <b>email</b> o su <b>usuario</b> a continuaci&oacute;n.</p>
                 <br />
                 <p>
-                    <label class="label3 float-left">Email / Usuario&nbsp;</label>
+                    <label class="label-form float-left">Email / Usuario&nbsp;</label>
                     <input type="text" name="txtField" class="input-form float-left validate" />
                 </p>
 

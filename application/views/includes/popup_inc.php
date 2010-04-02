@@ -1,6 +1,6 @@
-<div id="popup">
-    <div class="top-popup"></div>
-    <div class="center-popup"></div>
-    <div class="bottom-popup"></div>
-</div>
-<div id="popup-container"></div>
+        <div id="jquery-popup-mask" class="jquery-popup-mask"></div>
+        <div id="jquery-popup" class="jquery-popup">
+            <div class="jquery-popup-top"></div>
+            <div class="jquery-popup-middle"></div>
+            <div class="jquery-popup-bottom"></div>
+        </div>

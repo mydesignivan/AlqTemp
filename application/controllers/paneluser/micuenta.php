@@ -16,7 +16,7 @@ class Micuenta extends Controller{
             'tlp_section'       =>  'paneluser/myaccount_view.php',
             'tlp_title'         =>  TITLE_MICUENTA,
             'tlp_title_section' =>  "Mi Cuenta",
-            'tlp_script'        =>  array('validator', 'account')
+            'tlp_script'        =>  array('validator', 'popup', 'account')
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -48,7 +48,7 @@ class Micuenta extends Controller{
                 'last_modified' => date('Y-m-d H:i:s')
             );
 
-            $status = $this->users_model->update($data, $_POST["user_id"]);
+            $status = $this->users_model->edit($data, $_POST["user_id"]);
 
             if( $status ){
                 $this->simplelogin->logout();
