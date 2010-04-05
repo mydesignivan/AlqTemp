@@ -3,7 +3,7 @@ class Index extends Controller {
 
     /* CONSTRUCTOR
      **************************************************************************/
-    function __construct(){
+    function __construct(){        
         parent::Controller();
         $this->load->helper('form');
         $this->load->helper('text');
@@ -22,7 +22,7 @@ class Index extends Controller {
         ));
         $this->_data = $this->dataview->get_data();
 
-        $this->_count_per_page=3;
+        $this->_count_per_page=4;
         $this->_offset = !is_numeric($this->uri->segment(3)) ? 0 : $this->uri->segment(3);
     }
 
