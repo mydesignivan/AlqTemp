@@ -14,7 +14,7 @@ var Account = new (function(){
         f = $('#formAccount')[0];
         if( f ){
             $.validator.setting('#formAccount .validate', {
-                effect_show     : 'slide',
+                effect_show     : 'slidefade',
                 validateOne     : true
             });
 
@@ -47,11 +47,9 @@ var Account = new (function(){
     };
 
     this.save = function(){
-        ajaxloader.show('Validando Formulario.');
-        return;
         if( working ) return false;
 
-        ajaxloader.show();
+        ajaxloader.show('Validando Formulario.');
 
         $.validator.validate('#formAccount .validate', function(error){
             if( !error ){
@@ -76,16 +74,15 @@ var Account = new (function(){
                             show_error(f.txtCaptcha, 'El c&oacute;digo ingresado es incorrecto.');
 
                         }else if( data=="ok" ){
+                            ajaxloader.show('Enviando Formulario.');
                             f.submit();
                         }else{
                             alert("ERROR: \n"+data);
                         }
+                        if( data!="ok" ) ajaxloader.hidden();
                     },
                     error   : function(result){
                         alert("ERROR: \n"+result.responseText);
-                    },
-                    complete : function(){
-                        ajaxloader.hidden();
                     }
                 });
             }else ajaxloader.hidden();
@@ -128,7 +125,7 @@ var Account = new (function(){
             });
         },
         hidden : function(){
-            popup.hidden();
+            popup.close();
             working=false;
         }
     }

@@ -33,7 +33,7 @@ a.link2{
 /*------------------------------------------------------------------------------
  - ESTILOS PARA INPUT y TEXTAREA
  -----------------------------------------------------------------------------*/
-input.input-contact2, textarea.textarea-contact2, input.input-form, input.input-phonearea, input.input-phone, input.input-captcha{
+textarea.textarea-contact2, input.input-form, input.input-phonearea, input.input-phone, input.input-captcha{
     border:1px #FAD4A3 solid;
     background-color:#FAF8E9;
 }
@@ -50,7 +50,7 @@ input.input-captcha{
 /*------------------------------------------------------------------------------
  - ESTILOS PARA SELECT
  -----------------------------------------------------------------------------*/
-select.select-contact2{
+select.select-form{
     background-color: #FAF8E9;
 }
 

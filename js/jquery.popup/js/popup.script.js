@@ -14,21 +14,14 @@ var ClassPopup = function(setting){
     /* PUBLIC METHODS
      *************************************************************************/
     this.initializer = function(){
-        var _container = SETTING.selector_container==null ? $(window) : $(SETTING.selector_container);
-        var scrollHeight = Math.max(document.body.scrollHeight, document.body.clientHeight);
-        var width = _container.width();
-        var height = _container.height() + scrollHeight;
-
         _maskBG = $(SETTING.maskBG_selector).css({
-            'position' : 'absolute',
+            'position' : 'fixed',
             'opacity'  : SETTING.maskBG_opacity,
             'left'     : 0,
             'top'      : 0,
-            'width'    : width+"px",
-            'height'   : height+"px"
+            'width'    : "100%",
+            'height'   : "100%"
         });
-
-       document.title = $('body').outerHeight();
     };
 
     this.load = function(_param, _setting){
@@ -100,8 +93,8 @@ var ClassPopup = function(setting){
 
     this.center = function(){
         _divPopup.css({
-            'left' : ((_container.width()/2)-(_divPopup.width()/2))+"px",
-            'top'  : ((_container.height()/2)-(_divPopup.height()/2))+"px"
+            'left' : (($(window).width()/2)-(_divPopup.width()/2))+"px",
+            'top'  : (($(window).height()/2)-(_divPopup.height()/2))+"px"
         });
     };
 
@@ -115,7 +108,6 @@ var ClassPopup = function(setting){
     var SETTING = {
         selector           : '#jquery-popup',
         selector_content   : '.jquery-popup-middle',
-        selector_container : null,
         reload             : true,     // Vuelve a mostrar el contenido
         bloqEsc            : false,    // Bloquea el boton escape
         efectClose         : true,     // Efecto fade al cerrar popup
@@ -128,7 +120,6 @@ var ClassPopup = function(setting){
     var _This=this;
     var _divPopup = false;
     var _maskBG = false;
-    var _container = false;
 
     /* CONSTRUCTOR
      **********************************************************************/

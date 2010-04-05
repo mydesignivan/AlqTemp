@@ -3,21 +3,13 @@ function checkRow(td){
     checkbox.checked = !checkbox.checked;
 }
 
-function search_city(city){
-    var f = $('#formSearch')[0];
-    // Reset form
-    for( var n=0; n<=f.elements.length-1; n++ ){
-        if( f.elements[n].nodeName.toLowerCase()=="input" ) f.elements[n].value='';
-        if( f.elements[n].nodeName.toLowerCase()=="select" ) f.elements[n].selectedIndex=0;
-    }
-
-    for( var n=0; n<=f.cboCity.options.length-1; n++ ){
-        if( f.cboCity.options[n].value==city ) {
-            f.cboCity.selectedIndex=n;
-            f.submit();
-            break;
-        }
-    }
+function Search(){
+    var url = baseURI+"index/searcher/";
+    $($('#formSearch').serializeArray()).each(function(){
+        var t = $(this);
+        if( t.val()!=""&&t.val()!=0 ) url+= t.attr('name')+"/"+t.val()+"/";
+    });
+    location.href = url+"page/";
 }
 
 function show_error(el, msg, container){

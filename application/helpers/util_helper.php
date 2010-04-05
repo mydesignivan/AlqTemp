@@ -116,28 +116,24 @@ function construct_bloq($config){
     // field             : string
     // total_row         : integer
 
-    $n=0;
-    $col=0;
+    $col=$n=0;
     foreach( $config['result'] as $row ){
         $n++;
         if( $n==1 ){
-            if( $col<2 ) echo $config['tag_open'];
-            elseif( $col==2 && !empty($config['tag_open_special']) ){
-                echo $config['tag_open_special'];
-                $col=0;
-            }
+            $col++;
+            if( $col==1 ) echo $config['tag_open'];
+            else echo $config['tag_open_special'];
         }
 
         if( $n<=$config['total_row'] ){
             $name = $row[$config['field']];
-            $tag = isset($config['tag_link']) ? '<a href="javascript:void(search_city(\''.$name.'\'))" class="link1">'.$name.'</a>' : $name;
+            $tag = isset($config['tag_link']) ? '<a href="'. site_url('index/searcher/city/'.$name) .'" class="link1">'.$name.'</a>' : $name;
             echo '<li>'. $tag .'</li>';
         }
 
         if( $n==$config['total_row'] || $n==count($config['result']) ){
             echo $config['tag_close'];
             $n=0;
-            $col++;
         }
     }
 }

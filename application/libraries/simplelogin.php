@@ -22,13 +22,13 @@ class Simplelogin{
     public function login($user = '', $password = '') {
         //Make sure login info was sent
         if( $user == '' OR $password == '' ) {
-            return array('error'=>false, 'message'=>'loginfaild');
+            return array('status'=>'error', 'error'=>'loginfaild');
         }
 
         //Check if already logged in
         if( $this->CI->session->userdata('username') == $user ) {
             //User is already logged in.
-            return array('error'=>false, 'message'=>'loginfaild');
+            return array('status'=>'error', 'error'=>'loginfaild');
         }
 
 

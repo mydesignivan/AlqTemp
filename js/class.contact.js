@@ -12,9 +12,9 @@ var Contact = new (function(){
      this.initializer = function(){
         f = $('#formContact')[0];
         $.validator.setting('#formContact .validate', {
-            effect_show     : 'slide',
+            effect_show     : 'slidefade',
             validateOne     : true,
-            addClass        : 'validator'
+            addClass        : 'float-left'
         });
 
         $(f.txtName).validator({

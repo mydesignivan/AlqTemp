@@ -41,8 +41,9 @@ class Index extends Controller {
     public function display($param=null){
         if( $param==null ){
             $param = array(
-                'base_url'    => '/index/display/',
+                'base_url'    => str_replace('.html', '', site_url('/index/display/page/')),
                 'title'       => 'Alquileres Destacados',
+                'searcher'    =>  false,
                 'listProp'    => $this->search_model->last_properties($this->_count_per_page)
                 //'listProp'    => $this->search_model->list_disting($this->_count_per_page, $this->_offset)
             );
@@ -50,62 +51,83 @@ class Index extends Controller {
 
         $listSearches = $this->search_model->get_searches();
 
-        $config['base_url'] = site_url($param['base_url']);
+        $config['base_url'] = $param['base_url'];
         $config['total_rows'] = $param['listProp']['count_rows'];
         $config['per_page'] = $this->_count_per_page;
-        $config['uri_segment'] = 3;
+        $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
 
         $this->_data = $this->dataview->set_data(array(
             'listProp'           =>  $param['listProp']['result'],
             'listSearches'       =>  $listSearches,
-            'tlp_title_section'  =>  $param['title']
+            'tlp_title_section'  =>  $param['title'],
+            'searcher'           =>  $param['searcher']
         ));
+
+
         $this->load->view('template_frontpage_view', $this->_data);
     }
 
-    // Muestra los resultados de la busqueda
-    public function result(){
-        if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            $listProp = $this->search_model->search($this->_count_per_page, $this->_offset);
-            $this->display(array(
-                'base_url'    => '/index/result/',
-                'title'       => 'Resultado de B&uacute;queda',
-                'listProp'    => $listProp
-            ));
-        }else redirect('/index/');
+    public function searcher(){
+        $searcher = $this->uri->uri_to_assoc(3, array('search', 'country', 'state', 'city', 'category', 'page'));
+        
+        if( !empty($searcher['page']) ){
+            $seg = "index/searcher/";
+            foreach( $searcher as $key=>$val ){
+                if( $key!='page' && !empty($val) ){
+                    $seg.=$key."/".$val."/";
+                }
+            }
+            $seg.="page/";
+        }else{
+            $seg = $this->uri->uri_string()."/page/";
+        }
+
+        $base_url = str_replace(".html", "", site_url($seg));
+        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, $searcher);
+
+        $this->display(array(
+            'base_url'    => $base_url,
+            'title'       => 'Resultado de B&uacute;queda',
+            'listProp'    => $listProp,
+            'searcher'    => $searcher
+        ));
     }
 
     public function casas(){
-        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, "1");
+        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>1));
         $this->display(array(
-            'base_url'    => '/index/casas/',
+            'base_url'    => str_replace(".html", "", site_url('/index/casas/page/')),
             'title'       => 'Casas',
-            'listProp'    => $listProp
+            'listProp'    => $listProp,
+            'searcher'    => false
         ));
     }
     public function departamentos(){
-        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, "3");
+        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>3));
         $this->display(array(
-            'base_url'    => '/index/departamentos/',
+            'base_url'    => str_replace(".html", "", site_url('/index/departamentos/page/')),
             'title'       => 'Departamentos',
-            'listProp'    => $listProp
+            'listProp'    => $listProp,
+            'searcher'    => false
         ));
     }
     public function cabanias(){
-        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, "2");
+        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>2));
         $this->display(array(
-            'base_url'    => '/index/cabanias/',
+            'base_url'    => str_replace(".html", "", site_url('/index/cabanias/page/')),
             'title'       => 'Caba&ntilde;as',
-            'listProp'    => $listProp
+            'listProp'    => $listProp,
+            'searcher'    => false
         ));
     }
     public function otros(){
-        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, "4");
+        $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>4));
         $this->display(array(
-            'base_url'    => '/index/otros/',
+            'base_url'    => str_replace(".html", "", site_url('/index/otros/page/')),
             'title'       => 'Otros',
-            'listProp'    => $listProp
+            'listProp'    => $listProp,
+            'searcher'    => false
         ));
     }
 

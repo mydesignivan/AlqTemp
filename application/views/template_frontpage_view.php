@@ -40,9 +40,9 @@
                             $config['result'] = $listSearches->result_array();
                             $config['total_row'] = 4;
                             $config['field'] = "search_term";
-                            $config['tag_open'] = '<ul class="ul-list line-right">';
+                            $config['tag_open'] = '<ul class="ul-list">';
                             $config['tag_close'] = '</ul>';
-                            $config['tag_open_special'] = '<ul class="ul-list">';
+                            $config['tag_open_special'] = '<ul class="ul-list ul-list-separator">';
                             $config['tag_link'] = true;
                             construct_bloq($config);
                         ?>

@@ -22,9 +22,11 @@
         <ul class="menu">
             <li><a class="menu-option" href="<?=site_url("/paneluser/micuenta/");?>">Mi Cuenta</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneluser/propiedades/");?>">Propiedades</a></li>
+            <?php if( $this->session->userdata('username')=="ivan"||$this->session->userdata('username')=="difiesta"||$this->session->userdata('username')=="jbasez" ){?>
             <li><a class="menu-option" href="<?=site_url("/paneluser/destacar/");?>">Destacar</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneluser/cuentaplus/");?>">Cuenta Plus</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneluser/agregarfondos/");?>">Agregar Fondos</a></li>
+            <?php }?>
         </ul>
     </div>
     <!-- =============== END MENU =============== -->

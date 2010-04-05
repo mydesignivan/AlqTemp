@@ -59,20 +59,21 @@
 
     <!-- =============== SEARCH =============== -->
     <div class="clear search">
-        <form id="formSearch" action="<?=site_url("/index/result/");?>" method="post" enctype="application/x-www-form-urlencoded">
+        <form id="formSearch" action="" enctype="application/x-www-form-urlencoded" onsubmit="return false;">
             <div class="row1">
                 <label class="label-search">Buscador&nbsp;</label>
-                <div class="cont-input"><img src="images/icon_search.png" alt="" class="float-left" /><input type="text" class="i1" name="txtSearch" value="<?=@$_POST["txtSearch"];?>" onkeypress="if(getKeyCode(event)==13) $('#formSearch').submit();" /></div>
-                <button type="submit" class="button-small">Buscar</button>
+                <div class="cont-input"><img src="images/icon_search.png" alt="" class="float-left" /><input type="text" class="i1" name="search" value="<?=@$searcher["search"];?>" onkeypress="if(getKeyCode(event)==13) Search();" />
+                </div>
+                <button type="button" class="button-small" onclick="Search();">Buscar</button>
             </div>
             <div class="row2">
                 <div class="span-4">
-                    <?=form_dropdown('cboCountry', $comboCountry, @$_POST["cboCountry"], 'class="select-search" title="Pa&iacute;ses"');?><br />
-                    <?=form_dropdown('cboStates', $comboStates, @$_POST["cboStates"], 'class="select-search" title="Estados / Provincias"');?>
+                    <?=form_dropdown('country', $comboCountry, @$searcher['country'], 'class="select-search" title="Pa&iacute;ses"');?><br />
+                    <?=form_dropdown('state', $comboStates, @$searcher['state'], 'class="select-search" title="Estados / Provincias"');?>
                 </div>
                 <div class="span-4 last">
-                    <?=form_dropdown('cboCity', $comboCity, @$_POST['cboCity'], 'class="select-search" title="Ciudades"');?><br />
-                    <?=form_dropdown('cboCategory', $comboCategory, @$_POST['cboCategory'], 'class="select-search" title="Cetegor&iacute;as"');?>
+                    <?=form_dropdown('city', $comboCity, @$searcher['city'], 'class="select-search" title="Ciudades"');?><br />
+                    <?=form_dropdown('category', $comboCategory, @$searcher['category'], 'class="select-search" title="Cetegor&iacute;as"');?>
                 </div>
             </div>
         </form>
@@ -83,10 +84,10 @@
     <!-- =============== MENU =============== -->
     <div class="menu-container">
         <ul class="menu">
-            <li><a class="menu-option" href="<?=site_url("/index/casas/");?>">Casas</a></li>
-            <li><a class="menu-option" href="<?=site_url("/index/departamentos/");?>">Departamentos</a></li>
-            <li><a class="menu-option" href="<?=site_url("/index/cabanias/");?>">Cabañas</a></li>
-            <li><a class="menu-option" href="<?=site_url("/index/otros/");?>">Otros</a></li>
+            <li><a class="menu-option" href="<?=site_url("/casas/");?>">Casas</a></li>
+            <li><a class="menu-option" href="<?=site_url("/departamentos/");?>">Departamentos</a></li>
+            <li><a class="menu-option" href="<?=site_url("/cabanias/");?>">Cabañas</a></li>
+            <li><a class="menu-option" href="<?=site_url("/otros/");?>">Otros</a></li>
         </ul>
     </div>
     <!-- =============== END MENU =============== -->

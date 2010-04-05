@@ -23,7 +23,7 @@ var Prop = new (function(){
        }
 
         $.validator.setting('#formProp .validate', {
-            effect_show     : 'slide',
+            effect_show     : 'slidefade',
             validateOne     : true
         });
         $("#txtAddress, #txtDesc, #cboCategory, #cboCountry, #cboStates, #txtCity").validator({
@@ -32,12 +32,13 @@ var Prop = new (function(){
 
         $('a.jq-thumb').fancybox();
         AjaxUpload.initializer();
+        popup.initializer();
    };
 
     this.save = function(){
         if( working ) return false;
 
-        ajaxloader.show();
+        ajaxloader.show('Validando Formulario.');
 
         $.validator.validate('#formProp .validate', function(error){
             if( !error && validServices() && validImages() ){
@@ -45,13 +46,19 @@ var Prop = new (function(){
                 var propid = $(f.prop_id).val();
 
                 $.ajax({
-                    type : 'get',
-                    url  : baseURI+'paneluser/propiedades/ajax_check/'+escape(f.txtAddress.value)+"/"+propid,
+                    type : 'post',
+                    url  : baseURI+'paneluser/propiedades/ajax_check/',
+                    data : {
+                        address : f.txtAddress.value,
+                        propid  : propid
+                    },
                     success : function(data){
                         if( data=="exists" ){
                             show_error(f.txtAddress, 'La direcci&oacute;n ingresada ya existe.')
                             
                         }else if( data=="notexists" ){
+                            ajaxloader.show('Enviando Formulario.');
+
                             var extra_post = {};
 
                             if( !mode_edit ){
@@ -77,12 +84,10 @@ var Prop = new (function(){
 
                         }else alert("ERROR:\n"+data);
 
+                        if( data!="notexists" ) ajaxloader.hidden();
                     },
                     error : function(result){
                         alert("ERROR:\n"+result.responseText);
-                    },
-                    complete : function(){
-                        ajaxloader.hidden();
                     }
                 })
 
@@ -204,15 +209,25 @@ var Prop = new (function(){
     };
 
     var ajaxloader = {
-        show : function(){
+        show : function(msg){
             working=true;
-            popup.show('<p>Enviando formulario.</p><img src="images/ajax-loader5.gif" alt="" />');
+
+            var html = '<div class="text-center">';
+                html+= '<p>'+msg+'</p>';
+                html+= '<img src="images/ajax-loader5.gif" alt="" />';
+                html+= '</div>';
+
+            popup.load({html : html}, {
+                reload  : true,
+                bloqEsc : true,
+                effectClose : false
+            });
         },
         hidden : function(){
-            popup.hidden();
+            popup.close();
             working=false;
         }
-    };
+    }
 
 })();
 

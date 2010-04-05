@@ -23,5 +23,5 @@
             </div>
 
     <?php }
-            echo $this->pagination->create_links();
-    }?>
+            echo '<div class="text-center">'.$this->pagination->create_links().'</div>';
+}?>

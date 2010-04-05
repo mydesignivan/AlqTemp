@@ -33,8 +33,8 @@ var Prop = new (function(){
             
             var data = get_data(lstProp);
 
-            if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names) ){
-                location.href = baseURI+'paneluser/propiedades/delete/'+data.id;
+            if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names.join(", ")) ){
+                location.href = baseURI+'paneluser/propiedades/delete/'+data.id.join("/");
             }
             return false;
         }

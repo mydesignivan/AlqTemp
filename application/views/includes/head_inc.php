@@ -9,7 +9,7 @@
 <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/><![endif]-->
 <!-- END FRAMEWORK -->
 
-<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="css/style<?=$this->config->item('sufix_pack_css');?>.css" rel="stylesheet" type="text/css" />
 <!--[if IE 7]>
 <link href="css/styleIE7.css" rel="stylesheet" type="text/css" />
 <![endif]-->
@@ -18,7 +18,7 @@
 <![endif]-->
 
 <!--========== LIBRARIES ============-->
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="js/helpers.min.js"></script>
 <script type="text/javascript" src="js/comun.js"></script>
 <!--========== END LIBRARIES =======-->
@@ -35,7 +35,7 @@
 </script>
 
 <!--========== CLASS ============-->
-<script type="text/javascript" src="js/class.login.js"></script>
+<script type="text/javascript" src="js/class.login<?=$this->config->item('sufix_pack_js');?>.js"></script>
 <!--======= END CLASS =======-->
 
 

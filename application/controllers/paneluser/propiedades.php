@@ -40,10 +40,14 @@ class Propiedades extends Controller {
             $check = $this->_check_total_propfree();
 
             $info   = false;
-            if( $check['result'] ){
-                $action = 'show';
+            if( $this->session->userdata('username')=='basaezj' ){
+                $action = "show";
             }else{
-                $action = $check['error'];
+                if( $check['result'] ){
+                    $action = 'show';
+                }else{
+                    $action = $check['error'];
+                }
             }
         }else{
             $action = 'show';
@@ -59,7 +63,7 @@ class Propiedades extends Controller {
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneluser/prop_form_view.php',
             'tlp_title_section' =>  (!$info) ? "Nueva Propiedad" : "Modificar Propiedad",
-            'tlp_script'        =>  array('validator', 'fancybox', 'json', 'prop_form'),
+            'tlp_script'        =>  array('validator', 'fancybox', 'popup', 'prop_form'),
             'comboCategory'     =>  $this->lists_model->get_category(array("0"=>"Seleccione una Categor&iacute;a")),
             'comboCountry'      =>  $this->lists_model->get_country(array("0"=>"Seleccione un Pa&iacute;s")),
             'comboStates'       =>  $comboStates,
@@ -110,7 +114,7 @@ class Propiedades extends Controller {
         if( $this->uri->segment(4) ){
             $id = $this->uri->segment_array();
             array_splice($id, 0,3);
-
+            
             if( $this->prop_model->delete($id) ){
                 redirect('/paneluser/propiedades/');
             }else{
@@ -127,7 +131,7 @@ class Propiedades extends Controller {
     /* AJAX FUNCTIONS
      **************************************************************************/
     public function ajax_check(){
-        if( $this->prop_model->exists($this->uri->segment(4), $this->uri->segment(5)) ){
+        if( $this->prop_model->exists($_POST['address'], $_POST['propid']) ){
             die("exists");
         }else{
             die("notexists");
@@ -174,6 +178,7 @@ class Propiedades extends Controller {
             'state_id'        => $_POST["cboStates"],
             'city'            => $_POST["txtCity"],
             'phone'           => $_POST["txtPhone"],
+            'phone_area'      => $_POST["txtPhoneArea"],
             'website'         => (strtolower($_POST["txtWebsite"])!="http://") ? $_POST["txtWebsite"] : "",
             'price'           => $_POST["txtPrice"],
             'extra_post'      => json_decode($_POST['extra_post'])

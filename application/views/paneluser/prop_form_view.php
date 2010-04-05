@@ -13,9 +13,9 @@
 
 <?php }else{?>
 
-    <?php require(APPPATH . 'views/includes/popup_inc.php');?>
-
             <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
+                <?php require(APPPATH . 'views/includes/popup_inc.php');?>
+                
                 <p class="span-10">
                     <label class="label-form float-left">*Direcci&oacute;n:</label>
                     <input type="text" name="txtAddress" id="txtAddress" class="input-form float-right validate" tabindex="1" value="<?=@$info['address'];?>" />
@@ -68,7 +68,7 @@
                 </p>
                 <p class="clear span-10">
                     <label class="label-form float-left">*Categor&iacute;a:</label>
-                    <?=form_dropdown('cboCategory', $comboCategory, @$info["category_id"], 'class="select-form float-right" id="cboCategory" tabindex="4"');?>
+                    <?=form_dropdown('cboCategory', $comboCategory, @$info["category_id"], 'class="select-form float-right validate" id="cboCategory" tabindex="4"');?>
                 </p>
 
                 <div class="clear span-10 prepend-top-small">
@@ -110,15 +110,16 @@
                 </p>
                 <p class="clear span-10">
                     <label class="label-form float-left">Telefono:</label>
-                    <input type="text" name="txtPhone" class="input-form float-right" value="<?=@$info['phone'];?>" tabindex="8" />
+                    <input type="text" name="txtPhone" class="input-phone float-right" value="<?=@$info['phone'];?>" tabindex="9" />
+                    <input type="text" name="txtPhoneArea" class="input-phonearea float-right" value="<?=@$info['phone_area'];?>" tabindex="8" />
                 </p>
                 <p class="clear span-10">
                     <label class="label-form float-left">P&aacute;gina Web:</label>
-                    <input type="text" name="txtWebsite" class="input-form float-right" onblur="$(this).formatURL();" value="<?=(@$info['website']==FALSE || @$info['website']=='') ? "http://" : @$info['website'];?>" tabindex="9" />
+                    <input type="text" name="txtWebsite" class="input-form float-right" onblur="$(this).formatURL();" value="<?=(@$info['website']==FALSE || @$info['website']=='') ? "http://" : @$info['website'];?>" tabindex="10" />
                 </p>
                 <p class="clear span-10">
                     <label class="label-form float-left">Precio:</label>
-                    <input type="text" name="txtPrice" class="input-form float-right" value="<?=@$info['price'];?>" tabindex="10" />
+                    <input type="text" name="txtPrice" class="input-form float-right" value="<?=@$info['price'];?>" tabindex="11" />
                 </p>
 
                 <div class="span-10 clear"><label class="label-legend">(*) Campo obligatorios</label></div>

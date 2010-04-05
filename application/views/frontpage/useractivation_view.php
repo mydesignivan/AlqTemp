@@ -1,1 +1,1 @@
-            <p>Gracias, <?=$username?>. Tu registro ha sido completado.</p>
+        <p>Gracias, <?=$username?>. Tu registro ha sido completado.</p>

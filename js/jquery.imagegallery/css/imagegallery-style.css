@@ -1,5 +1,36 @@
+.IG-thumb{
+    float:left;
+    width: inherit;
+    height: inherit;
+    margin-right: 5px;
+}
+    .IG-thumb a{
+        display: block;
+    }
+.IG-ajaxload-thumb{
+    width:282px;
+    padding-top:15px;
+    background-color: transparent;
+    color:#FC7F3C;
+    font-size: 90%;
+    text-align: center;
+    display: none;
+}
+    .IG-ajaxload-thumb .barprogress{
+        width:200px;
+        height: 18px;
+        margin: 5px auto;
+        border:2px solid #554C63;
+        background-color: #fff;
+    }
+        .IG-ajaxload-thumb .barprogress .progress{
+            float:left;
+            width: 0;
+            height: 100%;
+            background-color: #A397B8;
+        }
 
-.IG_ajaxload{
+.IG-ajaxload{
     float:left;
     position:relative;
     background:url(../img/ajax-load.gif) no-repeat center;

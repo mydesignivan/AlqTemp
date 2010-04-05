@@ -13,13 +13,12 @@
 .jquery-validator{
     float:right;
     clear: both !important;
-    width:195px;
+    width:214px;
     padding:5px;
-    /*margin:10px 0 0 100px !important;*/
-    margin-top:4px !important;
-    background-color:#fff;
-    border:1px solid #ccc;
-    color:red;
-    font-size: 110%;
+    margin:-4px 0 8px 0;
+    background-color:#FBE3E4;
+    border: 2px solid #FBC2C4;
+    color:#8a1f11;
+    font-size: 80%;
     display:none;
 }

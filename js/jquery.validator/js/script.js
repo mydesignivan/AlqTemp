@@ -113,6 +113,7 @@ var ClassValidator = function(param1, param2){
         });
     };
 
+
     /* PRIVATE PROPERTIES
      **********************************************************************/
     var OPTIONS={

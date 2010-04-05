@@ -43,6 +43,10 @@
 $route['default_controller'] = "index";
 $route['scaffolding_trigger'] = "";
 
+$route['casas'] = "index/casas";
+$route['departamentos'] = "index/departamentos";
+$route['cabanias'] = "index/cabanias";
+$route['otros'] = "index/otros";
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

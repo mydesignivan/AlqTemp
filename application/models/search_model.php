@@ -32,7 +32,7 @@ class Search_model extends Model {
         
         return array('result'=>$result, 'count_rows'=>$count_rows);
     }
-    public function search($limit, $offset, $category_id=0){
+    public function search($limit, $offset, $searcher){
         $sql = "prop_id,";
         $sql.= "address,";
         $sql.= "description,";
@@ -45,19 +45,14 @@ class Search_model extends Model {
         $like = array();
         $or_like = array();
 
-        if( !empty($_POST['txtSearch']) ) {
-            $like = array('address'=>$_POST["txtSearch"]);
-            $or_like = array('description'=>$_POST["txtSearch"]);
+        if( !empty($searcher['search']) ){
+            $like['address'] = $searcher['search'];
+            $or_like['description'] = $searcher['search'];
         }
-
-        if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            if( $_POST['cboCountry']!=0 )  $where = array("country_id"=>$_POST["cboCountry"]);
-            if( $_POST['cboStates']!=0 )   $where = array("state_id"=>$_POST["cboStates"]);
-            if( $_POST['cboCity']!=0 )     $like = array("city"=>$_POST['cboCity']);
-            if( $_POST['cboCategory']!=0 ) $where = array("category_id"=>$_POST["cboCategory"]);
-        }else{
-            $where = array("category_id"=>$category_id);
-        }
+        if( isset($searcher['country']) && !empty($searcher['country']) ) $where['country_id'] = $searcher['country'];
+        if( isset($searcher['state']) && !empty($searcher['state']) ) $where['state_id'] = $searcher['state'];
+        if( isset($searcher['city']) && !empty($searcher['city']) ) $like['city'] = $searcher['city'];
+        if( !empty($searcher['category']) ) $where['category_id'] = $searcher['category'];
 
         $this->db->like($like);
         $this->db->or_like($or_like);
@@ -75,11 +70,11 @@ class Search_model extends Model {
         $result = $this->db->get(TBL_PROPERTIES, $limit, $offset);
 
         // GUARDO LA PALABRA
-        if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            if( $_POST['cboCity']!=0 ){
-                $query = $this->db->query('SELECT hits,id FROM '.TBL_LOGSEARCHES." WHERE search_term='".$_POST['cboCity']."'");
+        if( !empty($searcher['city']) ){
+            if( $this->db->get_where(TBL_PROPERTIES, array('city'=>$searcher['city']))->num_rows>0 ){
+                $query = $this->db->query('SELECT hits,id FROM '.TBL_LOGSEARCHES." WHERE search_term='".$searcher['city']."'");
                 if( $query->num_rows==0 ){
-                    if( !$this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$_POST['cboCity'], 'hits'=>1)) ){
+                    if( !$this->db->insert(TBL_LOGSEARCHES, array('search_term'=>$searcher['city'], 'hits'=>1)) ){
                         display_error(__FILE__, "search", ERR_DB_INSERT, array(TBL_LOGSEARCHES));
                     }
 
@@ -115,7 +110,7 @@ class Search_model extends Model {
 
     public function get_searches(){
         $this->db->order_by('hits', 'desc');
-        return $this->db->get(TBL_LOGSEARCHES);
+        return $this->db->get(TBL_LOGSEARCHES, 12);
     }
 
 }

@@ -9,10 +9,15 @@ var MoreInfo = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(){
+    this.initializer = function(json){
+        //Inicializa la Galeria de Imagenes
+        ImageGallery.initializer(json);
+        ImageGallery.load();
+
+        // Inicializa el Validador de campos
         f = $('#formConsult')[0];
         $.validator.setting('#formConsult .validate', {
-            effect_show     : 'slide',
+            effect_show     : 'slidefade',
             validateOne     : true,
             addClass        : 'validator'
         });
