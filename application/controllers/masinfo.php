@@ -13,7 +13,7 @@ class Masinfo extends Controller {
             'tlp_section'       =>  'frontpage/moreinfo_view.php',
             'tlp_title'         =>  TITLE_MASINFO,
             'tlp_title_section' =>  "Detalle Propiedad",
-            'tlp_script'        =>  array('validator', 'moreinfo'),
+            'tlp_script'        =>  array('validator', 'fancybox', 'moreinfo'),
             'comboCountry'      =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'     =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
             'comboStates'       =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),

@@ -97,17 +97,17 @@ var Prop = new (function(){
     };
 
     this.append_row_file = function(el){
-        if( working ) return false;
-        working=true;
+        /*if( working ) return false;
+        working=true;*/
         
         var total_img = $('input.jq-uploadinput:not(empty)').length;
 
-        $.get(baseURI+'paneluser/propiedades/ajax_check_total_images/'+total_img, function(data){
+        /*$.get(baseURI+'paneluser/propiedades/ajax_check_total_images/'+total_img, function(data){
            if( data=="limitexceeded" ){
                alert('Ha superado el limite para cargar imagenes.');
            }else if( data=="accesdenied" ){
                alert('Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres imágenes.\nEn caso que desee cargar mas imágenes, debera obtener una "Cuenta Plus"');
-           }else if( data=="ok" ){
+           }else if( data=="ok" ){*/
                 var divRow = $('<div class="clear span-16"></div>');
                 var divCol = $('<div class="column-photo"></div>');
                 var button = $('<div class="button-examin">Examinar</div>');
@@ -124,11 +124,11 @@ var Prop = new (function(){
 
                 $(el).parent().parent().before(divRow);
                 AjaxUpload.append_input(button);
-           }else{
+           /*}else{
                alert('ERROR\n'+data);
            }
            working=false;
-        });
+        });*/
 
         return false;
     };

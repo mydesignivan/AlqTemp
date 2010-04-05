@@ -2,7 +2,7 @@
     <div class="column-1">
         <?php $arrImages = $info['images']->result_array();?>
         <div class="photo-gallery">
-            <div class="content-photo"><a id="thumb-preview" href="#" id="thumb-preview"><img src="<?=$arrImages[0]['name'];?>" alt="" width="316" height="233" /></a></div>
+            <div class="content-photo"><a id="thumb-preview" href="<?=$arrImages[0]['name'];?>" rel="group"><img src="<?=$arrImages[0]['name'];?>" alt="" width="316" height="233" /></a></div>
         </div>
         <div class="thumbs">
             <div class="col-arrow"><a href="javascript:void(ImageGallery.previous());"><img src="images/icon_arrow_left.png" alt="Left" onmouseover="this.src='images/icon_arrow_left_over.png'" onmouseout="this.src='images/icon_arrow_left.png'" /></a></div>
@@ -10,7 +10,7 @@
             <div class="col-arrow"><a href="javascript:void(ImageGallery.next());"><img src="images/icon_arrow_right.png" alt="Right" onmouseover="this.src='images/icon_arrow_right_over.png'" onmouseout="this.src='images/icon_arrow_right.png'" /></a></div>
         </div>
 
-        <div class="description prepend-left-small">
+        <div class="description">
             <h2>Descripci&oacute;n</h2>
             <?=nl2br($info['description']);?>
         </div>

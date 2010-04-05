@@ -14,7 +14,6 @@ body {
 .margin-null{margin:0 !important;}
 .tag-center{margin: 0 auto !important;}
 .text-center{text-align: center !important;}
-.prepend-left-small{margin-left:15px !important;}
 .prepend-top-small{margin-top:10px !important;}
 .append-right-small2{margin-right: 5px !important;}
 .append-top-small{margin-bottom: 15px !important;}
@@ -720,6 +719,7 @@ ul.ul-list-cuentaplus{
     }
         .more-info .column-1 .photo-gallery{
             float:left;
+            position: relative;
             background: url(../images/bg_photo_gallery.png) no-repeat top left;
             width: 370px;
             height: 273px;
@@ -748,11 +748,11 @@ ul.ul-list-cuentaplus{
             .more-info .column-1 .thumbs .col-middle{
                 background: url(../images/bg_texture1.png) repeat-y;
                 float:left;
+                position: relative;
                 width: 282px;
-                height: 90px;
-                padding:4px 0 4px 0;
+                height: 110px;
                 overflow: hidden;
-                border:1px solid green;
+                /*border:1px solid green;*/
             }
                 .more-info .column-1 .thumbs .col-middle ul{
                     /*border:1px solid red;*/
@@ -764,8 +764,9 @@ ul.ul-list-cuentaplus{
                 }
         .more-info .column-1 .description{
             float:left;
+            clear:both;
             width: 365px;
-            margin-top:15px;
+            margin:30px 0 0 15px;
             font-size: 80%;
         }
 
