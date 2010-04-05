@@ -3,7 +3,7 @@
  -----------------------------------------------------------------------------*/
 body {
     font: 100% Arial, Helvetica, sans-serif;
-    background: url(../images/bg_texture_top.jpg) top left repeat-x #FAF5E1;
+    /*background: url(../images/bg_texture_top.jpg) top left repeat-x #FAF5E1;*/
     /*color: #000000;*/
     color:#684C1D;
 }
@@ -947,7 +947,7 @@ table tbody{
         width: 120px;
         border-right: 1px solid #CFD0CB;
     }
-    /*.tbl-log .cell-3{
+    .tbl-log .cell-3{
         width: 150px;
         border-right: 1px solid #CFD0CB;
-    }*/
+    }
