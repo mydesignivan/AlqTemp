@@ -22,7 +22,7 @@ class Index extends Controller {
         ));
         $this->_data = $this->dataview->get_data();
 
-        $this->_count_per_page=5;
+        $this->_count_per_page=3;
         $this->_offset = !is_numeric($this->uri->segment(3)) ? 0 : $this->uri->segment(3);
     }
 
