@@ -1,0 +1,1 @@
+    <p>Su compra ha sido cancelada</p>        

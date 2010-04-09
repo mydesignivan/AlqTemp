@@ -41,3 +41,14 @@
     z-index: 1000;
     display:none;
 }
+
+.IG-noimage{
+    float: left;
+    /*background: url(../img/noimage.jpg) no-repeat;*/
+    width: 90px;
+    height: 80px;
+    font-size: 100%;
+    font-weight: bold;
+    color:red;
+    text-align: center;
+}

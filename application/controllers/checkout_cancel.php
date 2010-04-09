@@ -1,14 +1,17 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Checkout_error extends Controller {
+class Checkout_cancel extends Controller {
 
     /* CONSTRUCTOR
      **************************************************************************/
     function __construct(){
         parent::Controller();
+        if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
+
         $this->load->helper('form');
         $this->load->model('lists_model');
+        $this->load->model('fondos_model');
         $this->load->library('dataview', array(
-            'tlp_section'       =>  'frontpage/checkout_error_view.php',
+            'tlp_section'       =>  'frontpage/checkout_cancel_view.php',
             'tlp_title'         =>  TITLE_INDEX,
             'tlp_title_section' =>  "Resultado Compra",
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
@@ -26,6 +29,7 @@ class Checkout_error extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
+        if( !$this->fondos_model->order_check() ) redirect('/index/');
         $this->load->view('template_frontpage_view', $this->_data);
     }
 

@@ -54,6 +54,7 @@ define('TBL_USERS', 'users');
 define('TBL_LOGSEARCHES', 'log_searches');
 define('TBL_CUENTAPLUS', 'cuentaplus');
 define('TBL_USERSONLINE', 'users_online');
+define('TBL_ORDERS', 'orders');
 
 
 /*
@@ -273,6 +274,7 @@ define('EMAIL_ORDERS_MESSAGE', $msg);
 */
 define('UPLOAD_DIR', './uploads/');
 define('UPLOAD_DIR_TMP', './uploads/tmp/');
+define('UPLOAD_DIR_WATERMARK', './images/logo_watermark.png');
 define('UPLOAD_FILETYPE', 'gif|jpg|png');
 define('UPLOAD_MAXSIZE', 1024); //Expresado en Kylobytes
 

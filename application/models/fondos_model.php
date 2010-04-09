@@ -18,8 +18,26 @@ class Fondos_model extends Model {
         }
     }
 
-    public function acredit(){
+    public function order_save(){
+        $token = uniqid(time());
+        $data = array(
+            'user_id' => $this->session->userdata('user_id'),
+            'importe' => $_POST['importe'],
+            'token'   => $token
+        );
+        if( !$this->db->INSERT(TBL_ORDERS, $data) ){
+            display_error(__FILE__, "order_save", ERR_DB_INSERT, array(TBL_ORDERS));
+        }
+        return $token;
+    }
 
+    public function order_check(){
+        $where = array(
+            'user_id' => $this->session->userdata('user_id'),
+            'token'   => $this->uri->segment(2)
+        );
+        $result = $this->db->get_where(TBL_ORDERS, $where);
+        return $result->num_rows!=0;
     }
 
 }

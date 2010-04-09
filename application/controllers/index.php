@@ -22,8 +22,8 @@ class Index extends Controller {
         ));
         $this->_data = $this->dataview->get_data();
 
-        $this->_count_per_page=3;
-        $this->_offset = !is_numeric($this->uri->segment(3)) ? 0 : $this->uri->segment(3);
+        $this->_count_per_page=6;
+        $this->_offset = !is_numeric($this->uri->segment($this->uri->total_segments())) ? 0 : $this->uri->segment($this->uri->total_segments());
     }
 
     /* PRIVATE PROPERTIES
@@ -44,7 +44,7 @@ class Index extends Controller {
                 'base_url'    => str_replace('.html', '', site_url('/index/display/page/')),
                 'title'       => 'Alquileres Destacados',
                 'searcher'    =>  false,
-                'listProp'    => $this->search_model->last_properties($this->_count_per_page)
+                'listProp'    => $this->search_model->last_properties(3)
                 //'listProp'    => $this->search_model->list_disting($this->_count_per_page, $this->_offset)
             );
         }
@@ -80,7 +80,7 @@ class Index extends Controller {
             }
             $seg.="page/";
         }else{
-            $seg = $this->uri->uri_string()."/page/";
+            $seg = $this->uri->uri_string();
         }
 
         $base_url = str_replace(".html", "", site_url($seg));
@@ -97,7 +97,7 @@ class Index extends Controller {
     public function casas(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>1));
         $this->display(array(
-            'base_url'    => str_replace(".html", "", site_url('/index/casas/page/')),
+            'base_url'    => str_replace(".html", "", site_url('/casas/page/')),
             'title'       => 'Casas',
             'listProp'    => $listProp,
             'searcher'    => false
@@ -106,7 +106,7 @@ class Index extends Controller {
     public function departamentos(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>3));
         $this->display(array(
-            'base_url'    => str_replace(".html", "", site_url('/index/departamentos/page/')),
+            'base_url'    => str_replace(".html", "", site_url('/departamentos/page/')),
             'title'       => 'Departamentos',
             'listProp'    => $listProp,
             'searcher'    => false
@@ -115,7 +115,7 @@ class Index extends Controller {
     public function cabanias(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>2));
         $this->display(array(
-            'base_url'    => str_replace(".html", "", site_url('/index/cabanias/page/')),
+            'base_url'    => str_replace(".html", "", site_url('/cabanias/page/')),
             'title'       => 'Caba&ntilde;as',
             'listProp'    => $listProp,
             'searcher'    => false
@@ -124,7 +124,7 @@ class Index extends Controller {
     public function otros(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>4));
         $this->display(array(
-            'base_url'    => str_replace(".html", "", site_url('/index/otros/page/')),
+            'base_url'    => str_replace(".html", "", site_url('/otros/page/')),
             'title'       => 'Otros',
             'listProp'    => $listProp,
             'searcher'    => false

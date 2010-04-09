@@ -20,37 +20,54 @@ class Ajax_upload extends Controller {
         if( $this->_validate() ){
             $filename = $this->_get_filename();
 
+            $ext = substr($filename, (strripos($filename, ".")-strlen($filename))+1);
+            $basename = substr($filename, 0, strripos($filename, "."));
+
             // Muevo la imagen original
             move_uploaded_file($this->_file['tmp_name'], UPLOAD_DIR_TMP.$filename);
 
-            // Creo una copia y dimensiono la imagen  (THUMB)
-            $config['image_library'] = 'GD2';
+            $sizes = getimagesize(UPLOAD_DIR_TMP.$filename);
+
+            // Crea una marca de agua en la imagen
+            $config = array();
             $config['source_image'] = UPLOAD_DIR_TMP.$filename;
-            $config['create_thumb'] = TRUE;
-            $config['maintain_ratio'] = TRUE;
-            $config['width'] = IMAGE_THUMB_WIDTH;
-            $config['height'] = IMAGE_THUMB_HEIGHT;
+            $config['wm_type'] = 'overlay';
+            $config['wm_overlay_path'] = UPLOAD_DIR_WATERMARK;
+            $config['wm_vrt_alignment'] = 'bottom';
+            $config['wm_hor_alignment'] = 'right';
+            $config['wm_opacity'] = '30';
             $this->image_lib->initialize($config);
-            if( !$this->image_lib->resize() ) die($this->image_lib->display_errors());
+            if( $this->image_lib->watermark() ) {
 
-            // Dimensiono la imagen original   (ORIGINAL)
-            $config['image_library'] = 'GD2';
-            $config['source_image'] = UPLOAD_DIR_TMP.$filename;
-            $config['create_thumb'] = FALSE;
-            $config['maintain_ratio'] = TRUE;
-            $config['width'] = IMAGE_ORIGINAL_WIDTH;
-            $config['height'] = IMAGE_ORIGINAL_HEIGHT;
-            $this->image_lib->initialize($config);
-            if( !$this->image_lib->resize() ) die($this->image_lib->display_errors());
+                // Crea una copia y dimensiona la imagen  (THUMB)
+                $config = array();
+                $config['source_image'] = UPLOAD_DIR_TMP.$filename;
+                $config['new_image'] = UPLOAD_DIR_TMP.$basename."_thumb.".$ext;
+                $config['width'] = IMAGE_THUMB_WIDTH;
+                $config['height'] = IMAGE_THUMB_HEIGHT;
 
-            $ext = substr($filename, (strripos($filename, ".")-strlen($filename))+1);
-            $basename = substr($filename, 0, strripos($filename, "."));
-            //echo "filename:".UPLOAD_DIR_TMP.$basename."_thumb.".$ext;
+                $this->image_lib->clear();
+                $this->image_lib->initialize($config);
+                if( $this->image_lib->resize() ) {
+                    // Dimensiona la imagen original   (ORIGINAL)
 
-            echo json_encode(array(
-                'thumb'=>UPLOAD_DIR_TMP.$basename."_thumb.".$ext,
-                'complete'=>UPLOAD_DIR_TMP.$basename.".".$ext
-            ));
+                    if( $sizes[0] > IMAGE_ORIGINAL_WIDTH || $sizes[1] > IMAGE_ORIGINAL_HEIGHT ){
+                        $config = array();
+                        $config['source_image'] = UPLOAD_DIR_TMP.$filename;
+                        if( $sizes[0] > IMAGE_ORIGINAL_WIDTH ) $config['width'] = IMAGE_ORIGINAL_WIDTH;
+                        if( $sizes[1] > IMAGE_ORIGINAL_HEIGHT ) $config['height'] = IMAGE_ORIGINAL_HEIGHT;
+
+                        $this->image_lib->clear();
+                        $this->image_lib->initialize($config);
+                        if( $this->image_lib->resize() ) $this->_return($basename, $ext);
+                        else die($this->image_lib->display_errors());
+
+                    }else $this->_return($basename, $ext);
+
+                }else die($this->image_lib->display_errors());
+
+            }else die($this->image_lib->display_errors());
+
         }
     }
 
@@ -86,6 +103,13 @@ class Ajax_upload extends Controller {
     private function _get_filename(){
         $name = preg_replace("/\s+/", "_", strtolower($this->_file['name']));
         return $this->session->userdata('user_id') ."_". uniqid(time()) ."__". $name;
+    }
+
+    private function _return($basename, $ext){
+        echo json_encode(array(
+            'filename_thumb' =>  UPLOAD_DIR_TMP.$basename."_thumb.".$ext,
+            'filename_full'  =>  UPLOAD_DIR_TMP.$basename.".".$ext
+        ));
     }
 
 }

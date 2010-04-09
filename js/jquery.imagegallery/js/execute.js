@@ -5,7 +5,6 @@ var ImageGallery = new ClassImageGallery({
     step                : 2,
     json_definevar      : {
         href_img_thumb : 'name_thumb',
-        href_img_full  : 'name',
-        image_name     : 'name_original'
+        href_img_full  : 'name'
     }
 });

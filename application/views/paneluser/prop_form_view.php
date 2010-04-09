@@ -88,7 +88,7 @@
                  ?>
                             <li <?=$class;?>>
                                 <input type="checkbox" name="checkbox" class="checkbox" value="<?=$row['service_id'];?>" <?=$checked;?> />
-                                <span><?=$row['name'];?></span>
+                                <a href="javascript:void(0)" onclick="checkRow(this)" class="link1"><?=$row['name'];?></a>
                             </li>
             <?php }?>
                         </ul>

@@ -248,23 +248,23 @@ var AjaxUpload = new ClassAjaxUpload({
         return true;
     },
     onComplete : function(response, input){
+        var divCol = $(input).parent().parent();
+        
         try{
-            eval('var filename='+response);
+            eval('var filename = '+response);
         }catch(e){
             divCol.find('input.input-form').val('');
-            alert(response);
+            alert("ERROR:\n"+response);
             return false;
         }
 
-        var divCol = $(input).parent().parent();
-
         divCol.find('div.ajaxloader2').hide();
         divCol.find('div.button-examin, input.input-form, button').show();
-
+        
         var a = divCol.find('a.jq-thumb');
         var img = a.find(':first');
-        img.attr('src', filename.thumb);
-        a.attr('href', filename.complete);
+        img.attr('src', filename.filename_thumb);
+        a.attr('href', filename.filename_full);
         a.show();
         if( $(input).parent()[0].id ){
             Prop.add_image_modified(parseInt($(input).parent()[0].id.substr(1)), divCol.find('input.input-form').val());

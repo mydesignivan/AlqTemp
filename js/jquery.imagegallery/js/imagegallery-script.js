@@ -13,7 +13,7 @@ var ClassImageGallery = function(options){
         element.thumbs = $(options.selectorThumbs);
         element.preview = $(options.selectorPreview);
 
-        if( element.thumbs.length==0 || element.preview.length==0 ) {
+        if( element.thumbs.length==0 || element.preview.length==0 || !json ) {
             error = true;
             return false;
         }
@@ -123,7 +123,21 @@ var ClassImageGallery = function(options){
                 conthumbs_width += div.outerWidth(true);
 
             }).error(function(){
-                
+                imgComplete++;
+                progressbar(imgComplete);
+
+                a.eq(this.alt).append('<div class="'+options.cssPrefix+'noimage">Imagen no disponible</div>')
+                              .attr('href', "javascript:void(0)");
+              
+                var w = a.eq(this.alt).find('div').width()+"px";
+                var h = a.eq(this.alt).find('div').height()+"px";
+
+                var div = element.divThumb.eq(this.alt);
+                div.css('width', w)
+                   .css('height', h);
+                conthumbs_width += div.outerWidth(true);
+
+
             }).attr('src', this)
               .attr('alt', i);
         });
@@ -208,6 +222,10 @@ var ClassImageGallery = function(options){
 
             }else ajaxload.hidden();
 
+        }).error(function(){
+            alert("La imágen ampliada no esta disponible.");
+            ajaxload.hidden();
+            
         }).attr('src', this.href);
 
         return false;

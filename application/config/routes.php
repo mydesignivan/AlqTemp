@@ -48,5 +48,20 @@ $route['departamentos'] = "index/departamentos";
 $route['cabanias'] = "index/cabanias";
 $route['otros'] = "index/otros";
 
+$route['casas/page'] = "index/casas/page/";
+$route['casas/page/:num'] = "index/casas/page/$1";
+
+$route['departamentos/page'] = "index/departamentos/page/";
+$route['departamentos/pagge/:num'] = "index/departamentos/page/$1";
+
+$route['cabanias/page'] = "index/cabanias/page/";
+$route['cabanias/page/:num'] = "index/cabanias/page/$1";
+
+$route['otros/page'] = "index/otros/page/";
+$route['otros/page/:num'] = "index/otros/page/$1";
+
+$route['checkout_success/:any'] = "checkout_success/index/$1";
+$route['checkout_cancel/:any'] = "checkout_cancel/index/$1";
+
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

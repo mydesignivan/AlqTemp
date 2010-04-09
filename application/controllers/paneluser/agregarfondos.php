@@ -7,6 +7,8 @@ class Agregarfondos extends Controller {
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==1 ) redirect('/index/');
         set_useronline();
+
+        $this->load->model('fondos_model');
         $this->load->library('email');
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneluser/addfondo_view.php',
@@ -27,48 +29,13 @@ class Agregarfondos extends Controller {
         $this->load->view('template_paneluser_view', $this->_data);
     }
 
-    public function send(){
+    /* AJAX FUNCTIONS
+     **************************************************************************/
+    public function ajax_order(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            $user_email = $this->session->userdata('email');
-            $user_name = $this->session->userdata('name');
-            $user_phone = $this->session->userdata('phone');
-
-            $message = sprintf(EMAIL_BUYCREDIT_MESSAGE, 
-                    $user_name,
-                    $user_phone,
-                    $user_email,
-                    $_POST['cboFormaPago'],
-                    $_POST['cboImport'],
-                    $_POST['credit']
-            );
-
-            $this->email->from(EMAIL_BUYCREDIT_FROM, "");
-            $this->email->to(EMAIL_BUYCREDIT_TO);
-            $this->email->subject(EMAIL_BUYCREDIT_SUBJECT);
-            $this->email->message($message);
-            if( $this->email->send() ){
-                $this->session->set_flashdata('status', 'ok');
-                redirect('/paneluser/agregarfondos/');
-            }else {
-                $err = $this->email->print_debugger();
-                log_message("error", $err);
-                die($err);
-            }
+            $token = $this->fondos_model->order_save();
+            echo "token".$token;
         }
     }
-
-    public function success(){
-        $this->_data = $this->dataview->set_data(array(
-            'result_buy' => 'success'
-        ));
-        $this->load->view('template_paneluser_view', $this->_data);
-    }
-    public function cancel(){
-        $this->_data = $this->dataview->set_data(array(
-            'result_buy' => 'cancel'
-        ));
-        $this->load->view('template_paneluser_view', $this->_data);
-    }
-
 }
 ?>

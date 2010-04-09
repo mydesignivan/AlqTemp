@@ -53,8 +53,11 @@
 
         <div class="slide prepend-top">
             <img src="images/icon_contact2.png" alt="" class="icon-mail" />
-            <?php if( !empty($info['website']) ){?><p><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>"><?=$info['website'];?></a></p><?php }?>
+
             <p><img src="images/icon_address.png" alt="" /><span class="text-small"><?=$info['address'];?></span></p>
+
+            <?php if( !empty($info['website']) ){?><p><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>" target="_blank"><?=$info['website'];?></a></p><?php }?>
+
             <?php if( !empty($info['phone']) ){?>
                 <p>
                     <img src="images/icon_phone.png" alt="" />
