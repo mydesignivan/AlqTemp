@@ -23,6 +23,7 @@ class Log extends Controller {
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
+    private $_data;
     private $_count_per_page;
 
     /* PUBLIC FUNCTIONS

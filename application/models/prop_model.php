@@ -209,22 +209,41 @@ class Prop_model extends Model {
         $this->db->order_by('address', 'asc');
         return $this->db->get(TBL_PROPERTIES);
     }
-    public function get_list2_prop($user_id=null){
+
+    public function get_list2_prop($limit, $offset, $searcher){
+        $return = array();
+
         $sql = TBL_PROPERTIES.".prop_id,";
         $sql.= TBL_PROPERTIES.".address,";
         $sql.= "date_format(" .TBL_PROPERTIES. ".date_added, '%d-%m-%Y %H:%i:%s') as date_added,";
         $sql.= "date_format(" .TBL_PROPERTIES. ".last_modified, '%d-%m-%Y %H:%i:%s') as last_modified,";
         $sql.= TBL_USERS.".user_id,";
         $sql.= TBL_USERS.".username";
-        $this->db->select($sql, false);
+        
+        $like = array();
+
+        if( count($searcher)>0 ){
+            if( isset($searcher['address']) ) $like['address'] = $searcher['address'];
+            if( isset($searcher['username']) ) $like['username'] = $searcher['username'];
+            if( isset($searcher['date_added']) ) $like = array("date_format(" .TBL_PROPERTIES. ".date_added, '%d-%m-%Y %H:%i:%s')" => $searcher['date_added']);
+            if( isset($searcher['last_modified']) ) $like = array("date_format(" .TBL_PROPERTIES. ".last_modified, '%d-%m-%Y %H:%i:%s')" => $searcher['last_modified']);
+        }
+
         $this->db->from(TBL_PROPERTIES);
         $this->db->join(TBL_USERS, TBL_PROPERTIES.'.user_id = '.TBL_USERS.'.user_id');
-        if( $user_id!=null ) $this->db->where("user_id", $user_id);
-        $this->db->group_by('username');
-        $this->db->order_by('prop_id', 'desc');
-        $this->db->order_by('address', 'asc');
+        $this->db->like($like);
+
+        $return['count_rows'] = $this->db->count_all_results();
+
+        $this->db->select($sql, false);
+        $this->db->join(TBL_USERS, TBL_PROPERTIES.'.user_id = '.TBL_USERS.'.user_id');
+        $this->db->like($like);
         $this->db->order_by('username', 'asc');
-        return $this->db->get();
+        $this->db->order_by('prop_id', 'desc');
+
+        $return['result'] = $this->db->get(TBL_PROPERTIES, $limit, $offset);
+
+        return $return;
     }
 
     public function get_prop($prop_id){

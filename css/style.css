@@ -222,6 +222,8 @@ input.input-saldo{
     width: 120px;
     text-align: center;
 }
+input.input-small{width: 100px;}
+input.input-medium{width: 180px;}
 
 textarea.textarea-contact{
     border:1px solid #ccc;
@@ -933,6 +935,57 @@ table tbody{
     }
     .tbl-prop tbody tr .cell-4{
         color:#FC7F07;
+    }
+    /** Estos estilos son para el listado prop del admin **/
+    .tbl-prop .cell-5{
+        width:180px;
+        vertical-align: top;
+        border-right: 1px solid #CFD0CB;
+    }
+    .tbl-prop .cell-6{
+        width:100px;
+        vertical-align: top;
+        border-right: 1px solid #CFD0CB;
+    }
+    .tbl-prop .cell-7{
+        width:120px;
+        vertical-align: top;
+        border-right: 1px solid #CFD0CB;
+    }
+    .tbl-prop .cell-8{
+        width:auto;
+        vertical-align: top;
+    }
+    /******************************************************/
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TABLAS "USUARIOS"
+ -----------------------------------------------------------------------------*/
+.tbl-users{
+    margin-top: 20px;
+}
+    .tbl-users .cell-1{
+        width: 10px;
+        border-right: 1px solid #CFD0CB;
+        padding-left:5px;
+    }
+        .tbl-users .cell-1 input{margin:0;padding:0;}
+    .tbl-users .cell-2{
+        width: 140px;
+        border-right: 1px solid #CFD0CB;
+    }
+    .tbl-users .cell-3{
+        width: 60px;
+        border-right: 1px solid #CFD0CB;
+    }
+    .tbl-users .cell-4{
+        width: 50px;
+        border-right: 1px solid #CFD0CB;
+        
+    }
+    .tbl-users .cell-5{
+        width: 120px;
+        border-right: 1px solid #CFD0CB;
     }
 
 /*------------------------------------------------------------------------------

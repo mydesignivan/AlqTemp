@@ -9,6 +9,10 @@ var Prop = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
+    this.initializer = function(){
+        This.events.change_search($('#cboSearchBy').val(), true);
+    },
+
     this.action={
         edit : function(){
             var lstProp = $("#tblList tbody input:checked");
@@ -34,15 +38,53 @@ var Prop = new (function(){
             var data = get_data(lstProp);
 
             if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names.join(", ")) ){
-                location.href = baseURI+'paneluser/propiedades/delete/'+data.id.join("/");
+                location.href = baseURI+panelName+'propiedades/delete/'+data.id.join("/");
             }
             return false;
+        }
+    };
+
+    this.events={
+        change_search : function(opt, clear){
+            if( !clear ) $('#txtSearch').val('');
+            $('#txtSearch').focus();
+
+            if( opt=="date_added" || opt=="last_modified" ) {
+                $('#txtSearch').attr('maxlength', 19)
+                               .bind('keypress', This.events.dateformat);
+            }else{
+                $('#txtSearch').unbind('keypress')
+                               .removeAttr('maxlength');
+            }
+        },
+        dateformat : function(e){
+            if (e.which >= 48 && e.which <= 57 || e.which == 8) {
+                var count = this.value.length;
+                if( e.which!=8 ){
+                    if( count==2 || count==5 ) this.value+="-";
+                    if( count==10 ) this.value+=" ";
+                    if( count==13 || count==16 ) this.value+=":";
+                }else{
+                    if( count==4 || count==7 || count==12 || count==15 || count==18) this.value = this.value.substr(0, this.value.length-1);
+                }
+
+                return true;
+            }else {
+                e.preventDefault();
+            }
+        }
+    };
+
+    this.Search = function(){
+        if( $('#txtSearch').val()!='' ){
+            location.href = baseURI+'paneladmin/propiedades/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val();
         }
     };
 
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
+    var This=this;
 
     /* PRIVATE METHODS
      **************************************************************************/
@@ -51,7 +93,7 @@ var Prop = new (function(){
 
         arr.each(function(i){
             id.push(this.value);
-            names.push($(this).parent().parent().find('.cell-3').text());
+            names.push($(this).parent().parent().find('.link-title').text());
         });
 
         return {

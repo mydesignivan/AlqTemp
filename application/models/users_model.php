@@ -77,6 +77,44 @@ class Users_model extends Model {
         return $data;
     }
 
+    public function get_list_users($limit, $offset, $searcher){
+        $return = array();
+
+        $sql = "user_id,";
+        $sql.= "username,";
+        $sql.= "active,";
+        $sql.= "fondo,";
+        $sql.= "date_format(date_added, '%d-%m-%Y %H:%i:%s') as date_added,";
+        $sql.= "date_format(last_modified, '%d-%m-%Y %H:%i:%s') as last_modified";
+
+        $like = array();
+        $where = array('level'=>0);
+
+        if( count($searcher)>0 ){
+            if( isset($searcher['username']) ) $like['username'] = $searcher['username'];
+            if( isset($searcher['fondo']) ) $where['fondo'] = $searcher['fondo'];
+            if( isset($searcher['active']) ) $where['active'] = $searcher['active'];
+            if( isset($searcher['date_added']) ) $like = array("date_format(date_added, '%d-%m-%Y %H:%i:%s')" => $searcher['date_added']);
+            if( isset($searcher['last_modified']) ) $like = array("date_format(last_modified, '%d-%m-%Y %H:%i:%s')" => $searcher['last_modified']);
+        }
+
+        $this->db->from(TBL_USERS);
+        $this->db->like($like);
+        $this->db->where($where);
+
+        $return['count_rows'] = $this->db->count_all_results();
+        
+        $this->db->select($sql, false);
+        $this->db->like($like);
+        $this->db->where($where);
+        $this->db->order_by('username', 'asc');
+        $this->db->order_by('user_id', 'desc');        
+
+        $return['result'] = $this->db->get(TBL_USERS, $limit, $offset);
+
+        return $return;
+    }
+
     public function rememberpass($field){
         $result = $this->db->get_where(TBL_USERS, "(email = '".$field."' or username='".$field."') and active=0");
         if( $result->num_rows >0 ) return array("status"=>"userinactive");
