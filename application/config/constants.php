@@ -294,7 +294,7 @@ define('CFG_TIME_DISTPROP', 1);      // Tiempo que dura una propiedad destacada 
 define('CFG_TIME_CUENTAPLUS', 1);    // Tiempo que dura una Cuenta Plus (expresado en años)
 define('CFG_COSTO_PROPDISTING', 5);  // Costo para destacar propiedad
 define('CFG_COSTO_CUENTAPLUS', 30); // Costo para adquirir una cuenta plus
-define('CFG_FREE_TOTAL_PROP', 3);    // Cantidad de propiedad gratis
+define('CFG_FREE_TOTAL_PROP', 30);    // Cantidad de propiedad gratis
 define('CFG_FREE_TOTAL_IMAGES', 3);  // Cantidad de imagenes gratis
 define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS
 define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS

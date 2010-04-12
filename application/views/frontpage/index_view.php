@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <?php if( $listProp->num_rows==0 ){?>
 
         <br /><br />

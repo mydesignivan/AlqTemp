@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <base href="<?=base_url();?>" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 

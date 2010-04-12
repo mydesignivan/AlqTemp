@@ -55,7 +55,11 @@ strong{color:#FC7F07;}
     margin-bottom: 5px;
     /*border:1px solid red;*/
 }
-
+.img-captcha{
+    border:1px solid #000 !important;
+    margin-right: 18px;
+    margin-bottom: 5px;
+}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LINK

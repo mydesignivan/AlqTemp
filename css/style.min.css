@@ -18,6 +18,7 @@ h2{color:#FC7F07;font-weight:700;font-family:Arial, Helvetica, sans-serif;font-s
 .text-large{font-size:100%}
 .notice{width:600px;margin-top:30px}
 .column-photo{float:right;width:480px;margin-bottom:5px}
+.img-captcha{border:1px solid #000!important;margin-right:18px;margin-bottom:5px}
 a{text-decoration:none;font-size:80%}
 a.link{color:#684C1D;font-weight:700;font-size:inherit!important}
 a.link1{color:#684C1D;font-weight:700}

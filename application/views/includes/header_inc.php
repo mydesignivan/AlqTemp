@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="span-24 last">
     <div class="header-col-left">
         <a href="<?=$this->config->item('base_url');?>" class="logo"><img src="images/logo_alquilerestemp.png" alt="AlquileresTemporarios.org" /></a>

@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="clear span-24 footer">
     <div class="column-left">
         Copyright &copy; 2009 - 2010 &nbsp; AlquileresTemporarios.org<br/>

@@ -102,6 +102,16 @@ class Recordarcontrasenia extends Controller {
             }else redirect('/index/');
         }
     }
+
+    /* AJAX FUNCTIONS
+     **************************************************************************/
+    public function ajax_check_captcha(){
+        if( !empty($_POST['captcha']) ){
+            $this->load->library('captcha/securimage');
+            echo !$this->securimage->check($_POST['captcha']) ? "error" : "ok";
+            die();
+        }
+    }
     
 }
 ?>

@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <?php if( @$status=="ok" ){?>
         <form id="form3" action="<?=site_url('/login/account_access/');?>" method="post">
             <p>

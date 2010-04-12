@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
     <div class="float-left">
         <label class="label-user">Usuario:&nbsp;</label>
         <span class="text-small"><?=$this->session->userdata('username');?>&nbsp;&nbsp;&nbsp;&nbsp;</span>

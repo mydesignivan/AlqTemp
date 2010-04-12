@@ -25,7 +25,9 @@ class Prop_model extends Model {
         $prop_id = $this->db->insert_id();
 
         // INSERTA LOS SERVICIOS
-        $this->_create_servprop($services, $prop_id);
+        if( !$this->db->query($this->_get_sql_servprop($services, $prop_id)) ){
+            display_error(__FILE__, "create", ERR_DB_INSERT, array(TBL_PROPERTIES_SERVS));
+        }
 
         // COPIA LAS IMAGENES NUEVAS
         $data = $this->_copy_images($images_new, $prop_id);
@@ -57,25 +59,34 @@ class Prop_model extends Model {
 
         unset($data['extra_post']);
 
-        $this->db->trans_start(); // INICIO TRANSACCION
+        $this->db->trans_begin();
 
         // MODIFICA LOS DATOS DE LA PROPIEDAD
         $this->db->where('prop_id', $prop_id);
         if( !$this->db->update(TBL_PROPERTIES, $data) ) {
-            display_error(__FILE__, "update", ERR_DB_UPDATE, array(TBL_PROPERTIES));
+            display_error(__FILE__, "edit", ERR_DB_UPDATE, array(TBL_PROPERTIES));
         }
 
-        // ELIMINA E INSERTA LOS SERVICIOS
+        // ELIMINA LOS SERVICIOS ASOCIADOS
         if( !$this->db->delete(TBL_PROPERTIES_SERVS, array('prop_id'=>$prop_id)) ){
-            display_error(__FILE__, "update", ERR_DB_DELETE, array(TBL_PROPERTIES_SERVS));
+            display_error(__FILE__, "edit", ERR_DB_DELETE, array(TBL_PROPERTIES_SERVS));
         }
+
+        $this->db->trans_commit();
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            return false;
+        }
+
+        $this->db->trans_begin();
 
         // INSERTA LOS SERVICIOS
-        $this->_create_servprop($services, $prop_id);
+        if( !$this->db->query($this->_get_sql_servprop($services, $prop_id)) ){
+            display_error(__FILE__, "edit", ERR_DB_INSERT, array(TBL_PROPERTIES_SERVS));
+        }
 
         // ELIMINA IMAGENES
         foreach( $images_deletes as $image_id ){
-            echo $image_id."<br>";
             $row = $this->db->query("SELECT name, name_thumb FROM ". TBL_IMAGES ." WHERE image_id=".$image_id)->row_array();
 
             @unlink(UPLOAD_DIR.$row['name']);
@@ -83,12 +94,18 @@ class Prop_model extends Model {
 
             if( count($images_modified_id)==0 ){
                 if( !$this->db->delete(TBL_IMAGES, array('image_id'=>$image_id)) ){
-                    display_error(__FILE__, "update", ERR_DB_DELETE, array(TBL_IMAGES));
+                    display_error(__FILE__, "edit", ERR_DB_DELETE, array(TBL_IMAGES));
+                }
+                $this->db->trans_commit();
+                if ($this->db->trans_status() === FALSE) {
+                    $this->db->trans_rollback();
+                    return false;
                 }
             }
         }
 
         // COPIA LAS IMAGENES NUEVAS
+        $this->db->trans_begin();
         if( count($images_new)>0 ){
             $data = $this->_copy_images($images_new, $prop_id);
             if( !$data ) return false;
@@ -96,7 +113,7 @@ class Prop_model extends Model {
             // GUARDA LAS IMAGENES EN LA BASE DE DATO
             foreach( $data as $dat ){
                 if( !$this->db->insert(TBL_IMAGES, $dat) ) {
-                    display_error(__FILE__, "update", ERR_DB_INSERT, array(TBL_IMAGES));
+                    display_error(__FILE__, "edit", ERR_DB_INSERT, array(TBL_IMAGES));
                 }
             }
         }
@@ -113,7 +130,7 @@ class Prop_model extends Model {
                 $this->db->where('image_id', $image_id);
 
                 if( !$this->db->update(TBL_IMAGES, $dat) ) {
-                    display_error(__FILE__, "update", ERR_DB_UPDATE, array(TBL_IMAGES));
+                    display_error(__FILE__, "edit", ERR_DB_UPDATE, array(TBL_IMAGES));
                 }
                 next($data);
             }
@@ -122,7 +139,12 @@ class Prop_model extends Model {
         // ELIMINA LAS IMAGENES TEMPORALES DEL USUARIO
         delete_images_temp();
 
-        $this->db->trans_complete(); // COMPLETO LA TRANSACCION
+        $this->db->trans_commit();
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            return false;
+        }
+        
         return "ok";
     }
 
@@ -255,17 +277,13 @@ class Prop_model extends Model {
 
     /* PRIVATE FUNCTIONS
      **************************************************************************/
-     private function _create_servprop($services, $prop_id){
+     private function _get_sql_servprop($services, $prop_id){
         $sql = "INSERT INTO ".TBL_PROPERTIES_SERVS."(prop_id,service_id) VALUES ";
         foreach ( $services as $service ){
-            $sql.="(";
-            $sql.= $prop_id.",".$service."),";
+            $sql.="(". $prop_id .",". $service ."),";
         }
-        $sql = substr($sql,0,-1);
-        if( !$this->db->query($sql) ){
-            display_error(__FILE__, "create_servprop", ERR_DB_INSERT, array(TBL_PROPERTIES_SERVS));
-        }
-        return true;
+        
+        return substr($sql,0,-1);
      }
 
      private function _copy_images($images_new, $prop_id){

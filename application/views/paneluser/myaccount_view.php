@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="span-10 prepend-left-small">
     <form id="formAccount" action="<?=site_url('/paneluser/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
         <?php require(APPPATH . 'views/includes/popup_inc.php');?>

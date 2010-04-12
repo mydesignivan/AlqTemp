@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="span-15 last">
 <?php if( count($listDate)>0 ){?>
     <div class="float-left">

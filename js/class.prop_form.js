@@ -194,7 +194,7 @@ var Prop = new (function(){
      **************************************************************************/
     var validServices = function(){
         if( $("#listServices").find("li input:checked").length == 0 ){
-            show_error("#msgbox_services", "Seleccione al menos un servicio.", "#validator_msg_services");
+            show_error("#msgbox_services", "Seleccione al menos un servicio.", "#msgbox_services");
             return false;
         }else $.validator.hide('#msgbox_services');
         return true;

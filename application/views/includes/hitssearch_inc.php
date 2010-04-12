@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="mainContent2">
     <div class="content_top"><h1>Destinos mas Buscados</h1></div>
     <div class="destinations">

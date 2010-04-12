@@ -37,6 +37,7 @@ class Users_model extends Model {
     public function delete($user_id) {
         if( !is_numeric($user_id) ) return false;
 
+        $this->db->trans_start(); // INICIO TRANSACCION
         if( $this->db->delete(TBL_USERS, array('user_id' => $user_id)) ){
             $this->db->select('prop_id');
             $this->db->where("user_id", $user_id);
@@ -47,6 +48,7 @@ class Users_model extends Model {
             }
 
             $this->prop_model->delete($prop_id);
+            $this->db->trans_complete(); // COMPLETO LA TRANSACCION
         }else{
             display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_USERS));
         }

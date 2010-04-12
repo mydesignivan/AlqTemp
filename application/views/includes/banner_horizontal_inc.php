@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="banner-horizontal">
 <?php if( $this->config->item('banner_visible') ){?>
     <script type="text/javascript">

@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="message-attention"><div class="message">El fondo que adquiera a trav&eacute;s de nuestra web no ser&aacute; reembolsable y el mismo solo puede ser utilizado dentro de los servicios ofrecidos por <b>alquilerestemporarios.org</b></div></div>
 
 <form id="form1" action='https://argentina.dineromail.com/Shop/Shop_Ingreso.asp' method='post' class="prepend-top">

@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <?php if( $this->session->flashdata('statusmail')=="ok" ){?>
 
             <div class="form-contact-message">

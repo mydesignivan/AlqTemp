@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="container-text">
     <p>Lea detenidamente los siguientes términos y condiciones que regulan el uso del sitio Web  www.alquilerestemporarios.org (en adelante el 'Sitio'). Mediante la utilización del Sitio, usted presta conformidad y queda sujeto a todos los términos, condiciones, y avisos que puedan encontrarse en estos Términos Legales y Condiciones de Uso. </p>
 

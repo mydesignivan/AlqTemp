@@ -9,7 +9,7 @@ class Index extends Controller{
         $this->load->model('info_model');
 
         $this->load->library('dataview', array(
-            'tlp_section'       =>  'paneladmin/index_view.php',
+            'tlp_section'       =>  'paneladmin/info_view.php',
             'tlp_title_section' =>  "Informaci&oacute;n"
         ));
         $this->_data = $this->dataview->get_data();

@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="more-info">
     <div class="column-1">
         <?php $arrImages = $info['images']->result_array();?>

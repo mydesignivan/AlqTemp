@@ -3,7 +3,7 @@ class Index extends Controller {
 
     /* CONSTRUCTOR
      **************************************************************************/
-    function __construct(){        
+    function __construct(){
         parent::Controller();
         $this->load->helper('form');
         $this->load->helper('text');

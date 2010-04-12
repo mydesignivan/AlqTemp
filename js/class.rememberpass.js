@@ -24,6 +24,9 @@ var RememberPass = new (function(){
                 v_required   : true,
                 container    : '#msgbox-field'
             });
+            $(f.txtCaptcha).validator({
+                v_required   : true
+            });
 
             if( error=="userinactive"||error=="notexists" ){
                 var msg="";
@@ -58,7 +61,12 @@ var RememberPass = new (function(){
 
         $.validator.validate('#'+f.id+' .validate', function(error){
             if( !error ){
-                f.submit();
+                $.post(baseURI+'recordarcontrasenia/ajax_check_captcha', "captcha="+f.txtCaptcha.value, function(data){
+                    if( data=="error"){
+                        show_error(f.txtCaptcha, 'El c&oacute;digo ingresado es incorrecto.');
+                        working=false;
+                    }else f.submit();
+                });
             }else working=false;
         });
 

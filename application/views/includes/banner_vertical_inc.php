@@ -1,3 +1,5 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
+
 <div class="column-right last">
     <div class="row-top"></div>
     <div class="row-center">
