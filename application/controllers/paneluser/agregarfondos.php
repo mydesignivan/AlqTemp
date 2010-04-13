@@ -33,7 +33,8 @@ class Agregarfondos extends Controller {
      **************************************************************************/
     public function ajax_order(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            $token = $this->fondos_model->order_save();
+            $this->load->model('orders_model');
+            $token = $this->orders_model->save();
             echo "token".$token;
         }
     }

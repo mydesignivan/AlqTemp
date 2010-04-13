@@ -60,18 +60,5 @@ class Micuenta extends Controller{
         }
     }
 
-    public function delete(){
-        if( $this->uri->segment(4)!="" ){
-
-            if( $this->users_model->delete($this->uri->segment(4)) ){
-                $this->simplelogin->logout();
-                redirect('/index/');
-            }else{
-                show_error(ERR_USER_DELETE);
-            }
-
-        }
-    }
-
 }
 ?>

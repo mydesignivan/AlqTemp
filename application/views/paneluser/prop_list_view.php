@@ -9,9 +9,9 @@
         </div>
 
 <?php if( $listProp->num_rows>0 ){?>
-        <table id="tblList" class="tbl-prop" cellpadding="0" cellspacing="0">
+        <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">
             <thead>
-                <tr>
+                <tr class="tbl-propuser">
                     <td class="cell-1">&nbsp;</td>
                     <td class="cell-2">Im&aacute;gen</td>
                     <td class="cell-3">Ubicaci&oacute;n</td>
@@ -23,9 +23,9 @@
             $n=0;
             foreach( $listProp->result_array() as $row ){
                 $n++;
-                $class = $n%2 ? '' : 'class="row_par"';
+                $class = $n%2 ? 'tbl-propuser' : 'tbl-propuser row-par';
             ?>
-                <tr <?=$class;?>>
+                <tr class="<?=$class;?>">
                     <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row["prop_id"];?>" /></td>
                     <td class="cell-2"><a href="<?=site_url('/paneluser/propiedades/form/'.$row['prop_id']);?>"><img src="<?=$row['image'];?>" alt="" width="85" height="70" /></a></td>
                     <td class="cell-3"><a href="<?=site_url('/paneluser/propiedades/form/'.$row['prop_id']);?>" class="link-title"><?=$row['address'];?></a></td>

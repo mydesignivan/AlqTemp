@@ -35,23 +35,48 @@ class Users_model extends Model {
     }
 
     public function delete($user_id) {
-        if( !is_numeric($user_id) ) return false;
+       
+        $this->db->trans_begin(); // INICIO TRANSACCION
 
-        $this->db->trans_start(); // INICIO TRANSACCION
-        if( $this->db->delete(TBL_USERS, array('user_id' => $user_id)) ){
-            $this->db->select('prop_id');
-            $this->db->where("user_id", $user_id);
-            $query = $this->db->get(TBL_PROPERTIES);
-            $prop_id = array();
-            foreach( $query->result_array() as $row ){
-                $prop_id[] = $row['prop_id'];
+        if( $this->db->query('DELETE FROM '.TBL_USERS.' WHERE user_id in('. implode(",", $user_id) .')') ) {
+
+            // Elimina todas las cuentas plus que tenga asociada
+            if( !$this->db->query('DELETE FROM '.TBL_CUENTAPLUS.' WHERE user_id in('. implode(",", $user_id) .')') ) {
+                $this->db->trans_rollback();
+                display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_USERS));
             }
 
-            $this->prop_model->delete($prop_id);
-            $this->db->trans_complete(); // COMPLETO LA TRANSACCION
+            // Elimina todas los pedidos que tenga asociada
+            if( !$this->db->query('DELETE FROM '.TBL_ORDERS.' WHERE user_id in('. implode(",", $user_id) .')') ) {
+                $this->db->trans_rollback();
+                display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_USERS));
+            }
+
+            // Elimina de la tabla users_online
+            if( !$this->db->query('DELETE FROM '.TBL_USERSONLINE.' WHERE user_id in('. implode(",", $user_id) .')') ) {
+                $this->db->trans_rollback();
+                display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_USERS));
+            }
+
+            // Elimina las propiedades asociadas
+            $this->db->select('prop_id');
+            $this->db->where_in("user_id", $user_id);
+            $query = $this->db->get(TBL_PROPERTIES);
+            $prop_id = array();
+            foreach( $query->result_array() as $row ) $prop_id[] = $row['prop_id'];
+            if( count($prop_id)>0 ) {
+                if( !$this->prop_model->delete($prop_id) ){
+                    $this->db->trans_rollback();
+                    return false;
+                }
+            }
+            
         }else{
+            $this->db->trans_rollback();
             display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_USERS));
         }
+        $this->db->trans_commit(); // COMPLETO LA TRANSACCION
+
         return true;
     }
 
@@ -164,6 +189,14 @@ class Users_model extends Model {
             }
         }else return false;
 
+        return true;
+    }
+
+    public function change_statu(){
+        $this->db->where('user_id', $_POST['user_id']);
+        if( !$this->db->update(TBL_USERS, array('active'=>$_POST['statu'])) ){
+            display_error(__FILE__, "change_statu", ERR_DB_UPDATE, array(TBL_USERS));
+        }
         return true;
     }
 

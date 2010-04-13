@@ -26,7 +26,7 @@
             <li><a class="menu-option" href="<?=site_url("/paneladmin/propiedades/");?>">Propiedades</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneladmin/usuarios/");?>">Usuarios</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneladmin/destacados/");?>">Destacados</a></li>
-            <li><a class="menu-option" href="<?=site_url("/paneladmin/fondos/");?>">Pedidos</a></li>
+            <li><a class="menu-option" href="<?=site_url("/paneladmin/pedidos/");?>">Pedidos</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneladmin/banner/");?>">Banner</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneladmin/log/");?>">Configuraci&oacute;n</a></li>
             <li><a class="menu-option" href="<?=site_url("/paneladmin/log/");?>">Mensajes Error</a></li>

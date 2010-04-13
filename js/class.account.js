@@ -44,7 +44,6 @@ var Account = new (function(){
             }
             popup.initializer();
         }
-        This.events.change_search($('#cboSearchBy').val(), true);
     };
 
     this.save = function(){
@@ -92,57 +91,10 @@ var Account = new (function(){
         return false;
     };
 
-    this.events={
-        change_search : function(opt, clear){
-            if( !clear ) $('#txtSearch').val('');
-            $('#txtSearch').focus();
-
-            if( opt=="date_added" || opt=="last_modified" ) {
-                $('#txtSearch').attr('maxlength', 19)
-                               .bind('keypress', This.events.dateformat);
-            }else{
-                $('#txtSearch').unbind('keypress')
-                               .removeAttr('maxlength');
-            }
-        },
-        dateformat : function(e){
-            if (e.which >= 48 && e.which <= 57 || e.which == 8) {
-                var count = this.value.length;
-                if( e.which!=8 ){
-                    if( count==2 || count==5 ) this.value+="-";
-                    if( count==10 ) this.value+=" ";
-                    if( count==13 || count==16 ) this.value+=":";
-                }else{
-                    if( count==4 || count==7 || count==12 || count==15 || count==18) this.value = this.value.substr(0, this.value.length-1);
-                }
-
-                return true;
-            }else {
-                e.preventDefault();
-            }
-        }
-    };
-
-    this.Search = function(){
-        if( $('#txtSearch').val()!='' ){
-            location.href = baseURI+'paneladmin/usuarios/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val();
-        }
-    };
-
-    this.delete_account = function(id){
-        var msg = "Si elimina su usuario se eliminara también las propiedades associadas.\n";
-        msg+= "¿Está seguro de confirmar la eliminación del usuario?.";
-        if( confirm(msg) ){
-            location.href = baseURI+"panel/micuenta/delete/"+id;
-        }
-        return false;
-    };
-
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
     var working=false;
-    var This=this;
     var f=false;
     var mode_edit = false;
 

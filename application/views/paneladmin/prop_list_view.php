@@ -24,14 +24,14 @@
         <?php }?>
 
 <?php if( $listProp->num_rows>0 ){?>
-        <table id="tblList" class="tbl-prop" cellpadding="0" cellspacing="0">
+        <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">
             <thead>
-                <tr>
+                <tr class="tbl-propadmin">
                     <td class="cell-1">&nbsp;</td>
-                    <td class="cell-5">Ubicaci&oacute;n</td>
-                    <td class="cell-6">Usuario</td>
-                    <td class="cell-7">Fecha Creaci&oacute;n</td>
-                    <td class="cell-8">Ultima Modificaci&oacute;n</td>
+                    <td class="cell-2">Ubicaci&oacute;n</td>
+                    <td class="cell-3">Usuario</td>
+                    <td class="cell-4">Fecha Creaci&oacute;n</td>
+                    <td class="cell-5">Ultima Modificaci&oacute;n</td>
                 </tr>
             </thead>
             <tbody>
@@ -39,26 +39,20 @@
             $n=0;
             foreach( $listProp->result_array() as $row ){
                 $n++;
-                $class = $n%2 ? '' : 'class="row_par"';
+                $class = $n%2 ? 'tbl-propadmin' : 'tbl-propadmin row-par';
             ?>
-                <tr <?=$class;?>>
+                <tr class="<?=$class;?>">
                     <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row["prop_id"];?>" /></td>
-                    <td class="cell-5"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" class="link-title" target="_blank"><?=$row['address'];?></a></td>
-                    <td class="cell-6"><?=$row['username'];?></td>
-                    <td class="cell-7"><?=$row['date_added'];?></td>
-                    <td class="cell-8"><?php if( $row['last_modified']!="00-00-0000 00:00:00" ) echo $row['last_modified'];?></td>
+                    <td class="cell-2"><a href="<?=site_url('/masinfo/index/'.$row['prop_id']);?>" class="link-title" target="_blank"><?=$row['address'];?></a></td>
+                    <td class="cell-3"><?=$row['username'];?></td>
+                    <td class="cell-4"><?=$row['date_added'];?></td>
+                    <td class="cell-5"><?php if( $row['last_modified']!="00-00-0000 00:00:00" ) echo $row['last_modified'];?></td>
                 </tr>
         <?php }?>
             </tbody>
         </table>
 
         <div class="text-center"><?=$this->pagination->create_links();?></div>
-
-        <script type="text/javascript">
-        <!--
-            Prop.initializer();
-        -->
-        </script>
 
 <?php }else{?>
         
@@ -72,3 +66,8 @@
 
 <?php }?>
 
+        <script type="text/javascript">
+        <!--
+            Prop.initializer();
+        -->
+        </script>

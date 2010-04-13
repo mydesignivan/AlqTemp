@@ -1,5 +1,5 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-class Usuarios extends Controller {
+class Pedidos extends Controller {
 
     /* CONSTRUCTOR
      **************************************************************************/
@@ -7,15 +7,15 @@ class Usuarios extends Controller {
         parent::Controller();
         if( !$this->session->userdata('logged_in') || $this->session->userdata('level')==0 ) redirect('/index/');
 
-        $this->load->model('users_model');
+        $this->load->model('orders_model');
         $this->load->library('pagination');
         $this->load->library('dataview', array(
-            'tlp_section'       =>  'paneladmin/users_list_view.php',
-            'tlp_title_section' =>  'Usuarios',
-            'tlp_script'        =>  'users'
+            'tlp_section'       =>  'paneladmin/orders_list_view.php',
+            'tlp_title_section' =>  'Pedidos',
+            'tlp_script'        =>  'orders'
         ));
         $this->_data = $this->dataview->get_data();
-        $this->_count_per_page=14;
+        $this->_count_per_page=4;
     }
 
     /* PRIVATE PROPERTIES
@@ -33,7 +33,7 @@ class Usuarios extends Controller {
         $this->_display();
     }
 
-    public function delete(){
+    public function confirm(){
         if( $this->uri->segment(4) ){
             $id = $this->uri->segment_array();
             array_splice($id, 0,3);
@@ -48,11 +48,6 @@ class Usuarios extends Controller {
 
     /* AJAX FUNCTIONS
      **************************************************************************/
-    public function ajax_change_statu(){
-        if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            if( $this->users_model->change_statu() ) die("ok");
-        }
-    }
 
 
     /* PRIVATE FUNCTIONS
@@ -61,19 +56,19 @@ class Usuarios extends Controller {
         $uri = $this->uri->uri_to_assoc(4);
 
         $offset = !isset($uri['page']) ? 0 : $uri['page'];
-        $listUsers = $this->users_model->get_list_users($this->_count_per_page, $offset, $uri);
+        $listOrders = $this->orders_model->get_list($this->_count_per_page, $offset, $uri);
 
-        if( $this->uri->segment(3)=='' || $this->uri->segment(3)=="index" ) $base_url = site_url('/paneladmin/usuarios/index/page/');
-        else $base_url = site_url('/paneladmin/usuarios/search/'.key($uri).'/'.current($uri).'/page/');
+        if( $this->uri->segment(3)=='' || $this->uri->segment(3)=="index" ) $base_url = site_url('/paneladmin/pedidos/index/page/');
+        else $base_url = site_url('/paneladmin/pedidos/search/'.key($uri).'/'.current($uri).'/page/');
 
         $config['base_url'] = $base_url;
-        $config['total_rows'] = $listUsers['count_rows'];
+        $config['total_rows'] = $listOrders['count_rows'];
         $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
 
         $this->_data = $this->dataview->set_data(array(
-            'listUsers'  =>  $listUsers['result']
+            'listOrders'  =>  $listOrders['result']
         ));
 
         $this->load->view("template_paneladmin_view", $this->_data);

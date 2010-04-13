@@ -1,44 +1,29 @@
 /* 
- * Clase Prop
+ * Clase Usuarios
+ * Esta clase es utilizada en el listado de usuario del administrador
  *
- * Esta clase es llamada en el listado de propiedades
- * 
  */
 
-var Prop = new (function(){
+var Users = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(){
+    this.initializer = function(mode){
         This.events.change_search($('#cboSearchBy').val(), true);
-    },
+    };
 
     this.action={
-        edit : function(){
-            var lstProp = $("#tblList tbody input:checked");
-            if( lstProp.length==0 ){
-                alert("Debe seleccionar una propiedad para modificar.");
-                return true;
-            }
-            if( lstProp.length>1 ){
-                alert("Debe seleccionar una sola propiedad.");
-                return false;
-            }
-            location.href = baseURI+'paneluser/propiedades/form/'+lstProp.val();
-            return false;
-        },
-
         del : function(){
             var lstProp = $("#tblList tbody input:checked");
             if( lstProp.length==0 ){
-                alert("Debe seleccionar una propiedad.");
+                alert("Debe seleccionar un usuario.");
                 return false;
             }
-            
+
             var data = get_data(lstProp);
 
-            if( confirm("¿Está seguro de eliminar la(s) propiedad(es) seleccionada(s)?\n\n"+data.names.join(", ")) ){
-                location.href = baseURI+panelName+'propiedades/delete/'+data.id.join("/");
+            if( confirm("¿Está seguro de eliminar el/los usuario(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
+                location.href = baseURI+'paneladmin/usuarios/delete/'+data.id.join("/");
             }
             return false;
         }
@@ -49,9 +34,15 @@ var Prop = new (function(){
             if( !clear ) $('#txtSearch').val('');
             $('#txtSearch').focus();
 
+            $('#txtSearch').show();
+            $('#cboStatus').hide();
+
             if( opt=="date_added" || opt=="last_modified" ) {
                 $('#txtSearch').attr('maxlength', 19)
                                .bind('keypress', This.events.dateformat);
+            }else if( opt=="active" ){
+                $('#txtSearch').hide();
+                $('#cboStatus').show();
             }else{
                 $('#txtSearch').unbind('keypress')
                                .removeAttr('maxlength');
@@ -76,14 +67,41 @@ var Prop = new (function(){
     };
 
     this.Search = function(){
+        if( $('#cboSearchBy').val()=="active" ) $('#txtSearch').val($('#cboStatus').val());
         if( $('#txtSearch').val()!='' ){
-            location.href = baseURI+'paneladmin/propiedades/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val()+"/page";
+            location.href = baseURI+'paneladmin/usuarios/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val()+"/page";
         }
+    };
+
+    this.change_status = function(tagA, user_id){
+        if( working ) return false;
+        working=true;
+
+        $(tagA).hide();
+        $(tagA).parent().find('img').show();
+
+        var statu;
+
+        if( tagA.innerHTML=="Activo" ) statu=0;
+        else if( tagA.innerHTML=="Inactivo" ) statu=1;
+
+        $.post(baseURI+'paneladmin/usuarios/ajax_change_statu/', {statu : statu, user_id : user_id}, function(data){
+            if( data=="ok" ){
+                if( statu==0 ) tagA.innerHTML = "Inactivo";
+                else if ( statu==1 ) tagA.innerHTML = "Activo";
+                $(tagA).parent().find('img').hide();
+                $(tagA).show();
+            }else alert('ERROR\n'+data);
+            working = false;
+        });
+
+        return false;
     };
 
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
+    var working=false;
     var This=this;
 
     /* PRIVATE METHODS

@@ -9,7 +9,7 @@ class Checkout_success extends Controller {
 
         $this->load->helper('form');
         $this->load->model('lists_model');
-        $this->load->model('fondos_model');
+        $this->load->model('orders_model');
         $this->load->library('dataview', array(
             'tlp_section'       =>  'frontpage/checkout_succes_view.php',
             'tlp_title'         =>  TITLE_INDEX,
@@ -29,7 +29,7 @@ class Checkout_success extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
-        if( !$this->fondos_model->order_check() ) redirect('/index/');
+        if( !$this->orders_model->check() ) redirect('/index/');
         $this->load->view('template_frontpage_view', $this->_data);
     }
 

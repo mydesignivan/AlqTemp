@@ -16,9 +16,9 @@
 </div>
 
 <?php if( count($listLog)>0 ){?>
-    <table id="tblList" class="tbl-log" cellpadding="0" cellspacing="0">
+    <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">
         <thead>
-            <tr>
+            <tr class="tbl-log">
                 <td class="cell-1">&nbsp;</td>
                 <td class="cell-2">Fecha</td>
                 <td class="cell-3">Mensaje</td>
@@ -28,7 +28,7 @@
     <?php
         $n=0;
         foreach( $listLog as $row ){$n++;
-        $class = $n%2 ? "" : 'row-par';
+        $class = $n%2 ? "tbl-log" : 'tbl-log row-par';
      ?>
             <tr class="<?=$class;?> row-hover">
                 <td class="cell-1"><input type="checkbox" value="<?=$row['index'];?>" /></td>

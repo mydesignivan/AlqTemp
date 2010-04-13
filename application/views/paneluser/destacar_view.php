@@ -9,9 +9,9 @@
                     <h2 class="float-left">Mis Propiedades</h2>
                     <button type="button" class="button-large float-right">Destacar</button>
                 </div>
-                <table class="tbl-prop" cellpadding="0" cellspacing="0">
+                <table class="tbl-list" cellpadding="0" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr class="tbl-propuser">
                             <td class="cell-1">&nbsp;</td>
                             <td class="cell-2">Im&aacute;gen</td>
                             <td class="cell-3">Ubicaci&oacute;n</td>
@@ -23,9 +23,9 @@
                 $n=0;
                 foreach( $listUndisting->result_array() as $row ){
                     $n++;
-                    $class = $n%2 ? '' : 'class="row-par"';
+                    $class = $n%2 ? 'tbl-propuser' : 'tbl-propuser row-par';
              ?>
-                        <tr <?=$class;?>>
+                        <tr class="<?=$class;?>">
                             <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" /></td>
                             <td class="cell-2"><img src="<?=$row['image'];?>" alt="" width="85" height="70" /></td>
                             <td class="cell-3"><a href="<?=site_url('/paneluser/propiedades/form/'.$row['prop_id']);?>" class="link-title"><?=$row["address"];?></a></td>
@@ -47,9 +47,9 @@
                     <button type="button" class="button-large float-right">No Destacar</button>
                 </div>
 
-                <table class="tbl-prop" cellpadding="0" cellspacing="0">
+                <table class="tbl-list" cellpadding="0" cellspacing="0">
                     <thead>
-                        <tr>
+                        <tr class="tbl-propuser">
                             <td class="cell-1">&nbsp;</td>
                             <td class="cell-2">Im&aacute;gen</td>
                             <td class="cell-3">Ubicaci&oacute;n</td>
@@ -61,9 +61,9 @@
                 $n=0;
                 foreach( $listDisting->result_array() as $row ){
                     $n++;
-                    $class = $n%2 ? '' : 'class="row-par"';
+                    $class = $n%2 ? 'tbl-propuser' : 'tbl-propuser row-par';
              ?>
-                        <tr <?=$class;?>>
+                        <tr class="<?=$class;?>">
                             <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row['prop_id'];?>" /></td>
                             <td class="cell-2"><img src="<?=$row['image'];?>" alt="" width="85" height="70" /></td>
                             <td class="cell-3"><a href="<?=site_url('paneluser/propiedades/form/'.$row['prop_id']);?>" class="link-title"><?=$row["address"];?></a></td>
