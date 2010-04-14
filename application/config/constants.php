@@ -55,6 +55,7 @@ define('TBL_LOGSEARCHES', 'log_searches');
 define('TBL_CUENTAPLUS', 'cuentaplus');
 define('TBL_USERSONLINE', 'users_online');
 define('TBL_ORDERS', 'orders');
+define('TBL_BANNER', 'banner');
 
 
 /*
@@ -81,6 +82,8 @@ define('ERR_USER_DELETE', 'El usuario no pudo ser eliminado. Si el error coninua
 
 define('ERR_LOG_DELETE',     'Error al eliminar los log seleccionado(s)');
 define('ERR_LOG_DELETE_LOG', 'Error al eliminar el archivo log "%s"');
+
+define('ERR_ORDER_CONFIRM', 'No se pudo confirmar los pagos. Si el error coninua por favor, comuniquelo al administrador del sitio.');
 
 /*
 |--------------------------------------------------------------------------

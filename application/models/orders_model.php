@@ -68,5 +68,13 @@ class Orders_model extends Model {
         return $return;
     }
 
+    public function orders_confirm($id){
+        $this->db->where_in("order_id", $id);
+        if( !$this->db->update(TBL_ORDERS, array('status'=>2, 'token'=>'')) ){
+            display_error(__FILE__, "orders_confirm", ERR_DB_UPDATE, array(TBL_ORDERS));
+        }
+        return true;
+    }
+
 }
 ?>

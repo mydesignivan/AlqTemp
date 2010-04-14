@@ -15,7 +15,7 @@ class Propiedades extends Controller {
             'tlp_script'        =>  'prop_list'
         ));
         $this->_data = $this->dataview->get_data();
-        $this->_count_per_page=4;
+        $this->_count_per_page=14;
     }
 
     /* PRIVATE PROPERTIES

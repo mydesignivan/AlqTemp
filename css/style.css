@@ -239,6 +239,10 @@ textarea.textarea-form{
     width: 220px;
     height: 100px;
 }
+textarea.textarea-large{
+    width: 600px;
+    height: 150px;
+}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA BUTTON
@@ -1009,4 +1013,16 @@ table.tbl-list tbody{
 }
 .tbl-list .tbl-log .cell-3{
     width: auto;
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TABLAS "BANNER"
+ -----------------------------------------------------------------------------*/
+.tbl-list .tbl-banner .cell-2{
+    width: 120px;
+    border-right: 1px solid #CFD0CB;
+}
+.tbl-list .tbl-banner .cell-3{
+    width: 140px;
+    border-right: 1px solid #CFD0CB;
 }

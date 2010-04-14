@@ -7,12 +7,12 @@ var Orders = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(mode){
+    this.initializer = function(){
         This.events.change_search($('#cboSearchBy').val(), true);
     };
 
     this.action={
-        del : function(){
+        Confirm : function(){
             var lstProp = $("#tblList tbody input:checked");
             if( lstProp.length==0 ){
                 alert("Debe seleccionar un item.");
@@ -21,8 +21,8 @@ var Orders = new (function(){
 
             var data = get_data(lstProp);
 
-            if( confirm("¿Está seguro de eliminar el/los item(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
-                location.href = baseURI+'paneladmin/pedidos/delete/'+data.id.join("/");
+            if( confirm("¿Está seguro de confirmar el pago para el/los item(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
+                location.href = baseURI+'paneladmin/pedidos/confirm/'+data.id.join("/");
             }
             return false;
         }

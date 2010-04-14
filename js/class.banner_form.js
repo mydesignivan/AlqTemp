@@ -1,0 +1,93 @@
+/* 
+ * Clase Banner
+ *
+ */
+
+var Banner = new (function(){
+
+    /* PUBLIC METHODS
+     **************************************************************************/
+    this.initializer = function(mode){
+        mode_edit = mode;
+
+        f = $('#form1')[0];
+
+        $.validator.setting('#form1 .validate', {
+            effect_show     : 'slidefade',
+            validateOne     : true,
+            addClass        : 'float-left'
+        });
+
+        $("input[name='txtName'], textarea[name='txtCode']").validator({
+            v_required  : true
+        });
+    };
+
+    this.save = function(){
+        if( working ) return false;
+
+        ajaxloader.show('Validando Formulario.');
+
+        $.validator.validate('#formAccount .validate', function(error){
+            if( !error ){
+
+                $.ajax({
+                    type : 'post',
+                    url  : baseURI+'paneladmin/banner/ajax_check/',
+                    data : {
+                        name : f.txtName.value
+                    },
+                    success : function(data){
+                        if( data=="existsuser" ){
+                            show_error(f.txtUser, 'El nombre del banner ingresado ya existe.');
+
+                        }else if( data=="ok" ){
+                            ajaxloader.show('Enviando Formulario.');
+                            f.submit();
+
+                        }else{
+                            alert("ERROR: \n"+data);
+                        }
+                        if( data!="ok" ) ajaxloader.hidden();
+                    },
+                    error   : function(result){
+                        alert("ERROR: \n"+result.responseText);
+                    }
+                });
+            }else ajaxloader.hidden();
+        });
+        return false;
+    };
+
+
+
+    /* PRIVATE PROPERTIES
+     **************************************************************************/
+    var working=false;
+    var f=false;
+    var mode_edit = false;
+
+    /* PRIVATE METHODS
+     **************************************************************************/
+    var ajaxloader = {
+        show : function(msg){
+            working=true;
+
+            var html = '<div class="text-center">';
+                html+= '<p>'+msg+'</p>';
+                html+= '<img src="images/ajax-loader5.gif" alt="" />';
+                html+= '</div>';
+
+            popup.load({html : html}, {
+                reload  : true,
+                bloqEsc : true,
+                effectClose : false
+            });
+        },
+        hidden : function(){
+            popup.close();
+            working=false;
+        }
+    }
+
+})();

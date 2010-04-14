@@ -1,10 +1,9 @@
 /* 
- * Clase Usuarios
- * Esta clase es utilizada en el listado de usuario del administrador
+ * Clase Banner
  *
  */
 
-var Users = new (function(){
+var Banner = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
@@ -16,14 +15,28 @@ var Users = new (function(){
         del : function(){
             var lstProp = $("#tblList tbody input:checked");
             if( lstProp.length==0 ){
-                alert("Debe seleccionar un usuario.");
+                alert("Debe seleccionar un item.");
                 return false;
             }
 
             var data = get_data(lstProp);
 
-            if( confirm("¿Está seguro de eliminar el/los usuario(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
-                location.href = baseURI+'paneladmin/usuarios/delete/'+data.id.join("/");
+            if( confirm("¿Está seguro de confirmar el pago para el/los item(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
+                location.href = baseURI+'paneladmin/pedidos/confirm/'+data.id.join("/");
+            }
+            return false;
+        },
+        edit : function(){
+            var lstProp = $("#tblList tbody input:checked");
+            if( lstProp.length==0 ){
+                alert("Debe seleccionar un item.");
+                return false;
+            }
+
+            var data = get_data(lstProp);
+
+            if( confirm("¿Está seguro de confirmar el pago para el/los item(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
+                location.href = baseURI+'paneladmin/pedidos/confirm/'+data.id.join("/");
             }
             return false;
         }
@@ -32,48 +45,30 @@ var Users = new (function(){
     this.events={
         change_search : function(opt, clear){
             if( !clear ) $('#txtSearch').val('');
-            $('#txtSearch').focus();
 
             $('#txtSearch').show();
-            $('#cboStatus').hide();
-
-            if( opt=="date_added" || opt=="last_modified" ) {
-                $('#txtSearch').attr('maxlength', 19)
-                               .bind('keypress', This.events.dateformat);
-            }else if( opt=="active" ){
-                $('#txtSearch').hide();
-                $('#cboStatus').show();
-            }else{
-                $('#txtSearch').unbind('keypress')
-                               .removeAttr('maxlength');
+            $('#cboPosition, #cboVisible').hide();
+            
+            if( opt=="position" ){
+                $('#txtSearch, #cboVisible').hide();
+                $('#cboPosition').show();
+            }else if( opt=="visible" ){
+                $('#cboPosition, #txtSearch').hide();
+                $('#cboVisible').show();
             }
-        },
-        dateformat : function(e){
-            if (e.which >= 48 && e.which <= 57 || e.which == 8) {
-                var count = this.value.length;
-                if( e.which!=8 ){
-                    if( count==2 || count==5 ) this.value+="-";
-                    if( count==10 ) this.value+=" ";
-                    if( count==13 || count==16 ) this.value+=":";
-                }else{
-                    if( count==4 || count==7 || count==12 || count==15 || count==18) this.value = this.value.substr(0, this.value.length-1);
-                }
-
-                return true;
-            }else {
-                e.preventDefault();
-            }
+            $('#txtSearch').focus();
         }
     };
 
     this.Search = function(){
-        if( $('#cboSearchBy').val()=="active" ) $('#txtSearch').val($('#cboStatus').val());
+        if( $('#cboSearchBy').val()=="position" ) $('#txtSearch').val($('#cboPosition').val());
+        else if( $('#cboSearchBy').val()=="visible" ) $('#txtSearch').val($('#cboVisible').val());
         if( $('#txtSearch').val()!='' ){
-            location.href = baseURI+'paneladmin/usuarios/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val()+"/page";
+            location.href = baseURI+'paneladmin/banner/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val()+"/page";
         }
     };
 
-    this.change_status = function(tagA, user_id){
+    this.change_visible = function(tagA, user_id){
         if( working ) return false;
         working=true;
 
