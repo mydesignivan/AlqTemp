@@ -9,34 +9,52 @@ var Banner = new (function(){
      **************************************************************************/
     this.initializer = function(){
         This.events.change_search($('#cboSearchBy').val(), true);
+
+        $("#tblList").tableDnD({
+            onDragStart : function(table, row){
+                $(this).data('tableDnD-data', parseInt(row.id.substr(2)));
+            },
+            onDrop : function(table, row){
+                var index = $(this).data('tableDnD-data');
+
+                var id1 = $(row.cells[0]).find('input').val();
+                var id2 = $(table.rows[index]).find('td:first').find('input').val();
+
+                document.title = id1 + " / " + id2;
+
+                /*$.post(baseURI+'paneladmin/banner/ajax_change_order', {id1:id1, id2:id2}, function(data){
+                    
+                });*/
+            }
+        });
     };
 
     this.action={
-        del : function(){
-            var lstProp = $("#tblList tbody input:checked");
-            if( lstProp.length==0 ){
-                alert("Debe seleccionar un item.");
-                return false;
-            }
-
-            var data = get_data(lstProp);
-
-            if( confirm("¿Está seguro de confirmar el pago para el/los item(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
-                location.href = baseURI+'paneladmin/pedidos/confirm/'+data.id.join("/");
-            }
-            return false;
-        },
         edit : function(){
             var lstProp = $("#tblList tbody input:checked");
             if( lstProp.length==0 ){
-                alert("Debe seleccionar un item.");
+                alert("Debe seleccionar un item para modificar.");
+                return true;
+            }
+            if( lstProp.length>1 ){
+                alert("Debe seleccionar un solo item.");
+                return false;
+            }
+            location.href = baseURI+'paneladmin/banner/form/'+lstProp.val();
+            return false;
+        },
+
+        del : function(){
+            var lstProp = $("#tblList tbody input:checked");
+            if( lstProp.length==0 ){
+                alert("Debe seleccionar al menos un item.");
                 return false;
             }
 
             var data = get_data(lstProp);
 
-            if( confirm("¿Está seguro de confirmar el pago para el/los item(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
-                location.href = baseURI+'paneladmin/pedidos/confirm/'+data.id.join("/");
+            if( confirm("¿Está seguro de eliminar el/los item(s) seleccionado(s)?\n\n"+data.names.join(", ")) ){
+                location.href = baseURI+'paneladmin/banner/delete/'+data.id.join("/");
             }
             return false;
         }
@@ -68,7 +86,7 @@ var Banner = new (function(){
         }
     };
 
-    this.change_visible = function(tagA, user_id){
+    this.change_visible = function(tagA, id){
         if( working ) return false;
         working=true;
 
@@ -77,13 +95,13 @@ var Banner = new (function(){
 
         var statu;
 
-        if( tagA.innerHTML=="Activo" ) statu=0;
-        else if( tagA.innerHTML=="Inactivo" ) statu=1;
+        if( tagA.innerHTML=="Visible" ) statu=0;
+        else if( tagA.innerHTML=="Oculto" ) statu=1;
 
-        $.post(baseURI+'paneladmin/usuarios/ajax_change_statu/', {statu : statu, user_id : user_id}, function(data){
+        $.post(baseURI+'paneladmin/banner/ajax_change_visible/', {statu : statu, id : id}, function(data){
             if( data=="ok" ){
-                if( statu==0 ) tagA.innerHTML = "Inactivo";
-                else if ( statu==1 ) tagA.innerHTML = "Activo";
+                if( statu==0 ) tagA.innerHTML = "Oculto";
+                else if ( statu==1 ) tagA.innerHTML = "Visible";
                 $(tagA).parent().find('img').hide();
                 $(tagA).show();
             }else alert('ERROR\n'+data);

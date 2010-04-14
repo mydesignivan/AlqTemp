@@ -55,7 +55,7 @@ define('TBL_LOGSEARCHES', 'log_searches');
 define('TBL_CUENTAPLUS', 'cuentaplus');
 define('TBL_USERSONLINE', 'users_online');
 define('TBL_ORDERS', 'orders');
-define('TBL_BANNER', 'banner');
+define('TBL_BANNER', 'banners');
 
 
 /*
@@ -84,6 +84,10 @@ define('ERR_LOG_DELETE',     'Error al eliminar los log seleccionado(s)');
 define('ERR_LOG_DELETE_LOG', 'Error al eliminar el archivo log "%s"');
 
 define('ERR_ORDER_CONFIRM', 'No se pudo confirmar los pagos. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+
+define('ERR_BANNER_CREATE', 'El banner no pudo ser guardado. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+define('ERR_BANNER_EDIT',   'El banner no pudo ser modificado. Si el error coninua por favor, comuniquelo al administrador del sitio.');
+define('ERR_BANNER_DELETE', 'El banner no pudo ser eliminado. Si el error coninua por favor, comuniquelo al administrador del sitio.');
 
 /*
 |--------------------------------------------------------------------------

@@ -13,7 +13,7 @@
                 <option value="position" <?=@$search_key=='position' ? 'selected="selected"' : '';?>>Posici&oacute;n</option>
                 <option value="visible" <?=@$search_key=='visible' ? 'selected="selected"' : '';?>>Visible</option>
             </select>
-            <input type="text" class="input-medium" id="txtSearch" onkeypress="if( getKeyCode(event)==13 ) Banner.Search();" value="<?=@$search_val;?>" />
+            <input type="text" class="input-small" id="txtSearch" onkeypress="if( getKeyCode(event)==13 ) Banner.Search();" value="<?=@$search_val;?>" />
             <select id="cboPosition" class="hide">
                 <option value="left">Izquierda</option>
                 <option value="right" <?=@$search_val=='right' ? 'selected="selected"' : '';?>>Derecha</option>
@@ -28,11 +28,11 @@
             <button type="button" class="button-small" onclick="Banner.Search();">Buscar</button>
         </div>
 
-            <button type="button" class="float-right button-small" onclick="location.href='<?=site_url('/paneladmin/banner/form/');?>';">Nuevo</button>
-            <button type="button" class="float-right button-small" onclick="Banner.action.edit();">Modificar</button>
         <?php if( $listBanner->num_rows>0 ){?>
             <button type="button" class="float-right button-small" onclick="Banner.action.del();">Eliminar</button>
+            <button type="button" class="float-right button-small" onclick="Banner.action.edit();">Modificar</button>
         <?php }?>
+            <button type="button" class="float-right button-small" onclick="location.href='<?=site_url('/paneladmin/banner/form/');?>';">Nuevo</button>
 
 <?php if( $listBanner->num_rows>0 ){?>
         <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">
@@ -52,12 +52,12 @@
                 $n++;
                 $class = $n%2 ? 'tbl-banner' : 'tbl-banner row-par';
             ?>
-                <tr class="<?=$class;?>">
+                <tr id="tr<?=$n;?>" class="<?=$class;?> row-hover">
                     <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row["banner_id"];?>" /></td>
-                    <td class="cell-2"><?=$row['name'];?></td>
+                    <td class="cell-2"><a href="<?=site_url('/paneladmin/banner/form/'.$row['banner_id']);?>" class="link-title"><?=$row['name'];?></a></td>
                     <td class="cell-3"><?=$row['position'];?></td>
-                    <td class="cell-4"><a href="javascript:void(Banner.preview(<?=$row['banner_id'];?>););" class="link2">Preview</a></td>
-                    <td class="cell-5"><a href="javascript:void(Banner.change_visible());"><?=$row['visible'];?></a></td>
+                    <td class="cell-4"><a href="javascript:void(Banner.preview(<?=$row['banner_id'];?>););" class="link1">Preview</a></td>
+                    <td class="cell-5"><a href="javascript:void(0);" class="link1" onclick="Banner.change_visible(this, <?=$row['banner_id'];?>);"><?=$row['visible'];?></a><img src="images/ajax-loader.gif" alt="" class="hide" /></td>
                 </tr>
         <?php }?>
             </tbody>

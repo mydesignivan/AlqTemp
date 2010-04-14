@@ -2,7 +2,7 @@
 
 <div class="span-10 prepend-left-small">
     <form id="form1" action="" method="post" enctype="application/x-www-form-urlencoded">
-        <?php //require(APPPATH . 'views/includes/popup_inc.php');?>
+        <?php require(APPPATH . 'views/includes/popup_inc.php');?>
 
         <p class="span-10">
             <label class="label-form float-left">*Nombre:&nbsp;&nbsp;&nbsp;</label>
@@ -20,8 +20,8 @@
         <div class="clear span-10">
             <label class="label-form float-left">Visible:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
             <div class="float-left text-small">
-                <span>Si</span><input type="radio" name="optVisible"  <?=(@$info['visible']==1 || !isset($info['visible'])) ? 'checked="checked"' : '';?> tabindex="3" />&nbsp;&nbsp;&nbsp;
-                <span>No</span><input type="radio" name="optVisible" tabindex="3" />
+                <span>Si</span><input type="radio" name="optVisible" <?=($info['visible']=='1' || !$info['visible']) ? 'checked="checked"' : '';?> value="1" tabindex="3" />&nbsp;&nbsp;&nbsp;
+                <span>No</span><input type="radio" name="optVisible" <?=$info['visible']=='0' ? 'checked="checked"' : '';?> value="0" tabindex="3" />
             </div>
         </div>
         <p class="clear span-10">
@@ -40,6 +40,6 @@
 
 <script type="text/javascript">
 <!--
-    Banner.initializer(<?=isset($info) ? true : false;?>);
+    Banner.initializer(<?=!$info ? false : true;?>);
 -->
 </script>

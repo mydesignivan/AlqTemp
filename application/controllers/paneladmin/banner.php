@@ -11,7 +11,7 @@ class Banner extends Controller {
         $this->load->library('pagination');
         $this->load->library('dataview');
         $this->_data = $this->dataview->get_data();
-        $this->_count_per_page=4;
+        $this->_count_per_page=14;
     }
 
     /* PRIVATE PROPERTIES
@@ -29,33 +29,90 @@ class Banner extends Controller {
         $this->_display();
     }
     public function form(){
-        $title = !is_numeric($this->uri->segment(4)) ? "Nuevo Banner" : "Modificar Banner";
+        $banner_id = $this->uri->segment(4);
+
+        if( !is_numeric($banner_id) ){
+            $info = false;
+            $title = "Nuevo Banner";
+        }else{
+            $info = $this->banner_model->get_banner($banner_id);
+            $title = "Modificar Banner";
+        }
 
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneladmin/banner_form_view.php',
             'tlp_title_section' =>  $title,
-            'tlp_script'        =>  array('validator', 'popup', 'banner_form')
+            'tlp_script'        =>  array('validator', 'popup', 'banner_form'),
+            'info'              =>  $info
         ));
 
         $this->load->view("template_paneladmin_view", $this->_data);
 
     }
 
-    public function confirm(){
-        if( $this->uri->segment(4) ){
-            $id = $this->uri->segment_array();
-            array_splice($id, 0,3);
-            
-            if( $this->banner_model->orders_confirm($id) ){
+    public function create(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $data = $this->_request_fields();
+            $status = $this->banner_model->create($data);
+
+            if( $status ){
                 redirect('/paneladmin/banner/');
             }else{
-                show_error(ERR_ORDER_CONFIRM);
+                show_error(ERR_BANNER_CREATE);
             }
         }
     }
 
+    public function edit(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $data = $this->_request_fields();
+            $status = $this->banner_model->edit($data, $_POST['banner_id']);
+
+            if( $status ){
+                redirect('/paneladmin/banner/');
+            }else{
+                show_error(ERR_BANNER_EDIT);
+            }
+        }
+    }
+
+    public function delete(){
+        if( $this->uri->segment(4) ){
+            $id = $this->uri->segment_array();
+            array_splice($id, 0,3);
+
+            if( $this->banner_model->delete($id) ){
+                redirect('/paneladmin/banner/');
+            }else{
+                show_error(ERR_BANNER_DELETE);
+            }
+        }
+    }
+
+
     /* AJAX FUNCTIONS
      **************************************************************************/
+    public function ajax_check(){
+        if( $this->banner_model->exists($_POST['name'], $_POST['id']) ){
+            die("exists");
+        }else{
+            die("notexists");
+        }
+    }
+
+    public function ajax_change_visible(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            if( $this->banner_model->change_visible() ) die("ok");
+        }
+    }
+
+    public function ajax_change_order(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            if( $this->banner_model->change_order() ) die("ok");
+        }
+    }
+
+
 
 
     /* PRIVATE FUNCTIONS
@@ -83,6 +140,15 @@ class Banner extends Controller {
         ));
 
         $this->load->view("template_paneladmin_view", $this->_data);
+    }
+
+    private function _request_fields(){
+        return array(
+            'name'      => $_POST["txtName"],
+            'position'  => $_POST["cboPosition"],
+            'visible'   => $_POST["optVisible"],
+            'code'      => $_POST["txtCode"]
+        );
     }
 
 }

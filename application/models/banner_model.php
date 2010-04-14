@@ -9,18 +9,47 @@ class Banner_model extends Model {
 
     /* PUBLIC FUNCTIONS
      **************************************************************************/
+    public function create($data){
+        $query = $this->db->query('SELECT CASE WHEN ISNULL(COUNT(*)) THEN 1 ELSE COUNT(*)+1 END AS `order` FROM '.TBL_BANNER)->row_array();
+        $data['order'] = $query['order'];
+//            print_array($data, true);
+
+        if( !$this->db->insert(TBL_BANNER, $data) ){
+            display_error(__FILE__, "create", ERR_DB_INSERT, array(TBL_BANNER));
+        }
+
+        return true;
+    }
+
+    public function edit($data, $id){
+        $this->db->where('banner_id', $id);
+        if( !$this->db->update(TBL_BANNER, $data) ){
+            display_error(__FILE__, "edit", ERR_DB_UPDATE, array(TBL_BANNER));
+        }
+
+        return true;
+    }
+
+    public function delete($id){
+        if( !$this->db->query('DELETE FROM '.TBL_BANNER.' WHERE banner_id in('. implode(",", $id) .')') ){
+            display_error(__FILE__, "delete", ERR_DB_DELETE, array(TBL_BANNER));
+        }
+        return true;
+    }
+
     public function get_list($limit, $offset, $searcher){
         $return = array();
 
         $sql = "banner_id,";
+        $sql.= "`order`,";
         $sql.= "name,";
         $sql.= "CASE position ";
         $sql.= "WHEN 'left' THEN 'Izquierda' ";
         $sql.= "WHEN 'right' THEN 'Derecha' ";
         $sql.= "WHEN 'top' THEN 'Arriba' ";
         $sql.= "WHEN 'bottom' THEN 'Abajo' ";
-        $sql.= "END,";
-        $sql.= "CASE WHEN visible=1 THEN 'Si' ELSE 'No' END as visible";
+        $sql.= "END AS position,";
+        $sql.= "CASE WHEN visible=1 THEN 'Visible' ELSE 'Oculto' END as visible";
 
         $like = array();
         $where = array();
@@ -40,11 +69,16 @@ class Banner_model extends Model {
         $this->db->select($sql, false);
         $this->db->like($like);
         $this->db->where($where);
-        $this->db->order_by('banner_id', 'desc');
+        $this->db->order_by('`order`', 'desc');
 
         $return['result'] = $this->db->get(TBL_BANNER, $limit, $offset);
 
         return $return;
+    }
+
+    public function get_banner($id){
+        $query = $this->db->get_where(TBL_BANNER, array('banner_id'=>$id));
+        return $query->row_array();
     }
 
     public function orders_confirm($id){
@@ -54,6 +88,33 @@ class Banner_model extends Model {
         }
         return true;
     }
+
+    public function exists($name, $id=''){
+        if( $id=="" ){
+            $where = array('name'=>$name);
+        }else{
+            $where = array('banner_id <>'=>$id, 'name'=>$name);
+        }
+        $result = $this->db->get_where(TBL_BANNER, $where);
+        return $result->num_rows==0 ? false : true;
+    }
+
+    public function change_visible(){
+        $this->db->where('banner_id', $_POST['id']);
+        if( !$this->db->update(TBL_BANNER, array('visible'=>$_POST['statu'])) ){
+            display_error(__FILE__, "change_visible", ERR_DB_UPDATE, array(TBL_BANNER));
+        }
+        return true;
+    }
+
+    public function change_order(){
+        $this->db->where('banner_id', $_POST['id']);
+        if( !$this->db->update(TBL_BANNER, array('visible'=>$_POST['statu'])) ){
+            display_error(__FILE__, "change_visible", ERR_DB_UPDATE, array(TBL_BANNER));
+        }
+        return true;
+    }
+
 
 }
 ?>

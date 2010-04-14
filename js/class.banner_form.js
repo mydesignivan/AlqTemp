@@ -21,6 +21,7 @@ var Banner = new (function(){
         $("input[name='txtName'], textarea[name='txtCode']").validator({
             v_required  : true
         });
+        popup.initializer();
     };
 
     this.save = function(){
@@ -28,27 +29,29 @@ var Banner = new (function(){
 
         ajaxloader.show('Validando Formulario.');
 
-        $.validator.validate('#formAccount .validate', function(error){
+        $.validator.validate('#form1 .validate', function(error){
             if( !error ){
 
                 $.ajax({
                     type : 'post',
                     url  : baseURI+'paneladmin/banner/ajax_check/',
                     data : {
-                        name : f.txtName.value
+                        name : f.txtName.value,
+                        id : f.banner_id.value
                     },
                     success : function(data){
-                        if( data=="existsuser" ){
-                            show_error(f.txtUser, 'El nombre del banner ingresado ya existe.');
+                        if( data=="exists" ){
+                            show_error(f.txtName, 'El nombre del banner ingresado ya existe.');
 
-                        }else if( data=="ok" ){
+                        }else if( data=="notexists" ){
                             ajaxloader.show('Enviando Formulario.');
+                            f.action = mode_edit ? baseURI+"paneladmin/banner/edit" : baseURI+"paneladmin/banner/create";
                             f.submit();
 
                         }else{
                             alert("ERROR: \n"+data);
                         }
-                        if( data!="ok" ) ajaxloader.hidden();
+                        if( data!="notexists" ) ajaxloader.hidden();
                     },
                     error   : function(result){
                         alert("ERROR: \n"+result.responseText);
