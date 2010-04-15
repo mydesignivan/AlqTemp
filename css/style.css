@@ -79,6 +79,13 @@ a.link{
 a.link1{
     color:#684C1D;
     font-weight:bold;
+    margin-top:7px;
+    position:relative;
+    float:left;
+}
+a.link1 .icon{
+    float:left;
+    margin:-2px 3px 0 5px;
 }
 a.link2{
     color:#684C1D;
@@ -382,7 +389,7 @@ fieldset.fieldset-information{
 .header-top{
     float:right;
     width: 580px;
-    margin-top:22px;
+    margin-top:19px;/*22*/
 }
 .header-publique{
     position:relative;

@@ -10,8 +10,8 @@
 
             <!-- =============== LINKS HEADER TOP =============== -->
             <div class="column span-5 first">
-                <a href="<?=site_url('/index/');?>" class="link1"><img src="images/icon_home.png" alt="" /> Inicio</a>
-                <a href="<?=site_url('/contacto/');?>" class="link1"><img src="images/icon_contact.png" alt="" /> Contacto</a>
+                <a href="<?=site_url('/index/');?>" class="link1"><img class="icon" src="images/icon_home.png" alt="" /> Inicio</a>
+                <a href="<?=site_url('/contacto/');?>" class="link1"><img class="icon" src="images/icon_contact.png" alt="" /> Contacto</a>
             </div>
 
     <?php if( !$this->session->userdata('logged_in') ){?>
