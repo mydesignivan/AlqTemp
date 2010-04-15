@@ -18,10 +18,11 @@ var Prop = new (function(){
 
        var thumbs = $('a.jq-thumb');
        if( thumbs.length>0 ){
-           if( !mode_edit ) thumbs.show();
+           if( mode_edit ) thumbs.show();
            $('input.jq-uploadinput').bind('keypress', function(e){e.preventDefault();});
        }
 
+       // Configura el validador
         $.validator.setting('#formProp .validate', {
             effect_show     : 'slidefade',
             validateOne     : true
@@ -30,8 +31,24 @@ var Prop = new (function(){
             v_required  : true
         });
 
+       // Configura el contador de caracteres
+       var txtDesc = $('#txtDesc');
+        txtDesc.data('char-count', 1000);
+        txtDesc.keypress(function(e){
+            var len = this.value.length;
+            var char_count = $(this).data('char-count');
+
+            if( e.which!=8 && e.which!=0 && len>(char_count-1) ) e.preventDefault();
+            else return true;
+        });
+        txtDesc.keyup(function(e){
+            $('#jq-charcounter b').text($(this).data('char-count')-this.value.length);
+        });
+        var count_char = !mode_edit ? txtDesc.data('char-count') : txtDesc.data('char-count')-txtDesc.val().length;
+        $('#jq-charcounter b').text(count_char);
+    
+        // Inicializa otros objetos
         $('a.jq-thumb').fancybox();
-        AjaxUpload.initializer();
         popup.initializer();
    };
 
@@ -78,7 +95,7 @@ var Prop = new (function(){
 
                             extra_post.services = $("#listServices").find("li input:checked").toArrayValue();
 
-                            f.extra_post.value = json_encode(extra_post);
+                            f.extra_post.value = JSON.encode(extra_post);
                             f.action = (propid=="") ? baseURI+"paneluser/propiedades/create" : baseURI+"paneluser/propiedades/edit/"+propid;
                             f.submit();
 
@@ -231,7 +248,6 @@ var Prop = new (function(){
 
 })();
 
-
 var AjaxUpload = new ClassAjaxUpload({
     selector : 'div.button-examin',
     action   : baseURI+'ajax_upload',
@@ -241,15 +257,21 @@ var AjaxUpload = new ClassAjaxUpload({
             return false;
         } else {
             var divCol = $(input).parent().parent();
+            var filename = input.value;
+            if( $.browser.msie || $.browser.opera || $.browser.safari ){
+                filename = input.value.split('\\');
+                filename = filename[filename.length-1];
+            }
+
             divCol.find('div.button-examin, input.input-form, a.jq-thumb, button').hide();
             divCol.find('div.ajaxloader2').show();
-            divCol.find('input.input-form').val(input.value);
+            divCol.find('input.input-form').val(filename);
         }
         return true;
     },
     onComplete : function(response, input){
         var divCol = $(input).parent().parent();
-        
+
         try{
             eval('var filename = '+response);
         }catch(e){
@@ -272,3 +294,4 @@ var AjaxUpload = new ClassAjaxUpload({
         a.fancybox();
     }
 });
+$(document).ready(function(){AjaxUpload.initializer();});

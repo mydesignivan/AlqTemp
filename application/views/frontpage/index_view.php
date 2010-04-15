@@ -11,7 +11,7 @@
 ?>
 
             <div class="prop-row">
-                <div class="column-1"><a href="<?=$url;?>"><img src="<?=$row['image_thumb'];?>" alt="" width="115px" height="90" /></a></div>
+                <div class="column-1"><a href="<?=$url;?>"><img src="<?=$row['image_thumb'];?>" alt="" width="115" height="90" /></a></div>
                 <div class="column-2">
                     <h2><a href="<?=$url;?>" class="link4"><?=ucwords(strtolower($row['address']));?></a></h2>
                     <p><?=character_limiter(nl2br($row['description']), 150);?></p>

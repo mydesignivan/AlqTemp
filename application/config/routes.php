@@ -63,5 +63,8 @@ $route['otros/page/:num'] = "index/otros/page/$1";
 $route['checkout_success/:any'] = "checkout_success/index/$1";
 $route['checkout_cancel/:any'] = "checkout_cancel/index/$1";
 
+$route['searcher/:any'] = "index/searcher/$1";
+$route['display/:any'] = "index/display/$1";
+
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

@@ -22,7 +22,7 @@ jQuery.fn.extend({
             }
         });
     },
-
+    
     convertDate : function(){
         return this.each(function(){
             if( this.value ){

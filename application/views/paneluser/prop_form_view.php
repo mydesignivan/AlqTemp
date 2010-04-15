@@ -20,16 +20,15 @@
                 
                 <p class="span-10">
                     <label class="label-form float-left">*Direcci&oacute;n:</label>
-                    <input type="text" name="txtAddress" id="txtAddress" class="input-form float-right validate" tabindex="1" value="<?=@$info['address'];?>" />
+                    <input type="text" name="txtAddress" id="txtAddress" class="input-form float-right validate" tabindex="1" value="<?=@$info['address'];?>" onblur="$(this).ucTitle();" />
                 </p>
-
                 <?php
                     $html = '
                     <div class="span-16">
                         <label class="label-form float-left">*Foto:</label>
                         <div class="column-photo">
                             <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
-                            <a href="#" class="append-right-small2 float-left hide jq-thumb" rel="group"><img src="" alt="" width="69" height="60" /></a>
+                            <a href="#" class="hide append-right-small2 float-left jq-thumb" rel="group"><img src="" alt="" width="69" height="60" class="" /></a>
                             <input type="text" class="input-form float-left jq-uploadinput" value="" />
                             <div class="button-examin">Examinar</div>
                         </div>
@@ -64,10 +63,11 @@
                     </div>
                 </div>
 
-                <p class="clear span-10">
+                <div class="clear span-15">
                     <label class="label-form float-left">*Descripci&oacute;n:</label>
-                    <textarea name="txtDesc" id="txtDesc" class="textarea-form float-right validate" cols="22" rows="5" tabindex="3"><?=@$info['description'];?></textarea>
-                </p>
+                    <textarea name="txtDesc" id="txtDesc" class="textarea-form-large float-right validate" cols="22" rows="5" tabindex="3"><?=@$info['description'];?></textarea>
+                    <div class="clear float-right text-small" id="jq-charcounter">Te quedan <b>&nbsp;</b> caracteres</div>
+                </div>
                 <p class="clear span-10">
                     <label class="label-form float-left">*Categor&iacute;a:</label>
                     <?=form_dropdown('cboCategory', $comboCategory, @$info["category_id"], 'class="select-form float-right validate" id="cboCategory" tabindex="4"');?>
@@ -98,18 +98,18 @@
                     <div id="msgbox_services" class="clear"></div>
                 </div>
 
-                <p class="clear span-10">
+                <div class="clear span-10 prepend-top-small">
                     <label class="label-form float-left">*Pa&iacute;s:</label>
                     <?=form_dropdown('cboCountry', $comboCountry, @$info["country_id"], 'id="cboCountry" class="select-form float-right validate" onchange="Prop.show_states(this);" tabindex="5"');?>
-                </p>
-                <p class="clear span-10">
+                </div>
+                <div class="clear span-10 prepend-top-small">
                     <label class="label-form float-left">*Provincia:</label>
                     <?=form_dropdown('cboStates', $comboStates, @$info['state_id'], 'id="cboStates" class="select-form float-right validate" tabindex="6"');?>
-                </p>
-                <p class="clear span-10">
+                </div>
+                <div class="clear span-10 prepend-top-small">
                     <label class="label-form float-left">*Ciudad:</label>
                     <input type="text" name="txtCity" id="txtCity" class="input-form float-right validate" onblur="$(this).ucFirst();" value="<?=@$info['city'];?>" tabindex="7" />
-                </p>
+                </div>
                 <p class="clear span-10">
                     <label class="label-form float-left">Telefono:</label>
                     <input type="text" name="txtPhone" class="input-phone float-right" value="<?=@$info['phone'];?>" tabindex="9" />

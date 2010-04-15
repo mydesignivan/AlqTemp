@@ -64,7 +64,7 @@ var ClassAjaxUpload=function(options){
 
         form = $('<form action="'+options.action+'" method="post" enctype="multipart/form-data" target="ajaxuploadiframe"></form>');
         $(document.body).append(form);
-
+        
         button.each(function(){
             var b = $(this);
             b.css({
@@ -117,8 +117,23 @@ var ClassAjaxUpload=function(options){
         var iframe = $('<iframe name="ajaxuploadiframe" id="ajaxuploadiframe" src="about:blank" width="400" height="100"></iframe>');
         iframe.attr('src', '');
         iframe.bind('load', eventLoadIframe);
+        //iframe.bind('load', prueba);
         iframe.hide();
         return iframe;
+    };
+
+    var prueba = function(){
+        if( this.src!="about:blank" ){
+            //var content = this.contentDocument ? this.contentDocument : frames[this.id].document;
+            var el = document.getElementById('ajaxuploadiframe');
+            var content=(el.contentWindow || el.contentDocument);
+            alert(content.document.body.innerHTML);
+        }
+
+        this.src = "about:blank";
+        $(this).unbind("load", prueba);
+        working=false;
+        return false;
     };
 
     var eventLoadIframe = function(e){
@@ -140,9 +155,10 @@ var ClassAjaxUpload=function(options){
             }
 
             if( typeof options.onComplete=="function" ){
+                //alert($('#'+this.id)[0].document.body.innerHTML);
                 options.onComplete(content.body.innerHTML, input);
-
             }
+
         }
 
         this.src = "about:blank";

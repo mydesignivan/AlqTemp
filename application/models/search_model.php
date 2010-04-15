@@ -105,7 +105,7 @@ class Search_model extends Model {
         $this->db->order_by('prop_id', 'desc');
         $result = $this->db->get(TBL_PROPERTIES, $limit);
 
-        return array('result'=>$result, 'count_rows'=>3);
+        return array('result'=>$result, 'count_rows'=>$limit);
     }
 
     public function get_searches(){

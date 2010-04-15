@@ -38,16 +38,7 @@
                 <div class="float-left">
                     <div class="row-top"><h1 class="title">Destinos mas Buscados</h1></div>
                     <div class="row-center min-height-1">
-                        <?php
-                            $config['result'] = $listSearches->result_array();
-                            $config['total_row'] = 4;
-                            $config['field'] = "search_term";
-                            $config['tag_open'] = '<ul class="ul-list">';
-                            $config['tag_close'] = '</ul>';
-                            $config['tag_open_special'] = '<ul class="ul-list ul-list-separator">';
-                            $config['tag_link'] = true;
-                            construct_bloq($config);
-                        ?>
+                        <?php require('includes/hitssearch_inc.php');?>
                     </div>
                     <div class="row-bottom"></div>
                 </div>

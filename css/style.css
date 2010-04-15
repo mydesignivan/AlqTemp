@@ -16,7 +16,7 @@ body {
 .text-center{text-align: center !important;}
 .prepend-top-small{margin-top:10px !important;}
 .append-right-small2{margin-right: 5px !important;}
-.append-top-small{margin-bottom: 15px !important;}
+.append-bottom-small{margin-bottom: 15px !important;}
 .border{border:1px solid red !important;}
 
 p{margin-bottom:0;}
@@ -35,7 +35,7 @@ h2{
     font-size: 110% !important;
     margin-bottom: 5px;
 }
-.min-height-1{min-height: 50px !important;}
+.min-height-1{min-height: 30px !important;}
 .min-height-2{min-height: 200px !important;}
 
 strong{color:#FC7F07;}
@@ -79,13 +79,6 @@ a.link{
 a.link1{
     color:#684C1D;
     font-weight:bold;
-    margin-top:7px;
-    position:relative;
-    float:left;
-}
-a.link1 .icon{
-    float:left;
-    margin:-2px 3px 0 5px;
 }
 a.link2{
     color:#684C1D;
@@ -107,6 +100,18 @@ a.link4:link{
 }
     a.link4:visited{
         /*color:blue;*/
+    }
+
+a.link-header{
+    color:#684C1D;
+    font-weight:bold;
+    margin-top:7px;
+    position:relative;
+    float:left;
+}
+    a.link-header .icon{
+        float:left;
+        margin:-2px 3px 0 5px;
     }
 
 a.link-title{
@@ -246,6 +251,10 @@ textarea.textarea-contact2{
 textarea.textarea-form{
     width: 220px;
     height: 100px;
+}
+textarea.textarea-form-large{
+    width: 430px;
+    height: 130px;
 }
 textarea.textarea-large{
     width: 600px;
@@ -673,17 +682,19 @@ ul{
 }
 ul.ul-list{
     float: left;
-    padding-right:5px;
     color:#333333;
     font-size: 80%;
-    width: 190px;
-    height: 80px;
+    width: 630px;
+    height: auto;
 }
     ul.ul-list li{
+        float:left;
+        width: 200px;
         list-style-image:url(../images/point.png);
         list-style-position:inside;
         background-color:#FCF5D8;
         margin-bottom:5px;
+        margin-right: 5px;
     }
 .ul-list-separator{
     border-left:solid 1px #999999;
@@ -713,12 +724,13 @@ ul.ul-list-cuentaplus{
     overflow: auto;
     overflow-x: hidden !important;
     font-size: 80%;
+    position: relative;
 }
     .list-servicios ul{
         width:100%;
         background-color: #FAF8E9;
     }
-        .list-servicios input{margin:0;padding:0;}
+        /*.list-servicios input[checkbox]{margin:0;padding:0;}*/
         .list-servicios ul li{
             width: 100%;
             padding: 1px 0 3px 0;
@@ -896,7 +908,6 @@ ul.ul-list-cuentaplus{
     font-size: 80%;
     width:290px;
 }
-
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA TABLAS (general)

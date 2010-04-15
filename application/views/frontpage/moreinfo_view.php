@@ -78,13 +78,14 @@
 
 <div class="more-info-servicios prepend-left-small">
     <h2>Servicios</h2>
+    <ul class="ul-list">
     <?php
-        $config['result'] = $info['services'];
-        $config['total_row'] = 3;
-        $config['field'] = "name";
-        $config['tag_open'] = '<ul class="ul-list line-right">';
-        $config['tag_close'] = '</ul>';
-        $config['tag_open_special'] = '<ul class="ul-list">';
-        construct_bloq($config);
+    $n=0;
+    foreach( $info['services'] as $row ){
+        $n++;
+        //$class = $n%2 ? 'tbl-propuser' : 'tbl-propuser row-par';
     ?>
+        <li><?=$row['name'];?></li>
+    <?php }?>
+    </ul>
 </div>

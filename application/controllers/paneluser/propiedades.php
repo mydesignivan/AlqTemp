@@ -63,7 +63,7 @@ class Propiedades extends Controller {
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneluser/prop_form_view.php',
             'tlp_title_section' =>  (!$info) ? "Nueva Propiedad" : "Modificar Propiedad",
-            'tlp_script'        =>  array('validator', 'fancybox', 'popup', 'prop_form'),
+            'tlp_script'        =>  array('validator', 'fancybox', 'popup', 'json', 'prop_form'),
             'comboCategory'     =>  $this->lists_model->get_category(array("0"=>"Seleccione una Categor&iacute;a")),
             'comboCountry'      =>  $this->lists_model->get_country(array("0"=>"Seleccione un Pa&iacute;s")),
             'comboStates'       =>  $comboStates,
@@ -130,6 +130,9 @@ class Propiedades extends Controller {
 
     /* AJAX FUNCTIONS
      **************************************************************************/
+    public function ajax_prueba(){
+        print_array(json_decode($_POST['data']));
+    }
     public function ajax_check(){
         if( $this->prop_model->exists($_POST['address'], $_POST['propid']) ){
             die("exists");
