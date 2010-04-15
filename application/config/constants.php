@@ -312,8 +312,8 @@ define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS
 | TITULOS DE CADA SECCION
 |--------------------------------------------------------------------------
 */
-define('TITLE_GLOBAL', 'AlquileresTemporarios.org'); // Titulo para todas las secciones
-define('TITLE_INDEX', '');
+define('TITLE_GLOBAL', 'Alquileres Temporarios'); // Titulo para todas las secciones
+define('TITLE_INDEX', ' - casas, departamentos, cabañas, vacaciones');
 define('TITLE_MASINFO', '');
 define('TITLE_CONTACTO', '');
 define('TITLE_REGISTRO', '');
