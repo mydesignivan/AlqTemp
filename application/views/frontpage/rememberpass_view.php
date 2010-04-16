@@ -10,7 +10,6 @@
     <h2>¿Olvido su Contraseña?</h2>
     <p>AlquileresTemporarios.org le enviara las instrucciones para resetear su contrase&ntilde;a a la direcci&oacute;n de correo asociada a su cuenta.</p>
     <p>Por favor escriba su direcci&oacute;n de <b>email</b> o su <b>usuario</b> a continuaci&oacute;n.</p>
-    <br />
 
     <div class="span-9 last">
         <label class="label-form float-left">Email / Usuario&nbsp;</label>
@@ -33,10 +32,11 @@
         </div>
         <img id="imgCaptcha" src="<?=site_url('/captcha/index/'.md5(time()));?>" align="left" width="180" height="65" alt="" class="float-right img-captcha" />
     </div>
-    <p class="span-9 clear">
+    <div class="span-9 clear">
         <label class="label-form float-left">*Ingrese C&oacute;digo:</label>
         <input type="text" name="txtCaptcha" maxlength="6" class="input-captcha validate" tabindex="11" />
-    </p>
+    </div>
+    <!-- ======= END FORM ======= -->
 
     <div class="span-15 text-center prepend-top">
         <button type="button" class="button-small" onclick="RememberPass.send();">Enviar</button>

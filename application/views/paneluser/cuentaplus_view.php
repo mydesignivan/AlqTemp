@@ -1,5 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
+<?php if( $this->session->userdata('username')=="ivan" ){?>
+
+
 <?php if( $this->session->userdata('fondo')==0 ){?>
                 <div class="notice">Usted no posee saldo suficiente para adquirir esta cuenta plus, para realizar esta operaci&oacute;n tiene que agregar fondos a su cuenta.</div>
 
@@ -59,3 +62,15 @@
             <?php }
          }
 }?>
+
+<?php }else{?>
+
+    <p class="text-destacado">
+        <br />
+        <br />
+        <br />
+        <b>Este servicio aun no se encuentra habilitado</b>
+    </p>
+
+
+<?php }?>

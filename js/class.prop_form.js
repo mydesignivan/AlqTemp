@@ -50,6 +50,7 @@ var Prop = new (function(){
         // Inicializa otros objetos
         $('a.jq-thumb').fancybox();
         popup.initializer();
+        //$("#map").gMap();
    };
 
     this.save = function(){
@@ -237,7 +238,7 @@ var Prop = new (function(){
             popup.load({html : html}, {
                 reload  : true,
                 bloqEsc : true,
-                effectClose : false
+                effectClose : null
             });
         },
         hidden : function(){

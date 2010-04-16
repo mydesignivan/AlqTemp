@@ -33,16 +33,16 @@
                 <div id="login-container" class="form-login">
                     <a href="javascript:Login.close_dialog();" class="btn-login">Login</a>
                     <form id="formLogin" class="form" action="<?=site_url('/login/');?>" enctype="application/x-www-form-urlencoded" method="post">
-                        <p>
+                        <div class="span-4">
                             <label for="txtLoginUser" class="label-login">Usuario</label><br />
                             <input type="text" name="txtLoginUser" id="txtLoginUser" class="input-login validate" value="" />
-                        </p>
-                        <p>
+                        </div>
+                        <div class="clear span-4">
                             <label for="txtLoginPass" class="label-login">Contrase&ntilde;a</label><br />
                             <input type="password" name="txtLoginPass" id="txtLoginPass" class="input-login validate" value="" />
-                        </p>
-                        <p><button type="submit" value="Entrar" class="button-login">Entrar</button></p>
-                        <p><a href="<?=site_url('/recordarcontrasenia/');?>" class="link2">¿Olvido su Contraseña?</a></p>
+                        </div>
+                        <div class="clear span-4"><button type="submit" value="Entrar" class="button-login">Entrar</button></div>
+                        <div class="clear"><a href="<?=site_url('/recordarcontrasenia/');?>" class="link2">¿Olvido su Contraseña?</a></div>
                     </form>
                     <div id="login-error"></div>
                 </div>

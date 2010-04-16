@@ -11,37 +11,35 @@
 
                 <form id="formContact" action="<?=site_url('/contacto/send');?>" method="post" enctype="application/x-www-form-urlencoded">
                     <div class="span-7">
-                        <p>
+                        <div class="span-7">
                             <label class="label-form">*Nombre:</label><br />
                             <input type="text" class="input-form validate" name="txtName" />
-                        </p>
-                        <p>
+                        </div>
+                        <div class="clear span-7">
                             <label class="label-form">*Email:</label><br />
                             <input type="text" class="input-form validate" name="txtEmail" />
-                        </p>
+                        </div>
                     </div>
                     <div class="span-6">
-                        <p>
+                        <div class="span-6">
                             <label class="label-form">Tel&eacute;fono:</label><br />
                             <input type="text" class="input-form input" name="txtPhone" />
-                        </p>
-                        <p>
+                        </div>
+                        <div class="clear span-6">
                             <label class="label-form">Area de Consulta:</label><br />
                             <select name="cboArea" class="select-form">
                                 <option value="jbasaez@mydesign.com.ar">Publicidad</option>
                                 <option value="jbasaez@mydesign.com.ar">Consultas</option>
                             </select>
-                        </p>
+                        </div>
                     </div>
                     <div class="clear span-13">
-                        <p>
+                        <div class="span-13">
                             <label class="label-form">*Consulta:</label><br />
                             <textarea class="textarea-contact2 validate" name="txtConsult" rows="22" cols="6"></textarea>
-                        </p>
+                        </div>
                     </div>
-                    <div class="clear span-13">
-                        <p class="clear"><label class="label-legend">(*) Campos obligatorios</label></p>
-                    </div>
+                    <div class="clear span-13"><label class="label-legend">(*) Campos obligatorios</label></div>
 
                     <div class="clear span-13 text-center">
                         <button type="button" class="button-small" onclick="Contact.send();">Enviar</button>

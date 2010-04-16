@@ -29,6 +29,8 @@
         <?php }?>
 
 <?php if( $listUsers->num_rows>0 ){?>
+        <?php require(APPPATH . 'views/includes/popup2_inc.php');?>
+
         <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">
             <thead>
                 <tr class="tbl-users">
@@ -49,7 +51,7 @@
             ?>
                 <tr class="<?=$class;?>">
                     <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row["user_id"];?>" /></td>
-                    <td class="cell-2"><a href="" class="link-title" target="_blank"><?=$row['username'];?></a></td>
+                    <td class="cell-2"><a href="javascript:void(Users.open_popup(<?=$row["user_id"];?>));" class="link-title"><?=$row['username'];?></a></td>
                     <td class="cell-3"><?=$row['fondo'];?></td>
                     <td class="cell-4"><a href="javascript:void(0)" class="link1" onclick="Users.change_status(this, <?=$row["user_id"];?>)"><?=$row['active']==1 ? "Activo" : "Inactivo";?></a><img src="images/ajax-loader.gif" alt="" class="hide" /></td>
                     <td class="cell-5"><?=$row['date_added'];?></td>

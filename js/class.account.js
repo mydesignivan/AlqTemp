@@ -112,7 +112,7 @@ var Account = new (function(){
             popup.load({html : html}, {
                 reload  : true,
                 bloqEsc : true,
-                effectClose : false
+                effectClose : null
             });
         },
         hidden : function(){

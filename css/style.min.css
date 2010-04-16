@@ -9,7 +9,6 @@ body{font:100% Arial, Helvetica, sans-serif;background:url(../images/bg_texture_
 .append-right-small2{margin-right:5px!important}
 .append-bottom-small{margin-bottom:15px!important}
 .border{border:1px solid red!important}
-p{margin-bottom:0}
 h1{color:#744818;font-family:Arial, Helvetica, sans-serif;font-style:italic;font-size:115%;font-weight:700}
 h2{color:#FC7F07;font-weight:700;font-family:Arial, Helvetica, sans-serif;font-size:110%!important;margin-bottom:5px}
 .min-height-1{min-height:30px!important}
@@ -126,7 +125,7 @@ ul.ul-list-cuentaplus .sintip{list-style-image:none!important;padding-left:24px}
 .more-info .column-1 .thumbs .col-middle li{display:inline;float:left;margin-right:3px}
 .more-info .column-1 .description{float:left;clear:both;width:365px;font-size:80%;margin:30px 0 0 15px}
 .more-info .column-2{float:right;width:260px;height:inherit}
-.more-info .column-2 .slide{position:relative;background:url(../images/bg_slide.png) repeat-y;width:260px;height:inherit;padding:28px 0 5px 30px}
+.more-info .column-2 .slide{position:relative;float:left;background:url(../images/bg_slide.png) repeat-y;width:260px;height:inherit;padding:28px 0 5px 30px}
 .more-info .column-2 .slide .icon-mail{position:absolute;top:-13px;left:0}
 .more-info .column-2 .slide .error,.more-info .column-2 .slide .success{font-size:80%;width:195px;display:none;padding:5px!important}
 .more-info .column-2 .slide .ajaxloader-mask{position:absolute;top:0;left:0;width:260px;height:100%;background-color:#fff;z-index:1000;display:none}

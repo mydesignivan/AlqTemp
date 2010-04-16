@@ -15,23 +15,24 @@
 
 <?php }else{?>
         <form id="form2" action="<?=site_url('/recordarcontrasenia/send_newpass/'.$this->uri->segment(3)."/".$this->uri->segment(4));?>" method="post">
-            <p class="small">
+            <p>
                 Cambie su Contrase&ntilde;a<br />
                 Por favor, elija una contrase&ntilde;a para usar con su cuenta de AlquileresTemporarios.org
             </p>
 
-            <p class="span-11">
+            <div class="span-11">
                 <label class="label-form float-left">Nueva Contrase&ntilde;a:</label>
                 <input type="password" name="txtPass" id="txtPass" class="input-form float-right validate" />
-            </p>
-            <p class="clear span-11">
+            </div>
+            <div class="clear span-11">
                 <label class="label-form float-left">Verifique Nueva Contrase&ntilde;a:</label>
                 <input type="password" name="txtPass2" class="input-form float-right validate" />
-            </p>
+            </div>
 
             <div class="span-15 text-center prepend-top">
                 <button type="button" onclick="RememberPass.send();" class="button-small">Cambiar</button>
             </div>
+            <!-- ======= END FORM ======= -->
 
             <input type="hidden" name="usr" value="<?=@$username;?>" />
             <input type="hidden" name="token" value="<?=@$token;?>" />

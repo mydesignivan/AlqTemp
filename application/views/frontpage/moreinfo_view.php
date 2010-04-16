@@ -26,25 +26,27 @@
                 <div class="success"></div>
                 <div class="ajaxloader-mask"></div>
                 <div class="ajaxloader"></div>
-                <p>
+                <div class="span-6">
                     <label class="label-contact">*Nombre</label><br />
                     <input type="text" name="txtName" class="input-contact validate" />
-                </p>
-                <p>
+                </div>
+                <div class="clear span-6">
                     <label class="label-contact">*E-mail</label><br />
                     <input type="text" name="txtEmail" class="input-contact validate" />
-                </p>
-                <p>
+                </div>
+                <div class="clear span-6">
                     <label class="label-contact">N&uacute;mero de Contacto</label><br />
                     <input type="text" name="txtPhone" class="input-contact" />
-                </p>
-                <p>
+                </div>
+                <div class="clear span-6">
                     <label class="label-contact">*Consulta</label>
                     <textarea class="textarea-contact validate" name="txtConsult" cols="10" rows="3"></textarea>
-                </p>
-                <p class="text-center">
+                </div>
+                <!-- ======= END FORM ======= -->
+
+                <div class="clear span-6 text-center">
                     <button type="button" class="button-contact" onclick="MoreInfo.send_consult();">Enviar</button>
-                </p>
+                </div>
             </form>
             <script type="text/javascript">
             <!--
@@ -56,12 +58,12 @@
         <div class="slide prepend-top">
             <img src="images/icon_contact2.png" alt="" class="icon-mail" />
 
-            <p><img src="images/icon_address.png" alt="" /><span class="text-small"><?=$info['address'];?></span></p>
+            <div class="span-6"><img src="images/icon_address.png" alt="" /><span class="text-small"><?=$info['address'];?></span></div>
 
-            <?php if( !empty($info['website']) ){?><p><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>" target="_blank"><?=$info['website'];?></a></p><?php }?>
+            <?php if( !empty($info['website']) ){?><div class="clear span-6"><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>" target="_blank"><?=$info['website'];?></a></div><?php }?>
 
             <?php if( !empty($info['phone']) ){?>
-                <p>
+                <div class="clear span-6">
                     <img src="images/icon_phone.png" alt="" />
                     <span class="text-small">
                     <?php
@@ -69,9 +71,9 @@
                         echo $info['phone'];
                      ?>
                     </span>
-                </p>
+                </div>
             <?php }?>
-            <!--<p><img src="images/icon_map.png" alt="" /><a href="#">Ver mapa</a></p>-->
+            <!--<div class="clear span-6"><img src="images/icon_map.png" alt="" /><a href="#">Ver mapa</a></div>-->
         </div>
     </div>
 </div>

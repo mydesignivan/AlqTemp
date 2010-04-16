@@ -48,6 +48,7 @@ var ClassPopup = function(setting){
             firstLoad = false;
         }
 
+        //openPopup();
         _divPopup.show();
 
         if( setting.reload || firstLoad ) {
@@ -87,7 +88,7 @@ var ClassPopup = function(setting){
             _This.isLoad = false;
         };
 
-        if( setting.efectClose ) _divPopup.fadeOut(300, func);
+        if( setting.efectClose=='fade' ) _divPopup.fadeOut(300, func);
         else func();
     };
 
@@ -110,7 +111,8 @@ var ClassPopup = function(setting){
         selector_content   : '.jquery-popup-middle',
         reload             : true,     // Vuelve a mostrar el contenido
         bloqEsc            : false,    // Bloquea el boton escape
-        efectClose         : true,     // Efecto fade al cerrar popup
+        efectClose         : 'fade',   // Efecto fade al cerrar popup (fade)
+        efectOpen          : null,     // Efecto fade al cerrar popup (autoresize)
         maskBG_selector    : null,     // Mascara de fondo
         maskBG_opacity     : '0.5',
         onLoad             : null,
@@ -120,6 +122,10 @@ var ClassPopup = function(setting){
     var _This=this;
     var _divPopup = false;
     var _maskBG = false;
+
+    var openPopup = function(){
+
+    };
 
     /* CONSTRUCTOR
      **********************************************************************/

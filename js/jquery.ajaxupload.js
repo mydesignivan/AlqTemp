@@ -122,23 +122,11 @@ var ClassAjaxUpload=function(options){
         return iframe;
     };
 
-    var prueba = function(){
-        if( this.src!="about:blank" ){
-            //var content = this.contentDocument ? this.contentDocument : frames[this.id].document;
-            var el = document.getElementById('ajaxuploadiframe');
-            var content=(el.contentWindow || el.contentDocument);
-            alert(content.document.body.innerHTML);
-        }
-
-        this.src = "about:blank";
-        $(this).unbind("load", prueba);
-        working=false;
-        return false;
-    };
-
     var eventLoadIframe = function(e){
-        if( this.src!="about:blank" ){
-            var content = this.contentDocument ? this.contentDocument : frames[this.id].document;
+        var content = this.contentDocument || this.contentWindow.document;
+            content = content.body.innerHTML;
+
+        if( content!="" ){
             var input = false;
 
             if( options.autoSubmit ) {
@@ -155,15 +143,10 @@ var ClassAjaxUpload=function(options){
             }
 
             if( typeof options.onComplete=="function" ){
-                //alert($('#'+this.id)[0].document.body.innerHTML);
-                options.onComplete(content.body.innerHTML, input);
+                options.onComplete(content, input);
             }
-
         }
 
-        this.src = "about:blank";
-
-        $(this).unbind("load", eventLoadIframe);
         working=false;
         return false;
     };

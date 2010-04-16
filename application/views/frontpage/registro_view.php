@@ -12,35 +12,35 @@
         <form id="formAccount" class="prepend-left-small" action="<?=site_url('/registro/create/');?>" method="post" enctype="application/x-www-form-urlencoded">
             <?php require(APPPATH . 'views/includes/popup_inc.php');?>
 
-            <p class="span-10">
+            <div class="span-10">
                 <label class="label-form float-left">*Nombre:</label>
                 <input type="text" name="txtFirstName" class="input-form float-right validate" tabindex="3" />
-            </p>
-            <p class="span-10 clear">
+            </div>
+            <div class="span-10 clear">
                 <label class="label-form float-left">*Apellido:</label>
                 <input type="text" name="txtLastName" class="input-form float-right validate" tabindex="4" />
-            </p>
-            <p class="span-10 clear">
+            </div>
+            <div class="span-10 clear">
                 <label class="label-form float-left">*Email:</label>
                 <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="5" />
-            </p>
-            <p class="span-10 clear">
+            </div>
+            <div class="span-10 clear">
                 <label class="label-form float-left">Tel&eacute;fono:</label>
                 <input type="text" name="txtPhone" class="input-phone float-right" tabindex="7" />
                 <input type="text" name="txtPhoneArea" class="input-phonearea float-right" tabindex="6" />
-            </p>
-            <p class="span-10 clear">
+            </div>
+            <div class="span-10 clear">
                 <label class="label-form float-left">*Usuario:</label>
                 <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" />
-            </p>
-            <p class="span-10 clear">
+            </div>
+            <div class="span-10 clear">
                 <label class="label-form float-left">*Password:</label>
                 <input type="password" name="txtPass" class="input-form float-right validate" tabindex="9" />
-            </p>
-            <p class="span-10 clear">
+            </div>
+            <div class="span-10 clear">
                 <label class="label-form float-left">*Repetir Contrase&ntilde;a:</label>
                 <input type="password" name="txtPass2" class="input-form float-right validate" tabindex="10" />
-            </p>
+            </div>
 
             <div class="span-10 clear prepend-top">
                 <div class="float-right">
@@ -57,10 +57,11 @@
                 </div>
                 <img id="imgCaptcha" src="<?=site_url('/captcha/index/'.md5(time()));?>" align="left" width="180" height="65" alt="" class="img-captcha float-right" />
             </div>
-            <p class="span-10 clear">
+            <div class="span-10 clear">
                 <label class="label-form float-left">*Ingrese C&oacute;digo:</label>
                 <input type="text" name="txtCaptcha" maxlength="6" class="input-captcha validate" tabindex="11" />
-            </p>
+            </div>
+            <!-- ======= END FORM ======= -->
 
             <div class="clear span-15 text-center prepend-top">
                 <button type="button" class="button-large" onclick="Account.save();">Registrarme</button>

@@ -18,10 +18,10 @@
             <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                 <?php require(APPPATH . 'views/includes/popup_inc.php');?>
                 
-                <p class="span-10">
+                <div class="span-10">
                     <label class="label-form float-left">*Direcci&oacute;n:</label>
                     <input type="text" name="txtAddress" id="txtAddress" class="input-form float-right validate" tabindex="1" value="<?=@$info['address'];?>" onblur="$(this).ucTitle();" />
-                </p>
+                </div>
                 <?php
                     $html = '
                     <div class="span-16">
@@ -55,7 +55,7 @@
                     }
                ?>
 
-                <div class="clear span-10 append-bottom prepend-top">
+                <div class="clear span-10 prepend-top">
                     <div class="float-right">
                         <div id="msgbox_images" class="clear"></div>
                         <a href="#" class="link-attachments" onclick="Prop.append_row_file(this); return false;" tabindex="2">Adjuntar otro archivo</a>
@@ -68,10 +68,10 @@
                     <textarea name="txtDesc" id="txtDesc" class="textarea-form-large float-right validate" cols="22" rows="5" tabindex="3"><?=@$info['description'];?></textarea>
                     <div class="clear float-right text-small" id="jq-charcounter">Te quedan <b>&nbsp;</b> caracteres</div>
                 </div>
-                <p class="clear span-10">
+                <div class="clear span-10">
                     <label class="label-form float-left">*Categor&iacute;a:</label>
                     <?=form_dropdown('cboCategory', $comboCategory, @$info["category_id"], 'class="select-form float-right validate" id="cboCategory" tabindex="4"');?>
-                </p>
+                </div>
 
                 <div class="clear span-10 prepend-top-small">
                     <label class="label-form float-left">*Servicios:</label>
@@ -110,19 +110,28 @@
                     <label class="label-form float-left">*Ciudad:</label>
                     <input type="text" name="txtCity" id="txtCity" class="input-form float-right validate" onblur="$(this).ucFirst();" value="<?=@$info['city'];?>" tabindex="7" />
                 </div>
-                <p class="clear span-10">
+                <div class="clear span-10">
                     <label class="label-form float-left">Telefono:</label>
                     <input type="text" name="txtPhone" class="input-phone float-right" value="<?=@$info['phone'];?>" tabindex="9" />
                     <input type="text" name="txtPhoneArea" class="input-phonearea float-right" value="<?=@$info['phone_area'];?>" tabindex="8" />
-                </p>
-                <p class="clear span-10">
+                </div>
+                <div class="clear span-10">
                     <label class="label-form float-left">P&aacute;gina Web:</label>
                     <input type="text" name="txtWebsite" class="input-form float-right" onblur="$(this).formatURL();" value="<?=(@$info['website']==FALSE || @$info['website']=='') ? "http://" : @$info['website'];?>" tabindex="10" />
-                </p>
-                <p class="clear span-10">
+                </div>
+                <div class="clear span-10">
                     <label class="label-form float-left">Precio:</label>
                     <input type="text" name="txtPrice" class="input-form float-right" value="<?=@$info['price'];?>" tabindex="11" />
-                </p>
+                </div>
+
+                <?php if( $cuenta_plus ){?>
+                <!--<div class="clear span-10">
+                    <label class="label-form float-left">Google Map:</label>
+                    <div id="map" class="float-right"></div>
+                </div>-->
+                <?php }?>
+
+                <!-- ============== END FORM =============== -->
 
                 <div class="span-10 clear"><label class="label-legend">(*) Campo obligatorios</label></div>
 

@@ -59,6 +59,8 @@ class Propiedades extends Controller {
         }else{
             $comboStates = $this->lists_model->get_states($info['country_id'], array("0"=>"Seleccione una Provincia"));
         }
+        
+        $check_cp = $this->cuentaplus_model->check();
 
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneluser/prop_form_view.php',
@@ -69,7 +71,8 @@ class Propiedades extends Controller {
             'comboStates'       =>  $comboStates,
             'listServices'      =>  $this->lists_model->get_services(),
             'action'            =>  $action,
-            'info'              =>  $info
+            'info'              =>  $info,
+            'cuenta_plus'       =>  $check_cp['result']
         ));
         $this->load->view('template_paneluser_view', $this->_data);
     }
@@ -130,9 +133,6 @@ class Propiedades extends Controller {
 
     /* AJAX FUNCTIONS
      **************************************************************************/
-    public function ajax_prueba(){
-        print_array(json_decode($_POST['data']));
-    }
     public function ajax_check(){
         if( $this->prop_model->exists($_POST['address'], $_POST['propid']) ){
             die("exists");

@@ -12,7 +12,7 @@ class Usuarios extends Controller {
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneladmin/users_list_view.php',
             'tlp_title_section' =>  'Usuarios',
-            'tlp_script'        =>  'users'
+            'tlp_script'        =>  array('popup', 'users')
         ));
         $this->_data = $this->dataview->get_data();
         $this->_count_per_page=14;
@@ -45,6 +45,11 @@ class Usuarios extends Controller {
             }
         }
     }
+
+    public function view_details(){
+        
+    }
+
 
     /* AJAX FUNCTIONS
      **************************************************************************/
