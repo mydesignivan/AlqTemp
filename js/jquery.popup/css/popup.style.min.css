@@ -1,0 +1,22 @@
+/*
+ * Script: Popup
+ * Autor: Ivan Mattoni
+ * Empresa: MyDesign
+ * Año: 2010
+ */
+
+.jquery-popup-mask{background-color:#fff;z-index:1000;display:none;width:100%!important;height:100%!important}
+.jquery-popup{position:fixed;width:260px;height:inherit;z-index:2000;display:none}
+.jquery-popup .jquery-popup-top{float:left;background:url(../img/popup_top.png) no-repeat top left;width:260px;height:11px}
+.jquery-popup .jquery-popup-middle{float:left;clear:left;background:url(../img/popup_middle.png) repeat-y left;width:260px;height:inherit;text-align:center;font-size:90%;padding:10px 0}
+.jquery-popup .jquery-popup-bottom{float:left;clear:left;background:url(../img/popup_bottom.png) no-repeat top left;width:260px;height:11px}
+.jquery-popup2{position:fixed;width:100px;height:60px;z-index:2000;display:none;border:1px solid red}
+.jquery-popup2 .jquery-popup-top{background:#fff;position:relative;float:left;width:100%;height:20px;top:-20px}
+.jquery-popup2 .jquery-popup-middle{background:#fff;position:relative;float:left;clear:left;width:100%;height:100%;top:-20px;margin:0;padding:0}
+.jquery-popup2 .jquery-popup-middle .jquery-popup-b1{background:#fff;position:relative;float:left;width:20px;height:100%;left:-20px;border:1px solid blue}
+.jquery-popup2 .jquery-popup-middle .jquery-popup-b2{background:#fff;position:absolute;float:left;width:100%;height:100%;left:0;top:0;overflow:hidden;border:1px solid blue}
+.jquery-popup2 .jquery-popup-middle .jquery-popup-b3{background:#fff;position:relative;float:right;width:20px;height:100%;right:-20px;border:1px solid blue}
+.jquery-popup2 .jquery-popup-bottom{background:#fff;position:relative;float:left;clear:left;width:100%;height:20px;top:-20px}
+.jquery-popup2 .jquery-popup-top .jquery-popup-b1,.jquery-popup2 .jquery-popup-bottom .jquery-popup-b1{background:#fff;position:relative;float:left;width:20px;height:20px;left:-20px;border:1px solid blue}
+.jquery-popup2 .jquery-popup-top .jquery-popup-b2,.jquery-popup2 .jquery-popup-bottom .jquery-popup-b2{background:#fff;position:absolute;float:left;width:100%;height:20px;top:0;left:0;border:1px solid blue}
+.jquery-popup2 .jquery-popup-top .jquery-popup-b3,.jquery-popup2 .jquery-popup-bottom .jquery-popup-b3{background:#fff;position:relative;float:right;width:20px;height:20px;right:-20px;border:1px solid blue}

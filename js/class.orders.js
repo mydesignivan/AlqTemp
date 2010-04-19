@@ -9,6 +9,7 @@ var Orders = new (function(){
      **************************************************************************/
     this.initializer = function(){
         This.events.change_search($('#cboSearchBy').val(), true);
+        popup.initializer();
     };
 
     this.action={
@@ -95,6 +96,23 @@ var Orders = new (function(){
         });
 
         return false;
+    };
+
+    this.open_popup = function(user_id){
+        popup.load({
+            ajaxUrl  : baseURI+'paneladmin/pedidos/ajax_view_details/',
+            ajaxData : 'user_id='+user_id
+        }, {
+            selector_content : '.jquery-popup-middle .jquery-popup-b2',
+            effectOpen       : 'autoresize',
+            effectClose      : 'autoresize',
+            effectOptions    : {
+                width   :   '385px',
+                height  :   '230px'
+            },
+            defaultContent   : '<div class="text-center"><img src="images/ajax-loader4.gif" alt="" /></div>'
+        });
+
     };
 
 

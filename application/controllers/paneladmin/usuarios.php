@@ -46,16 +46,21 @@ class Usuarios extends Controller {
         }
     }
 
-    public function view_details(){
-        
-    }
-
 
     /* AJAX FUNCTIONS
      **************************************************************************/
     public function ajax_change_statu(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             if( $this->users_model->change_statu() ) die("ok");
+        }
+    }
+    public function ajax_view_details(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $this->load->library('encpss');
+            $info = $this->users_model->get_user(array('user_id'=>$_POST['user_id']));
+            $info['password'] = $this->encpss->decode($info['password']);
+
+            $this->load->view("paneladmin/users_detalle_view", array('info'=>$info));
         }
     }
 

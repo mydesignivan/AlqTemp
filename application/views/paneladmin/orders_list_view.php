@@ -29,6 +29,8 @@
         <?php }?>
 
 <?php if( $listOrders->num_rows>0 ){?>
+        <?php require(APPPATH . 'views/includes/popup2_inc.php');?>
+            
         <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">
             <thead>
                 <tr class="tbl-orders">
@@ -50,7 +52,7 @@
                 <tr class="<?=$class;?>">
                     <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row["order_id"];?>" /></td>
                     <td class="cell-2"><?=$row['order_id'];?></td>
-                    <td class="cell-3"><a href="" class="link-title" target="_blank"><?=$row['username'];?></a></td>
+                    <td class="cell-3"><a href="javascript:void(Orders.open_popup(<?=$row['user_id'];?>))" class="link-title"><?=$row['username'];?></a></td>
                     <td class="cell-4"><?=$row['importe'];?></td>
                     <td class="cell-5"><?=$row['status'];?></td>
                     <td class="cell-6"><?=$row['date'];?></td>

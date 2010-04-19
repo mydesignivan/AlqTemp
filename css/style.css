@@ -53,11 +53,28 @@ strong{color:#FC7F07;}
     margin-bottom: 5px;
     /*border:1px solid red;*/
 }
+.column-label{
+    float:left;
+    width: 80px;
+    padding:5px;
+    background-color: #FDFDF5;
+}
+.column-data{
+    float:left;
+    width: 280px;
+    padding:5px;
+    background-color: #FAF8E9;
+    color:#000;
+    font-size: 80%;
+    /*border:1px #FAD4A3 solid;*/
+}
+
 .img-captcha{
     border:1px solid #000 !important;
     margin-right: 18px;
     margin-bottom: 5px;
 }
+
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LINK

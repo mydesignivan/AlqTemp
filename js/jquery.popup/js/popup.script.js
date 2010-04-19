@@ -22,24 +22,25 @@ var ClassPopup = function(setting){
             'width'    : "100%",
             'height'   : "100%"
         });
+        _divPopup = $(SETTING.selector);
+        _data.width = _divPopup.css('width');
+        _data.height = _divPopup.css('height');
     };
 
     this.load = function(_param, _setting){
         var param = {
             ajaxUrl  : '',
+            ajaxData : {},
             html     : ''
         };
-        var setting = SETTING;
 
-        if( typeof _setting=="object" ) setting = $.extend({}, SETTING, {}, _setting);
-
+        if( typeof _setting=="object" ) SETTING = $.extend({}, SETTING, {}, _setting);
         param = $.extend({}, param, {}, _param);
-        _divPopup = $(setting.selector);
 
-        if( setting.maskBG_selector!=null ) _maskBG.show();
-        if( typeof setting.onLoad=="function" ) setting.onLoad();
+        if( SETTING.maskBG_selector!=null ) _maskBG.show();
+        if( typeof SETTING.onLoad=="function" ) SETTING.onLoad();
 
-        var content = _divPopup.find(setting.selector_content);
+        var content = _divPopup.find(SETTING.selector_content);
         var firstLoad = true;
 
         if( !$.data(_divPopup[0], 'jquery_popup') ) {
@@ -48,48 +49,76 @@ var ClassPopup = function(setting){
             firstLoad = false;
         }
 
-        //openPopup();
+        if( !SETTING.bloqEsc ){
+            $(document.body).keyup(function(e){
+                if( e.keyCode==27 ) _This.close(SETTING);
+            });
+        }
+        $(window).bind('resize', _This.center);
+
         _divPopup.show();
 
-        if( setting.reload || firstLoad ) {
-            if( param.ajaxUrl!='' ) content.html(setting.contentDefault);
+        if( SETTING.reload || firstLoad ) {
+            if( param.ajaxUrl!='' ) content.html(SETTING.contentDefault);
             else{
-                if( param.html!='') content.html(param.html);
+                content.html(param.html);
+                if( SETTING.effectOpen=='autoresize' ) content.hide();
             }
             _This.center();
         }
 
-        if( !setting.bloqEsc ){
-            $(document.body).keyup(function(e){
-                if( e.keyCode==27 ) _This.close(setting);
-            });
-        }
-        $(window).resize(function() {
-            _This.center();
-        });
 
-        if( param.ajaxUrl!='' && (setting.reload || firstLoad) ) {
-            $.get(param.ajaxUrl, '', function(data){
+        if( param.ajaxUrl!='' && (SETTING.reload || firstLoad) ) {
+            $.post(param.ajaxUrl, param.ajaxData, function(data){
+                if( SETTING.effectOpen=='autoresize' ) content.hide();
                 content.html(data);
+                if( SETTING.effectOpen=='autoresize' ) openPopup();
             });
         }
         _This.isLoad = true;
     };
 
     this.close = function(_setting){
-        var setting = SETTING;
-        if( typeof _setting=="object" ) setting = $.extend({}, SETTING, {}, _setting);
+        if( typeof _setting=="object" ) SETTING = $.extend({}, SETTING, {}, _setting);
 
         var func = function(){
-            if( typeof setting.onClose=="function" ) setting.onClose();
+            if( typeof SETTING.onClose=="function" ) SETTING.onClose();
             $(document.body).unbind('keypress');
             $(window).unbind('resize');
             _maskBG.hide();
+            _divPopup.hide();
             _This.isLoad = false;
+
+            if( SETTING.effectOpen=='autoresize' ){                
+                _divPopup.css({
+                    width  : _data.width,
+                    height : _data.height
+                });
+            }
         };
 
-        if( setting.efectClose=='fade' ) _divPopup.fadeOut(300, func);
-        else func();
+        switch( SETTING.effectClose ){
+            default:
+                func();
+            break;
+            case 'fade':
+                _divPopup.fadeOut(300, func);
+            break;
+            case 'autoresize':
+                var left = (($(window).width()/2) - (parseInt(_data.width)/2))+"px";
+                var top = (($(window).height()/2) - (parseInt(_data.height)/2))+"px";
+                
+                _divPopup.find(SETTING.selector_content).hide();
+                _divPopup.animate({
+                    top     : top,
+                    left    : left,
+                    width   : _data.width,
+                    height  : _data.height                    
+                }, 300, function(){
+                    func();
+                });
+            break;
+        }
     };
 
     this.center = function(){
@@ -111,8 +140,9 @@ var ClassPopup = function(setting){
         selector_content   : '.jquery-popup-middle',
         reload             : true,     // Vuelve a mostrar el contenido
         bloqEsc            : false,    // Bloquea el boton escape
-        efectClose         : 'fade',   // Efecto fade al cerrar popup (fade)
-        efectOpen          : null,     // Efecto fade al cerrar popup (autoresize)
+        effectClose        : 'fade',   // Efecto fade al cerrar popup (fade)
+        effectOpen         : null,     // Efecto fade al cerrar popup (autoresize)
+        effectOptions      : {},       // Opciones para los efectos
         maskBG_selector    : null,     // Mascara de fondo
         maskBG_opacity     : '0.5',
         onLoad             : null,
@@ -122,9 +152,31 @@ var ClassPopup = function(setting){
     var _This=this;
     var _divPopup = false;
     var _maskBG = false;
+    var _data = {};
 
     var openPopup = function(){
+        switch( SETTING.effectOpen ){
+            case 'autoresize':
+                var opt ={
+                    width  : '250px',
+                    height : '250px'
+                };
+                opt = $.extend({}, opt, {}, SETTING.effectOptions);
 
+                var left = (($(window).width()/2) - parseInt(opt.width)/2)+"px";
+                var top = (($(window).height()/2) - parseInt(opt.height)/2)+"px";
+                var content = _divPopup.find(SETTING.selector_content);
+
+                _divPopup.animate({
+                    top     : top,
+                    left    : left,
+                    width   : opt.width,
+                    height  : opt.height
+                }, 500, function(){
+                    content.fadeIn('slow');
+                });
+            break;
+        }
     };
 
     /* CONSTRUCTOR

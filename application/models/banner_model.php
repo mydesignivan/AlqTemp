@@ -108,10 +108,19 @@ class Banner_model extends Model {
     }
 
     public function change_order(){
-        $this->db->where('banner_id', $_POST['id']);
-        if( !$this->db->update(TBL_BANNER, array('visible'=>$_POST['statu'])) ){
-            display_error(__FILE__, "change_visible", ERR_DB_UPDATE, array(TBL_BANNER));
+        $order1 = $this->db->get_where(TBL_BANNER, array('banner_id'=>$_POST['id2']))->row_array();
+        $order2 = $this->db->get_where(TBL_BANNER, array('banner_id'=>$_POST['id1']))->row_array();
+
+        /*echo 'UPDATE '.TBL_BANNER.' SET `order`='.$order1['order'].' WHERE banner_id='.$_POST['id1']."<br>";
+        echo 'UPDATE '.TBL_BANNER.' SET `order`='.$order2['order'].' WHERE banner_id='.$_POST['id2'];*/
+        //die();
+        if( !$this->db->query('UPDATE '.TBL_BANNER.' SET `order`='.$order1['order'].' WHERE banner_id='.$_POST['id1']) ){
+            display_error(__FILE__, "change_order", ERR_DB_UPDATE, array(TBL_BANNER));
         }
+        if( !$this->db->query('UPDATE '.TBL_BANNER.' SET `order`='.$order2['order'].' WHERE banner_id='.$_POST['id2']) ){
+            display_error(__FILE__, "change_order", ERR_DB_UPDATE, array(TBL_BANNER));
+        }
+
         return true;
     }
 

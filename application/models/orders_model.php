@@ -36,6 +36,7 @@ class Orders_model extends Model {
 
         $sql = TBL_ORDERS.".order_id,";
         $sql.= TBL_ORDERS.".importe,";
+        $sql.= TBL_USERS.".user_id,";
         $sql.= TBL_USERS.".username,";
         $sql.= "date_format(".TBL_ORDERS.".`date`, '%d-%m-%Y %H:%i:%s') as `date`,";
         $sql.= "CASE WHEN ".TBL_ORDERS.".status=1 THEN 'Pendiente' ELSE 'Confirmado' END as status";

@@ -12,18 +12,20 @@ var Banner = new (function(){
 
         $("#tblList").tableDnD({
             onDragStart : function(table, row){
-                $(this).data('tableDnD-data', parseInt(row.id.substr(2)));
+
             },
             onDrop : function(table, row){
-                var index = $(this).data('tableDnD-data');
+                alert(row.rowIndex);
+                /*var row2 = $(row).prev()[0];
+                if( row2==null ) row2 = $(row).next()[0];
+
+
 
                 var id1 = $(row.cells[0]).find('input').val();
-                var id2 = $(table.rows[index]).find('td:first').find('input').val();
+                var id2 = $(row2.cells[0]).find('input').val();
 
-                document.title = id1 + " / " + id2;
-
-                /*$.post(baseURI+'paneladmin/banner/ajax_change_order', {id1:id1, id2:id2}, function(data){
-                    
+                $.post(baseURI+'paneladmin/banner/ajax_change_order', {id1:id1, id2:id2}, function(data){
+                    if( data!='ok' ) alert('ERROR:\n'+data);
                 });*/
             }
         });

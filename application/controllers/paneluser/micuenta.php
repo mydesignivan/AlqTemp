@@ -29,7 +29,7 @@ class Micuenta extends Controller{
      **************************************************************************/
     public function index(){
         $this->_data = $this->dataview->set_data(array(
-            'info'  =>  $this->users_model->get_user($this->session->userdata('user_id'))
+            'info'  =>  $this->users_model->get_user(array('user_id'=>$this->session->userdata('user_id'), 'active'=>1))
         ));
         $this->load->view('template_paneluser_view', $this->_data);
     }

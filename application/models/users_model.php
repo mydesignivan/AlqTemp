@@ -97,8 +97,8 @@ class Users_model extends Model {
         return "ok";
     }
 
-    public function get_user($user_id) {
-        $data = $this->db->get_where(TBL_USERS, array('user_id'=>$user_id, 'active'=>1))->row_array();
+    public function get_user($where) {
+        $data = $this->db->get_where(TBL_USERS, $where)->row_array();
         return $data;
     }
 

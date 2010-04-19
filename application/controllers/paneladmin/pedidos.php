@@ -12,7 +12,7 @@ class Pedidos extends Controller {
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneladmin/orders_list_view.php',
             'tlp_title_section' =>  'Pedidos',
-            'tlp_script'        =>  'orders'
+            'tlp_script'        =>  array('popup', 'orders')
         ));
         $this->_data = $this->dataview->get_data();
         $this->_count_per_page=14;
@@ -46,8 +46,20 @@ class Pedidos extends Controller {
         }
     }
 
+
     /* AJAX FUNCTIONS
      **************************************************************************/
+    public function ajax_view_details(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $this->load->library('encpss');
+            $this->load->model('users_model');
+            
+            $info = $this->users_model->get_user(array('user_id'=>$_POST['user_id']));
+            $info['password'] = $this->encpss->decode($info['password']);
+
+            $this->load->view("paneladmin/users_detalle_view", array('info'=>$info));
+        }
+    }
 
 
     /* PRIVATE FUNCTIONS
