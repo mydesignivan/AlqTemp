@@ -10,12 +10,18 @@ var Banner = new (function(){
     this.initializer = function(){
         This.events.change_search($('#cboSearchBy').val(), true);
 
+        var index_start=0;
+
         $("#tblList").tableDnD({
             onDragStart : function(table, row){
-
+                index_start=row.rowIndex;
             },
             onDrop : function(table, row){
-                alert(row.rowIndex);
+                /*for( var n=index_start; n<=row.rowIndex; n++ ){
+                    alert(table.rows[n].cells[1].innerHTML);
+                }*/
+
+
                 /*var row2 = $(row).prev()[0];
                 if( row2==null ) row2 = $(row).next()[0];
 
@@ -29,6 +35,8 @@ var Banner = new (function(){
                 });*/
             }
         });
+
+        popup.initializer();
     };
 
     this.action={
@@ -110,6 +118,40 @@ var Banner = new (function(){
             working = false;
         });
 
+        return false;
+    };
+
+    this.open_popup = function(banner_id){
+        if( working ) return false;
+        working=true;
+        
+        $('#jquery-popup').css({
+            display : 'block',
+            visibility : 'hidden'
+        });
+        $('#ifrPreview').attr('src', baseURI+'paneladmin/banner/ajax_view_banner/'+banner_id)
+                        .load(function(){
+                            var content = this.contentDocument || this.contentWindow.document;
+                            var div = $(content.getElementById('banner_preview'));
+                            var w = div.width()+20;
+                            var h = div.height()+20;
+
+                            $(this).attr({
+                                'width'  : w,
+                                'height' : h
+                            });
+                            $('#jquery-popup').css({
+                                display : 'none',
+                                visibility : 'visible',
+                                width  : w+"px",
+                                height : (h+35)+"px"
+                            });
+
+                            popup.load({}, {
+                                selector_content : '.jquery-popup-middle .jquery-popup-b2'
+                            });
+                            working=false;
+                        });
         return false;
     };
 

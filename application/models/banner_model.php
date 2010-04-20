@@ -123,7 +123,6 @@ class Banner_model extends Model {
 
         return true;
     }
-
-
+    
 }
 ?>

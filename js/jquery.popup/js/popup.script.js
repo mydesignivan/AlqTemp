@@ -13,7 +13,7 @@ var ClassPopup = function(setting){
 
     /* PUBLIC METHODS
      *************************************************************************/
-    this.initializer = function(){
+    this.initializer = function(){        
         _maskBG = $(SETTING.maskBG_selector).css({
             'position' : 'fixed',
             'opacity'  : SETTING.maskBG_opacity,
@@ -22,9 +22,6 @@ var ClassPopup = function(setting){
             'width'    : "100%",
             'height'   : "100%"
         });
-        _divPopup = $(SETTING.selector);
-        _data.width = _divPopup.css('width');
-        _data.height = _divPopup.css('height');
     };
 
     this.load = function(_param, _setting){
@@ -37,8 +34,11 @@ var ClassPopup = function(setting){
         if( typeof _setting=="object" ) SETTING = $.extend({}, SETTING, {}, _setting);
         param = $.extend({}, param, {}, _param);
 
+        _divPopup = $(SETTING.selector);
+        if( _data.width==0 ) _data.width = _divPopup.css('width');
+        if( _data.height==0 ) _data.height = _divPopup.css('height');
+        
         if( SETTING.maskBG_selector!=null ) _maskBG.show();
-        if( typeof SETTING.onLoad=="function" ) SETTING.onLoad();
 
         var content = _divPopup.find(SETTING.selector_content);
         var firstLoad = true;
@@ -50,10 +50,8 @@ var ClassPopup = function(setting){
         }
 
         if( !SETTING.bloqEsc ){
-            $(document.body).keyup(function(e){
-                if( e.keyCode==27 ) _This.close(SETTING);
-            });
-        }
+            $(document.body).bind('keyup', bloq_esc);
+        }else $(document.body).unbind('keyup', bloq_esc);
         $(window).bind('resize', _This.center);
 
         _divPopup.show();
@@ -61,8 +59,8 @@ var ClassPopup = function(setting){
         if( SETTING.reload || firstLoad ) {
             if( param.ajaxUrl!='' ) content.html(SETTING.contentDefault);
             else{
-                content.html(param.html);
-                if( SETTING.effectOpen=='autoresize' ) content.hide();
+                if( param.html!='' ) content.html(param.html);
+                func_comun1(content);
             }
             _This.center();
         }
@@ -70,9 +68,8 @@ var ClassPopup = function(setting){
 
         if( param.ajaxUrl!='' && (SETTING.reload || firstLoad) ) {
             $.post(param.ajaxUrl, param.ajaxData, function(data){
-                if( SETTING.effectOpen=='autoresize' ) content.hide();
                 content.html(data);
-                if( SETTING.effectOpen=='autoresize' ) openPopup();
+                func_comun1(content);
             });
         }
         _This.isLoad = true;
@@ -82,7 +79,6 @@ var ClassPopup = function(setting){
         if( typeof _setting=="object" ) SETTING = $.extend({}, SETTING, {}, _setting);
 
         var func = function(){
-            if( typeof SETTING.onClose=="function" ) SETTING.onClose();
             $(document.body).unbind('keypress');
             $(window).unbind('resize');
             _maskBG.hide();
@@ -91,10 +87,12 @@ var ClassPopup = function(setting){
 
             if( SETTING.effectOpen=='autoresize' ){                
                 _divPopup.css({
-                    width  : _data.width,
-                    height : _data.height
+                    width   : _data.width,
+                    height  : _data.height,
+                    opacity : 1
                 });
             }
+            if( typeof SETTING.onClose=="function" ) SETTING.onClose();
         };
 
         switch( SETTING.effectClose ){
@@ -113,7 +111,8 @@ var ClassPopup = function(setting){
                     top     : top,
                     left    : left,
                     width   : _data.width,
-                    height  : _data.height                    
+                    height  : _data.height,
+                    opacity : 0
                 }, 300, function(){
                     func();
                 });
@@ -147,12 +146,29 @@ var ClassPopup = function(setting){
         maskBG_opacity     : '0.5',
         onLoad             : null,
         onClose            : null,
-        defaultContent     : ''
+        contentDefault     : ''
     };
     var _This=this;
     var _divPopup = false;
     var _maskBG = false;
-    var _data = {};
+    var _data = {
+        width : 0,
+        height : 0
+    };
+
+
+    /* PRIVATE METHODS
+     **********************************************************************/
+    var bloq_esc = function(e){
+        if( e.keyCode==27 ) _This.close(SETTING);
+    };
+
+    var func_comun1 = function(content){
+        if( SETTING.effectOpen=='autoresize' ) {
+            content.hide();
+            openPopup();
+        }else {if( typeof SETTING.onLoad=="function" ) SETTING.onLoad();}
+    };
 
     var openPopup = function(){
         switch( SETTING.effectOpen ){
@@ -174,6 +190,7 @@ var ClassPopup = function(setting){
                     height  : opt.height
                 }, 500, function(){
                     content.fadeIn('slow');
+                    if( typeof SETTING.onLoad=="function" ) SETTING.onLoad();
                 });
             break;
         }

@@ -29,21 +29,21 @@ var Account = new (function(){
                 v_required  : true,
                 v_user      : [5,10]
             });
-            $(f.txtPass).validator({
+            /*$(f.txtPass).validator({
                 v_required  : !mode_edit,
                 v_password  : [8,10]
-            });
-            $(f.txtPass2).validator({
+            });*/
+            /*$(f.txtPass2).validator({
                 v_required  : !mode_edit,
                 v_compare   : $(f.txtPass)
-            });
+            });*/
             if( f.txtCaptcha ){
                 $(f.txtCaptcha).validator({
                     v_required  : true
                 });
             }
-            popup.initializer();
         }
+        popup.initializer();
     };
 
     this.save = function(){
@@ -91,6 +91,48 @@ var Account = new (function(){
         return false;
     };
 
+    this.open_popup = {
+        editpss : function(){
+            openPopup(baseURI+'paneluser/micuenta/ajax_popup_editpass/', '320px', '280px', function(){
+
+                $.validator.setting('#jquery-popup2 .jquery-popup-middle .jquery-popup-b2 .validate', {
+                    effect_show     : 'slidefade',
+                    validatorOne    : true
+                });
+                $('#txtPssCurrent, #txtPssNew').validator({
+                    v_required  : true,
+                    v_password  : [8,10]
+                });
+                $('#txtPssVeri').validator({
+                    v_required  : true,
+                    v_compare   : '#txtPssNew'
+                });
+            });
+        }
+    };
+
+    this.save_pass = function(){
+        ajaxloader2.show();
+
+        $.validator.validate('#jquery-popup2 .jquery-popup-middle .jquery-popup-b2 .validate', function(error){
+            if( !error ){
+                $.post(baseURI+'paneluser/micuenta/ajax_save_pass/', {
+                    pss_current: $('#txtPssCurrent').val(),
+                    pss_new : $('#txtPssNew').val()
+                }, function(data){
+                    if( data=="notexists" ){
+                        show_error('#txtPssCurrent', 'La contrase&ntilde;a ingresada es incorrecta.');
+                    }else if( data=="ok" ){
+                        popup.close();
+                    }else{
+                        alert("ERROR\n"+data);
+                    }
+                    if( data!="ok" ) ajaxloader2.hidden();
+                });
+            }else ajaxloader2.hidden();
+        });
+    };
+
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
@@ -119,6 +161,34 @@ var Account = new (function(){
             popup.close();
             working=false;
         }
+    };
+
+    var ajaxloader2 = {
+        show : function(){
+            $('#ajaxloader1').show();
+            $('#maskEditPss').css('opacity', 0.5);
+        },
+        hidden : function(){
+            $('#ajaxloader1').hide();
+            $('#maskEditPss').css('opacity', 1);
+        }
+    };
+
+    var openPopup = function(url, width, height, onLoad){
+        popup.load({
+            ajaxUrl  : url
+        }, {
+            selector         : '#jquery-popup2',
+            selector_content : '.jquery-popup-middle .jquery-popup-b2',
+            effectOpen       : 'autoresize',
+            effectClose      : 'autoresize',
+            effectOptions    : {
+                width   :   width,
+                height  :   height
+            },
+            contentDefault   : '<div class="text-center"><img src="images/ajax-loader4.gif" alt="" /></div>',
+            onLoad : onLoad
+        });
     }
 
 })();

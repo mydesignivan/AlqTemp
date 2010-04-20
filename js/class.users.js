@@ -111,7 +111,7 @@ var Users = new (function(){
                 width   :   '385px',
                 height  :   '230px'
             },
-            defaultContent   : '<div class="text-center"><img src="images/ajax-loader4.gif" alt="" /></div>'
+            contentDefault   : '<div class="text-center"><img src="images/ajax-loader4.gif" alt="" /></div>'
         });
         
     };

@@ -35,6 +35,8 @@
             <button type="button" class="float-right button-small" onclick="location.href='<?=site_url('/paneladmin/banner/form/');?>';">Nuevo</button>
 
 <?php if( $listBanner->num_rows>0 ){?>
+        <?php require(APPPATH . 'views/includes/popup3_inc.php');?>
+
         <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">
             <thead>
                 <tr class="tbl-banner">
@@ -56,7 +58,7 @@
                     <td class="cell-1"><input type="checkbox" name="checkbox" value="<?=$row["banner_id"];?>" /></td>
                     <td class="cell-2"><a href="<?=site_url('/paneladmin/banner/form/'.$row['banner_id']);?>" class="link-title"><?=$row['name'];?></a></td>
                     <td class="cell-3"><?=$row['position'];?></td>
-                    <td class="cell-4"><a href="javascript:void(Banner.preview(<?=$row['banner_id'];?>););" class="link1">Preview</a></td>
+                    <td class="cell-4"><a href="javascript:void(Banner.open_popup(<?=$row['banner_id'];?>));" class="link1">Preview</a></td>
                     <td class="cell-5"><a href="javascript:void(0);" class="link1" onclick="Banner.change_visible(this, <?=$row['banner_id'];?>);"><?=$row['visible'];?></a><img src="images/ajax-loader.gif" alt="" class="hide" /></td>
                 </tr>
         <?php }?>
@@ -64,6 +66,7 @@
         </table>
 
         <div class="text-center"><?=$this->pagination->create_links();?></div>
+                
 
 <?php }else{?>
 

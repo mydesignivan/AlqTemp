@@ -1,9 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <div class="span-10 prepend-left-small">
-    <form id="formAccount" action="<?=site_url('/paneluser/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
-        <?php require(APPPATH . 'views/includes/popup_inc.php');?>
+    <?php require(APPPATH . 'views/includes/popup4_inc.php');?>
 
+    <form id="formAccount" action="<?=site_url('/paneluser/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
         <div class="span-10">
             <label class="label-form float-left">*Nombre:</label>
             <input type="text" name="txtFirstName" class="input-form float-right validate" tabindex="3" value="<?=$info['firstname'];?>" />
@@ -23,15 +23,12 @@
         </div>
         <div class="span-10 clear">
             <label class="label-form float-left">*Usuario:</label>
-            <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" value="<?=$info['username'];?>" disabled />
+            <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" value="<?=$info['username'];?>" />
         </div>
-        <div class="span-10 clear">
-            <label class="label-form float-left">*Password:</label>
-            <input type="password" name="txtPass" class="input-form float-right validate" tabindex="9" disabled />
-        </div>
-        <div class="span-10 clear">
-            <label class="label-form float-left">*Repetir Contrase&ntilde;a:</label>
-            <input type="password" name="txtPass2" class="input-form float-right validate" tabindex="10" />
+        <div class="span-11 clear">
+            <label class="label-form float-left">*Contrase&ntilde;a:</label>
+            <a href="javascript:void(Account.open_popup.editpss())" class="link1 float-right">Modificar</a>
+            <input type="password" name="txtPass" class="input-form float-right" tabindex="9" value="XXXXXXXXXX" disabled />&nbsp;
         </div>
         <!-- ======= END FORM ======= -->
         

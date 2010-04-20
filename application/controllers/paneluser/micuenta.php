@@ -60,5 +60,18 @@ class Micuenta extends Controller{
         }
     }
 
+    /* AJAX FUNCTIONS
+     **************************************************************************/
+    public function ajax_popup_editpass(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $this->load->view('paneluser/account_editpass_view');
+        }
+    }
+    public function ajax_save_pass(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            echo $this->users_model->change_pass2($this->encpss->encode($_POST['pss_current']), $this->encpss->encode($_POST['pss_new']));
+        }
+    }
+
 }
 ?>

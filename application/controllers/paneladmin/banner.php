@@ -112,6 +112,14 @@ class Banner extends Controller {
         }
     }
 
+    public function ajax_view_banner(){
+        if( $this->uri->segment(4) ){
+            $result = $this->banner_model->get_banner($this->uri->segment(4));
+            $this->load->view("paneladmin/banner_preview_view", array('code'=>$result['code']));
+        }
+    }
+
+
 
 
 
@@ -135,7 +143,7 @@ class Banner extends Controller {
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneladmin/banner_list_view.php',
             'tlp_title_section' =>  'Banners',
-            'tlp_script'        =>  'banner_list',
+            'tlp_script'        =>  array('popup', 'banner_list'),
             'listBanner'        =>  $listBanner['result']
         ));
 

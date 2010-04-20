@@ -124,7 +124,7 @@
             width: 100%;
             height: 100%;
             left:0;top:0;
-            overflow: hidden;
+            /*overflow: hidden;*/
             border:1px solid blue;
         }
         .jquery-popup2 .jquery-popup-middle .jquery-popup-b3{

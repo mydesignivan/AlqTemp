@@ -917,6 +917,14 @@ ul.ul-list-cuentaplus{
 /*------------------------------------------------------------------------------
  - ESTILOS PARA AJAXLOADER
  -----------------------------------------------------------------------------*/
+.ajaxloader1{
+    position: absolute;
+    background: url(../images/ajax-loader5.gif) no-repeat center;
+    left:0;top:0;
+    width:100%;
+    height: 100%;
+    display: none;
+}
 .ajaxloader2{
     float:left;
     display: none;
