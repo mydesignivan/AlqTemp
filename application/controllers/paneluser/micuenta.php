@@ -44,7 +44,6 @@ class Micuenta extends Controller{
                 'phone'         => $_POST["txtPhone"],
                 'phone_area'    => $_POST["txtPhoneArea"],
                 'username'      => $_POST["txtUser"],
-                'password'      => $this->encpss->encode($_POST["txtPass"]),
                 'last_modified' => date('Y-m-d H:i:s')
             );
 
@@ -69,7 +68,7 @@ class Micuenta extends Controller{
     }
     public function ajax_save_pass(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            echo $this->users_model->change_pass2($this->encpss->encode($_POST['pss_current']), $this->encpss->encode($_POST['pss_new']));
+            echo $this->users_model->change_pass2($_POST['pss_current'], $_POST['pss_new']);
         }
     }
 

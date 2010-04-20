@@ -25,18 +25,21 @@
             <label class="label-form float-left">*Usuario:</label>
             <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" value="<?=$info['username'];?>" />
         </div>
-        <div class="span-11 clear">
-            <label class="label-form float-left">*Contrase&ntilde;a:</label>
-            <a href="javascript:void(Account.open_popup.editpss())" class="link1 float-right">Modificar</a>
-            <input type="password" name="txtPass" class="input-form float-right" tabindex="9" value="XXXXXXXXXX" disabled />&nbsp;
+        <div class="span-10 clear">
+            <label class="label-form float-left">Contrase&ntilde;a:</label>
+            <a href="javascript:void(Account.open_popup.editpss())" class="link2 float-right">&nbsp;Modificar</a>
+            <input type="password" name="txtPass" class="input-pss float-right" tabindex="9" value="XXXXXXXXXX" disabled />&nbsp;
         </div>
         <!-- ======= END FORM ======= -->
         
         <div class="clear span-15 text-center prepend-top">
-            <button type="button" class="button-large" onclick="Account.save();">Guardar</button>
+            <button type="button" class="button-large" onclick="Account.save();">Guardar</button>            
         </div>
 
-        <div class="span-10 clear"><label class="label-legend">(*) Campo obligatorios</label></div>
+        <div class="span-15 clear">
+            <label class="label-legend">(*) Campo obligatorios</label>
+            <a href="<?=site_url('/paneluser/micuenta/baja')?>" class="link2 float-right">Darse de baja</a>
+        </div>
 
         <input type="hidden" name="user_id" value="<?=$info['user_id'];?>" />
     </form>

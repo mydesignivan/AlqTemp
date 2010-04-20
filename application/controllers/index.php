@@ -23,7 +23,6 @@ class Index extends Controller {
         $this->_data = $this->dataview->get_data();
 
         $this->_count_per_page=10;
-        $this->_offset = !is_numeric($this->uri->segment($this->uri->total_segments())) ? 0 : $this->uri->segment($this->uri->total_segments());
         $uri = $this->uri->uri_to_assoc(2);
         $this->_offset = !isset($uri['page']) ? 0 : $uri['page'];
     }

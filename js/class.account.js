@@ -121,7 +121,7 @@ var Account = new (function(){
                     pss_new : $('#txtPssNew').val()
                 }, function(data){
                     if( data=="notexists" ){
-                        show_error('#txtPssCurrent', 'La contrase&ntilde;a ingresada es incorrecta.');
+                        show_error('#txtPssCurrent', 'No se ha podido autentificar la contrase&ntilde;a.');
                     }else if( data=="ok" ){
                         popup.close();
                     }else{

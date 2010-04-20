@@ -23,8 +23,6 @@ class Users_model extends Model {
 
     public function edit($data = array(), $user_id=null) {
         
-        if( empty($data["password"]) ) unset($data["password"]);
-
         //Update account into the database
         $this->db->where('user_id', $user_id);
 
@@ -195,15 +193,17 @@ class Users_model extends Model {
 
     public function change_pass2($pass_current, $pass_new){
         $user_id = $this->session->userdata('user_id');
-        $query = $this->db->get_where(TBL_USERS, array('user_id'=>$user_id, 'password'=>$pass_current));
-
-        if( $query->num_rows>0 ){
-            $this->db->where('user_id', $user_id);
-            if( !$this->db->update(TBL_USERS, array('password'=>$pass_new)) ){
-                display_error(__FILE__, "change_pass2", ERR_DB_UPDATE, array(TBL_USERS));
+        $query = $this->db->get_where(TBL_USERS, array('user_id'=>$user_id));
+        foreach( $query->result_array() as $row ){
+            if( $this->encpss->decode($row['password'])==$pass_current ){
+                $this->db->where('user_id', $user_id);
+                if( !$this->db->update(TBL_USERS, array('password'=>$this->encpss->encode($pass_new))) ){
+                    display_error(__FILE__, "change_pass2", ERR_DB_UPDATE, array(TBL_USERS));
+                }
+                return "ok";
             }
-            return "ok";
-        }else return "notexists";
+        }
+        return "notexists";
     }
 
     public function change_statu(){
