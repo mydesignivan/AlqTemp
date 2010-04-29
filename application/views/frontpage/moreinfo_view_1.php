@@ -11,7 +11,13 @@
             <div class="col-middle" id="container-thumbs"></div>
             <div class="col-arrow"><a href="javascript:void(ImageGallery.next());"><img src="images/icon_arrow_right.png" alt="Right" onmouseover="this.src='images/icon_arrow_right_over.png'" onmouseout="this.src='images/icon_arrow_right.png'" /></a></div>
         </div>
+
+        <div class="description">
+            <h2>Descripci&oacute;n</h2>
+            <?=nl2br($info['description']);?>
+        </div>
     </div>
+
     <div class="column-2">
         <div class="slide">
             <img src="images/icon_contact2.png" alt="" class="icon-mail" />
@@ -48,40 +54,40 @@
             -->
             </script>
         </div>
-    </div>
 
-    <div class="row-cont">
-        <h2>Descripci&oacute;n</h2>
-        <?=nl2br($info['description']);?>
-    </div>
+        <div class="slide prepend-top">
+            <img src="images/icon_contact2.png" alt="" class="icon-mail" />
 
-    <div class="row-cont">
-        <p>
-            <img src="images/icon_address.png" alt="" /><?=$info['address'];?><br />
-            <?php if( !empty($info['website']) ){?><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>" class="link5" target="_blank"><?=$info['website'];?></a><br /><?php }?>
+            <div class="span-6"><img src="images/icon_address.png" alt="" /><span class="text-small"><?=$info['address'];?></span></div>
+
+            <?php if( !empty($info['website']) ){?><div class="clear span-6"><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>" target="_blank"><?=$info['website'];?></a></div><?php }?>
+
             <?php if( !empty($info['phone']) ){?>
-                <img src="images/icon_phone.png" alt="" />
-                <?php
-                    if( !empty($info['phone_area']) ) echo $info['phone_area']." - ";
-                    echo $info['phone']."<br />";
-                 ?>
+                <div class="clear span-6">
+                    <img src="images/icon_phone.png" alt="" />
+                    <span class="text-small">
+                    <?php
+                        if( !empty($info['phone_area']) ) echo $info['phone_area']." - ";
+                        echo $info['phone'];
+                     ?>
+                    </span>
+                </div>
             <?php }?>
-            <!--<img src="images/icon_map.png" alt="" /><a href="#">Ver mapa</a>-->
-        </p>
+            <!--<div class="clear span-6"><img src="images/icon_map.png" alt="" /><a href="#">Ver mapa</a></div>-->
+        </div>
     </div>
+</div>
 
-    <div class="row-cont">
-        <h2>Servicios</h2>
-        <ul class="ul-list">
-        <?php
-        $n=0;
-        foreach( $info['services'] as $row ){
-            $n++;
-            //$class = $n%2 ? 'tbl-propuser' : 'tbl-propuser row-par';
-        ?>
-            <li><?=$row['name'];?></li>
-        <?php }?>
-        </ul>
-    </div>
-
+<div class="more-info-servicios prepend-left-small">
+    <h2>Servicios</h2>
+    <ul class="ul-list">
+    <?php
+    $n=0;
+    foreach( $info['services'] as $row ){
+        $n++;
+        //$class = $n%2 ? 'tbl-propuser' : 'tbl-propuser row-par';
+    ?>
+        <li><?=$row['name'];?></li>
+    <?php }?>
+    </ul>
 </div>

@@ -116,6 +116,14 @@ a.link4:link{
     a.link4:visited{
         /*color:blue;*/
     }
+a.link5{
+    color:#684C1D;
+    font-size: inherit;
+}
+    a.link5:hover{
+        text-decoration: underline;
+    }
+
 
 a.link-header{
     color:#684C1D;
@@ -818,14 +826,6 @@ ul.ul-list-cuentaplus{
                     float:left;
                     margin-right: 3px;
                 }
-        .more-info .column-1 .description{
-            float:left;
-            clear:both;
-            width: 365px;
-            margin:30px 0 0 15px;
-            font-size: 80%;
-        }
-
 
     .more-info .column-2{
         float:right;
@@ -872,13 +872,14 @@ ul.ul-list-cuentaplus{
                 display: none;
             }
 
-.more-info-servicios{
-    float:left;
-    width: 630px;
-    height: inherit;
-    font-size: 80%;
-    margin-top: 10px;
-}
+    .more-info .row-cont{
+        float:left;
+        clear:both;
+        width: 620px;
+        margin:30px 0 0 5px;
+        font-size: 80%;
+    }
+
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA EL FORM DE CONTACTO
