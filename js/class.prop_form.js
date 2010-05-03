@@ -11,8 +11,8 @@ var Prop = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(mode){
-       mode_edit = mode;
+    this.initializer = function(res){
+       mode_edit = res.mode;
 
        f = $('#formProp')[0];
 
@@ -50,7 +50,7 @@ var Prop = new (function(){
         // Inicializa otros objetos
         $('a.jq-thumb').fancybox();
         popup.initializer();
-        //$("#map").gMap();
+        //if( res.cuentaplus ) PGmap.initializer();
    };
 
     this.save = function(){

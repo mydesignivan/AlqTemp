@@ -1,4 +1,2 @@
-<!--<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA6jDZq_43l3KJx0o7hAmjcxQ7lF2OKyM1vzWcCH6HUg15XFY7dhTGnlKyewQIYVQ3IKN6DPFOe5RTeg"></script>-->
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6jDZq_43l3KJx0o7hAmjcxQ7lF2OKyM1vzWcCH6HUg15XFY7dhTGnlKyewQIYVQ3IKN6DPFOe5RTeg" type="text/javascript"></script>
-
-<script type="text/javascript" src="js/jquery.gmap-1.0.4-min.js"></script>
+<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA6jDZq_43l3KJx0o7hAmjcxSn3a9KdZC-g3pRNBAj-9Whm4ZFhhSyGJZ-okGC5PKIJIGxiD_EzN8xRQ" type="text/javascript"></script>
+<script type="text/javascript" src="js/class.prop_gmap<?=$this->config->item('sufix_pack_js');?>.js"></script>

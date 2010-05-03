@@ -60,12 +60,17 @@ class Propiedades extends Controller {
             $comboStates = $this->lists_model->get_states($info['country_id'], array("0"=>"Seleccione una Provincia"));
         }
         
-        $check_cp = $this->cuentaplus_model->check();
+        //$check_cp = $this->cuentaplus_model->check();
+        $check_cp['result'] = true;
+
+        $tlp_script = array('validator', 'fancybox', 'popup', 'json', 'prop_form');
+        if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));
+        
 
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneluser/prop_form_view.php',
             'tlp_title_section' =>  (!$info) ? "Nueva Propiedad" : "Modificar Propiedad",
-            'tlp_script'        =>  array('validator', 'fancybox', 'popup', 'json', 'prop_form'),
+            'tlp_script'        =>  $tlp_script,
             'comboCategory'     =>  $this->lists_model->get_category(array("0"=>"Seleccione una Categor&iacute;a")),
             'comboCountry'      =>  $this->lists_model->get_country(array("0"=>"Seleccione un Pa&iacute;s")),
             'comboStates'       =>  $comboStates,

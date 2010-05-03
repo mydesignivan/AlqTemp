@@ -125,10 +125,17 @@
                 </div>
 
                 <?php if( $cuenta_plus ){?>
-                <!--<div class="clear span-10">
+                <div class="clear span-16">
                     <label class="label-form float-left">Google Map:</label>
-                    <div id="map" class="float-right"></div>
-                </div>-->
+                    <div class="column-photo ">
+                        <div id="map" class="gmap"></div><br />
+                        <p class="label-legend">Arrastra el marcador para ajustar tu ubicaci&oacute;n<br />Puedes buscar por ejemplo "lavalle 1525, bs as" o "mendoza, ar"</p>
+                        <input type="text" id="txtGAddress" class="input-form validate" onkeypress="if( getKeyCode(event)==13 ) PGmap.search();" /><button type="button" class="button-small" onclick="PGmap.search()">Buscar</button>
+                        <img id="gmap-ajaxloader" src="images/ajax-loader2.gif" alt="Espere por favor" class="hide" />
+                        <div id="msgbox-gmap" class="float-left"></div>
+                    </div>
+                    
+                </div>
                 <?php }?>
 
                 <!-- ============== END FORM =============== -->
@@ -145,7 +152,10 @@
             </form>
             <script type="text/javascript">
             <!--
-                Prop.initializer(<?=!@$info ? "false" : "true";?>);
+                Prop.initializer({
+                    mode       : <?=!@$info ? "false" : "true";?>,
+                    cuentaplus : <?=$cuenta_plus ? "true" : "false";?>
+                });
             -->
             </script>
 <?php }?>

@@ -196,7 +196,7 @@ label.label-user{
     font-size: 75%;
     color: #FF7D00;
 }
-label.label-legend{
+.label-legend{
     font-size: 70%;
     font-style:italic;
     color:#666D7D;
@@ -706,6 +706,7 @@ ul{
     margin:0;
     padding: 0;
 }
+    ul li{list-style-type: none !important;}
 ul.ul-list{
     float: left;
     color:#333333;
@@ -765,6 +766,15 @@ ul.ul-list-cuentaplus{
         .list-servicios ul .row-par{
             background-color: #FAF8E9;
         }
+
+ul.list-gmap{
+    width:230px;
+    margin: 0 auto;
+}
+    ul.list-gmap li{
+        margin-bottom: 5px;
+        list-style-type:none !important;
+    }
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA SECCION (MAS INFO)
@@ -1092,3 +1102,18 @@ table.tbl-list tbody{
 }
 .tbl-list .tbl-banner .cell-6{width: auto;}
     .tbl-list .tbl-banner .cell-6 a{margin-right: 5px;}
+
+
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL GOOGLE MAP
+ -----------------------------------------------------------------------------*/
+.gmap{
+    width: 450px;
+    height: 300px;
+}
+    .gmap-info{
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 80%;
+        color:#000;
+        /*border:1px solid red;*/
+    }
