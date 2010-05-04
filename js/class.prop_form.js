@@ -50,7 +50,11 @@ var Prop = new (function(){
         // Inicializa otros objetos
         $('a.jq-thumb').fancybox();
         popup.initializer();
-        //if( res.cuentaplus ) PGmap.initializer();
+
+        if( res.cuentaplus ) {
+            PGmap.initializer();
+            if( mode_edit ) PGmap.Go(res.cuentaplus);
+        }
    };
 
     this.save = function(){
@@ -95,6 +99,13 @@ var Prop = new (function(){
                             }
 
                             extra_post.services = $("#listServices").find("li input:checked").toArrayValue();
+                            if( typeof PGmap=="object" ){
+                                extra_post.gmap_coorLat = PGmap.coorLat;
+                                extra_post.gmap_coorLng = PGmap.coorLng;
+                                extra_post.gmap_address = PGmap.address;
+                                extra_post.gmap_zoom = PGmap.zoom;
+                                extra_post.gmap_mapType = PGmap.mapType;
+                            }
 
                             f.extra_post.value = JSON.encode(extra_post);
                             f.action = (propid=="") ? baseURI+"paneluser/propiedades/create" : baseURI+"paneluser/propiedades/edit/"+propid;

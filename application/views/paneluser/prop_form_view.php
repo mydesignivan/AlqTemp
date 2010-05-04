@@ -126,8 +126,15 @@
 
                 <?php if( $cuenta_plus ){?>
                 <div class="clear span-16">
+                    <label class="label-form float-left">Posicionar mi propiedad en un mapa:&nbsp;</label>
+                    <div class="float-left text-small">
+                        <input type="radio" name="optGmap" value="1" onclick="$('#divGmap, #map').show2();" <?php if( @$info['gmap_visible']==1 ) echo 'checked="checked"';?> />Si&nbsp;&nbsp;
+                        <input type="radio" name="optGmap" value="0" onclick="$('#divGmap, #map').hide2();" <?php if( @$info['gmap_visible']==0 || !isset($info) ) echo 'checked="checked"';?> />No
+                    </div>
+                </div>
+                <div id="divGmap" class="clear span-16 prepend-top <?php if( @$info['gmap_visible']==0 ) echo 'hide2';?>">
                     <label class="label-form float-left">Google Map:</label>
-                    <div class="column-photo ">
+                    <div class="column-photo">
                         <div id="map" class="gmap"></div><br />
                         <p class="label-legend">Arrastra el marcador para ajustar tu ubicaci&oacute;n<br />Puedes buscar por ejemplo "lavalle 1525, bs as" o "mendoza, ar"</p>
                         <input type="text" id="txtGAddress" class="input-form validate" onkeypress="if( getKeyCode(event)==13 ) PGmap.search();" /><button type="button" class="button-small" onclick="PGmap.search()">Buscar</button>
@@ -153,8 +160,16 @@
             <script type="text/javascript">
             <!--
                 Prop.initializer({
-                    mode       : <?=!@$info ? "false" : "true";?>,
-                    cuentaplus : <?=$cuenta_plus ? "true" : "false";?>
+                    mode       : <?=!@$info ? "false" : "true";?>
+                <?php if( $cuenta_plus ){?>
+                    ,cuentaplus : {
+                        coorLat : '<?=@$info['gmap_lat'];?>',
+                        coorLng : '<?=@$info['gmap_lng'];?>',
+                        address : '<?=@$info['gmap_address'];?>',
+                        zoom    : '<?=@$info['gmap_zoom'];?>',
+                        mapType : '<?=@$info['gmap_maptype'];?>'
+                    }
+                <?php }?>
                 });
             -->
             </script>

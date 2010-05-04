@@ -70,6 +70,23 @@
         </p>
     </div>
 
+<?php if( $cuentaplus && $info['gmap_visible']==1 ){?>
+    <div class="row-cont">
+        <div id="map" class="gmap"></div>
+    </div>
+    <script type="text/javascript">
+    <!--
+        PGmap.initializer();
+        PGmap.Go({
+            coorLat : <?=$info['gmap_lat'];?>,
+            coorLng : <?=$info['gmap_lng'];?>,
+            zoom    : <?=$info['gmap_zoom'];?>,
+            mapType : '<?=$info['gmap_maptype'];?>'
+        });
+    -->
+    </script>
+<?php }?>
+
     <div class="row-cont">
         <h2>Servicios</h2>
         <ul class="ul-list">

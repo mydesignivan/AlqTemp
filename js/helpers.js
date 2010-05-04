@@ -64,6 +64,24 @@ jQuery.fn.extend({
             else arr.push(t.text());
         });
         return arr;
+    },
+
+    show2 : function(){
+        this.each(function(){
+            $(this).css({
+                visibility : 'visible',
+                position   : 'relative'
+            });
+        });
+    },
+
+    hide2 : function(){
+        this.each(function(){
+            $(this).css({
+                visibility : 'hidden',
+                position   : 'absolute'
+            });
+        });
     }
 });
 

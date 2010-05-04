@@ -17,6 +17,7 @@ body {
 .prepend-top-small{margin-top:10px !important;}
 .append-right-small2{margin-right: 5px !important;}
 .append-bottom-small{margin-bottom: 15px !important;}
+.hide2{position: absolute; visibility: hidden;}
 .border{border:1px solid red !important;}
 
 h1{
@@ -1110,6 +1111,7 @@ table.tbl-list tbody{
 .gmap{
     width: 450px;
     height: 300px;
+    overflow: hidden;
 }
     .gmap-info{
         font-family: Verdana, Arial, Helvetica, sans-serif;

@@ -13,7 +13,6 @@ class Masinfo extends Controller {
             'tlp_section'       =>  'frontpage/moreinfo_view.php',
             'tlp_title'         =>  TITLE_MASINFO,
             'tlp_title_section' =>  "Detalle Propiedad",
-            'tlp_script'        =>  array('validator', 'fancybox', 'moreinfo'),
             'comboCountry'      =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'     =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
             'comboStates'       =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),
@@ -29,13 +28,24 @@ class Masinfo extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
-        if( $this->uri->segment(3) ){
+        if( is_numeric($this->uri->segment(3)) ){
+            $info = $this->prop_model->get_prop($this->uri->segment(3));
+            if( !$info ) redirect($this->config->item('base_url'));
+
+            $this->load->model('cuentaplus_model');
+            //$check_cp = $this->cuentaplus_model->check();
+            $check_cp['result'] = true;
+
+            $tlp_script = array('validator', 'fancybox', 'moreinfo');
+            if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));            
 
             $this->_data = $this->dataview->set_data(array(
-                "info"  =>  $this->prop_model->get_prop($this->uri->segment(3)),
+                'tlp_script'  =>  $tlp_script,
+                "info"        =>  $info,
+                'cuentaplus'  =>  $check_cp['result']
             ));
             $this->load->view('template_frontpage_view', $this->_data);
-        }
+        }else redirect($this->config->item('base_url'));
     }
 
     /* AJAX FUNCTIONS

@@ -13,6 +13,8 @@ class Prop_model extends Model {
         $images_new = $data['extra_post']->images_new;
         $services = $data['extra_post']->services;
 
+        if( isset($data['extra_post']->gmap_coorLat) ) $this->set_data($data);
+        
         unset($data['extra_post']);
 
         $this->db->trans_start(); // INICIO TRANSACCION
@@ -56,6 +58,8 @@ class Prop_model extends Model {
         $images_deletes = $data['extra_post']->images_delete;
         $images_modified_id = $data['extra_post']->images_modified_id;
         $images_modified_name = $data['extra_post']->images_modified_name;
+        
+        if( isset($data['extra_post']->gmap_coorLat) ) $this->set_data($data);
 
         unset($data['extra_post']);
 
@@ -247,20 +251,16 @@ class Prop_model extends Model {
     }
 
     public function get_prop($prop_id){
-        if( !is_numeric($prop_id) ) {
-            //There was a problem
-            return false;
-        }
         $query = $this->db->get_where(TBL_PROPERTIES, array('prop_id'=>$prop_id));
+        if( $query->num_rows>0 ){
+            $service_id = array();
+            $data = array();
+            $data = $query->row_array();
 
-        $service_id = array();
-        $data = array();
-        $data = $query->row_array();
-
-        $data['services'] = $this->get_service_associate($prop_id);
-        $data['images'] = $this->get_images($prop_id);
-
-        return $data;
+            $data['services'] = $this->get_service_associate($prop_id);
+            $data['images'] = $this->get_images($prop_id);
+            return $data;
+        } else return false;
     }
 
     public function get_images($prop_id){
@@ -358,6 +358,14 @@ class Prop_model extends Model {
         }
 
         return $data;
+     }
+
+     private function set_data(&$data){
+        $data['gmap_lat'] = $data['extra_post']->gmap_coorLat;
+        $data['gmap_lng'] = $data['extra_post']->gmap_coorLng;
+        $data['gmap_address'] = $data['extra_post']->gmap_address;
+        $data['gmap_zoom'] = $data['extra_post']->gmap_zoom;
+        $data['gmap_maptype'] = $data['extra_post']->gmap_mapType;
      }
 
 }

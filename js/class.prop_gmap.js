@@ -1,22 +1,27 @@
-/* 
- * Clase Prop
- *
- * Su funcion:
- *  - Crear, Modificar o Eliminar propiedades
- *  - Destaca prop o elimina prop destacadas.
- * 
- */
 
 var PGmap = new (function(){
+    /* PUBLIC PROPERTIES
+     **************************************************************************/
+    this.options={
+        coorLat : -32.8885012,
+        coorLng : -68.8569772,
+        address : '',
+        zoom    : 13,
+        mapType : 'm' // m=Mapa, k=Satelitar, h=Hibrido
+    };
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(){
+    this.initializer = function(param){
         if (GBrowserIsCompatible()) {
-            map = new GMap2($('#map')[0]);
-            var point = new GLatLng(-32.8885012, -68.8569772);
 
-            map.setCenter(point, 13);
+            param = $.extend({}, param, {}, options);
+
+            map = new GMap2($('#map')[0]);
+            var point = new GLatLng(param.coorLat, param.coorLng);
+            //map.enableScrollWheelZoom();
+            map.setCenter(point, param.zoom);
+            map.addControl(new GMapTypeControl());
             map.addControl(new GLargeMapControl());
             geocoder = new GClientGeocoder();
             
@@ -36,6 +41,8 @@ var PGmap = new (function(){
             //Agrega el evento cuando al soltar el icono para mostrar su ubicacion
             GEvent.addListener(marker, 'dragend', dragEnd);
 
+            //Muestra la direccion
+            $('#txtGAddress').val(param.address);
         }
     };
 
@@ -75,8 +82,25 @@ var PGmap = new (function(){
 
     this.moveToPoint = function(t, lat, lng){
          popup.close();
-         marker.setPoint(new GLatLng(lat, lng));
+
+         saveProp(lat, lng, t.innerHTML);
+
+         This.Go({coorLat:lat, coorLng:lng});
          showMessage(t.innerHTML);
+    };
+
+    this.Go = function(opt){
+        var point = new GLatLng(opt.coorLat, opt.coorLng);
+         marker.setPoint(point);
+         if( opt.address ) $('#txtGAddress').val(opt.address);
+         if( opt.zoom ) map.setCenter(point, opt.zoom);
+         if( opt.mapType ){
+            var type = G_NORMAL_MAP;
+            if( opt.mapType=='k' ) type = G_SATELLITE_MAP;
+            else if( opt.mapType=='h' ) type = G_HYBRID_MAP;
+            map.setMapType(type);
+         }
+         saveProp(opt.coorLat, opt.coorLng, opt.address);
     };
 
     /* PRIVATE PROPERTIES
@@ -85,6 +109,7 @@ var PGmap = new (function(){
     var geocoder;
     var marker;
     var working=false;
+    var This=this;
 
 
     /* PRIVATE METHODS
@@ -94,7 +119,8 @@ var PGmap = new (function(){
         geocoder.getLocations(point, function(response){
             ajaxloader.hidden();
             var place = response.Placemark[0];
-            showMessage(place.address)
+            saveProp(place.Point.coordinates[1], place.Point.coordinates[0], place.address);
+            showMessage(place.address);
         });
      };
 
@@ -102,8 +128,23 @@ var PGmap = new (function(){
         var txt = "Ahora estas aqu&iacute;<br />"+address;
 
         marker.openInfoWindowHtml('<div class="gmap-info">'+txt+'</div>');
-        $('#txtGAddress').val(address)
+        $('#txtGAddress').val(address);
         setTimeout(function(){marker.closeInfoWindow()}, 5000);
+     };
+
+     var saveProp = function(lat, lng, address){
+        options.coorLat = lat;
+        options.coorLng = lng;
+        options.address = address;
+        options.zoom = map.getZoom();
+        options.mapType = map.getCurrentMapType().getUrlArg();
+     };
+
+     var getType = function(){
+        var type = G_NORMAL_MAP;
+        if( opt.mapType=='k' ) type = G_SATELLITE_MAP;
+        else if( opt.mapType=='h' ) type = G_HYBRID_MAP;
+        return type;
      };
 
      var ajaxloader={

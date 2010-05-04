@@ -189,6 +189,7 @@ class Propiedades extends Controller {
             'phone_area'      => $_POST["txtPhoneArea"],
             'website'         => (strtolower($_POST["txtWebsite"])!="http://") ? $_POST["txtWebsite"] : "",
             'price'           => $_POST["txtPrice"],
+            'gmap_visible'    => $_POST["optGmap"],
             'extra_post'      => json_decode($_POST['extra_post'])
         );
     }
