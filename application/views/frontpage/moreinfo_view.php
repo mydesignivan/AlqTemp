@@ -76,8 +76,7 @@
     </div>
     <script type="text/javascript">
     <!--
-        PGmap.initializer();
-        PGmap.Go({
+        PGmap.initializer({
             coorLat : <?=$info['gmap_lat'];?>,
             coorLng : <?=$info['gmap_lng'];?>,
             zoom    : <?=$info['gmap_zoom'];?>,

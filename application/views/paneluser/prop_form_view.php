@@ -161,15 +161,19 @@
             <!--
                 Prop.initializer({
                     mode       : <?=!@$info ? "false" : "true";?>
-                <?php if( $cuenta_plus ){?>
-                    ,cuentaplus : {
-                        coorLat : '<?=@$info['gmap_lat'];?>',
-                        coorLng : '<?=@$info['gmap_lng'];?>',
-                        address : '<?=@$info['gmap_address'];?>',
-                        zoom    : '<?=@$info['gmap_zoom'];?>',
-                        mapType : '<?=@$info['gmap_maptype'];?>'
-                    }
-                <?php }?>
+                <?php if( $cuenta_plus ){
+                        if( @$info ){?>
+                            ,cuentaplus : {
+                                coorLat : <?=@$info['gmap_lat'];?>,
+                                coorLng : <?=@$info['gmap_lng'];?>,
+                                address : '<?=@$info['gmap_address'];?>',
+                                zoom    : <?=@$info['gmap_zoom'];?>,
+                                mapType : '<?=@$info['gmap_maptype'];?>'
+                            }
+                <?php   }else{
+                            echo ',cuentaplus : true';
+                        }
+                      }?>
                 });
             -->
             </script>

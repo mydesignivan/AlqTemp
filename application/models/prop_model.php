@@ -13,7 +13,7 @@ class Prop_model extends Model {
         $images_new = $data['extra_post']->images_new;
         $services = $data['extra_post']->services;
 
-        if( isset($data['extra_post']->gmap_coorLat) ) $this->set_data($data);
+        if( isset($data['extra_post']->gmap_coorLat) && $data['gmap_visible']==1 ) $this->set_data($data);
         
         unset($data['extra_post']);
 
@@ -59,7 +59,7 @@ class Prop_model extends Model {
         $images_modified_id = $data['extra_post']->images_modified_id;
         $images_modified_name = $data['extra_post']->images_modified_name;
         
-        if( isset($data['extra_post']->gmap_coorLat) ) $this->set_data($data);
+        if( isset($data['extra_post']->gmap_coorLat) && $data['gmap_visible']==1 ) $this->set_data($data);
 
         unset($data['extra_post']);
 

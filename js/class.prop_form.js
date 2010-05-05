@@ -52,8 +52,8 @@ var Prop = new (function(){
         popup.initializer();
 
         if( res.cuentaplus ) {
-            PGmap.initializer();
-            if( mode_edit ) PGmap.Go(res.cuentaplus);
+            if( mode_edit ) PGmap.initializer(res.cuentaplus);
+            else PGmap.initializer();
         }
    };
 
@@ -100,11 +100,12 @@ var Prop = new (function(){
 
                             extra_post.services = $("#listServices").find("li input:checked").toArrayValue();
                             if( typeof PGmap=="object" ){
-                                extra_post.gmap_coorLat = PGmap.coorLat;
-                                extra_post.gmap_coorLng = PGmap.coorLng;
-                                extra_post.gmap_address = PGmap.address;
-                                extra_post.gmap_zoom = PGmap.zoom;
-                                extra_post.gmap_mapType = PGmap.mapType;
+                                PGmap.updateOptions();
+                                extra_post.gmap_coorLat = PGmap.options.coorLat;
+                                extra_post.gmap_coorLng = PGmap.options.coorLng;
+                                extra_post.gmap_address = PGmap.options.address;
+                                extra_post.gmap_zoom = PGmap.options.zoom;
+                                extra_post.gmap_mapType = PGmap.options.mapType;
                             }
 
                             f.extra_post.value = JSON.encode(extra_post);

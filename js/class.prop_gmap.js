@@ -15,7 +15,7 @@ var PGmap = new (function(){
     this.initializer = function(param){
         if (GBrowserIsCompatible()) {
 
-            param = $.extend({}, param, {}, options);
+            if( typeof param=="object" ) This.options = param;
 
             map = new GMap2($('#map')[0]);
             var point = new GLatLng(param.coorLat, param.coorLng);
@@ -24,7 +24,15 @@ var PGmap = new (function(){
             map.addControl(new GMapTypeControl());
             map.addControl(new GLargeMapControl());
             geocoder = new GClientGeocoder();
-            
+
+            if( param.mapType ){
+                var type = G_NORMAL_MAP;
+                if( param.mapType=='k' ) type = G_SATELLITE_MAP;
+                else if( param.mapType=='h' ) type = G_HYBRID_MAP;
+                map.setMapType(type);
+            }
+
+
             //Personaliza el Icono
             var IconMarker = new GIcon(G_DEFAULT_ICON);
             IconMarker.image = "images/home.gif";
@@ -85,22 +93,14 @@ var PGmap = new (function(){
 
          saveProp(lat, lng, t.innerHTML);
 
-         This.Go({coorLat:lat, coorLng:lng});
+         marker.setPoint(new GLatLng(lat, lng));
+
          showMessage(t.innerHTML);
     };
 
-    this.Go = function(opt){
-        var point = new GLatLng(opt.coorLat, opt.coorLng);
-         marker.setPoint(point);
-         if( opt.address ) $('#txtGAddress').val(opt.address);
-         if( opt.zoom ) map.setCenter(point, opt.zoom);
-         if( opt.mapType ){
-            var type = G_NORMAL_MAP;
-            if( opt.mapType=='k' ) type = G_SATELLITE_MAP;
-            else if( opt.mapType=='h' ) type = G_HYBRID_MAP;
-            map.setMapType(type);
-         }
-         saveProp(opt.coorLat, opt.coorLng, opt.address);
+    this.updateOptions = function(){
+        This.options.zoom = map.getZoom();
+        This.options.mapType = map.getCurrentMapType().getUrlArg();
     };
 
     /* PRIVATE PROPERTIES
@@ -133,18 +133,11 @@ var PGmap = new (function(){
      };
 
      var saveProp = function(lat, lng, address){
-        options.coorLat = lat;
-        options.coorLng = lng;
-        options.address = address;
-        options.zoom = map.getZoom();
-        options.mapType = map.getCurrentMapType().getUrlArg();
-     };
-
-     var getType = function(){
-        var type = G_NORMAL_MAP;
-        if( opt.mapType=='k' ) type = G_SATELLITE_MAP;
-        else if( opt.mapType=='h' ) type = G_HYBRID_MAP;
-        return type;
+        This.options.coorLat = lat;
+        This.options.coorLng = lng;
+        This.options.address = address;
+        This.options.zoom = map.getZoom();
+        This.options.mapType = map.getCurrentMapType().getUrlArg();
      };
 
      var ajaxloader={
