@@ -11,13 +11,13 @@ var Account = new (function(){
      **************************************************************************/
     this.initializer = function(mode){
         mode_edit = mode;
-        f = $('#formAccount')[0];
-        if( f ){
+        if( (f=$('#formAccount')[0]) ){
+
             $.validator.setting('#formAccount .validate', {
                 effect_show     : 'slidefade',
                 validateOne     : true
             });
-
+            
             $("input[name='txtFirstName'], input[name='txtLastName']").validator({
                 v_required  : true
             });
@@ -39,11 +39,23 @@ var Account = new (function(){
             });*/
             if( f.txtCaptcha ){
                 $(f.txtCaptcha).validator({
-                    v_required  : true
+                    v_required  : true,
+                    addClass    : 'validator-captcha'
                 });
             }
-        }
-        popup.initializer();
+
+            popup.initializer();
+
+        }else if( (f=$('#formAccount2')[0]) ){
+
+            $.validator.setting('#formAccount2 .validate', {
+                effect_show     : 'slidefade',
+                validateOne     : true
+            });
+            $(f.txtUser).validator({
+                v_required  : true
+            });
+        }        
     };
 
     this.save = function(){
@@ -89,6 +101,18 @@ var Account = new (function(){
             
         });
         return false;
+    };
+
+    this.send = function(){
+        $.post(baseURI+'paneluser/micuenta/ajax_checkuser', {user:f.txtUser.value}, function(data){
+            if( data=="error" ){
+                show_error(f.txtUser, 'El Usuario ingresado no se corresponde con el de la cuenta.');
+            }else if( data=="ok" ){
+                f.submit();
+            }else{
+                alert("ERROR\n"+data);
+            }
+        });
     };
 
     this.open_popup = {

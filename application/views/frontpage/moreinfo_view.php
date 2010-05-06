@@ -55,10 +55,11 @@
         <?=nl2br($info['description']);?>
     </div>
 
-    <div class="row-cont">
-        <p>
-            <img src="images/icon_address.png" alt="" /><?=$info['address'];?><br />
-            <?php if( !empty($info['website']) ){?><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>" class="link5" target="_blank"><?=$info['website'];?></a><br /><?php }?>
+    <div class="row-cont bg-slide">
+        <ul class="list-moreinfo">
+            <li><img src="images/icon_address.png" alt="" /><?=$info['address'];?></li>
+            <li><?php if( !empty($info['website']) ){?><img src="images/icon_web.png" alt="" /><a href="<?=$info['website'];?>" class="link5" target="_blank"><?=$info['website'];?></a><br /><?php }?></li>
+            <li>
             <?php if( !empty($info['phone']) ){?>
                 <img src="images/icon_phone.png" alt="" />
                 <?php
@@ -66,13 +67,14 @@
                     echo $info['phone']."<br />";
                  ?>
             <?php }?>
-            <!--<img src="images/icon_map.png" alt="" /><a href="#">Ver mapa</a>-->
-        </p>
+            </li>
+        </ul>
     </div>
 
 <?php if( $cuentaplus && $info['gmap_visible']==1 ){?>
     <div class="row-cont">
-        <div id="map" class="gmap"></div>
+        <h2>Ubicaci&oacute;n en el mapa</h2>
+        <div id="map" class="gmap-moreinfo"></div>
     </div>
     <script type="text/javascript">
     <!--

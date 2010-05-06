@@ -16,6 +16,7 @@ var PGmap = new (function(){
         if (GBrowserIsCompatible()) {
 
             if( typeof param=="object" ) This.options = param;
+            else param = This.options;
 
             map = new GMap2($('#map')[0]);
             var point = new GLatLng(param.coorLat, param.coorLng);
@@ -73,7 +74,7 @@ var PGmap = new (function(){
 
             } else {
                 $.validator.hide('#msgbox-gmap');
-                var html = '<ul class="list-gmap"></ul>';
+                var html = '<ul class="list-gmap">';
 
                 $(response.Placemark).each(function(){
                     html+='<li><a href="javascript:void(0)" onclick="PGmap.moveToPoint(this,'+ this.Point.coordinates[1]+','+this.Point.coordinates[0]+')">'+ this.address +'</a></li>';

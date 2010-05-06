@@ -128,7 +128,7 @@
                 <div class="clear span-16">
                     <label class="label-form float-left">Posicionar mi propiedad en un mapa:&nbsp;</label>
                     <div class="float-left text-small">
-                        <input type="radio" name="optGmap" value="1" onclick="$('#divGmap, #map').show2();" <?php if( @$info['gmap_visible']==1 ) echo 'checked="checked"';?> />Si&nbsp;&nbsp;
+                        <input type="radio" name="optGmap" value="1" onclick="Prop.show_gmap();" <?php if( @$info['gmap_visible']==1 ) echo 'checked="checked"';?> />Si&nbsp;&nbsp;
                         <input type="radio" name="optGmap" value="0" onclick="$('#divGmap, #map').hide2();" <?php if( @$info['gmap_visible']==0 || !isset($info) ) echo 'checked="checked"';?> />No
                     </div>
                 </div>
@@ -140,14 +140,23 @@
                         <input type="text" id="txtGAddress" class="input-form validate" onkeypress="if( getKeyCode(event)==13 ) PGmap.search();" /><button type="button" class="button-small" onclick="PGmap.search()">Buscar</button>
                         <img id="gmap-ajaxloader" src="images/ajax-loader2.gif" alt="Espere por favor" class="hide" />
                         <div id="msgbox-gmap" class="float-left"></div>
+                    </div>                    
+                </div>
+                <div class="clear span-16">
+                    <label class="label-form float-left">Mostrar Videos&nbsp;</label>
+                    <div class="float-left text-small">
+                        <input type="radio" name="optMovie" value="1" onclick="$('#divGmap, #map').show2();" <?php if( @$info['movie_visible']==1 ) echo 'checked="checked"';?> />Si&nbsp;&nbsp;
+                        <input type="radio" name="optMovie" value="0" onclick="$('#divGmap, #map').hide2();" <?php if( @$info['movie_visible']==0 || !isset($info) ) echo 'checked="checked"';?> />No
                     </div>
+                </div>
+                <div id="divMovie" class="clear span-16 <?php if( @$info['movie_visible']==0 ) echo 'hide2';?>">
                     
                 </div>
                 <?php }?>
 
                 <!-- ============== END FORM =============== -->
 
-                <div class="span-10 clear"><label class="label-legend">(*) Campo obligatorios</label></div>
+                <!--<div class="span-10 clear"><label class="label-legend">(*) Campo obligatorios</label></div>-->
 
                 <div class="clear span-15 text-center prepend-top">
                     <button type="button" class="button-large" onclick="Prop.save();">Guardar</button>&nbsp;&nbsp;

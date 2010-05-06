@@ -19,7 +19,7 @@ var MoreInfo = new (function(){
         $.validator.setting('#formConsult .validate', {
             effect_show     : 'slidefade',
             validateOne     : true,
-            addClass        : 'validator'
+            addClass        : 'validator-contact'
         });
         $(f.txtName).validator({
             v_required : true

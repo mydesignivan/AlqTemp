@@ -25,7 +25,8 @@ var RememberPass = new (function(){
                 container    : '#msgbox-field'
             });
             $(f.txtCaptcha).validator({
-                v_required   : true
+                v_required   : true,
+                addClass    : 'validator-captcha'
             });
 
             if( error=="userinactive"||error=="notexists" ){

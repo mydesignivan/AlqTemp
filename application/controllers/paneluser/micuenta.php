@@ -13,10 +13,7 @@ class Micuenta extends Controller{
         $this->load->library("simplelogin");
 
         $this->load->library('dataview', array(
-            'tlp_section'       =>  'paneluser/myaccount_view.php',
-            'tlp_title'         =>  TITLE_MICUENTA,
-            'tlp_title_section' =>  "Mi Cuenta",
-            'tlp_script'        =>  array('validator', 'popup', 'account')
+            'tlp_title'         =>  TITLE_MICUENTA
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -29,7 +26,19 @@ class Micuenta extends Controller{
      **************************************************************************/
     public function index(){
         $this->_data = $this->dataview->set_data(array(
+            'tlp_section'       =>  'paneluser/myaccount_view.php',
+            'tlp_title_section' =>  "Mi Cuenta",
+            'tlp_script'        =>  array('validator', 'popup', 'account'),
             'info'  =>  $this->users_model->get_user(array('user_id'=>$this->session->userdata('user_id'), 'active'=>1))
+        ));
+        $this->load->view('template_paneluser_view', $this->_data);
+    }
+
+    public function baja(){
+        $this->_data = $this->dataview->set_data(array(
+            'tlp_section'       =>  'paneluser/myaccount_baja_view.php',
+            'tlp_title_section' =>  "Darme de baja",
+            'tlp_script'        =>  array('validator', 'popup', 'account')
         ));
         $this->load->view('template_paneluser_view', $this->_data);
     }
@@ -59,6 +68,24 @@ class Micuenta extends Controller{
         }
     }
 
+    public function delete(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            if( $this->users_model->save_delete_motive() ){
+                    $this->load->library("simplelogin");
+                    $this->simplelogin->logout();
+                    redirect('/message/');
+
+                /*if( $this->users_model->delete($this->session->userdata('user_id')) ){
+                    redirect('/message/');
+
+                }else{
+                    show_error(ERR_USER_DELETE);
+                } */
+            }
+        }
+    }
+
+
     /* AJAX FUNCTIONS
      **************************************************************************/
     public function ajax_popup_editpass(){
@@ -66,9 +93,16 @@ class Micuenta extends Controller{
             $this->load->view('paneluser/account_editpass_view');
         }
     }
+
     public function ajax_save_pass(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             echo $this->users_model->change_pass2($_POST['pss_current'], $_POST['pss_new']);
+        }
+    }
+
+    public function ajax_checkuser(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            echo $_POST['user']==$this->session->userdata('username') ? "ok" : "error";
         }
     }
 

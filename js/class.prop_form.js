@@ -207,6 +207,13 @@ var Prop = new (function(){
         });
     };
 
+    this.show_gmap = function(){
+        if( $('#divGmap').css('visibility')=='hidden' ){
+            $('#divGmap, #map').show2();
+            $('html, body').animate({scrollTop : $(window).scrollTop()+260}, 'slow');
+        }
+    };
+
 
     /* PRIVATE PROPERTIES
      **************************************************************************/

@@ -15,8 +15,10 @@ body {
 .tag-center{margin: 0 auto !important;}
 .text-center{text-align: center !important;}
 .prepend-top-small{margin-top:10px !important;}
+.prepend-top-small2{margin-top:3px !important;}
+.append-right-small{margin-right: 10px !important;}
 .append-right-small2{margin-right: 5px !important;}
-.append-bottom-small{margin-bottom: 15px !important;}
+.append-bottom-small{margin-bottom: 25px !important;}
 .hide2{position: absolute; visibility: hidden;}
 .border{border:1px solid red !important;}
 
@@ -209,7 +211,7 @@ label.label-large{
 }
 
 /*------------------------------------------------------------------------------
- - ESTILOS PARA INPUT y TEXTAREA
+ - ESTILOS PARA INPUT
  -----------------------------------------------------------------------------*/
 input[type=text],input[type=password], textarea{
     border:1px #FAD4A3 solid;
@@ -265,6 +267,9 @@ input.input-saldo{
 input.input-small{width: 100px;}
 input.input-medium{width: 180px;}
 
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA TEXTAREA
+ -----------------------------------------------------------------------------*/
 textarea.textarea-contact{
     border:1px solid #ccc;
     background-color:#FAF8E9;
@@ -286,6 +291,11 @@ textarea.textarea-form-large{
 textarea.textarea-large{
     width: 600px;
     height: 150px;
+}
+textarea.textarea-motive{
+    width: 300px;
+    height: 50px;
+    margin-right: 3px;
 }
 
 /*------------------------------------------------------------------------------
@@ -777,6 +787,10 @@ ul.list-gmap{
         list-style-type:none !important;
     }
 
+ul.list-moreinfo li{
+    margin-bottom: 5px;
+}
+
 /*------------------------------------------------------------------------------
  - ESTILOS PARA SECCION (MAS INFO)
  -----------------------------------------------------------------------------*/
@@ -889,6 +903,12 @@ ul.list-gmap{
         width: 620px;
         margin:30px 0 0 5px;
         font-size: 80%;
+    }
+
+    .more-info .bg-slide{
+        background: url(../images/bg_slide.png) repeat-y;
+        padding:10px 0 6px 25px;
+        margin-left: -15px;
     }
 
 
@@ -1113,9 +1133,26 @@ table.tbl-list tbody{
     height: 300px;
     overflow: hidden;
 }
-    .gmap-info{
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 80%;
-        color:#000;
-        /*border:1px solid red;*/
-    }
+.gmap-moreinfo{
+    width: 620px;
+    height: 300px;
+    overflow: hidden;
+}
+.gmap-info{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 80%;
+    color:#000;
+    /*border:1px solid red;*/
+}
+
+/*------------------------------------------------------------------------------
+ - ESTILOS ESPECIALES PARA EL VALIDADOR
+ -----------------------------------------------------------------------------*/
+.validator-contact{ /* Esta en mas info*/
+    float:left !important;
+    width: 195px !important;
+}
+.validator-captcha{
+    width: 175px !important;
+    margin-right: 33px !important;
+}

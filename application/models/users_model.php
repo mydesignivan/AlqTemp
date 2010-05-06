@@ -214,5 +214,26 @@ class Users_model extends Model {
         return true;
     }
 
+    public function save_delete_motive(){
+        $data = array(
+            'username'   => $this->session->userdata('username'),
+            'name'       => $this->session->userdata('lastname').", ".$this->session->userdata('firstname'),
+            'email'      => $this->session->userdata('email'),
+            'motive'     => $_POST['txtMotive'],
+            'date_added' => date('Y-m-d H:i:s')
+        );
+        $phone = $this->session->userdata('phone');
+        if( !empty($phone) ){
+            $data['phone'] = $phone;
+            $phone_area = $this->session->userdata('phone_area');
+            if( !empty($phone_area) ) $data['phone'].= " - ".$phone_area;
+        }
+
+        if( !$this->db->insert(TBL_USERSDEL, $data) ){
+            display_error(__FILE__, "save_delete_motive", ERR_DB_INSERT, array(TBL_USERSDEL));
+        }
+        return true;
+    }
+
 }
 ?>

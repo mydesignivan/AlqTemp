@@ -51,6 +51,7 @@ define('TBL_PROPERTIES', 'properties');
 define('TBL_PROPERTIES_SERVS', 'properties_to_services');
 define('TBL_PROPERTIES_DISTING', 'properties_disting');
 define('TBL_USERS', 'users');
+define('TBL_USERSDEL', 'users_deletes');
 define('TBL_LOGSEARCHES', 'log_searches');
 define('TBL_CUENTAPLUS', 'cuentaplus');
 define('TBL_USERSONLINE', 'users_online');
