@@ -7,7 +7,8 @@ var PGmap = new (function(){
         coorLng : -68.8569772,
         address : '',
         zoom    : 13,
-        mapType : 'm' // m=Mapa, k=Satelitar, h=Hibrido
+        mapType : 'm', // m=Mapa, k=Satelitar, h=Hibrido
+        draggable : true
     };
 
     /* PUBLIC METHODS
@@ -36,14 +37,14 @@ var PGmap = new (function(){
 
             //Personaliza el Icono
             var IconMarker = new GIcon(G_DEFAULT_ICON);
-            IconMarker.image = "images/home.gif";
-            IconMarker.imageMap = [0,0, 48,0, 48,48, 0,48];
-            IconMarker.iconSize = new GSize(48,48);
+            IconMarker.image = "images/home.png";
+            IconMarker.imageMap = [0,0, 40,0, 36,36, 0,36];
+            IconMarker.iconSize = new GSize(40,36);
             
             //Crea una marca en el mapa
             marker = new GMarker(point, {
                 icon      : IconMarker,
-                draggable : true
+                draggable : param.draggable
             });
             map.addOverlay(marker);
             

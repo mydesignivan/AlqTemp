@@ -52,6 +52,8 @@ var Prop = new (function(){
         popup.initializer();
 
         if( res.cuentaplus ) {
+            res.cuentaplus.draggable = true;
+
             if( mode_edit ) PGmap.initializer(res.cuentaplus);
             else PGmap.initializer();
         }

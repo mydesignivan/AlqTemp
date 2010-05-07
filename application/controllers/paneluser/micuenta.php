@@ -71,16 +71,14 @@ class Micuenta extends Controller{
     public function delete(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             if( $this->users_model->save_delete_motive() ){
+                if( $this->users_model->delete($this->session->userdata('user_id')) ){
                     $this->load->library("simplelogin");
                     $this->simplelogin->logout();
                     redirect('/message/');
 
-                /*if( $this->users_model->delete($this->session->userdata('user_id')) ){
-                    redirect('/message/');
-
                 }else{
                     show_error(ERR_USER_DELETE);
-                } */
+                }
             }
         }
     }

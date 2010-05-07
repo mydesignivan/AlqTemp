@@ -79,10 +79,11 @@
     <script type="text/javascript">
     <!--
         PGmap.initializer({
-            coorLat : <?=$info['gmap_lat'];?>,
-            coorLng : <?=$info['gmap_lng'];?>,
-            zoom    : <?=$info['gmap_zoom'];?>,
-            mapType : '<?=$info['gmap_maptype'];?>'
+            coorLat   : <?=$info['gmap_lat'];?>,
+            coorLng   : <?=$info['gmap_lng'];?>,
+            zoom      : <?=$info['gmap_zoom'];?>,
+            mapType   : '<?=$info['gmap_maptype'];?>',
+            draggable : false
         });
     -->
     </script>
