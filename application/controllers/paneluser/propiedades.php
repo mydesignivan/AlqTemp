@@ -60,8 +60,8 @@ class Propiedades extends Controller {
             $comboStates = $this->lists_model->get_states($info['country_id'], array("0"=>"Seleccione una Provincia"));
         }
         
-        //$check_cp = $this->cuentaplus_model->check();
-        $check_cp['result'] = true;
+        $check_cp = $this->cuentaplus_model->check();
+        //$check_cp['result'] = true;
 
         $tlp_script = array('validator', 'fancybox', 'popup', 'json', 'prop_form');
         if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));
@@ -189,7 +189,7 @@ class Propiedades extends Controller {
             'phone_area'      => $_POST["txtPhoneArea"],
             'website'         => (strtolower($_POST["txtWebsite"])!="http://") ? $_POST["txtWebsite"] : "",
             'price'           => $_POST["txtPrice"],
-            'gmap_visible'    => $_POST["optGmap"],
+            'gmap_visible'    => isset($_POST["optGmap"]) ? $_POST["optGmap"] : 0,
             'extra_post'      => json_decode($_POST['extra_post'])
         );
     }

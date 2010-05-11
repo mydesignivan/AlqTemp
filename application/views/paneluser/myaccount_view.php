@@ -14,7 +14,7 @@
         </div>
         <div class="span-10 clear">
             <label class="label-form float-left">*Email:</label>
-            <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="5" value="<?=$info['email'];?>" />
+            <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="5" value="<?=$info['email'];?>" onblur="$(this).ucLower();" />
         </div>
         <div class="span-10 clear">
             <label class="label-form float-left">Tel&eacute;fono:</label>
@@ -25,11 +25,11 @@
             <label class="label-form float-left">*Usuario:</label>
             <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" value="<?=$info['username'];?>" />
         </div>
-        <div class="span-10 clear">
+        <!--<div class="span-10 clear">
             <label class="label-form float-left">Contrase&ntilde;a:</label>
             <a href="javascript:void(Account.open_popup.editpss())" class="link2 float-right">&nbsp;Modificar</a>
             <input type="password" name="txtPass" class="input-pss float-right" tabindex="9" value="XXXXXXXXXX" disabled />&nbsp;
-        </div>
+        </div>-->
         <!-- ======= END FORM ======= -->
         
         <div class="clear span-15 text-center prepend-top">

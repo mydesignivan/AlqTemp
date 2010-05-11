@@ -22,7 +22,7 @@
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">*Email:</label>
-                <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="5" />
+                <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="5" onblur="$(this).ucLower();" />
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">Tel&eacute;fono:</label>

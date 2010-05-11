@@ -29,14 +29,18 @@ var Account = new (function(){
                 v_required  : true,
                 v_user      : [5,10]
             });
-            /*$(f.txtPass).validator({
-                v_required  : !mode_edit,
-                v_password  : [8,10]
-            });*/
-            /*$(f.txtPass2).validator({
-                v_required  : !mode_edit,
-                v_compare   : $(f.txtPass)
-            });*/
+
+            if( !mode_edit ){
+                $(f.txtPass).validator({
+                    v_required  : true,
+                    v_password  : [8,10]
+                });
+                $(f.txtPass2).validator({
+                    v_required  : true,
+                    v_compare   : $(f.txtPass)
+                });
+            }
+
             if( f.txtCaptcha ){
                 $(f.txtCaptcha).validator({
                     v_required  : true,
@@ -45,6 +49,15 @@ var Account = new (function(){
             }
 
             popup.initializer();
+
+            /*formatNumber.init(f.txtPhone, {
+                integerNumber  : false,
+                decimalDigit   : 2,
+                integerDigit   : 5,
+                negativeNumber : true,
+                autoFormat     : false,
+                monedaSymbol   : '$'
+            });*/
 
         }else if( (f=$('#formAccount2')[0]) ){
 

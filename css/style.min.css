@@ -6,8 +6,11 @@ body{font:100% Arial, Helvetica, sans-serif;background:url(../images/bg_texture_
 .tag-center{margin:0 auto!important}
 .text-center{text-align:center!important}
 .prepend-top-small{margin-top:10px!important}
+.prepend-top-small2{margin-top:3px!important}
+.append-right-small{margin-right:10px!important}
 .append-right-small2{margin-right:5px!important}
-.append-bottom-small{margin-bottom:15px!important}
+.append-bottom-small{margin-bottom:25px!important}
+.hide2{position:absolute;visibility:hidden}
 .border{border:1px solid red!important}
 h1{color:#744818;font-family:Arial, Helvetica, sans-serif;font-style:italic;font-size:115%;font-weight:700}
 h2{color:#FC7F07;font-weight:700;font-family:Arial, Helvetica, sans-serif;font-size:110%!important;margin-bottom:5px}
@@ -36,7 +39,7 @@ label.label-black{font-size:90%;color:#000}
 label.label-contact{font-size:70%;color:#80694D}
 label.label-form{font-size:80%;color:#6C491E}
 label.label-user{font-size:75%;color:#FF7D00}
-label.label-legend{font-size:70%;font-style:italic;color:#666D7D}
+.label-legend{font-size:70%;font-style:italic;color:#666D7D}
 label.label-large{font-size:95%;font-weight:700;color:#6C491E}
 input[type=text],input[type=password],textarea{border:1px #FAD4A3 solid;background-color:#FAF8E9;text-align:left;font-family:Arial, Helvetica, sans-serif;font-size:80%;margin-top:0!important;letter-spacing:1px;padding:3px}
 input.input-login{border:1px #F2A858 solid;background-color:#FAE397;width:150px;height:15px}
@@ -53,6 +56,7 @@ textarea.textarea-contact2{width:515px;height:180px}
 textarea.textarea-form{width:220px;height:100px}
 textarea.textarea-form-large{width:430px;height:130px}
 textarea.textarea-large{width:600px;height:150px}
+textarea.textarea-motive{width:300px;height:50px;margin-right:3px}
 button{font-family:Arial, Helvetica, sans-serif;border:none;font-size:80%;font-weight:700;text-align:center}
 button.button-small{width:76px;height:25px;background:url(../images/btn_small.png) no-repeat center left;color:#6C491D;cursor:pointer;margin-top:-2px}
 button.button-large{width:121px;height:27px;background:url(../images/btn_large.png) no-repeat center left;color:#6C491D;cursor:pointer;padding-bottom:4px}
@@ -109,6 +113,7 @@ ul.menu li a.menu-option{background:url(../images/menu_option.png) no-repeat top
 .prop-row .column-2{float:left;width:420px}
 .prop-row .column-2 p{margin-bottom:5px;height:48px;overflow:hidden}
 ul{list-style-type:none;display:list-item;margin:0;padding:0}
+ul li{list-style-type:none!important}
 ul.ul-list{float:left;color:#333;font-size:80%;width:630px;height:auto}
 ul.ul-list li{float:left;width:200px;list-style-image:url(../images/point.png);list-style-position:inside;background-color:#FCF5D8;margin-bottom:5px;margin-right:5px}
 .ul-list-separator{border-left:solid 1px #999;padding-left:5px}
@@ -119,6 +124,9 @@ ul.ul-list-cuentaplus .sintip{list-style-image:none!important;padding-left:24px}
 .list-servicios ul{width:100%;background-color:#FAF8E9}
 .list-servicios ul li{width:100%;background-color:#F4C990;padding:1px 0 3px}
 .list-servicios ul .row-par{background-color:#FAF8E9}
+ul.list-gmap{width:230px;margin:0 auto}
+ul.list-gmap li{margin-bottom:5px;list-style-type:none!important}
+ul.list-moreinfo li{margin-bottom:5px}
 .more-info{float:left;width:630px;height:inherit}
 .more-info .column-1{float:left;width:365px;height:inherit}
 .more-info .column-1 .photo-gallery{float:left;position:relative;background:url(../images/bg_photo_gallery.png) no-repeat top left;width:370px;height:273px;margin:-7px 0 0 -7px}
@@ -134,6 +142,7 @@ ul.ul-list-cuentaplus .sintip{list-style-image:none!important;padding-left:24px}
 .more-info .column-2 .slide .ajaxloader-mask{position:absolute;top:0;left:0;width:260px;height:100%;background-color:#fff;z-index:1000;display:none}
 .more-info .column-2 .slide .ajaxloader{position:absolute;top:120px;text-align:center;font-size:90%;z-index:1010;display:none}
 .more-info .row-cont{float:left;clear:both;width:620px;font-size:80%;margin:30px 0 0 5px}
+.more-info .bg-slide{background:url(../images/bg_slide.png) repeat-y;margin-left:-15px;padding:10px 0 6px 25px}
 .form-contact{margin:10px 0 0 70px}
 .form-contact-message{margin:64px 0 0 200px}
 .message-attention{background:url(../images/bg_attention.png) no-repeat;width:400px;height:70px;font-size:70%;color:#FE8405;margin:0 auto;padding:15px 0 0 75px}
@@ -162,6 +171,11 @@ table.tbl-list tbody .row-hover:hover{cursor:default;background-color:#F1CB65}
 .tbl-list .tbl-orders .cell-3{width:130px;border-right:1px solid #CFD0CB}
 .tbl-list .tbl-banner .cell-2{width:200px;border-right:1px solid #CFD0CB}
 .tbl-list .tbl-banner .cell-6 a{margin-right:5px}
+.gmap{width:450px;height:300px;overflow:hidden}
+.gmap-moreinfo{width:620px;height:300px;overflow:hidden}
+.gmap-info{font-family:Verdana, Arial, Helvetica, sans-serif;font-size:80%;color:#000}
+.validator-contact{float:left!important;width:195px!important}
+.validator-captcha{width:175px!important;margin-right:33px!important}
 strong,.tbl-list .tbl-propuser tbody tr .cell-4{color:#FC7F07}
 .text-medium,fieldset legend{font-size:90%}
 a.link:hover,a.link2:hover,a.link5:hover,a.link-title:hover{text-decoration:underline}

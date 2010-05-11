@@ -38,8 +38,8 @@ var PGmap = new (function(){
             //Personaliza el Icono
             var IconMarker = new GIcon(G_DEFAULT_ICON);
             IconMarker.image = "images/home.png";
-            IconMarker.imageMap = [0,0, 40,0, 36,36, 0,36];
-            IconMarker.iconSize = new GSize(40,36);
+            IconMarker.imageMap = [0,0, 60,0, 60,60, 0,60];
+            IconMarker.iconSize = new GSize(60,60);
             
             //Crea una marca en el mapa
             marker = new GMarker(point, {

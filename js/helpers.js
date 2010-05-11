@@ -22,6 +22,22 @@ jQuery.fn.extend({
             }
         });
     },
+
+    ucLower : function(){
+        return this.each(function(){
+            if( this.value ){
+                this.value = this.value.toLowerCase();
+            }
+        });
+    },
+
+    ucUpper : function(){
+        return this.each(function(){
+            if( this.value ){
+                this.value = this.value.toUpperCase();
+            }
+        });
+    },
     
     convertDate : function(){
         return this.each(function(){
@@ -49,8 +65,9 @@ jQuery.fn.extend({
     formatURL : function(){
         return this.each(function(){
             if( this.value ){
-                if( this.value.substr(0,7).toLowerCase()!="http://" ){
-                    this.value = "http://"+this.value;
+                this.value = this.value.toLowerCase();
+                if( this.value.substr(0,7)!="http://" ){
+                    this.value = "http://"+this.value.toLowerCase();
                 }
             }
         });
@@ -83,7 +100,9 @@ jQuery.fn.extend({
             });
         });
     }
+    
 });
+
 
 function getKeyCode(e){
     if (!e) e = window.event;
