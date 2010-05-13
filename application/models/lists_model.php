@@ -37,19 +37,31 @@ class lists_model extends Model {
         return array_merge($elementDefault, $data);
     }
 
-    public function get_states_search($elementDefault){
+    public function get_states_search($elementDefault, $where=null){
         $this->db->select('DISTINCT '.TBL_STATES.'.name, '.TBL_STATES.'.state_id', false);
         $this->db->from(TBL_STATES);
         $this->db->join(TBL_PROPERTIES, TBL_STATES.'.state_id = '.TBL_PROPERTIES.'.state_id');
+        if( $where!=null ) $this->db->where($where);
         $this->db->order_by('name', 'asc');
         $data = $this->db->get()->result_array();
         return array_merge($elementDefault, $data);
     }
 
-    public function get_city_search($elementDefault){
+    public function get_city_search($elementDefault, $where=null){
         $this->db->select('DISTINCT city', false);
         $this->db->from(TBL_PROPERTIES);
+        if( $where!=null ) $this->db->where($where);
         $this->db->order_by('city', 'asc');
+        $data = $this->db->get()->result_array();
+        return array_merge($elementDefault, $data);
+    }
+
+    public function get_category_search($elementDefault, $where=null){
+        $this->db->select('DISTINCT '.TBL_CATEGORY.'.name, '.TBL_CATEGORY.'.category_id', false);
+        $this->db->from(TBL_CATEGORY);
+        $this->db->join(TBL_PROPERTIES, TBL_CATEGORY.'.category_id = '.TBL_PROPERTIES.'.category_id');
+        if( $where!=null ) $this->db->where($where);
+        $this->db->order_by('name', 'asc');
         $data = $this->db->get()->result_array();
         return array_merge($elementDefault, $data);
     }
@@ -86,6 +98,11 @@ class lists_model extends Model {
         }
         $ret = order_dates($ret, $order);
         return $ret;
+    }
+
+    public function get_data_country($state_id){
+        $query = $this->db->get_where(TBL_STATES, array('state_id'=>$state_id));
+        return $query->row_array();
     }
 }
 ?>

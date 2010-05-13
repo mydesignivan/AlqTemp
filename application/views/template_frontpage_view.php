@@ -6,6 +6,8 @@
     <title><?=TITLE_GLOBAL . @$tlp_title;?></title>
     <meta name="description" content="<?=META_DESCRIPTION;?>" />
     <meta name="keywords" content="<?=META_KEYWORDS;?>" />
+    <meta name="robots" content="index,follow" />
+
     <?php require('includes/head_inc.php');?>
     <?php if( isset($tlp_script) && !empty($tlp_script) ) {
         if( !is_array($tlp_script) ) $tlp_script = array($tlp_script);

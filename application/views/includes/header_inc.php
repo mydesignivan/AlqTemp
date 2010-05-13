@@ -70,16 +70,21 @@
             </div>
             <div class="row2">
                 <div class="span-4">
-                    <?=form_dropdown('country', $comboCountry, @$searcher['country'], 'class="select-search" title="Pa&iacute;ses"');?><br />
-                    <?=form_dropdown('state', $comboStates, @$searcher['state'], 'class="select-search" title="Estados / Provincias"');?>
+                    <?=form_dropdown('country', $comboCountry, @$searcher['country'], 'class="select-search" title="Pa&iacute;ses" onchange="Searcher.show_combo(this);"');?><br />
+                    <?=form_dropdown('state', $comboStates, @$searcher['state'], 'class="select-search" title="Estados / Provincias" onchange="Searcher.show_combo(this);"');?>
                 </div>
                 <div class="span-4 last">
-                    <?=form_dropdown('city', $comboCity, @$searcher['city'], 'class="select-search" title="Ciudades"');?><br />
-                    <?=form_dropdown('category', $comboCategory, @$searcher['category'], 'class="select-search" title="Cetegor&iacute;as"');?>
+                    <?=form_dropdown('city', $comboCity, @$searcher['city'], 'class="select-search" title="Ciudades" onchange="Searcher.show_combo(this);"');?><br />
+                    <?=form_dropdown('category', $comboCategory, @$searcher['category'], 'class="select-search" title="Cetegor&iacute;as" onchange="Searcher.show_combo(this);"');?>
                 </div>
             </div>
         </form>
     </div>
+    <script type="text/javascript">
+    <!--
+        Searcher.initializer();
+    -->
+    </script>
     <!-- =============== END SEARCH =============== -->
 
 

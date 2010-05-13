@@ -21,7 +21,7 @@
 
 <!--========== LIBRARIES ============-->
 <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
-<script type="text/javascript" src="js/helpers<?=$this->config->item('sufix_pack_js');?>.js"></script>
+<script type="text/javascript" src="js/helpers/helpers<?=$this->config->item('sufix_pack_js');?>.js"></script>
 <script type="text/javascript" src="js/comun.js"></script>
 <!--========== END LIBRARIES =======-->
 
@@ -37,19 +37,20 @@
 </script>
 
 <!--========== CLASS ============-->
-<script type="text/javascript" src="js/class.login<?=$this->config->item('sufix_pack_js');?>.js"></script>
+<script type="text/javascript" src="js/class/class.login<?=$this->config->item('sufix_pack_js');?>.js"></script>
+<script type="text/javascript" src="js/class/class.searcher<?=$this->config->item('sufix_pack_js');?>.js"></script>
 <!--======= END CLASS =======-->
 
 
 <!--[if IE 6]>
 <script type="text/javascript">
     var IE6UPDATE_OPTIONS = {
-        icons_path: "js/ie6update/ie6update/images/"
+        icons_path: "js/plugins/ie6update/ie6update/images/"
     }
 </script>
-<script type="text/javascript" src="js/ie6update/ie6update/ie6update.js"></script>
+<script type="text/javascript" src="js/plugins/ie6update/ie6update/ie6update.js"></script>
 <![endif]-->
 
 <!--[if IE 6]>
-<script type="text/javascript" src="_js/DD_belatedPNG.js"></script>
+<script type="text/javascript" src="_js/plugins/DD_belatedPNG.js"></script>
 <![endif]-->

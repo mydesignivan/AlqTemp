@@ -16,7 +16,7 @@ class Index extends Controller {
             'tlp_title'       =>  TITLE_INDEX,
             'tlp_formextra'   =>  true,
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
-            'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
+            'comboCategory'   =>  $this->lists_model->get_category_search(array("0"=>"Categor&iacute;as")),
             'comboStates'     =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),
             'comboCity'       =>  $this->lists_model->get_city_search(array("0"=>"Ciudades"))
         ));
@@ -137,6 +137,60 @@ class Index extends Controller {
             'listProp'      => $listProp,
             'searcher'      => false
         ));
+    }
+
+    /* AJAX FUNCTIONS
+     **************************************************************************/
+    public function ajax_show_combo(){
+        $code = $this->uri->segment(3);
+        $name = $this->uri->segment(4);
+        $notsearch = $this->uri->segment(5);
+
+        $state = array();
+        $city = array();
+        $category = array();
+        $country_id=0;
+
+        switch( $name ){
+            case 'country':
+                $whereState = array(TBL_STATES.'.country_id' => $code);
+                $whereCity = array(TBL_PROPERTIES.'.country_id' => $code);
+                $whereCategory = array(TBL_PROPERTIES.'.country_id' => $code);
+            break;
+            case 'state':
+                $whereCity = array(TBL_PROPERTIES.'.state_id' => $code);
+                $whereCategory = array(TBL_PROPERTIES.'.state_id' => $code);
+                $res = $this->lists_model->get_data_country($code);
+                $country_id = $res['country_id'];
+            break;
+            case 'city':
+                if( $notsearch!='state' ) $whereState = array(TBL_PROPERTIES.'.city' => $code);
+                if( $notsearch!='category' ) $whereCategory = array(TBL_PROPERTIES.'.city' => $code);
+            break;
+            case 'category':
+                if( $notsearch!='state' ) $whereState = array(TBL_PROPERTIES.'.category_id' => $code);
+                if( $notsearch!='city' ) $whereCity = array(TBL_PROPERTIES.'.category_id' => $code);
+            break;
+        }
+
+        if( $notsearch!='state' && ($name=='country' || $name=='city' || $name=='category') ) {
+            $state = $this->lists_model->get_states_search(array("0"=>"Estados / Provincias"), $whereState);
+        }
+        if( $notsearch!='city' && ($name=='country' || $name=='state' || $name=='category') ) {
+            $city = $this->lists_model->get_city_search(array("0"=>"Ciudades"), $whereCity);
+        }
+        if( $notsearch!='category' && ($name=='country' || $name=='state' || $name=='city') ) {
+            $category = $this->lists_model->get_category_search(array("0"=>"Categor&iacute;as"), $whereCategory);
+        }
+
+        echo json_encode(array(
+            'state'      => $state,
+            'city'       => $city,
+            'category'   => $category,
+            'country_id' => $country_id
+        ));
+
+        die();
     }
 
 }
