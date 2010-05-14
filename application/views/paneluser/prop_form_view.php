@@ -143,14 +143,21 @@
                     </div>                    
                 </div>
                 <div class="clear span-16">
-                    <label class="label-form float-left">Mostrar Videos&nbsp;</label>
+                    <label class="label-form float-left">Insertar Video&nbsp;</label>
                     <div class="float-left text-small">
-                        <input type="radio" name="optMovie" value="1" onclick="$('#divGmap, #map').show2();" <?php if( @$info['movie_visible']==1 ) echo 'checked="checked"';?> />Si&nbsp;&nbsp;
-                        <input type="radio" name="optMovie" value="0" onclick="$('#divGmap, #map').hide2();" <?php if( @$info['movie_visible']==0 || !isset($info) ) echo 'checked="checked"';?> />No
+                        <input type="radio" name="optMovie" value="1" onclick="$('#divMovie').show2();" <?php if( @$info['movie_visible']==1 ) echo 'checked="checked"';?> />Si&nbsp;&nbsp;
+                        <input type="radio" name="optMovie" value="0" onclick="$('#divMovie').hide2();" <?php if( @$info['movie_visible']==0 || !isset($info) ) echo 'checked="checked"';?> />No
                     </div>
                 </div>
-                <div id="divMovie" class="clear span-16 <?php if( @$info['movie_visible']==0 ) echo 'hide2';?>">
-                    
+                <div id="divMovie" class="clear span-16 prepend-top <?php if( @$info['movie_visible']==0 ) echo 'hide2';?>">
+                    <label class="label-form float-left">C&oacute;digo de Video:</label>
+                    <div class="column-photo">
+                        <div class="float-left">
+                            <label class="label-legend">Pege aqu&iacute; el c&oacute;digo del video que desea insertar</label><br />
+                            <input type="text" name="txtUrlMovie" class="input-form" />
+                        </div>
+                        <div id="msgbox_urlmovie" class="clear float-left"></div>
+                    </div>
                 </div>
                 <?php }?>
 

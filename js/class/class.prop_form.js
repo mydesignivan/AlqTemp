@@ -13,6 +13,7 @@ var Prop = new (function(){
      **************************************************************************/
     this.initializer = function(res){
        mode_edit = res.mode;
+       cuentaplus_active = res.cuentaplus;
 
        f = $('#formProp')[0];
 
@@ -62,11 +63,17 @@ var Prop = new (function(){
     this.save = function(){
         if( working ) return false;
 
-        ajaxloader.show('Validando Formulario.');
+        //ajaxloader.show('Validando Formulario.');
 
         $.validator.validate('#formProp .validate', function(error){
-            if( !error && validServices() && validImages() ){
-                                
+
+            alert(error);
+
+            //validUrlMovie();
+
+            return;
+            if( !error && validServices() && validImages() && validUrlMovie() ){
+
                 var propid = $(f.prop_id).val();
 
                 $.ajax({
@@ -101,18 +108,26 @@ var Prop = new (function(){
                             }
 
                             extra_post.services = $("#listServices").find("li input:checked").toArrayValue();
-                            if( typeof PGmap=="object" ){
+                            if( cuentaplus_active ){
                                 PGmap.updateOptions();
                                 extra_post.gmap_coorLat = PGmap.options.coorLat;
                                 extra_post.gmap_coorLng = PGmap.options.coorLng;
                                 extra_post.gmap_address = PGmap.options.address;
                                 extra_post.gmap_zoom = PGmap.options.zoom;
                                 extra_post.gmap_mapType = PGmap.options.mapType;
+
+                                if( f.optMovie[0].checked ){
+                                    var url = $(f.txtUrlMovie.value).find('param:first').attr('value');
+                                    url = url.replace('http://www.youtube.com/', 'http://www.youtube-nocookie.com/');
+                                    if( url.indexOf('&border=')>-1 ) url = url.substr(0, url.length-10)+"0";
+                                    else url = url.substr(0, url.length-1)+"0";
+                                    f.txtUrlMovie.value = url;
+                                }
                             }
 
                             f.extra_post.value = JSON.encode(extra_post);
                             f.action = (propid=="") ? baseURI+"paneluser/propiedades/create" : baseURI+"paneluser/propiedades/edit/"+propid;
-                            f.submit();
+                            //f.submit();
 
                         }else alert("ERROR:\n"+data);
 
@@ -219,7 +234,8 @@ var Prop = new (function(){
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
-    var mode_edit=false;
+    var mode_edit = false;
+    var cuentaplus_active = false;
     var working = false;
     var arr_images_modified = {
         id : Array(),
@@ -232,18 +248,48 @@ var Prop = new (function(){
     /* PRIVATE METHODS
      **************************************************************************/
     var validServices = function(){
+        var msgbox = $('#msgbox_services').empty();
+
         if( $("#listServices").find("li input:checked").length == 0 ){
-            show_error("#msgbox_services", "Seleccione al menos un servicio.", "#msgbox_services");
+            show_error(msgbox, "Seleccione al menos un servicio.", msgbox);
             return false;
-        }else $.validator.hide('#msgbox_services');
+        }else $.validator.hide(msgbox);
         return true;
     };
 
     var validImages = function(){
+        var msgbox = $('#msgbox_images').empty();
+
         if( $('a.jq-thumb:visible').length==0 ){
-            show_error('#msgbox_images', 'Debe ingresar al menos una im&aacute;gen.', '#msgbox_images');
+            show_error(msgbox, 'Debe ingresar al menos una im&aacute;gen.', msgbox);
             return false;
-        }else $.validator.hide('#msgbox_images');
+        }else $.validator.hide(msgbox);
+        return true;
+    };
+
+    var validUrlMovie = function(){
+        if( f.optMovie[1].checked || (!f.optMovie[0].checked && !f.optMovie[0].checked) ) return true;
+        var el = f.txtUrlMovie;
+        var msgbox = $('#msgbox_urlmovie').empty();
+
+        if( el.value.length==0 ){
+            show_error(msgbox, 'Debe ingresar el c&oacute;digo del video aqu&iacute;', msgbox);
+            el.focus();
+            return false;
+        }
+        var obj = $(el.value).find('param:first');
+        if( obj.length==0 ){
+            show_error(msgbox, 'El c&oacute;digo insertado no es v&aacute;lido.', "#msgbox_urlmovie");
+            el.focus();
+            return false;
+        }
+        if( obj.attr('value').indexOf('www.youtube')==-1 ){
+            show_error(msgbox, 'La fuente del video debe ser extraido de <a href="http://www.youtube.com" target="_blank" class="link1">www.youtube.com</a>', msgbox);
+            el.focus();
+            return false;
+        }
+
+        $.validator.hide(msgbox);
         return true;
     };
 
@@ -252,7 +298,7 @@ var Prop = new (function(){
             working=true;
 
             var html = '<div class="text-center">';
-                html+= '<p>'+msg+'</p>';
+                html+= msg+'<br />';
                 html+= '<img src="images/ajax-loader5.gif" alt="" />';
                 html+= '</div>';
 

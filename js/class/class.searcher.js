@@ -10,6 +10,8 @@ var Searcher = new (function(){
     };
 
     this.show_combo = function(el){
+        if( el.value==0 ) return false;
+
         if( 
             (el.name=='category' && comboState[0].value!=0 && comboCity[0].value!=0) ||
             (el.name=='city' && comboState[0].value!=0 && comboCategory[0].value!=0)

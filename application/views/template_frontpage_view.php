@@ -4,8 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 <head>
     <title><?=TITLE_GLOBAL . @$tlp_title;?></title>
-    <meta name="description" content="<?=META_DESCRIPTION;?>" />
-    <meta name="keywords" content="<?=META_KEYWORDS;?>" />
+    <meta name="description" content="<?=META_DESCRIPTION_GLOBALS . @$tlp_meta_description;?>" />
+    <meta name="keywords" content="<?=META_KEYWORDS_GLOBALS . @$tlp_meta_keywords;?>" />
     <meta name="robots" content="index,follow" />
 
     <?php require('includes/head_inc.php');?>

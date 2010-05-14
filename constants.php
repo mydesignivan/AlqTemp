@@ -302,7 +302,7 @@ define('CFG_TIME_DISTPROP', 1);      // Tiempo que dura una propiedad destacada 
 define('CFG_TIME_CUENTAPLUS', 1);    // Tiempo que dura una Cuenta Plus (expresado en años)
 define('CFG_COSTO_PROPDISTING', 5);  // Costo para destacar propiedad
 define('CFG_COSTO_CUENTAPLUS', 30); // Costo para adquirir una cuenta plus
-define('CFG_FREE_TOTAL_PROP', 30);    // Cantidad de propiedad gratis
+define('CFG_FREE_TOTAL_PROP', 3);    // Cantidad de propiedad gratis
 define('CFG_FREE_TOTAL_IMAGES', 3);  // Cantidad de imagenes gratis
 define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS
 define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS
@@ -333,19 +333,8 @@ define('TITLE_RECORDARCONTRA', '');  // Recordar Contraseña
 | META - Palabras Claves y Descripcion de la web
 |--------------------------------------------------------------------------
 */
-define('META_KEYWORDS_GLOBALS', '');
-define('META_KEYWORDS_INDEX', '');
-define('META_KEYWORDS_MASINFO', '');
-define('META_KEYWORDS_CONTACTO', '');
-define('META_KEYWORDS_REGISTRO', '');
-define('META_KEYWORDS_RECORDARCONTRA', '');
-
-define('META_DESCRIPTION_GLOBALS', '');
-define('META_DESCRIPTION_INDEX', '');
-define('META_DESCRIPTION_MASINFO', '');
-define('META_DESCRIPTION_CONTACTO', '');
-define('META_DESCRIPTION_REGISTRO', '');
-define('META_DESCRIPTION_RECORDARCONTRA', '');
+define('META_KEYWORDS', '');
+define('META_DESCRIPTION', '');
 
 
 /* End of file constants.php */

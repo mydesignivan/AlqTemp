@@ -34,7 +34,7 @@
                 <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" />
             </div>
             <div class="span-10 clear">
-                <label class="label-form float-left">*Password:</label>
+                <label class="label-form float-left">*Contrase&ntilde;a:</label>
                 <input type="password" name="txtPass" class="input-form float-right validate" tabindex="9" />
             </div>
             <div class="span-10 clear">
