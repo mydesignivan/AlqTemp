@@ -40,9 +40,11 @@ class cuentaplus_model extends Model {
         return true;
     }
 
-    public function check(){
+    public function check($user_id=null){
+        if( $user_id==null ) $user_id = $this->session->userdata('user_id');
+
         $data = array(
-            'user_id'  => $this->session->userdata('user_id'),
+            'user_id'  => $user_id,
             'now() <=' => 'date_end'
         );
 

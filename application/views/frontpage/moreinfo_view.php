@@ -71,7 +71,9 @@
         </ul>
     </div>
 
-<?php if( $cuentaplus && $info['gmap_visible']==1 ){?>
+<?php if( $cuentaplus ){?>
+
+<?php if( $info['gmap_visible']==1 ) {?>
     <div class="row-cont">
         <h2>Ubicaci&oacute;n en el mapa</h2>
         <div id="map" class="gmap-moreinfo"></div>
@@ -87,6 +89,15 @@
         });
     -->
     </script>
+<?php }?>
+
+<?php if( $info['movie_visible']==1 ) {?>
+    <div class="row-cont">
+        <h2>Video</h2>
+        <?=sprintf(CFG_MOVIE_OBJECT, $info['movie_url'], $info['movie_url']);?>
+    </div>
+<?php }?>
+
 <?php }?>
 
     <div class="row-cont">

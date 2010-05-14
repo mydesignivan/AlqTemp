@@ -284,7 +284,7 @@ define('UPLOAD_DIR', './uploads/');
 define('UPLOAD_DIR_TMP', './uploads/tmp/');
 define('UPLOAD_DIR_WATERMARK', './images/logo_watermark1.png');
 define('UPLOAD_FILETYPE', 'gif|jpg|png');
-define('UPLOAD_MAXSIZE', 1024); //Expresado en Kylobytes
+define('UPLOAD_MAXSIZE', 2048); //Expresado en Kylobytes
 
 define('IMAGE_THUMB_WIDTH', 115);
 define('IMAGE_THUMB_HEIGHT', 90);
@@ -306,6 +306,7 @@ define('CFG_FREE_TOTAL_PROP', 30);    // Cantidad de propiedad gratis
 define('CFG_FREE_TOTAL_IMAGES', 3);  // Cantidad de imagenes gratis
 define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS
 define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS
+define('CFG_MOVIE_OBJECT', '<object width="425" height="344"><param name="movie" value="%s"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="%s" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>');
 
 
 /*

@@ -58,20 +58,17 @@ var Prop = new (function(){
             if( mode_edit ) PGmap.initializer(res.cuentaplus);
             else PGmap.initializer();
         }
+
+        formatNumber.init('#formProp input[name=txtPhone], #formProp input[name=txtPhoneArea], #formProp input[name=txtPrice]');
    };
 
     this.save = function(){
         if( working ) return false;
 
-        //ajaxloader.show('Validando Formulario.');
+        ajaxloader.show('Validando Formulario.');
 
         $.validator.validate('#formProp .validate', function(error){
 
-            alert(error);
-
-            //validUrlMovie();
-
-            return;
             if( !error && validServices() && validImages() && validUrlMovie() ){
 
                 var propid = $(f.prop_id).val();
@@ -127,7 +124,7 @@ var Prop = new (function(){
 
                             f.extra_post.value = JSON.encode(extra_post);
                             f.action = (propid=="") ? baseURI+"paneluser/propiedades/create" : baseURI+"paneluser/propiedades/edit/"+propid;
-                            //f.submit();
+                            f.submit();
 
                         }else alert("ERROR:\n"+data);
 
@@ -272,21 +269,23 @@ var Prop = new (function(){
         var el = f.txtUrlMovie;
         var msgbox = $('#msgbox_urlmovie').empty();
 
-        if( el.value.length==0 ){
+        if( !mode_edit && el.value.length==0 ){
             show_error(msgbox, 'Debe ingresar el c&oacute;digo del video aqu&iacute;', msgbox);
             el.focus();
             return false;
         }
-        var obj = $(el.value).find('param:first');
-        if( obj.length==0 ){
-            show_error(msgbox, 'El c&oacute;digo insertado no es v&aacute;lido.', "#msgbox_urlmovie");
-            el.focus();
-            return false;
-        }
-        if( obj.attr('value').indexOf('www.youtube')==-1 ){
-            show_error(msgbox, 'La fuente del video debe ser extraido de <a href="http://www.youtube.com" target="_blank" class="link1">www.youtube.com</a>', msgbox);
-            el.focus();
-            return false;
+        if( el.value.length>0 ){
+            var obj = $(el.value).find('param:first');
+            if( obj.length==0 ){
+                show_error(msgbox, 'El c&oacute;digo insertado no es v&aacute;lido.', "#msgbox_urlmovie");
+                el.focus();
+                return false;
+            }
+            if( obj.attr('value').indexOf('www.youtube')==-1 ){
+                show_error(msgbox, 'La fuente del video debe ser extraido de <a href="http://www.youtube.com" target="_blank" class="link1">www.youtube.com</a>', msgbox);
+                el.focus();
+                return false;
+            }
         }
 
         $.validator.hide(msgbox);

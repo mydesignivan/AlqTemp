@@ -49,15 +49,7 @@ var Account = new (function(){
             }
 
             popup.initializer();
-
-            /*formatNumber.init(f.txtPhone, {
-                integerNumber  : false,
-                decimalDigit   : 2,
-                integerDigit   : 5,
-                negativeNumber : true,
-                autoFormat     : false,
-                monedaSymbol   : '$'
-            });*/
+            formatNumber.init('#formAccount input[name=txtPhone], #formAccount input[name=txtPhoneArea]');
 
         }else if( (f=$('#formAccount2')[0]) ){
 

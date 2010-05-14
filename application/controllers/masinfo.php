@@ -33,8 +33,8 @@ class Masinfo extends Controller {
             if( !$info ) redirect($this->config->item('base_url'));
 
             $this->load->model('cuentaplus_model');
-            $check_cp = $this->cuentaplus_model->check();
-            //$check_cp['result'] = true;
+            //$check_cp = $this->cuentaplus_model->check($info['user_id']);
+            $check_cp['result'] = true;
 
             $tlp_script = array('validator', 'fancybox', 'moreinfo');
             if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));            

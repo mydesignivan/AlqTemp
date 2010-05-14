@@ -59,7 +59,7 @@
                     <div class="float-right">
                         <div id="msgbox_images" class="clear"></div>
                         <a href="#" class="link-attachments" onclick="Prop.append_row_file(this); return false;" tabindex="2">Adjuntar otro archivo</a>
-                        <p class="text-small">Archivos (jpg | gif | png) 2MB max &emsp; &emsp;</p>
+                        <p class="text-small">M&aacute;ximo 2 megas por foto (gif, jpg o png)</p>
                     </div>
                 </div>
 
@@ -121,7 +121,12 @@
                 </div>
                 <div class="clear span-10">
                     <label class="label-form float-left">Precio:</label>
-                    <input type="text" name="txtPrice" class="input-form float-right" value="<?=@$info['price'];?>" tabindex="11" />
+                    <input type="text" name="txtPrice" class="input-price float-right" value="<?=@$info['price'];?>" tabindex="11" />
+                    <select id="cboMoneySymbol" class="float-right">
+                        <option value="$">$</option>
+                        <option value="U$S">U$S</option>
+                        <option value="€">€</option>
+                    </select>
                 </div>
 
                 <?php if( $cuenta_plus ){?>
@@ -137,7 +142,7 @@
                     <div class="column-photo">
                         <div id="map" class="gmap"></div><br />
                         <p class="label-legend">Arrastra el marcador para ajustar tu ubicaci&oacute;n<br />Puedes buscar por ejemplo "lavalle 1525, bs as" o "mendoza, ar"</p>
-                        <input type="text" id="txtGAddress" class="input-form validate" onkeypress="if( getKeyCode(event)==13 ) PGmap.search();" /><button type="button" class="button-small" onclick="PGmap.search()">Buscar</button>
+                        <input type="text" id="txtGAddress" class="input-form" onkeypress="if( getKeyCode(event)==13 ) PGmap.search();" /><button type="button" class="button-small" onclick="PGmap.search()">Buscar</button>
                         <img id="gmap-ajaxloader" src="images/ajax-loader2.gif" alt="Espere por favor" class="hide" />
                         <div id="msgbox-gmap" class="float-left"></div>
                     </div>                    
@@ -153,8 +158,12 @@
                     <label class="label-form float-left">C&oacute;digo de Video:</label>
                     <div class="column-photo">
                         <div class="float-left">
+                            <?php if( @$info && !empty($info['movie_url']) ){
+                                $movie_url = sprintf(CFG_MOVIE_OBJECT, $info['movie_url'], $info['movie_url']);
+                                echo $movie_url."<br />";
+                            }?>
                             <label class="label-legend">Pege aqu&iacute; el c&oacute;digo del video que desea insertar</label><br />
-                            <input type="text" name="txtUrlMovie" class="input-form" />
+                            <input type="text" name="txtUrlMovie" class="input-form" value='<?=@$movie_url;?>' onclick="this.select()" />
                         </div>
                         <div id="msgbox_urlmovie" class="clear float-left"></div>
                     </div>
@@ -177,19 +186,25 @@
             <!--
                 Prop.initializer({
                     mode       : <?=!@$info ? "false" : "true";?>
-                <?php if( $cuenta_plus ){
-                        if( @$info ){?>
-                            ,cuentaplus : {
-                                coorLat : <?=@$info['gmap_lat'];?>,
-                                coorLng : <?=@$info['gmap_lng'];?>,
-                                address : '<?=@$info['gmap_address'];?>',
-                                zoom    : <?=@$info['gmap_zoom'];?>,
-                                mapType : '<?=@$info['gmap_maptype'];?>'
-                            }
-                <?php   }else{
+                <?php
+                if( $cuenta_plus ){
+                    if( @$info ){
+                        if( $info['gmap_visible']==1 ){
+                            echo ",cuentaplus : {";
+                            echo "  coorLat : ".$info['gmap_lat'].",";
+                            echo "  coorLng : ".$info['gmap_lng'].",";
+                            echo "  address : '".$info['gmap_address']."',";
+                            echo "  zoom    : ".$info['gmap_zoom'].",";
+                            echo "  mapType : '".$info['gmap_maptype']."'";
+                            echo "}";
+                        }else{
                             echo ',cuentaplus : true';
                         }
-                      }?>
+
+                    }else{
+                        echo ',cuentaplus : true';
+                    }
+                 }?>
                 });
             -->
             </script>

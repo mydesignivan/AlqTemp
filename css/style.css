@@ -250,6 +250,10 @@ input.input-phonearea{
 input.input-phone{
     width: 162px;
 }
+input.input-price{
+    width: 163px;
+    margin-left: 5px;
+}
 input.input-captcha{
     float:right;
     width: 180px;

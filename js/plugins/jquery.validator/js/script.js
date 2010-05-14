@@ -30,8 +30,8 @@ var ClassValidator = function(param1, param2){
         var cont=false, callback=Function();
         if( typeof arg[1]=="string"||typeof arg[1]=="object" && arg[2] && typeof arg[2]=="function" ) {
             cont = typeof arg[1]=="string" ? $(arg[1]) : arg[1];
-            if( !plantilla ) plantilla = cont.html();
-            else cont.html(plantilla);
+            if( !template ) template = cont.html();
+            else cont.html(template);
 
             callback = arg[2];
         }else if( typeof arg[1]=="function" && arg.length==2 ){
@@ -161,7 +161,7 @@ var ClassValidator = function(param1, param2){
         custom		:	''
     };
     var This=this;
-    var plantilla=false;
+    var template=false;
 
     /* PRIVATE METHODS
      **********************************************************************/
@@ -317,7 +317,7 @@ var ClassValidator = function(param1, param2){
         return div;
     };
 
-    var message = function(condition, el, error){
+    var message = function(condition, el, error){        
         var div = !el.validator_container_one ? el.validator_container : el.validator_container_one;
 
         if( condition ){
