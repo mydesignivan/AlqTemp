@@ -40,13 +40,14 @@ class Index extends Controller {
     }
 
     public function display($param=null){
-        if( $param==null ){
+        $uri = strtolower($this->uri->segment(1));
+        if( empty($uri) || $uri=="display" ){
             $param = array(
                 'base_url'      => str_replace('.html', '', site_url('/display/page/')),
                 'title'         => TITLE_INDEX,
                 'title_section' => 'Alquileres Destacados',
                 'searcher'      =>  false,
-                'listProp'      => $this->search_model->last_properties(10)
+                'listProp'      => $this->search_model->last_properties($this->_count_per_page, $this->_offset)
                 //'listProp'    => $this->search_model->list_disting($this->_count_per_page, $this->_offset)
             );
         }

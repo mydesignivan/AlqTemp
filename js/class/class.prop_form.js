@@ -245,7 +245,7 @@ var Prop = new (function(){
     /* PRIVATE METHODS
      **************************************************************************/
     var validServices = function(){
-        var msgbox = $('#msgbox_services').empty();
+        var msgbox = $('#msgbox_services');
 
         if( $("#listServices").find("li input:checked").length == 0 ){
             show_error(msgbox, "Seleccione al menos un servicio.", msgbox);
@@ -255,7 +255,7 @@ var Prop = new (function(){
     };
 
     var validImages = function(){
-        var msgbox = $('#msgbox_images').empty();
+        var msgbox = $('#msgbox_images');
 
         if( $('a.jq-thumb:visible').length==0 ){
             show_error(msgbox, 'Debe ingresar al menos una im&aacute;gen.', msgbox);
@@ -267,7 +267,7 @@ var Prop = new (function(){
     var validUrlMovie = function(){
         if( f.optMovie[1].checked || (!f.optMovie[0].checked && !f.optMovie[0].checked) ) return true;
         var el = f.txtUrlMovie;
-        var msgbox = $('#msgbox_urlmovie').empty();
+        var msgbox = $('#msgbox_urlmovie');
 
         if( !mode_edit && el.value.length==0 ){
             show_error(msgbox, 'Debe ingresar el c&oacute;digo del video aqu&iacute;', msgbox);

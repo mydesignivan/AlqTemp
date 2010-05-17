@@ -92,7 +92,7 @@ class Search_model extends Model {
         return array('result'=>$result, 'count_rows'=>$count_rows);
     }
 
-    public function last_properties($limit){
+    public function last_properties($limit, $offset){
         $sql = "prop_id,";
         $sql.= "address,";
         $sql.= "description,";
@@ -102,10 +102,14 @@ class Search_model extends Model {
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ".TBL_IMAGES." WHERE ".TBL_PROPERTIES.".prop_id=".TBL_IMAGES.".prop_id LIMIT 1) as image_thumb";
 
         $this->db->select($sql, false);
-        $this->db->order_by('prop_id', 'desc');
-        $result = $this->db->get(TBL_PROPERTIES, $limit);
+        $this->db->from(TBL_PROPERTIES);
+        $count_rows = $this->db->count_all_results();
 
-        return array('result'=>$result, 'count_rows'=>$limit);
+        $this->db->select($sql, false);
+        $this->db->order_by('prop_id', 'desc');
+        $result = $this->db->get(TBL_PROPERTIES, $limit, $offset);
+
+        return array('result'=>$result, 'count_rows'=>$count_rows);
     }
 
     public function get_searches(){

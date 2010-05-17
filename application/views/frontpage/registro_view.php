@@ -14,32 +14,32 @@
 
             <div class="span-10">
                 <label class="label-form float-left">*Nombre:</label>
-                <input type="text" name="txtFirstName" class="input-form float-right validate" tabindex="3" />
+                <input type="text" name="txtFirstName" class="input-form float-right validate" tabindex="4" />
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">*Apellido:</label>
-                <input type="text" name="txtLastName" class="input-form float-right validate" tabindex="4" />
+                <input type="text" name="txtLastName" class="input-form float-right validate" tabindex="5" />
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">*Email:</label>
-                <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="5" onblur="$(this).ucLower();" />
+                <input type="text" name="txtEmail" class="input-form float-right validate" tabindex="6" onblur="$(this).ucLower();" />
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">Tel&eacute;fono:</label>
-                <input type="text" name="txtPhone" class="input-phone float-right" tabindex="7" />
-                <input type="text" name="txtPhoneArea" class="input-phonearea float-right" tabindex="6" />
+                <input type="text" name="txtPhone" class="input-phone float-right" tabindex="8" />
+                <input type="text" name="txtPhoneArea" class="input-phonearea float-right" tabindex="7" />
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">*Usuario:</label>
-                <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" />
+                <input type="text" name="txtUser" class="input-form float-right validate" tabindex="9" />
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">*Contrase&ntilde;a:</label>
-                <input type="password" name="txtPass" class="input-form float-right validate" tabindex="9" />
+                <input type="password" name="txtPass" class="input-form float-right validate" tabindex="10" />
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">*Repetir Contrase&ntilde;a:</label>
-                <input type="password" name="txtPass2" class="input-form float-right validate" tabindex="10" />
+                <input type="password" name="txtPass2" class="input-form float-right validate" tabindex="11" />
             </div>
 
             <div class="span-10 clear prepend-top">
@@ -59,7 +59,7 @@
             </div>
             <div class="span-10 clear">
                 <label class="label-form float-left">*Ingrese C&oacute;digo:</label>
-                <input type="text" name="txtCaptcha" maxlength="6" class="input-captcha validate" tabindex="11" />
+                <input type="text" name="txtCaptcha" maxlength="6" class="input-captcha validate" tabindex="12" />
             </div>
             <!-- ======= END FORM ======= -->
 

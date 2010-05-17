@@ -82,6 +82,7 @@ var ClassValidator = function(param1, param2){
                 var obj=false;
                 if( options.container!=null && (typeof options.container=="string"||typeof options.container=="object") ){
                     obj = (typeof options.container)=="string" ? $(options.container) : options.container;
+                    obj.empty();
                 }
                 var div = get_div();
                 var cssAdd = (this.validator_setting.addClass=='') ? this.validator_options.addClass : this.validator_setting.addClass;

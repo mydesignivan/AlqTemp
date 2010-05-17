@@ -60,8 +60,8 @@ class Propiedades extends Controller {
             $comboStates = $this->lists_model->get_states($info['country_id'], array("0"=>"Seleccione una Provincia"));
         }
         
-        $check_cp = $this->cuentaplus_model->check();
-        //$check_cp['result'] = true;
+        //$check_cp = $this->cuentaplus_model->check();
+        $check_cp['result'] = true;
 
         $tlp_script = array('validator', 'fancybox', 'popup', 'json', 'prop_form');
         if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));
