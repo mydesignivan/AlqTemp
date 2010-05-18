@@ -90,7 +90,8 @@ var ClassAjaxUpload=function(options){
             zIndex   : 1000,
             width    : '600px',
             cursor   : 'pointer',
-            opacity  : 0
+            opacity  : 0,
+            cssOpacity : 0
         });
 
         if( $.browser.opera ) i.css('margin', '5px 0 0 -518px');

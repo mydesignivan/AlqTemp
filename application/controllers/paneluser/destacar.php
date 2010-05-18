@@ -26,8 +26,8 @@ class Destacar extends Controller {
      **************************************************************************/
     public function index(){
         $this->_data = $this->dataview->set_data(array(
-            'listDisting'   => $this->disting_model->get_list(0),
-            'listUndisting' => $this->disting_model->get_list(1)
+            'listDisting'   => $this->disting_model->get_list(1),
+            'listUndisting' => $this->disting_model->get_list(0)
         ));
         $this->load->view('template_paneluser_view', $this->_data);
     }

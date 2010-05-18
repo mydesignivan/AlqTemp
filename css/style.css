@@ -1,12 +1,11 @@
 /*------------------------------------------------------------------------------
  - ESTILO GENERAL
  -----------------------------------------------------------------------------*/
-body {
+/*body {
     font: 100% Arial, Helvetica, sans-serif;
     background: url(../images/bg_texture_top.jpg) top left repeat-x #FAF5E1;
-    /*color: #000000;*/
     color:#684C1D;
-}
+}*/
 
 .float-left{float:left !important;}
 .float-right{float:right !important;}
@@ -385,6 +384,7 @@ select.select-search{
 }
 select.select-form{
     width:228px;
+    margin-bottom: 5px;
 }
 
 /*------------------------------------------------------------------------------
@@ -483,7 +483,7 @@ fieldset.fieldset-information{
     #login-error{
         float:left;
         clear:both;
-        margin-top:4px;
+        margin-top:0px;
         padding:0 10px 0 15px;
         color:red;
         font-size: 70%;

@@ -41,7 +41,7 @@ class Index extends Controller {
 
     public function display($param=null){
         $uri = strtolower($this->uri->segment(1));
-        if( empty($uri) || $uri=="display" ){
+        if( empty($uri) || $uri=="display" || $uri=="index" ){
             $param = array(
                 'base_url'      => str_replace('.html', '', site_url('/display/page/')),
                 'title'         => TITLE_INDEX,

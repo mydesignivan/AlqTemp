@@ -9,6 +9,11 @@ var Prop = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
+    this.disting = function(){
+        $('#sm-popup').modal();
+    };
+
+
     this.action={
         disting : function(dist, selector){
             if( working ) return false;

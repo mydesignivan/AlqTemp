@@ -74,7 +74,7 @@
                 </table>
     <?php }?>
 
-
+            <div id="sm-popup"></div>
 
  <?php }else{?>
 
