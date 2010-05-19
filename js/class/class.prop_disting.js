@@ -10,7 +10,13 @@ var Prop = new (function(){
     /* PUBLIC METHODS
      **************************************************************************/
     this.disting = function(){
-        $('#sm-popup').modal();
+        var div = $('#sm-popup');
+        
+        div.find('sm-popup-middle .sm-popup-b2').html('asdasdasdasd');
+
+        div.modal({
+            
+        });
     };
 
 

@@ -1,0 +1,121 @@
+.sm-popup{
+    position: fixed;
+    width: 100px;
+    height: 60px;
+    /*width: 385px;
+    height: 230px;*/
+    z-index: 2000;
+    display: none;
+    border:1px solid red;
+}
+    .sm-popup .sm-popup-top{
+        background: #fff;
+        position:relative;
+        float: left;
+        width: 100%;
+        height: 20px;
+        top:-20px;
+    }
+        .sm-popup .sm-popup-top .sm-popup-b1{
+            background: #fff;
+            position: relative;
+            float: left;
+            width: 20px;
+            height: 20px;
+            left: -20px;
+            border:1px solid blue;
+        }
+        .sm-popup .sm-popup-top .sm-popup-b2{
+            background: #fff;
+            position:absolute;
+            float: left;
+            width: 100%;
+            height: 20px;
+            top:0;left:0;
+            border:1px solid blue;
+        }
+        .sm-popup .sm-popup-top .sm-popup-b3{
+            background: #fff;
+            position: relative;
+            float: right;
+            width: 20px;
+            height: 20px;
+            right: -20px;
+            border:1px solid blue;
+        }
+    .sm-popup .sm-popup-middle{
+        background: #fff;
+        position: relative;
+        float: left;
+        clear: left;
+        width: 100%;
+        height:100%;
+        top:-20px;
+        padding: 0;
+        margin: 0;
+    }
+        .sm-popup .sm-popup-middle .sm-popup-b1{
+            background: #fff;
+            position: relative;
+            float: left;
+            width: 20px;
+            height: 100%;
+            left: -20px;
+            border:1px solid blue;
+        }
+        .sm-popup .sm-popup-middle .sm-popup-b2{
+            background: #fff;
+            position: absolute;
+            float: left;
+            width: 100%;
+            height: 100%;
+            left:0;top:0;
+            /*overflow: hidden;*/
+            border:1px solid blue;
+        }
+        .sm-popup .sm-popup-middle .sm-popup-b3{
+            background: #fff;
+            position: relative;
+            float: right;
+            width: 20px;
+            height: 100%;
+            right: -20px;
+            border:1px solid blue;
+        }
+
+    .sm-popup .sm-popup-bottom{
+        background: #fff;
+        position: relative;
+        float: left;
+        clear: left;
+        width: 100%;
+        height: 20px;
+        top: -20px;
+    }
+        .sm-popup .sm-popup-bottom .sm-popup-b1{
+            background: #fff;
+            position: relative;
+            float: left;
+            width: 20px;
+            height: 20px;
+            left: -20px;
+            border:1px solid blue;
+        }
+        .sm-popup .sm-popup-bottom .sm-popup-b2{
+            background: #fff;
+            position:absolute;
+            float: left;
+            width: 100%;
+            height: 20px;
+            top:0;left:0;
+            border:1px solid blue;
+        }
+        .sm-popup .sm-popup-bottom .sm-popup-b3{
+            background: #fff;
+            position: relative;
+            float: right;
+            width: 20px;
+            height: 20px;
+            right: -20px;
+            border:1px solid blue;
+        }

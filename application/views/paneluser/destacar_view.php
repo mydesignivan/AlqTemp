@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
+<?php require(APPPATH . 'views/includes/popup5_inc.php');?>
+
 <?php if( $this->session->userdata('fondo')>0 ){?>
             <div class="message-attention"><div class="message">El posicionamiento de la propiedad <b>se realizar&aacute; unicamente para la secci&oacute;n elegida</b> y la <b>propiedad seleccionada.</b> La duraci&oacute;n de la posici&oacute;n ser&aacute; de <b>1 mes</b> desde la fecha de contrataci&oacute;n.</div></div>
 
@@ -73,8 +75,6 @@
                     </tbody>
                 </table>
     <?php }?>
-
-            <div id="sm-popup"></div>
 
  <?php }else{?>
 
