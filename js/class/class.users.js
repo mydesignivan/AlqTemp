@@ -10,7 +10,6 @@ var Users = new (function(){
      **************************************************************************/
     this.initializer = function(){
         This.events.change_search($('#cboSearchBy').val(), true);
-        popup.initializer();
     };
 
     this.action={
@@ -76,44 +75,38 @@ var Users = new (function(){
 
     this.change_status = function(tagA, user_id){
         if( working ) return false;
-        working=true;
-
-        $(tagA).hide();
-        $(tagA).parent().find('img').show();
-
         var statu;
 
         if( tagA.innerHTML=="Activo" ) statu=0;
         else if( tagA.innerHTML=="Inactivo" ) statu=1;
 
-        $.post(baseURI+'paneladmin/usuarios/ajax_change_statu/', {statu : statu, user_id : user_id}, function(data){
-            if( data=="ok" ){
-                if( statu==0 ) tagA.innerHTML = "Inactivo";
-                else if ( statu==1 ) tagA.innerHTML = "Activo";
-                $(tagA).parent().find('img').hide();
-                $(tagA).show();
-            }else alert('ERROR\n'+data);
-            working = false;
-        });
+        if( confirm("¿Está seguro de poner "+ ((statu==0) ? "Inactivo" : "Activo") +" al usuario?") ){
+            $(tagA).hide();
+            $(tagA).parent().find('img').show();
+            working=true;
+            $.post(baseURI+'paneladmin/usuarios/ajax_change_statu/', {statu : statu, user_id : user_id}, function(data){
+                if( data=="ok" ){
+                    if( statu==0 ) tagA.innerHTML = "Inactivo";
+                    else if ( statu==1 ) tagA.innerHTML = "Activo";
+                    $(tagA).parent().find('img').hide();
+                    $(tagA).show();
+                }else alert('ERROR\n'+data);
+                working = false;
+            });
+        }
 
         return false;
     };
 
     this.open_popup = function(user_id){
-        popup.load({
-            ajaxUrl  : baseURI+'paneladmin/usuarios/ajax_view_details/',
-            ajaxData : 'user_id='+user_id
-        }, {
-            selector_content : '.jquery-popup-middle .jquery-popup-b2',
-            effectOpen       : 'autoresize',
-            effectClose      : 'autoresize',
-            effectOptions    : {
-                width   :   '385px',
-                height  :   '230px'
-            },
-            contentDefault   : '<div class="text-center"><img src="images/ajax-loader4.gif" alt="" /></div>'
+        Popup.initializer({
+            selContainer : '#sm-popup2',
+            selContent   : '.sm-popup-middle .sm-popup-b2',
+            width        : '385px',
+            height       : '250px',
+            effectOpen   : 'fade'
         });
-        
+        Popup.load_ajax(baseURI+'paneladmin/usuarios/ajax_popup_userdetail/', 'user_id='+user_id);
     };
 
 

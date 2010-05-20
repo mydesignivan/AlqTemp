@@ -20,6 +20,6 @@
 
     <div class="span-6 text-center">
         <button type="button" class="button-small" onclick="Account.save_pass();">Modificar</button>&nbsp;&nbsp;
-        <button type="button" class="button-small" onclick="popup.close();">Cerrar</button>
+        <button type="button" class="button-small" onclick="$.modal.close();">Cerrar</button>
     </div>
 </div>

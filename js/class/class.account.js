@@ -213,21 +213,4 @@ var Account = new (function(){
         }
     };
 
-    var openPopup = function(url, width, height, onLoad){
-        popup.load({
-            ajaxUrl  : url
-        }, {
-            selector         : '#jquery-popup2',
-            selector_content : '.jquery-popup-middle .jquery-popup-b2',
-            effectOpen       : 'autoresize',
-            effectClose      : 'autoresize',
-            effectOptions    : {
-                width   :   width,
-                height  :   height
-            },
-            contentDefault   : '<div class="text-center"><img src="images/ajax-loader4.gif" alt="" /></div>',
-            onLoad : onLoad
-        });
-    }
-
 })();

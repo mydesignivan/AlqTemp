@@ -64,7 +64,7 @@ class Destacar extends Controller {
     }
 
     public function ajax_popup_typedisting(){
-        $this->load->view('paneluser/destacar_tipos_view.php');
+        $this->load->view('paneluser/popup/destacar_tipos_view.php');
     }
 
 

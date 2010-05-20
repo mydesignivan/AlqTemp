@@ -32,6 +32,8 @@
         <div class="column-label"><label class="label-form">Importe:</label></div>
         <div class="column-data">U$S <?=$info['fondo'];?></div>
     </div>
-    <div class="span-10 text-center"><br /><button type="button" class="button-small" onclick="popup.close()">Cerrar</button></div>
+    <div class="span-10 prepend-top-small text-center">
+        <button type="button" class="button-small" onclick="$.modal.close();">Cerrar</button>
+    </div>
 </div>
 

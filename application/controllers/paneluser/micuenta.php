@@ -88,7 +88,7 @@ class Micuenta extends Controller{
      **************************************************************************/
     public function ajax_popup_editpass(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-            $this->load->view('paneluser/account_editpass_view');
+            $this->load->view('paneluser/popup/account_editpass_view');
         }
     }
 
