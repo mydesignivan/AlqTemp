@@ -13,7 +13,7 @@ class Destacar extends Controller {
             'tlp_section'       =>  'paneluser/destacar_view.php',
             'tlp_title'         =>  TITLE_DESTACAR,
             'tlp_title_section' =>  'Destacar Propiedades',
-            'tlp_script'        =>  'disting'
+            'tlp_script'        =>  array('json', 'disting')
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -33,16 +33,19 @@ class Destacar extends Controller {
     }
 
     public function disting(){
-        if( $this->uri->segment(4) ){
-            $id = $this->uri->segment_array();
-            $disting = $id[count($id)];
-            array_splice($id, 0,3);
-            
-            if( $disting==1 ){
-                $this->disting_model->disting($id);
-            }else{
-                $this->disting_model->undisting($id);
-            }
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+
+            $data = json_decode($_POST['data_post']);
+
+            $this->disting_model->disting($data->id, $data->type);
+            redirect('/paneluser/destacar/');
+        }
+    }
+    public function undisting(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $data = json_decode($_POST['data_post']);
+
+            $this->disting_model->undisting($data);
             redirect('/paneluser/destacar/');
         }
     }
@@ -59,6 +62,11 @@ class Destacar extends Controller {
             die("ok");
         }
     }
+
+    public function ajax_popup_typedisting(){
+        $this->load->view('paneluser/destacar_tipos_view.php');
+    }
+
 
 }
 

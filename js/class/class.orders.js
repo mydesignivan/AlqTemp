@@ -123,18 +123,5 @@ var Orders = new (function(){
 
     /* PRIVATE METHODS
      **************************************************************************/
-    var get_data = function(arr){
-        var names = [], id = [];
-
-        arr.each(function(i){
-            id.push(this.value);
-            names.push($(this).parent().parent().find('.link-title').text());
-        });
-
-        return {
-            id    : id,
-            names : names
-        }
-    };
 
 })();

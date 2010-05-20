@@ -48,7 +48,6 @@ var Account = new (function(){
                 });
             }
 
-            popup.initializer();
             formatNumber.init('#formAccount input[name=txtPhone], #formAccount input[name=txtPhoneArea]');
 
         }else if( (f=$('#formAccount2')[0]) ){
@@ -108,22 +107,32 @@ var Account = new (function(){
         return false;
     };
 
-    this.send = function(){
-        $.post(baseURI+'paneluser/micuenta/ajax_checkuser', {user:f.txtUser.value}, function(data){
-            if( data=="error" ){
-                show_error(f.txtUser, 'El Usuario ingresado no se corresponde con el de la cuenta.');
-            }else if( data=="ok" ){
-                f.submit();
-            }else{
-                alert("ERROR\n"+data);
+    this.user_down = function(){
+        $.validator.validate('#formAccount2 .validate', function(error){
+            if( !error ){
+                $.post(baseURI+'paneluser/micuenta/ajax_checkuser', {user:f.txtUser.value}, function(data){
+                    if( data=="error" ){
+                        show_error(f.txtUser, 'El Usuario ingresado no se corresponde con el de la cuenta.');
+                    }else if( data=="ok" ){
+                        f.submit();
+                    }else{
+                        alert("ERROR\n"+data);
+                    }
+                });
             }
         });
     };
 
     this.open_popup = {
         editpss : function(){
-            openPopup(baseURI+'paneluser/micuenta/ajax_popup_editpass/', '320px', '280px', function(){
-
+            Popup.initializer({
+                selContainer : '#sm-popup2',
+                selContent   : '.sm-popup-middle .sm-popup-b2',
+                width        : '320px',
+                height       : '280px',
+                effectOpen   : 'fade'
+            });
+            Popup.load_ajax(baseURI+'paneluser/micuenta/ajax_popup_editpass/', '', function(){
                 $.validator.setting('#jquery-popup2 .jquery-popup-middle .jquery-popup-b2 .validate', {
                     effect_show     : 'slidefade',
                     validatorOne    : true
@@ -143,7 +152,7 @@ var Account = new (function(){
     this.save_pass = function(){
         ajaxloader2.show();
 
-        $.validator.validate('#jquery-popup2 .jquery-popup-middle .jquery-popup-b2 .validate', function(error){
+        $.validator.validate('#sm-popup2 .validate', function(error){
             if( !error ){
                 $.post(baseURI+'paneluser/micuenta/ajax_save_pass/', {
                     pss_current: $('#txtPssCurrent').val(),
@@ -176,18 +185,19 @@ var Account = new (function(){
             working=true;
 
             var html = '<div class="text-center">';
-                html+= '<p>'+msg+'</p>';
+                html+= msg+'<br />';
                 html+= '<img src="images/ajax-loader5.gif" alt="" />';
                 html+= '</div>';
 
-            popup.load({html : html}, {
-                reload  : true,
-                bloqEsc : true,
-                effectClose : null
+            Popup.initializer({
+                selContainer : '#sm-popup1',
+                selContent   : '.sm-popup-middle',
+                actionClose  : false
             });
+            Popup.load_html(html);
         },
         hidden : function(){
-            popup.close();
+            $.modal.close();
             working=false;
         }
     };

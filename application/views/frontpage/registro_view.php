@@ -10,7 +10,7 @@
 <?php }else{?>
 
         <form id="formAccount" class="prepend-left-small" action="<?=site_url('/registro/create/');?>" method="post" enctype="application/x-www-form-urlencoded">
-            <?php require(APPPATH . 'views/includes/popup_inc.php');?>
+            <?php require(APPPATH . 'views/includes/popup1_inc.php');?>
 
             <div class="span-10">
                 <label class="label-form float-left">*Nombre:</label>

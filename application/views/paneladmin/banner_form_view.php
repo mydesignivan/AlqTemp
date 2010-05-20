@@ -2,7 +2,7 @@
 
 <div class="span-10 prepend-left-small">
     <form id="form1" action="" method="post" enctype="application/x-www-form-urlencoded">
-        <?php require(APPPATH . 'views/includes/popup_inc.php');?>
+        <?php require(APPPATH . 'views/includes/popup1_inc.php');?>
 
         <div class="span-10">
             <label class="label-form float-left">*Nombre:&nbsp;&nbsp;&nbsp;</label>

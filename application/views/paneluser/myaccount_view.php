@@ -1,7 +1,8 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <div class="span-10 prepend-left-small">
-    <?php require(APPPATH . 'views/includes/popup4_inc.php');?>
+    <?php require(APPPATH . 'views/includes/popup1_inc.php');?>
+    <?php require(APPPATH . 'views/includes/popup2_inc.php');?>
 
     <form id="formAccount" action="<?=site_url('/paneluser/micuenta/edit');?>" method="post" enctype="application/x-www-form-urlencoded">
         <div class="span-10">
@@ -25,11 +26,11 @@
             <label class="label-form float-left">*Usuario:</label>
             <input type="text" name="txtUser" class="input-form float-right validate" tabindex="8" value="<?=$info['username'];?>" />
         </div>
-        <!--<div class="span-10 clear">
+        <div class="span-10 clear">
             <label class="label-form float-left">Contrase&ntilde;a:</label>
             <a href="javascript:void(Account.open_popup.editpss())" class="link2 float-right">&nbsp;Modificar</a>
             <input type="password" name="txtPass" class="input-pss float-right" tabindex="9" value="XXXXXXXXXX" disabled />&nbsp;
-        </div>-->
+        </div>
         <!-- ======= END FORM ======= -->
         
         <div class="clear span-15 text-center prepend-top">

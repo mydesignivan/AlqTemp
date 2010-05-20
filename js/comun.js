@@ -26,3 +26,17 @@ function show_error(el, msg, container){
     try{el.focus();}
     catch(e){}
 }
+
+function get_data(arr){
+    var names = [], id = [];
+
+    arr.each(function(i){
+        id.push(this.value);
+        names.push($(this).parent().parent().find('.link-title').text());
+    });
+
+    return {
+        id    : id,
+        names : names
+    }
+}

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 13-05-2010 a las 19:19:47
+-- Tiempo de generación: 20-05-2010 a las 19:24:25
 -- Versión del servidor: 5.1.37
 -- Versión de PHP: 5.3.0
 
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('d75888d34c9613f97dec0aae7c31f3af', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.6', 1273770821, '');
+('fed72ab870edce65e2ce1428b0ef3559', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1274376226, 'a:14:{s:7:"user_id";s:1:"1";s:8:"username";s:4:"ivan";s:9:"firstname";s:4:"Ivan";s:8:"lastname";s:7:"Mattoni";s:5:"email";s:19:"iwmattoni@yahoo.com";s:5:"phone";s:7:"4442192";s:10:"phone_area";s:4:"0261";s:6:"active";s:1:"1";s:5:"fondo";s:3:"690";s:5:"token";s:0:"";s:5:"level";s:1:"0";s:10:"date_added";s:19:"2010-03-02 09:54:05";s:13:"last_modified";s:19:"0000-00-00 00:00:00";s:9:"logged_in";s:1:"1";}');
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `images` (
   `name_thumb` varchar(255) NOT NULL,
   `name_original` varchar(255) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=113 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=115 ;
 
 --
 -- Volcar la base de datos para la tabla `images`
@@ -139,7 +139,9 @@ INSERT INTO `images` (`image_id`, `prop_id`, `name`, `name_thumb`, `name_origina
 (107, 59, '1_ph12274568.jpg', '1_ph12274568_thumb.jpg', 'ph12274568.jpg'),
 (108, 59, '1_ph1842868.jpg', '1_ph1842868_thumb.jpg', 'ph1842868.jpg'),
 (111, 62, '1_ph20383134.jpg', '1_ph20383134_thumb.jpg', 'ph20383134.jpg'),
-(112, 63, '1_ph11921703.jpg', '1_ph11921703_thumb.jpg', 'ph11921703.jpg');
+(112, 63, '1_ph11921703.jpg', '1_ph11921703_thumb.jpg', 'ph11921703.jpg'),
+(113, 64, '1_7_sanra2.jpg', '1_7_sanra2_thumb.jpg', '7_sanra2.jpg'),
+(114, 65, '1_casa1.jpg', '1_casa1_thumb.jpg', 'casa1.jpg');
 
 -- --------------------------------------------------------
 
@@ -4839,18 +4841,18 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `gmap_address` varchar(200) NOT NULL,
   `gmap_zoom` int(3) NOT NULL,
   `gmap_maptype` char(1) NOT NULL DEFAULT 'm',
-  `movie_visible` int(1) NOT NULL,
-  `movie_script` varchar(500) NOT NULL,
+  `movie_visible` int(1) NOT NULL DEFAULT '0',
+  `movie_url` varchar(100) NOT NULL,
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`prop_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=64 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
 
 --
 -- Volcar la base de datos para la tabla `properties`
 --
 
-INSERT INTO `properties` (`prop_id`, `user_id`, `category_id`, `address`, `description`, `country_id`, `state_id`, `city`, `phone`, `phone_area`, `website`, `price`, `gmap_visible`, `gmap_lat`, `gmap_lng`, `gmap_address`, `gmap_zoom`, `gmap_maptype`, `movie_visible`, `movie_script`, `date_added`, `last_modified`) VALUES
+INSERT INTO `properties` (`prop_id`, `user_id`, `category_id`, `address`, `description`, `country_id`, `state_id`, `city`, `phone`, `phone_area`, `website`, `price`, `gmap_visible`, `gmap_lat`, `gmap_lng`, `gmap_address`, `gmap_zoom`, `gmap_maptype`, `movie_visible`, `movie_url`, `date_added`, `last_modified`) VALUES
 (40, 1, 2, 'Manzano Histórico- Tunuyan', 'El Complejo se encuentra al pie de la Cordillera de los Andes, cuyo microclima lo convierte en\nun lugar ideal para descansar en contacto con la naturaleza y el sol. Alojamientos diseñados\npara un alto confort con todas las comodidades que Usted necesita para disfrutar una estadía\ninolvidable. \nVenga y sueñe despierto... \nSERVICIOS:\nPara 6 personas:\n2 dormitorios\n1 Baño\nCocina\nComedor\nGarage techado\nChurrasquera\nTV satelital-DVD\nHeladera\nMicroondas\nSalamandra', 13, 180, 'Manzano histórico- tunuyan', '154859477', '261', '', '', 0, '', '', '', 0, 'm', 0, '', '2010-04-02 16:05:43', '2010-04-02 16:06:28'),
 (41, 1, 2, 'Cabañas El Refugio de la Luna  (Merlo) San LUis', 'En un predio de 12.500 m² se encuentra este Complejo Refugio de la Luna, totalmente equipado al pie de las Sierras de Los Comechingones, cuenta con cocina completa, microondas, desayuno, servicio de mucama, ropa blanca, TV por cable, 2 dormitorios, teléfono, ventilador de techo, calefacción, cocheras, parrillas, horno de barro, juegos infantiles, piscina para grandes y chicos, solarium, atendido por sus dueños.', 13, 186, 'Merlo', '15-488560', '02652', '', '', 0, '', '', '', 0, 'm', 0, '', '2010-04-02 16:10:56', '0000-00-00 00:00:00'),
 (42, 1, 2, 'Cabañas Ioká Ioká  (Carpintería - San Luis)', '  "Disfrutá de un lugar con la magia de la naturaleza".\nCabañas construidas en una planta con capacidad máxima para 5 pers y en dos plantas con capacidad para 6 pers. con excelente vista a las Sierras de los Comechingones y el Valle de Conlara ofrecen, cocina completa, microondas, vajilla, servicio de ropa blanca, TV por cable, ventiladores de techo, comedor con mesa y sillas de algarrobo, 2 dormitorios, galería exterior, calefactores, parrilla bajo cochera, piscina, solarium, parque iluminado, cochera cubierta, lavadero. Ubicadas en un amplio parque de 2500 m² recorrido por senderos rústicos con hierbas, flores y árboles autóctonos, a 7 km de la Villa de Merlo. (Opcional: servicio de mucama y desayuno).', 13, 186, 'Carpintería - san luis', '479036', '02656', '', '', 0, '', '', '', 0, 'm', 0, '', '2010-04-02 16:13:46', '2010-04-02 16:14:04'),
@@ -4868,7 +4870,9 @@ INSERT INTO `properties` (`prop_id`, `user_id`, `category_id`, `address`, `descr
 (58, 1, 1, 'Prueba Con Ie8', 'cfgdfgewrwe r we rw er w er w er  sdf s df sd f sdf sd f sd fs df we r wer w er wer\nwerwersejrhkjwehr we rwjerw\nerwerjwhekrwerwerwe\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er \nwer wer\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er wer wer\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er wer wer\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er wer wer', 13, 180, 'Mendoza', '4442192', '0261', 'http://www.mydesign.com.ar', '$ 500', 0, '', '', '', 0, 'm', 0, '', '2010-04-15 14:04:41', '2010-04-28 09:04:10'),
 (59, 1, 2, 'Prueba Marca Agua', 'sdfsfsdf', 13, 180, 'Mendoza', '4442192', '0261', 'http://www.mydesign.com.ar', '450', 0, '', '', '', 0, 'm', 0, '', '2010-05-03 20:20:46', '2010-05-03 20:26:25'),
 (62, 1, 1, 'Prop Gmap3', 'dfgdfdgfg', 13, 180, 'Asdas', '', '', '', '', 1, '-36.6740395', '-64.3781606', '9 de Julio, Toay, La Pampa, Argentina', 14, 'm', 0, '', '2010-05-04 10:53:23', '2010-05-04 11:07:39'),
-(63, 1, 1, 'Prop Gmap4', 'gdfgfdfgf sd fs df s df sad fg sadf  sdf\nas\ndfas\nfd\nas\ndfasdfashdkfjhaskdfj kashdfkas kdfgaskdf', 13, 180, 'Mendoza', '4442192', '0261', 'http://mydesign.com.ar', '$ 400', 1, '-32.8852106', '-68.8686512', 'Av Del Libertador, Mendoza, Argentina', 13, 'm', 0, '', '2010-05-04 13:23:24', '2010-05-07 09:58:01');
+(63, 1, 1, 'Prop Gmap4', 'gdfgfdfgf sd fs df s df sad fg sadf  sdf\nas\ndfas\nfd\nas\ndfasdfashdkfjhaskdfj kashdfkas kdfgaskdf', 13, 180, 'Mendoza', '4442192', '0261', 'http://mydesign.com.ar', '$ 400', 1, '-32.8852106', '-68.8686512', 'Av Del Libertador, Mendoza, Argentina', 13, 'm', 0, '', '2010-05-04 13:23:24', '2010-05-07 09:58:01'),
+(64, 1, 1, 'Prop Movie1', 'asdasdas asd\nasdasdasd', 13, 178, 'Asdas', '', '', '', '', 0, '', '', '', 0, 'm', 1, 'http://www.youtube-nocookie.com/v/4p8qobHAgKg&hl=es_ES&fs=1&rel=0', '2010-05-14 09:37:43', '2010-05-14 11:04:19'),
+(65, 1, 1, 'Prop Prueba2', 'dgdfgdf\ng\ndfgdfg', 13, 180, 'Mendoza', '', '', '', '', 1, '-32.8895975', '-68.8543988', 'Olascoaga 901-999, Mendoza, Argentina', 15, 'm', 1, 'http://www.youtube-nocookie.com/v/4p8qobHAgKg&hl=es_ES&fs=1&rel=0', '2010-05-14 10:26:44', '2010-05-14 11:05:07');
 
 -- --------------------------------------------------------
 
@@ -4879,15 +4883,20 @@ INSERT INTO `properties` (`prop_id`, `user_id`, `category_id`, `address`, `descr
 CREATE TABLE IF NOT EXISTS `properties_disting` (
   `propdisting_id` int(11) NOT NULL AUTO_INCREMENT,
   `prop_id` int(11) NOT NULL,
+  `type` char(20) NOT NULL,
   `date_start` datetime NOT NULL,
   `date_end` char(10) NOT NULL,
   PRIMARY KEY (`propdisting_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Volcar la base de datos para la tabla `properties_disting`
 --
 
+INSERT INTO `properties_disting` (`propdisting_id`, `prop_id`, `type`, `date_start`, `date_end`) VALUES
+(3, 63, 'category', '2010-05-20 12:13:23', '20-06-2010'),
+(4, 45, 'index', '2010-05-20 12:24:13', '20-06-2010'),
+(5, 44, 'index', '2010-05-20 12:24:13', '20-06-2010');
 
 -- --------------------------------------------------------
 
@@ -4985,7 +4994,11 @@ INSERT INTO `properties_to_services` (`prop_id`, `service_id`) VALUES
 (62, 5),
 (63, 4),
 (63, 2),
-(63, 6);
+(63, 6),
+(64, 4),
+(64, 5),
+(65, 4),
+(65, 5);
 
 -- --------------------------------------------------------
 
@@ -5016,7 +5029,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `firstname`, `lastname`, `email`, `phone`, `phone_area`, `active`, `fondo`, `token`, `level`, `date_added`, `last_modified`) VALUES
-(1, 'ivan', 'W+7vIijnZG95Bc6dE9uxNc8v97CQyAk+', 'Ivan', 'Mattoni', 'iwmattoni@yahoo.com', '4442192', '0261', 1, 700, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
+(1, 'ivan', 'W+7vIijnZG95Bc6dE9uxNc8v97CQyAk+', 'Ivan', 'Mattoni', 'iwmattoni@yahoo.com', '4442192', '0261', 1, 690, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
 (5, 'jsuarez', 'XSefDr9qBEzqXYhTFH5guxyDCbk=', 'juan', '', 'jsuarez@mydesign.com.ar', '', '', 0, 0, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
 (6, 'admin', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', '', NULL, NULL, '', 0, 0, '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (11, 'valeria', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Valeria', 'ad', 'iwmattoni@yahoo.com', '4442192', '0261', 1, 700, '', 0, '2010-04-13 09:54:05', '0000-00-00 00:00:00'),
@@ -5063,14 +5076,12 @@ CREATE TABLE IF NOT EXISTS `users_online` (
   `ip` varchar(50) NOT NULL,
   `time` int(12) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Volcar la base de datos para la tabla `users_online`
 --
 
 INSERT INTO `users_online` (`id`, `user_id`, `ip`, `time`) VALUES
-(9, 1, '0.0.0.0', 1273586817),
-(8, 1, '192.168.0.2', 1273586817),
-(10, 1, '127.0.0.1', 1273586817);
+(11, 1, '127.0.0.1', 1274376230);
 

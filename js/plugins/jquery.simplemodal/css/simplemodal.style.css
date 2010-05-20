@@ -1,14 +1,52 @@
-.sm-popup{
+/*------------------------------------------------------------------------------
+ - Este popup se muestra cuando se realiza alguna accion de guardar
+ -----------------------------------------------------------------------------*/
+.sm-popup1{
     position: fixed;
-    width: 100px;
-    height: 60px;
-    /*width: 385px;
-    height: 230px;*/
+    width: 260px;
+    /*height: inherit;*/
+    z-index: 2000;
+    display: none;
+}
+    .sm-popup1 .sm-popup-top{
+        float: left;
+        background: url(../img/popup1_top.png) no-repeat top left;
+        width: 260px;
+        height: 11px;
+    }
+    .sm-popup1 .sm-popup-middle{
+        float: left;
+        clear: left;
+        background: url(../img/popup1_middle.png) repeat-y left;
+        width: 260px;
+        height: inherit;
+        padding: 10px 0 10px 0;
+        text-align: center;
+        font-size: 90%;
+        /*border: 1px solid;*/
+    }
+    .sm-popup1 .sm-popup-bottom{
+        float: left;
+        clear: left;
+        background: url(../img/popup1_bottom.png) no-repeat top left;
+        width: 260px;
+        height: 11px;
+    }
+
+/*------------------------------------------------------------------------------
+ - POPUP2
+ -----------------------------------------------------------------------------*/
+.sm-popup2{
+    position: fixed;
+    width: 120px;
+    height: 100px;
+    /*left:19px;
+    top:19px;*/
     z-index: 2000;
     display: none;
     border:1px solid red;
 }
-    .sm-popup .sm-popup-top{
+    .sm-popup2 .sm-popup-top{
         background: #fff;
         position:relative;
         float: left;
@@ -16,7 +54,7 @@
         height: 20px;
         top:-20px;
     }
-        .sm-popup .sm-popup-top .sm-popup-b1{
+        .sm-popup2 .sm-popup-top .sm-popup-b1{
             background: #fff;
             position: relative;
             float: left;
@@ -25,7 +63,7 @@
             left: -20px;
             border:1px solid blue;
         }
-        .sm-popup .sm-popup-top .sm-popup-b2{
+        .sm-popup2 .sm-popup-top .sm-popup-b2{
             background: #fff;
             position:absolute;
             float: left;
@@ -34,7 +72,7 @@
             top:0;left:0;
             border:1px solid blue;
         }
-        .sm-popup .sm-popup-top .sm-popup-b3{
+        .sm-popup2 .sm-popup-top .sm-popup-b3{
             background: #fff;
             position: relative;
             float: right;
@@ -43,7 +81,7 @@
             right: -20px;
             border:1px solid blue;
         }
-    .sm-popup .sm-popup-middle{
+    .sm-popup2 .sm-popup-middle{
         background: #fff;
         position: relative;
         float: left;
@@ -54,7 +92,7 @@
         padding: 0;
         margin: 0;
     }
-        .sm-popup .sm-popup-middle .sm-popup-b1{
+        .sm-popup2 .sm-popup-middle .sm-popup-b1{
             background: #fff;
             position: relative;
             float: left;
@@ -63,7 +101,7 @@
             left: -20px;
             border:1px solid blue;
         }
-        .sm-popup .sm-popup-middle .sm-popup-b2{
+        .sm-popup2 .sm-popup-middle .sm-popup-b2{
             background: #fff;
             position: absolute;
             float: left;
@@ -71,9 +109,9 @@
             height: 100%;
             left:0;top:0;
             /*overflow: hidden;*/
-            border:1px solid blue;
+            border:1px solid red;
         }
-        .sm-popup .sm-popup-middle .sm-popup-b3{
+        .sm-popup2 .sm-popup-middle .sm-popup-b3{
             background: #fff;
             position: relative;
             float: right;
@@ -83,7 +121,7 @@
             border:1px solid blue;
         }
 
-    .sm-popup .sm-popup-bottom{
+    .sm-popup2 .sm-popup-bottom{
         background: #fff;
         position: relative;
         float: left;
@@ -92,7 +130,7 @@
         height: 20px;
         top: -20px;
     }
-        .sm-popup .sm-popup-bottom .sm-popup-b1{
+        .sm-popup2 .sm-popup-bottom .sm-popup-b1{
             background: #fff;
             position: relative;
             float: left;
@@ -101,7 +139,7 @@
             left: -20px;
             border:1px solid blue;
         }
-        .sm-popup .sm-popup-bottom .sm-popup-b2{
+        .sm-popup2 .sm-popup-bottom .sm-popup-b2{
             background: #fff;
             position:absolute;
             float: left;
@@ -110,7 +148,7 @@
             top:0;left:0;
             border:1px solid blue;
         }
-        .sm-popup .sm-popup-bottom .sm-popup-b3{
+        .sm-popup2 .sm-popup-bottom .sm-popup-b3{
             background: #fff;
             position: relative;
             float: right;
@@ -119,3 +157,7 @@
             right: -20px;
             border:1px solid blue;
         }
+
+.simplemodal-overlay{
+    background-color: #fff;
+}

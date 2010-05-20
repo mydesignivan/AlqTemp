@@ -16,6 +16,7 @@ class disting_model extends Model {
         $sql = TBL_PROPERTIES.".prop_id, ".TBL_PROPERTIES.".address,";
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."',name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_IMAGES .".prop_id=". TBL_PROPERTIES .".prop_id LIMIT 1) as image";
+        if( $disting==1 ) $sql.= ",CASE ".TBL_PROPERTIES_DISTING.".type WHEN 'index' THEN 'Index' WHEN 'category' THEN 'Categor&iacute;a' WHEN 'city' THEN 'Ciudad' END as type";
         $this->db->select($sql, false);
         $this->db->from(TBL_PROPERTIES);
 
@@ -30,15 +31,16 @@ class disting_model extends Model {
         return $this->db->get();
     }
 
-    public function disting($prop_id){
+    public function disting($prop_id, $type){
         $date_end = substr(add_date(date('d-m-Y'), 0, CFG_TIME_DISTPROP), 0, 10);
 
         $this->fondos_model->extract(CFG_COSTO_PROPDISTING);
 
-        $sql = "INSERT INTO ".TBL_PROPERTIES_DISTING."(prop_id, date_start, date_end) VALUES";
+        $sql = "INSERT INTO ".TBL_PROPERTIES_DISTING."(prop_id, `type`, date_start, date_end) VALUES";
         foreach ( $prop_id as $id ){
             $sql.= "(";
             $sql.= $id.",";
+            $sql.= "'".$type."',";
             $sql.= "now(),";
             $sql.= "'".$date_end."'";
             $sql.= "),";

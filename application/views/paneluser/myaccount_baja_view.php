@@ -11,7 +11,7 @@
             <textarea name="txtMotive" class="textarea-motive float-right" cols="22" rows="5"></textarea>
         </div>
         <div class="span-10 text-center prepend-top">
-            <button type="button" class="button-large" onclick="Account.send()">Darme de baja</button>
+            <button type="button" class="button-large" onclick="Account.user_down()">Darme de baja</button>
         </div>
     </form>
 </div>

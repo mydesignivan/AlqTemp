@@ -9,46 +9,58 @@ var Prop = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.disting = function(){
-        var div = $('#sm-popup');
-        
-        div.find('sm-popup-middle .sm-popup-b2').html('asdasdasdasd');
+    this.disting = function(type){
+        if( working ) return false;
 
-        div.modal({
-            
-        });
+        if( confirm('¿Está seguro que desea destacar las propiedades seleccionadas?') ){
+            var f = $('#form1')[0];
+
+            f.action = baseURI+'paneluser/destacar/disting/';
+            f.data_post.value = JSON.encode({id : _data.id, type : type});
+
+            working=true;
+            $.get(baseURI+'paneluser/destacar/ajax_check_saldo_distingprop', function(data){
+                if( data=="error" ){
+                    alert("El saldo disponible no es suficiente para destacar una propiedad.");
+                    return false;
+                }else if( data=="ok" ){
+                    f.submit();
+                }else{
+                    alert("ERROR:\n"+data);
+                }
+                working=false;
+            });
+        }
+        return false;
     };
 
-
     this.action={
-        disting : function(dist, selector){
-            if( working ) return false;
-
-            var lstProp = $(selector+" input:checked");
-            if( lstProp.length==0 ){
-                alert("Debe seleccionar una propiedad.");
-                return false;
-            }
-            var info = get_data(lstProp);
-            var url = baseURI+"paneluser/destacar/disting/"+info.id+"/"+dist;
-
-            if( dist==1 ){
-                working=true;
-                $.get(baseURI+'paneluser/destacar/ajax_check_saldo_distingprop', function(data){
-                    if( data=="error" ){
-                        alert("El saldo disponible no es suficiente para destacar una propiedad.");
-                        return false;
-                    }else if( data=="ok" ){
-                        location.href = url;
-                    }else{
-                        alert("ERROR:\n"+data);
-                    }
-                    working=false;
+        disting : function(){
+            if( valid('#tbl-disting') ){
+                Popup.initializer({
+                    selContainer : '#sm-popup2',
+                    selContent   : '.sm-popup-middle .sm-popup-b2',
+                    width        : '380px',
+                    height       : '250px',
+                    effectOpen   : 'fade',
+                    effectClose  : 'normal'
                 });
-            }else{
-                location.href = url;
+                Popup.load_ajax(baseURI+'paneluser/destacar/ajax_popup_typedisting/');
             }
-
+            return false;
+        },
+        undisting : function(){
+            if( working ) return false;
+            working=true;
+            
+            if( valid('#tbl-undisting') ){
+                var f = $('#form1')[0];
+                if( confirm('¿Está seguro que desea quitar el destacado a las propiedades seleccionadas?') ){
+                    f.action = baseURI+'paneluser/destacar/undisting/';
+                    f.data_post.value = JSON.encode(_data.id);
+                    f.submit();
+                }
+            }
             return false;
         }
     };
@@ -57,8 +69,19 @@ var Prop = new (function(){
     /* PRIVATE PROPERTIES
      **************************************************************************/
     var working = false;
+    var _data={};
 
     /* PRIVATE METHODS
      **************************************************************************/
+     var valid = function(selector){
+        var lstProp = $(selector+" input:checked");
+        if( lstProp.length==0 ){
+            alert("Debe seleccionar al menos un item.");
+            _data={};
+            return false;
+        }
+        _data = get_data(lstProp);
+        return true;
+     };
 
 })();
