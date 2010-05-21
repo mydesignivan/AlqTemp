@@ -21,7 +21,6 @@ var Banner = new (function(){
         $("input[name='txtName'], textarea[name='txtCode']").validator({
             v_required  : true
         });
-        popup.initializer();
     };
 
     this.save = function(){
@@ -77,18 +76,19 @@ var Banner = new (function(){
             working=true;
 
             var html = '<div class="text-center">';
-                html+= '<p>'+msg+'</p>';
+                html+= msg+'<br />';
                 html+= '<img src="images/ajax-loader5.gif" alt="" />';
                 html+= '</div>';
 
-            popup.load({html : html}, {
-                reload  : true,
-                bloqEsc : true,
-                effectClose : false
+            Popup.initializer({
+                selContainer : '#sm-popup1',
+                selContent   : '.sm-popup-middle',
+                actionClose  : false
             });
+            Popup.load_html(html);
         },
         hidden : function(){
-            popup.close();
+            $.modal.close();
             working=false;
         }
     }

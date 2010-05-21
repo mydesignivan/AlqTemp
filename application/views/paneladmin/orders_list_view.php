@@ -29,7 +29,6 @@
         <?php }?>
 
 <?php if( $listOrders->num_rows>0 ){?>
-        <?php require(APPPATH . 'views/includes/popup1_inc.php');?>
         <?php require(APPPATH . 'views/includes/popup2_inc.php');?>
             
         <table id="tblList" class="tbl-list" cellpadding="0" cellspacing="0">

@@ -112,10 +112,10 @@ class Banner extends Controller {
         }
     }
 
-    public function ajax_view_banner(){
+    public function ajax_popup_banner(){
         if( $this->uri->segment(4) ){
             $result = $this->banner_model->get_banner($this->uri->segment(4));
-            $this->load->view("paneladmin/banner_preview_view", array('code'=>$result['code']));
+            $this->load->view("paneladmin/popup/banner_preview_view", array('code'=>$result['code']));
         }
     }
 

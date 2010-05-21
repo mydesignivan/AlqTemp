@@ -13,7 +13,7 @@ class Destacar extends Controller {
             'tlp_section'       =>  'paneluser/destacar_view.php',
             'tlp_title'         =>  TITLE_DESTACAR,
             'tlp_title_section' =>  'Destacar Propiedades',
-            'tlp_script'        =>  array('json', 'disting')
+            'tlp_script'        =>  array('json', 'popup', 'disting')
         ));
         $this->_data = $this->dataview->get_data();
     }

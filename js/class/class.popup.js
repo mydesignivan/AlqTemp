@@ -17,9 +17,12 @@ var Popup = new (function(){
          OPTIONS.overlayClose = set.actionClose;
     };
 
-    this.load_html = function(html){
-         content.html(html);
-         container.modal(OPTIONS);
+    this.load_html = function(){
+        content.empty();
+        $(arguments).each(function(){
+             content.append(this);
+        });
+        container.modal(OPTIONS);
     };
 
     this.load_ajax = function(url, param, callback){
@@ -30,12 +33,15 @@ var Popup = new (function(){
 
          $.post(url, param, function(data){
              content.html(data);
-             callback();
+             callback(content);
              container.modal(OPTIONS);
          });
     };
 
-
+    this.center = function(){
+        $(window).trigger('resize');
+    };
+    
     /* PRIVATE PROPERTIES
      **************************************************************************/
     var container = false;

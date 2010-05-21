@@ -13,6 +13,6 @@
     </a>
 
     <div class="clear span-9 text-center prepend-top">
-        <button type="button" class="button-small" onclick="$.modal.close();">Cerrar</button>
+        <button type="button" class="button-small simplemodal-close">Cerrar</button>
     </div>
 </div>
