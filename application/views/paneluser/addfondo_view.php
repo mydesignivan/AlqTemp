@@ -24,7 +24,7 @@
 
     <div class="span-15 last text-center">
         <br />
-        <a href="javascript:void(Fondo.buy());"><img src="images/btn_buy.jpg" alt="Comprar" /></a>
+        <a href="javascript:void(Fondo.buy());"><img src="images/btn_buy.jpg" alt="Comprar" width="123" height="44" /></a>
     </div>
 
     <input type='hidden' name='NombreItem' value='AlquileresTemporarios.org'>

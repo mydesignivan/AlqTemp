@@ -32,24 +32,38 @@ class disting_model extends Model {
     }
 
     public function disting($prop_id, $type){
-        $date_end = substr(add_date(date('d-m-Y'), 0, CFG_TIME_DISTPROP), 0, 10);
+        $date_end = substr(add_date(date('d-m-Y'), 0, setup('CFG_TIME_DISTPROP')), 0, 10);
 
-        $this->fondos_model->extract(CFG_COSTO_PROPDISTING);
+        $this->fondos_model->extract(setup('CFG_COSTO_PROPDISTING'));
 
-        $sql = "INSERT INTO ".TBL_PROPERTIES_DISTING."(prop_id, `type`, date_start, date_end) VALUES";
+        /*$sql = "INSERT INTO ".TBL_PROPERTIES_DISTING."(prop_id, `type`, `type_val`, date_start, date_end) VALUES";
         foreach ( $prop_id as $id ){
             $sql.= "(";
             $sql.= $id.",";
             $sql.= "'".$type."',";
+            $sql.= "'".$type_val."',";
             $sql.= "now(),";
             $sql.= "'".$date_end."'";
             $sql.= "),";
         }
-        $sql = substr($sql, 0, -1);
-        
-        if( !$this->db->query($sql) ){
-            display_error(__FILE__, "disting", ERR_DB_INSERT, array(TBL_PROPERTIES_DISTING));
+        $sql = substr($sql, 0, -1);*/
+
+        $this->db->trans_start(); // INICIO TRANSACCION
+
+        foreach ( $prop_id as $id ){
+            $data = array(
+                'prop_id'    => $id,
+                'type'       => $type,
+                'date_start' => 'now()',
+                'date_end'   => $date_end
+            );
+            if( $this->db->insert(TBL_PROPERTIES_DISTING, $data) ){
+            //if( !$this->db->query($sql) ){
+                display_error(__FILE__, "disting", ERR_DB_INSERT, array(TBL_PROPERTIES_DISTING));
+            }
         }
+
+        $this->db->trans_complete(); // COMPLETO LA TRANSACCION
 
         return true;
     }

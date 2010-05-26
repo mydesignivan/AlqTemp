@@ -2,7 +2,7 @@
 
 <div class="span-24 last">
     <div class="header-col-left">
-        <a href="<?=$this->config->item('base_url');?>" class="logo"><img src="images/logo_alquilerestemp.png" alt="AlquileresTemporarios.org" /></a>
+        <a href="<?=$this->config->item('base_url');?>" class="logo"><img src="images/logo_alquilerestemp.png" alt="AlquileresTemporarios.org" width="257" height="107" /></a>
     </div>
 
     <div class="header-col-right">
@@ -10,8 +10,8 @@
 
             <!-- =============== LINKS HEADER TOP =============== -->
             <div class="column span-5 first">
-                <a href="<?=site_url('/index/');?>" class="link-header"><img class="icon" src="images/icon_home.png" alt="" /> Inicio</a>
-                <a href="<?=site_url('/contacto/');?>" class="link-header"><img class="icon" src="images/icon_contact.png" alt="" /> Contacto</a>
+                <a href="<?=site_url('/index/');?>" class="link-header"><img class="icon" src="images/icon_home.png" alt="" width="16" height="16" /> Inicio</a>
+                <a href="<?=site_url('/contacto/');?>" class="link-header"><img class="icon" src="images/icon_contact.png" alt="" width="16" height="16" /> Contacto</a>
             </div>
 
             <?php require('header_login_inc.php');?>

@@ -54,24 +54,33 @@ class Pedidos extends Controller {
     /* PRIVATE FUNCTIONS
      **************************************************************************/
     private function _display(){
-        $uri = $this->uri->uri_to_assoc(4);
+        $arr_url = $this->uri->uri_to_assoc(2);
+        $this->load->library('orderby', array(
+            'controller'      => 'paneladmin',
+            'icon_order_asc'  => 'icon_arrow_down.png',
+            'icon_order_desc' => 'icon_arrow_up.png',
+            'arr_url'         => $arr_url
+        ));
 
         $offset = !isset($uri['page']) ? 0 : $uri['page'];
-        $listOrders = $this->orders_model->get_list($this->_count_per_page, $offset, $uri);
+        $listOrders = $this->orders_model->get_list($this->_count_per_page, $offset, $arr_url);
 
-        if( $this->uri->segment(3)=='' || $this->uri->segment(3)=="index" ) $base_url = site_url('/paneladmin/pedidos/index/page/');
-        else $base_url = site_url('/paneladmin/pedidos/search/'.key($uri).'/'.current($uri).'/page/');
-
-        $config['base_url'] = $base_url;
+        $config['base_url'] = $this->orderby->get_baseurl();
         $config['total_rows'] = $listOrders['count_rows'];
         $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
 
         $this->_data = $this->dataview->set_data(array(
-            'listOrders'  =>  $listOrders['result']
+            'listOrders'  =>  $listOrders['result'],
+            'orderby'     => array(
+                'order_id'   => array('url'=>$this->orderby->get_url_orderby("order_id"), 'order'=>$this->orderby->get_order('order_id')),
+                'username'   => array('url'=>$this->orderby->get_url_orderby("username"), 'order'=>$this->orderby->get_order('username')),
+                'importe'    => array('url'=>$this->orderby->get_url_orderby("importe"), 'order'=>$this->orderby->get_order('importe')),
+                'status'     => array('url'=>$this->orderby->get_url_orderby("status"), 'order'=>$this->orderby->get_order('status')),
+                'date'       => array('url'=>$this->orderby->get_url_orderby("date"), 'order'=>$this->orderby->get_order('date'))
+            )
         ));
-
         $this->load->view("template_paneladmin_view", $this->_data);
     }
 

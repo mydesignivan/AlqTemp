@@ -57,6 +57,7 @@ define('TBL_CUENTAPLUS', 'cuentaplus');
 define('TBL_USERSONLINE', 'users_online');
 define('TBL_ORDERS', 'orders');
 define('TBL_BANNER', 'banners');
+define('TBL_SETUP', 'setup');
 
 
 /*
@@ -290,63 +291,6 @@ define('IMAGE_THUMB_WIDTH', 115);
 define('IMAGE_THUMB_HEIGHT', 90);
 define('IMAGE_ORIGINAL_WIDTH', 800);
 define('IMAGE_ORIGINAL_HEIGHT', 600);
-
-
-/*
-|--------------------------------------------------------------------------
-| CONFIG
-|--------------------------------------------------------------------------
-* CFG_VALUE_xxxx es el importe del servicio (Esta expresado en dolares)
-*/
-define('CFG_TIME_DISTPROP', 1);      // Tiempo que dura una propiedad destacada (expresado en meses)
-define('CFG_TIME_CUENTAPLUS', 1);    // Tiempo que dura una Cuenta Plus (expresado en años)
-define('CFG_COSTO_PROPDISTING', 5);  // Costo para destacar propiedad
-define('CFG_COSTO_CUENTAPLUS', 30); // Costo para adquirir una cuenta plus
-define('CFG_FREE_TOTAL_PROP', 30);    // Cantidad de propiedad gratis
-define('CFG_FREE_TOTAL_IMAGES', 3);  // Cantidad de imagenes gratis
-define('CFG_CUENTAPLUS_TOTAL_PROP', 10);   // Cantidad de propiedad CUENTA PLUS
-define('CFG_CUENTAPLUS_TOTAL_IMAGES', 8);  // Cantidad de imagenes CUENTA PLUS
-define('CFG_MOVIE_OBJECT', '<object width="425" height="344"><param name="movie" value="%s"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="%s" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>');
-
-
-/*
-|--------------------------------------------------------------------------
-| TITULOS DE CADA SECCION
-|--------------------------------------------------------------------------
-*/
-define('TITLE_GLOBAL', 'Alquileres Temporarios'); // Titulo para todas las secciones
-define('TITLE_INDEX', ' - casas, departamentos, cabañas, vacaciones');
-define('TITLE_MASINFO', '');
-define('TITLE_CONTACTO', '');
-define('TITLE_REGISTRO', '');
-define('TITLE_MICUENTA', '');
-define('TITLE_PROPIEDADES', '');
-define('TITLE_DESTACAR', '');
-define('TITLE_CUENTAPLUS', '');
-define('TITLE_AGREGAR_FONDOS', '');
-define('TITLE_CONDICIONES', '');     // Condiciones de Uso
-define('TITLE_RECORDARCONTRA', '');  // Recordar Contraseña
-
-
-
-/*
-|--------------------------------------------------------------------------
-| META - Palabras Claves y Descripcion de la web
-|--------------------------------------------------------------------------
-*/
-define('META_KEYWORDS_GLOBALS', '');
-define('META_KEYWORDS_INDEX', '');
-define('META_KEYWORDS_MASINFO', '');
-define('META_KEYWORDS_CONTACTO', '');
-define('META_KEYWORDS_REGISTRO', '');
-define('META_KEYWORDS_RECORDARCONTRA', '');
-
-define('META_DESCRIPTION_GLOBALS', '');
-define('META_DESCRIPTION_INDEX', '');
-define('META_DESCRIPTION_MASINFO', '');
-define('META_DESCRIPTION_CONTACTO', '');
-define('META_DESCRIPTION_REGISTRO', '');
-define('META_DESCRIPTION_RECORDARCONTRA', '');
 
 
 /* End of file constants.php */

@@ -13,7 +13,7 @@ class Micuenta extends Controller{
         $this->load->library("simplelogin");
 
         $this->load->library('dataview', array(
-            'tlp_title'         =>  TITLE_MICUENTA
+            'tlp_title'   =>  setup('TITLE_MICUENTA')
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -29,7 +29,7 @@ class Micuenta extends Controller{
             'tlp_section'       =>  'paneluser/myaccount_view.php',
             'tlp_title_section' =>  "Mi Cuenta",
             'tlp_script'        =>  array('validator', 'popup', 'account'),
-            'info'  =>  $this->users_model->get_user(array('user_id'=>$this->session->userdata('user_id'), 'active'=>1))
+            'info'              =>  $this->users_model->get_user(array('user_id'=>$this->session->userdata('user_id'), 'active'=>1))
         ));
         $this->load->view('template_paneluser_view', $this->_data);
     }

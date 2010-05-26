@@ -16,6 +16,37 @@
                 <option value="last_modified" <?=@$search_key=='last_modified' ? 'selected="selected"' : '';?>>Ultima Modificaci&oacute;n</option>
             </select>
             <input type="text" class="input-medium" id="txtSearch" onkeypress="if( getKeyCode(event)==13 ) Prop.Search();" value="<?=@$search_val;?>" />
+
+            <?php
+                $selected1="";
+                $selected2="";
+                $selected3="";
+                if( @$search_key=="date_added" || @$search_key=="last_modified" ) {
+                    $d = explode("-", $search_val);
+                    $selected1 = $d[0];
+                    $selected2 = $d[1];
+                    $selected3 = $d[2];
+                }
+            ?>
+            <select id="cboDateDay" class="hide jq-date">
+                <option value="any">any</option>
+            <?php for( $n=1; $n<=31; $n++ ){$num = ($n<10) ? "0".$n : $n;?>
+                <option value="<?=$num;?>" <?php if( $selected1==$n ) echo 'selected="selected"';?>><?=$num;?></option>
+            <?php }?>
+            </select>
+            <select id="cboDateMonth" class="hide jq-date">
+                <option value="any">any</option>
+            <?php for( $n=1; $n<=12; $n++ ){$num = ($n<10) ? "0".$n : $n;?>
+                <option value="<?=$num;?>" <?php if( $selected2==$n ) echo 'selected="selected"';?>><?=$num;?></option>
+            <?php }?>
+            </select>
+            <select id="cboDateYear" class="hide jq-date">
+                <option value="any">any</option>
+            <?php for( $n=date('Y')-10; $n<=date('Y'); $n++ ){?>
+                <option value="<?=$n;?>" <?php if( $selected3==$n ) echo 'selected="selected"';?>><?=$n;?></option>
+            <?php }?>
+            </select>
+
             <button type="button" class="button-small" onclick="Prop.Search();">Buscar</button>
         </div>
 
@@ -28,10 +59,10 @@
             <thead>
                 <tr class="tbl-propadmin">
                     <td class="cell-1">&nbsp;</td>
-                    <td class="cell-2">Ubicaci&oacute;n</td>
-                    <td class="cell-3">Usuario</td>
-                    <td class="cell-4">Fecha Creaci&oacute;n</td>
-                    <td class="cell-5">Ultima Modificaci&oacute;n</td>
+                    <td class="cell-2"><a href="<?=$orderby['address']['url'];?>" class="float-left">Ubicaci&oacute;n</a><?php if( $orderby['address']['order']!=null ){?><img src="images/<?=$orderby['address']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
+                    <td class="cell-3"><a href="<?=$orderby['username']['url'];?>" class="float-left">Usuario</a><?php if( $orderby['username']['order']!=null ){?><img src="images/<?=$orderby['username']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
+                    <td class="cell-4"><a href="<?=$orderby['date_added']['url'];?>" class="float-left">Fecha Creaci&oacute;n</a><?php if( $orderby['date_added']['order']!=null ){?><img src="images/<?=$orderby['date_added']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
+                    <td class="cell-5"><a href="<?=$orderby['last_modified']['url'];?>" class="float-left">Ultima Modificaci&oacute;n</a><?php if( $orderby['last_modified']['order']!=null ){?><img src="images/<?=$orderby['last_modified']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
                 </tr>
             </thead>
             <tbody>

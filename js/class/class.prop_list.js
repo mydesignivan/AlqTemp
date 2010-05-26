@@ -50,13 +50,14 @@ var Prop = new (function(){
             $('#txtSearch').focus();
 
             if( opt=="date_added" || opt=="last_modified" ) {
-                $('#txtSearch').attr('maxlength', 19)
-                               .bind('keypress', This.events.dateformat);
+                $('#txtSearch').hide();
+                $('select.jq-date').show();
+
             }else{
-                $('#txtSearch').unbind('keypress')
-                               .removeAttr('maxlength');
+                $('#txtSearch').show();
+                $('select.jq-date').hide();
             }
-        },
+        }/*,
         dateformat : function(e){
             if (e.which >= 48 && e.which <= 57 || e.which == 8) {
                 var count = this.value.length;
@@ -72,10 +73,14 @@ var Prop = new (function(){
             }else {
                 e.preventDefault();
             }
-        }
+        }*/
     };
 
     this.Search = function(){
+        var opt = $('#cboSearchBy').val();
+        if( opt=="date_added" || opt=="last_modified" ) {
+            $('#txtSearch').val($('#cboDateDay').val()+"-"+$('#cboDateMonth').val()+"-"+$('#cboDateYear').val());
+        }
         if( $('#txtSearch').val()!='' ){
             location.href = baseURI+'paneladmin/propiedades/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val()+"/page";
         }

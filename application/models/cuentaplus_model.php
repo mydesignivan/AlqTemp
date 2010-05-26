@@ -11,9 +11,9 @@ class cuentaplus_model extends Model {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function debit(){
-        $this->fondos_model->extract(CFG_COSTO_CUENTAPLUS);
+        $this->fondos_model->extract(setup('CFG_COSTO_CUENTAPLUS'));
         $user_id = $this->session->userdata('user_id');
-        $date_end = add_date(date('d-m-Y'), 0,0,CFG_TIME_CUENTAPLUS);
+        $date_end = add_date(date('d-m-Y'), 0,0,setup('CFG_TIME_CUENTAPLUS'));
 
         $query = $this->db->get_where(TBL_CUENTAPLUS, array('user_id'=>$user_id));
         if( $query->num_rows==0 ){

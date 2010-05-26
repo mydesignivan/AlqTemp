@@ -10,7 +10,9 @@ class Recordarcontrasenia extends Controller {
         $this->load->library('email');
         $this->load->helper('form');
         $this->load->library('dataview', array(
-            'tlp_title'       =>  TITLE_RECORDARCONTRA,
+            'tlp_title'            =>  setup('TITLE_RECORDARCONTRA'),
+            'tlp_meta_description' => setup('META_DESCRIPTION_RECORDARCONTRA'),
+            'tlp_meta_keywords'    => setup('META_KEYWORDS_RECORDARCONTRA'),
             'tlp_script'      =>  array('validator', 'rememberpass'),
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),

@@ -2,7 +2,7 @@
 
 <div class="span-24 last">
     <div class="header-col-left">
-        <a href="<?=$this->config->item('base_url');?>" class="logo"><img src="images/logo_alquilerestemp.png" alt="AlquileresTemporarios.org" /></a>
+        <a href="<?=$this->config->item('base_url');?>" class="logo"><img src="images/logo_alquilerestemp.png" alt="AlquileresTemporarios.org" width="257" height="107" /></a>
     </div>
 
     <div class="header-col-right">
@@ -10,13 +10,13 @@
 
             <!-- =============== LINKS HEADER TOP =============== -->
             <div class="column span-5 first">
-                <a href="<?=$this->config->item('base_url');?>" class="link-header"><img class="icon" src="images/icon_home.png" alt="" /> Inicio</a>
-                <a href="<?=site_url('/contacto/');?>" class="link-header"><img class="icon" src="images/icon_contact.png" alt="" /> Contacto</a>
+                <a href="<?=$this->config->item('base_url');?>" class="link-header"><img class="icon" src="images/icon_home.png" alt="" width="16" height="16" /> Inicio</a>
+                <a href="<?=site_url('/contacto/');?>" class="link-header"><img class="icon" src="images/icon_contact.png" alt="" width="16" height="16" /> Contacto</a>
             </div>
 
     <?php if( !$this->session->userdata('logged_in') ){?>
             <div class="column prepend-1">
-                <a href="<?=site_url('/registro/');?>" onmouseover="this.firstChild.src='images/btn_register_over.png'" onmouseout="this.firstChild.src='images/btn_register.png'"><img src="images/btn_register.png" alt="Registrarse" /></a>
+                <a href="<?=site_url('/registro/');?>" onmouseover="this.firstChild.src='images/btn_register_over.png'" onmouseout="this.firstChild.src='images/btn_register.png'"><img src="images/btn_register.png" alt="Registrarse" width="127" height="29" /></a>
             </div>
 
     <?php }else{
@@ -64,7 +64,7 @@
         <form id="formSearch" action="" enctype="application/x-www-form-urlencoded" onsubmit="return false;">
             <div class="row1">
                 <label class="label-search">Buscador&nbsp;</label>
-                <div class="cont-input"><img src="images/icon_search.png" alt="" class="float-left" /><input type="text" class="i1" name="search" value="<?=@$searcher["search"];?>" onkeypress="if(getKeyCode(event)==13) Search();" />
+                <div class="cont-input"><img src="images/icon_search.png" alt="" class="float-left" width="22" height="22" /><input type="text" class="i1" name="search" value="<?=@$searcher["search"];?>" onkeypress="if(getKeyCode(event)==13) Search();" />
                 </div>
                 <button type="button" class="button-small" onclick="Search();">Buscar</button>
             </div>
@@ -104,6 +104,6 @@
     <!-- =============== END BANNER HORIZONTAL =============== -->
     <div class="header-publique">
         <?php $url = !$this->session->userdata('logged_in') ? site_url('/registro/') : site_url('/paneluser/propiedades/form/');?>
-        <a href="<?=$url;?>"><img src="images/btn_publique_gratis.png" alt="publique gratis" onmouseover="this.src='images/btn_publique_gratis_over.png'" onmouseout="this.src='images/btn_publique_gratis.png'" /></a>
+        <a href="<?=$url;?>"><img src="images/btn_publique_gratis.png" alt="publique gratis" onmouseover="this.src='images/btn_publique_gratis_over.png'" onmouseout="this.src='images/btn_publique_gratis.png'" width="109" height="68" /></a>
     </div>
 </div>

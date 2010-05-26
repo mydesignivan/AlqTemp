@@ -68,22 +68,36 @@ class Usuarios extends Controller {
     /* PRIVATE FUNCTIONS
      **************************************************************************/
     private function _display(){
-        $uri = $this->uri->uri_to_assoc(4);
+        // Esto es para el Order by
+        $arr_url = $this->uri->uri_to_assoc(2);
+        $this->load->library('orderby', array(
+            'controller'      => 'paneladmin',
+            'icon_order_asc'  => 'icon_arrow_down.png',
+            'icon_order_desc' => 'icon_arrow_up.png',
+            'arr_url'         => $arr_url
+        ));
 
-        $offset = !isset($uri['page']) ? 0 : $uri['page'];
-        $listUsers = $this->users_model->get_list_users($this->_count_per_page, $offset, $uri);
+        // Esto es para el paginador
+        $offset = !isset($arr_url['page']) || !is_numeric($arr_url['page']) ? 0 : $arr_url['page'];
+        
+        // Devuelve el listado de usuarios
+        $listUsers = $this->users_model->get_list_users($this->_count_per_page, $offset, $arr_url);
 
-        if( $this->uri->segment(3)=='' || $this->uri->segment(3)=="index" ) $base_url = site_url('/paneladmin/usuarios/index/page/');
-        else $base_url = site_url('/paneladmin/usuarios/search/'.key($uri).'/'.current($uri).'/page/');
-
-        $config['base_url'] = $base_url;
+        $config['base_url'] = $this->orderby->get_baseurl();
         $config['total_rows'] = $listUsers['count_rows'];
         $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
 
         $this->_data = $this->dataview->set_data(array(
-            'listUsers'  =>  $listUsers['result']
+            'listUsers'    =>  $listUsers['result'],
+            'orderby'      => array(
+                'username'      => array('url'=>$this->orderby->get_url_orderby("username"), 'order'=>$this->orderby->get_order('username')),
+                'online'        => array('url'=>$this->orderby->get_url_orderby("online"), 'order'=>$this->orderby->get_order('online')),
+                'status'        => array('url'=>$this->orderby->get_url_orderby("active"), 'order'=>$this->orderby->get_order('active')),
+                'date_added'    => array('url'=>$this->orderby->get_url_orderby("date_added"), 'order'=>$this->orderby->get_order('date_added')),
+                'last_modified' => array('url'=>$this->orderby->get_url_orderby("last_modified"), 'order'=>$this->orderby->get_order('last_modified'))
+            )
         ));
 
         $this->load->view("template_paneladmin_view", $this->_data);

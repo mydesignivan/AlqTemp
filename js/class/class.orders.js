@@ -33,20 +33,18 @@ var Orders = new (function(){
             if( !clear ) $('#txtSearch').val('');
 
             $('#txtSearch').show();
-            $('#cboStatus').hide();
+            $('select.jq-date, #cboStatus').hide();
             
             if( opt=="date" ) {
-                $('#txtSearch').attr('maxlength', 19)
-                               .bind('keypress', This.events.dateformat);
+                $('select.jq-date').show();
+                $('#txtSearch').hide();
+
             }else if( opt=="status" ){
                 $('#txtSearch').hide();
                 $('#cboStatus').show();
-            }else{
-                $('#txtSearch').unbind('keypress')
-                               .removeAttr('maxlength');
             }
             $('#txtSearch').focus();
-        },
+        }/*,
         dateformat : function(e){
             if (e.which >= 48 && e.which <= 57 || e.which == 8) {
                 var count = this.value.length;
@@ -62,11 +60,17 @@ var Orders = new (function(){
             }else {
                 e.preventDefault();
             }
-        }
+        }*/
     };
 
     this.Search = function(){
-        if( $('#cboSearchBy').val()=="status" ) $('#txtSearch').val($('#cboStatus').val());
+        var opt = $('#cboSearchBy').val();
+
+        if( opt=="status" ) $('#txtSearch').val($('#cboStatus').val());
+        else if( opt=="date" ) {
+            $('#txtSearch').val($('#cboDateDay').val()+"-"+$('#cboDateMonth').val()+"-"+$('#cboDateYear').val());
+        }
+        
         if( $('#txtSearch').val()!='' ){
             location.href = baseURI+'paneladmin/pedidos/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val()+"/page";
         }

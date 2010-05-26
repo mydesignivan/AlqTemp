@@ -8,10 +8,12 @@ class Contacto extends Controller {
         $this->load->helper('form');
         $this->load->model('lists_model');
         $this->load->library('dataview', array(
-            'tlp_section'       =>  'frontpage/contacto_view.php',
-            'tlp_title'         =>  TITLE_CONTACTO,
-            'tlp_title_section' => "Contacto",
-            'tlp_script'        => array('validator', 'contact'),
+            'tlp_section'          =>  'frontpage/contacto_view.php',
+            'tlp_title'            =>  setup('TITLE_CONTACTO'),
+            'tlp_title_section'    => "Contacto",
+            'tlp_meta_description' => setup('META_DESCRIPTION_CONTACTO'),
+            'tlp_meta_keywords'    => setup('META_KEYWORDS_CONTACTO'),
+            'tlp_script'      => array('validator', 'contact'),
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
             'comboStates'     =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),

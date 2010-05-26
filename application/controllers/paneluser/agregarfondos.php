@@ -12,7 +12,7 @@ class Agregarfondos extends Controller {
         $this->load->library('email');
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneluser/addfondo_view.php',
-            'tlp_title'         =>  TITLE_AGREGAR_FONDOS,
+            'tlp_title'         =>  setup('TITLE_AGREGAR_FONDOS'),
             'tlp_script'        =>  'addfondo',
             'tlp_title_section' =>  'Agregar Fondos'
         ));

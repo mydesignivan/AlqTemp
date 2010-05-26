@@ -23,6 +23,7 @@ class Propiedades extends Controller {
     private $_data;
     private $_count_per_page;
 
+
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
@@ -49,26 +50,39 @@ class Propiedades extends Controller {
     /* PRIVATE FUNCTIONS
      **************************************************************************/
     private function _display(){
-        $uri = $this->uri->uri_to_assoc(4);
+        // Esto es para el Order by
+        $arr_url = $this->uri->uri_to_assoc(2);
+        $this->load->library('orderby', array(
+            'controller'      => 'paneladmin',
+            'icon_order_asc'  => 'icon_arrow_down.png',
+            'icon_order_desc' => 'icon_arrow_up.png',
+            'arr_url'         => $arr_url
+        ));
 
-        $offset = !isset($uri['page']) ? 0 : $uri['page'];
-        $listProp = $this->prop_model->get_list2_prop($this->_count_per_page, $offset, $uri);
+        // Esto es para el paginador
+        $offset = !isset($arr_url['page']) || !is_numeric($arr_url['page']) ? 0 : $arr_url['page'];
 
-        if( $this->uri->segment(3)=='' || $this->uri->segment(3)=="index" ) $base_url = site_url('/paneladmin/propiedades/index/page/');
-        else $base_url = site_url('/paneladmin/propiedades/search/'.key($uri).'/'.current($uri).'/page/');
+        // Devuelve el listado de propiedades
+        $listProp = $this->prop_model->get_list2_prop($this->_count_per_page, $offset, $arr_url);
 
-        $config['base_url'] = $base_url;
+        $config['base_url'] = $this->orderby->get_baseurl();
         $config['total_rows'] = $listProp['count_rows'];
         $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
 
         $this->_data = $this->dataview->set_data(array(
-            'listProp'  =>  $listProp['result']
+            'listProp'  =>  $listProp['result'],
+            'orderby'   => array(
+                'address'       => array('url'=>$this->orderby->get_url_orderby("address"), 'order'=>$this->orderby->get_order('address')),
+                'username'      => array('url'=>$this->orderby->get_url_orderby("username"), 'order'=>$this->orderby->get_order('username')),
+                'date_added'    => array('url'=>$this->orderby->get_url_orderby("date_added"), 'order'=>$this->orderby->get_order('date_added')),
+                'last_modified' => array('url'=>$this->orderby->get_url_orderby("last_modified"), 'order'=>$this->orderby->get_order('last_modified'))
+            )
         ));
-
         $this->load->view("template_paneladmin_view", $this->_data);
     }
+
 
 }
 ?>

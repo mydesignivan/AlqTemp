@@ -19,9 +19,10 @@ var Popup = new (function(){
 
     this.load_html = function(){
         content.empty();
-        $(arguments).each(function(){
-             content.append(this);
+        $(arguments).each(function(i, t){
+             content.html(t);
         });
+        
         container.modal(OPTIONS);
     };
 
@@ -70,9 +71,13 @@ var Popup = new (function(){
                         height : settings.height
                     });
                 }
-                dialog.container.css({
+                /*dialog.container.css({
                     width : dialog.data.innerWidth(),
                     height : dialog.data.innerHeight()
+                }).show();*/
+                dialog.container.css({
+                    width : settings.width,
+                    height : settings.height
                 }).show();
             }
 
@@ -113,7 +118,9 @@ var Popup = new (function(){
                 break;
                 case 'fade':
                     dialog.data.css('visibility', 'inherit');
-                    dialog.data.fadeIn('slow');
+                    dialog.data.fadeIn('slow', function(){
+                        $(window).trigger('resize');
+                    });
             }
         },
         onClose : function(dialog){

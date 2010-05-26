@@ -24,7 +24,7 @@
                 </ul>
 
                 <div class="text-center">
-                    <img src="images/cuenta_plus.png" alt="Obtene tu CUENTA PLUS por solo U$S 100 ANUALES " />
+                    <img src="images/cuenta_plus.png" alt="Obtene tu CUENTA PLUS por solo U$S 100 ANUALES" width="185" height="136" />
                     <br /><br />
                     <button type="button" class="button-large">Obtener Cuenta</button>
                 </div>

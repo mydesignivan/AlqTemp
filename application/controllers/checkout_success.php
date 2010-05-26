@@ -12,7 +12,7 @@ class Checkout_success extends Controller {
         $this->load->model('orders_model');
         $this->load->library('dataview', array(
             'tlp_section'       =>  'frontpage/checkout_succes_view.php',
-            'tlp_title'         =>  TITLE_INDEX,
+            'tlp_title'         =>  setup('TITLE_INDEX'),
             'tlp_title_section' =>  "Resultado Compra",
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),

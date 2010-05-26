@@ -12,7 +12,9 @@ class Registro extends Controller {
         $this->load->library('email');
 
         $this->load->library('dataview', array(
-            'tlp_title'       =>  TITLE_REGISTRO,
+            'tlp_title'            =>  setup('TITLE_REGISTRO'),
+            'tlp_meta_description' =>  setup('META_DESCRIPTION_REGISTRO'),
+            'tlp_meta_keywords'    =>  setup('META_KEYWORDS_REGISTRO'),
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
             'comboStates'     =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),

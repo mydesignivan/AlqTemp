@@ -12,9 +12,11 @@ class Index extends Controller {
         $this->load->library('pagination');
 
         $this->load->library('dataview', array(
-            'tlp_section'     =>  'frontpage/index_view.php',
-            'tlp_title'       =>  TITLE_INDEX,
-            'tlp_formextra'   =>  true,
+            'tlp_section'          =>  'frontpage/index_view.php',
+            'tlp_title'            =>  setup('TITLE_INDEX'),
+            'tlp_form_hitssearch'  =>  true,
+            'tlp_meta_description' => setup('META_DESCRIPTION_INDEX'),
+            'tlp_meta_keywords'    => setup('META_KEYWORDS_INDEX'),
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'   =>  $this->lists_model->get_category_search(array("0"=>"Categor&iacute;as")),
             'comboStates'     =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),
@@ -44,11 +46,12 @@ class Index extends Controller {
         if( empty($uri) || $uri=="display" || $uri=="index" ){
             $param = array(
                 'base_url'      => str_replace('.html', '', site_url('/display/page/')),
-                'title'         => TITLE_INDEX,
-                'title_section' => 'Alquileres Destacados',
+                'title'         => setup('TITLE_INDEX'),
+                //'title_section' => 'Alquileres Destacados',
+                'title_section' => 'Ultimos Alquileres',
                 'searcher'      =>  false,
-                'listProp'      => $this->search_model->last_properties($this->_count_per_page, $this->_offset)
-                //'listProp'    => $this->search_model->list_disting($this->_count_per_page, $this->_offset)
+                'listProp'      => $this->search_model->last_properties($this->_count_per_page, $this->_offset),
+                'disting_type'  => 'index'
             );
         }
 
@@ -62,6 +65,7 @@ class Index extends Controller {
 
         $this->_data = $this->dataview->set_data(array(
             'listProp'           =>  $param['listProp']['result'],
+            'listPropDisting'    =>  $this->search_model->list_disting($param['disting_type']),
             'listSearches'       =>  $listSearches,
             'tlp_title_section'  =>  $param['title_section'],
             'tlp_title'          =>  $param['title'],
@@ -92,10 +96,11 @@ class Index extends Controller {
 
         $this->display(array(
             'base_url'      => $base_url,
-            'title'         => TITLE_INDEX,
+            'title'         => setup('TITLE_INDEX'),
             'title_section' => 'Resultado de B&uacute;queda',
             'listProp'      => $listProp,
-            'searcher'      => $searcher
+            'searcher'      => $searcher,
+            'disting_type'  => 'index'
         ));
     }
 
@@ -106,7 +111,8 @@ class Index extends Controller {
             'title'         => ' - Casas',
             'title_section' => 'Casas',
             'listProp'      => $listProp,
-            'searcher'      => false
+            'searcher'      => false,
+            'disting_type'  => 'category'
         ));
     }
     public function departamentos(){
@@ -116,7 +122,8 @@ class Index extends Controller {
             'title'         => ' - Departamentos',
             'title_section' => 'Departamentos',
             'listProp'      => $listProp,
-            'searcher'      => false
+            'searcher'      => false,
+            'disting_type'  => 'category'
         ));
     }
     public function cabanias(){

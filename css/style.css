@@ -58,12 +58,14 @@ strong{color:#FC7F07;}
 .column-label{
     float:left;
     width: 80px;
+    height: 20px;
     padding:5px;
     background-color: #FDFDF5;
 }
 .column-data{
     float:left;
     width: 280px;
+    height: 20px;
     padding:5px;
     background-color: #FAF8E9;
     color:#000;
@@ -268,7 +270,10 @@ input.input-saldo{
     text-align: center;
 }
 input.input-small{width: 100px;}
+input.input-small2{width: 50px;}
 input.input-medium{width: 180px;}
+input.input-medium2{width: 340px;}
+input.input-large{width: 390px;}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA TEXTAREA
@@ -300,7 +305,11 @@ textarea.textarea-motive{
     height: 50px;
     margin-right: 3px;
 }
-
+textarea.textarea-edit{
+    width: 550px;
+    height: 200px;
+    font-size: 80% !important;
+}
 /*------------------------------------------------------------------------------
  - ESTILOS PARA BUTTON
  -----------------------------------------------------------------------------*/
@@ -386,6 +395,13 @@ select.select-form{
     width:228px;
     margin-bottom: 5px;
 }
+select.select-list-users{
+    width: 150px;
+    height: 180px;
+}
+select.select-city{
+    width: 300px;
+}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA TEXTOS
@@ -412,6 +428,30 @@ fieldset.fieldset-information{
     width: 270px;
     margin-right: 20px;
 }
+fieldset.fieldset-listusers{
+    float:left;
+    width: 150px;
+    height: 200px;
+    margin-right: 10px;
+}
+fieldset.fieldset-data{
+    float:left;
+    width: 330px;
+    height: auto;
+    padding-right: 0 !important;
+}
+    fieldset.fieldset-data .column-label{
+        width: 55px !important;
+        height: 20px !important;
+    }
+    fieldset.fieldset-data .column-data{
+        width: 235px !important;
+        height: 20px !important;
+    }
+    fieldset.fieldset-data .column-data-motive{
+        height: 50px !important;
+        overflow: auto;
+    }
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA EL HEADER
@@ -988,6 +1028,14 @@ table.tbl-list thead{
         font-weight: bold;
         padding-left: 10px;
     }
+        table.tbl-list thead tr td a{
+            color: #684C1D !important;
+            font-size: 100% !important;
+            font-weight: bold !important;
+        }
+        table.tbl-list thead tr td a:hover{
+            text-decoration: underline;
+        }
 table.tbl-list tbody{
     background-color: #FAF8E9;
     font-weight: normal;
@@ -1034,12 +1082,12 @@ table.tbl-list tbody{
  - ESTILOS PARA TABLAS "PROPIEDADES"  PANEL ADMIN
  -----------------------------------------------------------------------------*/
 .tbl-list .tbl-propadmin .cell-2{
-    width:180px;
+    width:170px;
     vertical-align: top;
     border-right: 1px solid #CFD0CB;
 }
 .tbl-list .tbl-propadmin .cell-3{
-    width:100px;
+    width:90px;
     vertical-align: top;
     border-right: 1px solid #CFD0CB;
 }
@@ -1057,7 +1105,7 @@ table.tbl-list tbody{
  - ESTILOS PARA TABLAS "USUARIOS"
  -----------------------------------------------------------------------------*/
 .tbl-list .tbl-users .cell-2{
-    width: 140px;
+    width: 120px;
     border-right: 1px solid #CFD0CB;
 }
 .tbl-list .tbl-users .cell-3{
@@ -1065,7 +1113,7 @@ table.tbl-list tbody{
     border-right: 1px solid #CFD0CB;
 }
 .tbl-list .tbl-users .cell-4{
-    width: 50px;
+    width: 60px;
     border-right: 1px solid #CFD0CB;
 }
 .tbl-list .tbl-users .cell-5{
@@ -1171,12 +1219,18 @@ table.tbl-list tbody{
     .dist-popup-content .title{
         margin-bottom: 8px;
     }
+    .dist-popup-content .cont{
+        position: relative;
+        width: 380px;
+        height: 165px;
+    }
 a.dist-popup-rectangle{
     float:left;
     display: block;
     width:100px;
     height: 150px;
     margin-right: 10px;
+    margin-bottom: 5px;
     padding:5px;
     color:#000;
     text-align: center;
@@ -1189,3 +1243,14 @@ a.dist-popup-rectangle{
         color:#000;
     }
 
+/*------------------------------------------------------------------------------
+ - ESTILOS PARA EL SETUP
+ -----------------------------------------------------------------------------*/
+.setup-tabs{
+    float:left;
+    width: 615px;
+    margin-left: 4px;
+}
+    .setup-tabs input[type=text]{
+        font-size: 85%;
+    }

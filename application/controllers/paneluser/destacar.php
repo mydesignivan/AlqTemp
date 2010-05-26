@@ -11,7 +11,7 @@ class Destacar extends Controller {
         $this->load->model('disting_model');
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneluser/destacar_view.php',
-            'tlp_title'         =>  TITLE_DESTACAR,
+            'tlp_title'         =>  setup('TITLE_DESTACAR'),
             'tlp_title_section' =>  'Destacar Propiedades',
             'tlp_script'        =>  array('json', 'popup', 'disting')
         ));
@@ -55,7 +55,7 @@ class Destacar extends Controller {
     public function ajax_check_saldo_distingprop(){
         $totalprop = $this->disting_model->get_list(0)->num_rows;
         $saldo = (int)$this->session->userdata('fondo');
-        $new_saldo = $saldo - (CFG_COSTO_PROPDISTING*$totalprop);
+        $new_saldo = $saldo - (setup('CFG_COSTO_PROPDISTING')*$totalprop);
         if( $new_saldo<=0 ){
             die("error");
         }else{
@@ -64,9 +64,10 @@ class Destacar extends Controller {
     }
 
     public function ajax_popup_typedisting(){
-        $this->load->view('paneluser/popup/destacar_tipos_view.php');
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $this->load->view('paneluser/popup/propdist_tipos_view.php');
+        }
     }
-
 
 }
 

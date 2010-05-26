@@ -10,7 +10,7 @@ class Message extends Controller {
         $this->load->model('lists_model');
         $this->load->helper('form');
         $this->load->library('dataview', array(
-            'tlp_title'       =>  TITLE_INDEX,
+            'tlp_title'       =>  setup('TITLE_INDEX'),
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
             'comboStates'     =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),

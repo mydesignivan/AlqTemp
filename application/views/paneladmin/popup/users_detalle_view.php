@@ -33,7 +33,7 @@
         <div class="column-data">U$S <?=$info['fondo'];?></div>
     </div>
     <div class="span-10 prepend-top-small text-center">
-        <button type="button" class="button-small" onclick="$.modal.close();">Cerrar</button>
+        <button type="button" class="button-small simplemodal-close">Cerrar</button>
     </div>
 </div>
 

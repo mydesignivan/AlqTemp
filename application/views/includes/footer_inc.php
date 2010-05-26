@@ -4,7 +4,7 @@
     <div class="column-left">
         Copyright &copy; 2009 - 2010 &nbsp; AlquileresTemporarios.org<br/>
         <strong>Dise&ntilde;o y Desarrollo by</strong>
-        <a href="http://www.mydesign.com.ar" target="_blank"><img src="images/mydesign_logo.png" alt="www.mydesign.com.ar" /></a>
+        <a href="http://www.mydesign.com.ar" target="_blank"><img src="images/mydesign_logo.png" alt="www.mydesign.com.ar" width="83" height="9" /></a>
     </div>
 
     <div class="column-right">

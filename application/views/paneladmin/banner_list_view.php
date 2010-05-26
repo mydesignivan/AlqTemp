@@ -60,7 +60,7 @@
                     <td class="cell-2"><a href="<?=site_url('/paneladmin/banner/form/'.$row['banner_id']);?>" class="link-title"><?=$row['name'];?></a></td>
                     <td class="cell-3"><?=$row['position'];?></td>
                     <td class="cell-4"><a href="javascript:void(Banner.open_popup(<?=$row['banner_id'];?>));" class="link1">Preview</a></td>
-                    <td class="cell-5"><a href="javascript:void(0);" class="link1" onclick="Banner.change_visible(this, <?=$row['banner_id'];?>);"><?=$row['visible'];?></a><img src="images/ajax-loader.gif" alt="" class="hide" /></td>
+                    <td class="cell-5"><a href="javascript:void(0);" class="link1" onclick="Banner.change_visible(this, <?=$row['banner_id'];?>);"><?=$row['visible'];?></a><img src="images/ajax-loader.gif" alt="" class="hide" width="16" height="16" /></td>
                 </tr>
         <?php }?>
             </tbody>

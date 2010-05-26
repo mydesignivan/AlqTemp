@@ -15,7 +15,7 @@ class Propiedades extends Controller {
 
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneluser/prop_list_view.php',
-            'tlp_title'         =>  TITLE_PROPIEDADES
+            'tlp_title'         =>  setup('TITLE_PROPIEDADES')
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -152,11 +152,11 @@ class Propiedades extends Controller {
             $total_images = $this->uri->segment(4);
 
             if( $check_cp['result'] ){ //Hay cuenta plus
-                if( $total_images>=CFG_CUENTAPLUS_TOTAL_IMAGES ) {
+                if( $total_images >= setup('CFG_CUENTAPLUS_TOTAL_IMAGES') ) {
                     die('limitexceeded');
                 }
             }else{
-                if( $total_images>=CFG_FREE_TOTAL_IMAGES ) {
+                if( $total_images >= setup('CFG_FREE_TOTAL_IMAGES') ) {
                     die('accesdenied');
                 }
             }
@@ -209,14 +209,14 @@ class Propiedades extends Controller {
         $total_prop = $this->prop_model->get_total_prop();
 
         if( $check_cp['result'] ){ //Hay cuenta plus
-            if( $total_prop>=CFG_CUENTAPLUS_TOTAL_PROP ) {
+            if( $total_prop >= setup('CFG_CUENTAPLUS_TOTAL_PROP') ) {
                 return array(
                     'result'=>false,
                     'error'=>'limitexceeded'
                 );
             }
         }else{
-            if( $total_prop>=CFG_FREE_TOTAL_PROP ) {
+            if( $total_prop >= setup('CFG_FREE_TOTAL_PROP') ) {
                 return array(
                     'result'=>false,
                     'error'=>'accesdenied'

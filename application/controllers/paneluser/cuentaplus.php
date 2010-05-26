@@ -12,7 +12,7 @@ class Cuentaplus extends Controller {
         $this->load->library('email');
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneluser/cuentaplus_view.php',
-            'tlp_title'         =>  TITLE_CUENTAPLUS,
+            'tlp_title'         =>  setup('TITLE_CUENTAPLUS'),
             'tlp_title_section' =>  'Cuenta Plus'
         ));
         $this->_data = $this->dataview->get_data();
@@ -40,7 +40,7 @@ class Cuentaplus extends Controller {
     public function shipping(){
 
         $fondo = $this->session->userdata('fondo');
-        $newfondo = (int)$fondo-CFG_COSTO_CUENTAPLUS;
+        $newfondo = (int)$fondo - setup('CFG_COSTO_CUENTAPLUS');
         if( $newfondo<=0 ){
             $this->session->set_flashdata('cp_status', 'insufficient_amount');
 

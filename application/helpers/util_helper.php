@@ -138,4 +138,12 @@ function construct_bloq($config){
     }
 }
 
+function array_implode($parent, $arr){
+    $ret="";
+    foreach( $arr as $key=>$val ){
+        if( !empty($val) ) $ret.= $key . $parent . $val . $parent;
+        else $ret.= $key . $parent;
+    }
+    return $ret;
+}
 ?>

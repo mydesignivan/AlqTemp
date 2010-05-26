@@ -100,25 +100,36 @@ class Users_model extends Model {
         return $data;
     }
 
-    public function get_list_users($limit, $offset, $searcher){
+    public function get_list_users($limit, $offset, $arr_url){
         $return = array();
 
         $sql = "user_id,";
         $sql.= "username,";
         $sql.= "active,";
         $sql.= "fondo,";
+        $sql.= "(SELECT count(*) FROM ".TBL_USERSONLINE." WHERE ".TBL_USERSONLINE.".user_id=".TBL_USERS.".user_id) as online,";
         $sql.= "date_format(date_added, '%d-%m-%Y %H:%i:%s') as date_added,";
         $sql.= "date_format(last_modified, '%d-%m-%Y %H:%i:%s') as last_modified";
 
         $like = array();
         $where = array('level'=>0);
 
-        if( count($searcher)>0 ){
-            if( isset($searcher['username']) ) $like['username'] = $searcher['username'];
-            if( isset($searcher['fondo']) ) $where['fondo'] = $searcher['fondo'];
-            if( isset($searcher['active']) ) $where['active'] = $searcher['active'];
-            if( isset($searcher['date_added']) ) $like = array("date_format(date_added, '%d-%m-%Y %H:%i:%s')" => $searcher['date_added']);
-            if( isset($searcher['last_modified']) ) $like = array("date_format(last_modified, '%d-%m-%Y %H:%i:%s')" => $searcher['last_modified']);
+        if( count($arr_url)>0 ){
+            if( isset($arr_url['username']) ) $like['username'] = $arr_url['username'];
+            if( isset($arr_url['fondo']) ) $where['fondo'] = $arr_url['fondo'];
+            if( isset($arr_url['active']) ) $where['active'] = $arr_url['active'];
+            if( isset($arr_url['date_added']) ) {
+                $d = explode("-", $arr_url['date_added']);
+                if( $d[0]!="any" ) $where["date_format(date_added, '%d')="] = $d[0];
+                if( $d[1]!="any" ) $where["date_format(date_added, '%m')="] = $d[1];
+                if( $d[2]!="any" ) $where["date_format(date_added, '%Y')="] = $d[2];
+            }
+            if( isset($arr_url['last_modified']) ) {
+                $d = explode("-", $arr_url['last_modified']);
+                if( $d[0]!="any" ) $where["date_format(last_modified, '%d')="] = $d[0];
+                if( $d[1]!="any" ) $where["date_format(last_modified, '%m')="] = $d[1];
+                if( $d[2]!="any" ) $where["date_format(last_modified, '%Y')="] = $d[2];
+            }
         }
 
         $this->db->from(TBL_USERS);
@@ -130,8 +141,12 @@ class Users_model extends Model {
         $this->db->select($sql, false);
         $this->db->like($like);
         $this->db->where($where);
-        $this->db->order_by('username', 'asc');
-        $this->db->order_by('user_id', 'desc');        
+
+        if( !isset($arr_url['orderby']) ){
+            $this->db->order_by('user_id', 'desc');
+        }else{
+            $this->db->order_by($arr_url['orderby'], $arr_url['order']);
+        }
 
         $return['result'] = $this->db->get(TBL_USERS, $limit, $offset);
 

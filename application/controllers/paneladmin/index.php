@@ -10,7 +10,8 @@ class Index extends Controller{
 
         $this->load->library('dataview', array(
             'tlp_section'       =>  'paneladmin/info_view.php',
-            'tlp_title_section' =>  "Informaci&oacute;n"
+            'tlp_title_section' =>  "Informaci&oacute;n",
+            'tlp_script'        =>  array('popup', 'info')
         ));
         $this->_data = $this->dataview->get_data();
     }
@@ -20,11 +21,29 @@ class Index extends Controller{
     public function index(){
         $this->_data = $this->dataview->set_data(array(
             "info"  =>  array(
-                'user'  =>   $this->info_model->getinfo_user(),
-                'prop'  =>   $this->info_model->getinfo_prop()
+                'user'   =>   $this->info_model->getinfo_user(),
+                'prop'   =>   $this->info_model->getinfo_prop(),
+                'otros'  =>   $this->info_model->getinfo_otros()
              )
         ));
         $this->load->view("template_paneladmin_view", $this->_data);
+    }
+
+    /* AJAX FUNCTIONS
+     **************************************************************************/
+    public function ajax_popup_users(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            $data = array(
+                'listUsers' => $this->info_model->get_list_users()
+            );
+            $this->load->view("paneladmin/popup/users_baja_view", $data);
+        }
+    }
+
+    public function ajax_info_user(){
+        if( $_SERVER['REQUEST_METHOD']=="POST" ){
+            echo json_encode($this->info_model->get_user($_POST['id']));
+        }
     }
 
 }

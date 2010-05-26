@@ -35,19 +35,17 @@ var Users = new (function(){
             $('#txtSearch').focus();
 
             $('#txtSearch').show();
-            $('#cboStatus').hide();
+            $('#cboStatus, select.jq-date').hide();
 
             if( opt=="date_added" || opt=="last_modified" ) {
-                $('#txtSearch').attr('maxlength', 19)
-                               .bind('keypress', This.events.dateformat);
+                $('select.jq-date').show();
+                $('#txtSearch').hide();
+                
             }else if( opt=="active" ){
                 $('#txtSearch').hide();
-                $('#cboStatus').show();
-            }else{
-                $('#txtSearch').unbind('keypress')
-                               .removeAttr('maxlength');
+                $('#cboStatus').show();            
             }
-        },
+        }/*,
         dateformat : function(e){
             if (e.which >= 48 && e.which <= 57 || e.which == 8) {
                 var count = this.value.length;
@@ -63,11 +61,16 @@ var Users = new (function(){
             }else {
                 e.preventDefault();
             }
-        }
+        }*/
     };
 
     this.Search = function(){
-        if( $('#cboSearchBy').val()=="active" ) $('#txtSearch').val($('#cboStatus').val());
+        var opt = $('#cboSearchBy').val();
+        if( opt=="active" ) $('#txtSearch').val($('#cboStatus').val());
+        else if( opt=="date_added" || opt=="last_modified" ){
+            $('#txtSearch').val($('#cboDateDay').val()+"-"+$('#cboDateMonth').val()+"-"+$('#cboDateYear').val());
+        }
+
         if( $('#txtSearch').val()!='' ){
             location.href = baseURI+'paneladmin/usuarios/search/'+$('#cboSearchBy').val()+"/"+$('#txtSearch').val()+"/page";
         }

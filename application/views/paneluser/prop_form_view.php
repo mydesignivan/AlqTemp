@@ -27,7 +27,7 @@
                     <div class="span-16">
                         <label class="label-form float-left">*Foto:</label>
                         <div class="column-photo">
-                            <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
+                            <div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" width="16" height="16" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>
                             <a href="#" class="hide append-right-small2 float-left jq-thumb" rel="group"><img src="" alt="" width="69" height="60" class="" /></a>
                             <input type="text" class="input-form float-left jq-uploadinput" value="" />
                             <div class="button-examin">Examinar</div>
@@ -159,7 +159,7 @@
                     <div class="column-photo">
                         <div class="float-left">
                             <?php if( @$info && !empty($info['movie_url']) ){
-                                $movie_url = sprintf(CFG_MOVIE_OBJECT, $info['movie_url'], $info['movie_url']);
+                                $movie_url = sprintf(setup('CFG_MOVIE_OBJECT'), $info['movie_url'], $info['movie_url']);
                                 echo $movie_url."<br />";
                             }?>
                             <label class="label-legend">Pege aqu&iacute; el c&oacute;digo del video que desea insertar</label><br />

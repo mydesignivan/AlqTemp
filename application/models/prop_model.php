@@ -214,7 +214,7 @@ class Prop_model extends Model {
         return $this->db->get(TBL_PROPERTIES);
     }
 
-    public function get_list2_prop($limit, $offset, $searcher){
+    public function get_list2_prop($limit, $offset, $arr_url){
         $return = array();
 
         $sql = TBL_PROPERTIES.".prop_id,";
@@ -225,25 +225,42 @@ class Prop_model extends Model {
         $sql.= TBL_USERS.".username";
         
         $like = array();
+        $where = array();
 
-        if( count($searcher)>0 ){
-            if( isset($searcher['address']) ) $like['address'] = $searcher['address'];
-            if( isset($searcher['username']) ) $like['username'] = $searcher['username'];
-            if( isset($searcher['date_added']) ) $like = array("date_format(" .TBL_PROPERTIES. ".date_added, '%d-%m-%Y %H:%i:%s')" => $searcher['date_added']);
-            if( isset($searcher['last_modified']) ) $like = array("date_format(" .TBL_PROPERTIES. ".last_modified, '%d-%m-%Y %H:%i:%s')" => $searcher['last_modified']);
+        if( count($arr_url)>0 ){
+            if( isset($arr_url['address']) ) $like['address'] = $arr_url['address'];
+            if( isset($arr_url['username']) ) $like['username'] = $arr_url['username'];
+            if( isset($arr_url['date_added']) ) {
+                $d = explode("-", $arr_url['date_added']);
+                if( $d[0]!="any" ) $where["date_format(".TBL_PROPERTIES.".date_added, '%d')="] = $d[0];
+                if( $d[1]!="any" ) $where["date_format(".TBL_PROPERTIES.".date_added, '%m')="] = $d[1];
+                if( $d[2]!="any" ) $where["date_format(".TBL_PROPERTIES.".date_added, '%Y')="] = $d[2];
+            }
+            if( isset($arr_url['last_modified']) ) {
+                $d = explode("-", $arr_url['last_modified']);
+                if( $d[0]!="any" ) $where["date_format(".TBL_PROPERTIES.".last_modified, '%d')="] = $d[0];
+                if( $d[1]!="any" ) $where["date_format(".TBL_PROPERTIES.".last_modified, '%m')="] = $d[1];
+                if( $d[2]!="any" ) $where["date_format(".TBL_PROPERTIES.".last_modified, '%Y')="] = $d[2];
+            }
         }
 
         $this->db->from(TBL_PROPERTIES);
         $this->db->join(TBL_USERS, TBL_PROPERTIES.'.user_id = '.TBL_USERS.'.user_id');
         $this->db->like($like);
+        $this->db->where($where);
 
         $return['count_rows'] = $this->db->count_all_results();
 
         $this->db->select($sql, false);
         $this->db->join(TBL_USERS, TBL_PROPERTIES.'.user_id = '.TBL_USERS.'.user_id');
         $this->db->like($like);
-        $this->db->order_by('username', 'asc');
-        $this->db->order_by('prop_id', 'desc');
+        $this->db->where($where);
+
+        if( !isset($arr_url['orderby']) ){
+            $this->db->order_by('prop_id', 'desc');
+        }else{
+            $this->db->order_by($arr_url['orderby'], $arr_url['order']);
+        }
 
         $return['result'] = $this->db->get(TBL_PROPERTIES, $limit, $offset);
 

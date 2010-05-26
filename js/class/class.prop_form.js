@@ -1,9 +1,5 @@
 /* 
  * Clase Prop
- *
- * Su funcion:
- *  - Crear, Modificar o Eliminar propiedades
- *  - Destaca prop o elimina prop destacadas.
  * 
  */
 
@@ -299,7 +295,7 @@ var Prop = new (function(){
                 html+= msg+'<br />';
                 html+= '<img src="images/ajax-loader5.gif" alt="" />';
                 html+= '</div>';
-
+                
             Popup.initializer({
                 selContainer : '#sm-popup1',
                 selContent   : '.sm-popup-middle',

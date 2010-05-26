@@ -10,7 +10,7 @@ class Condicionesdeuso extends Controller {
 
         $this->load->library('dataview', array(
             'tlp_section'       =>  'frontpage/condiciones_view.php',
-            'tlp_title'         =>  TITLE_CONDICIONES,
+            'tlp_title'         =>  setup('TITLE_CONDICIONES'),
             'tlp_title_section' =>  "Condiciones de Uso",
             'comboCountry'    =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'   =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),

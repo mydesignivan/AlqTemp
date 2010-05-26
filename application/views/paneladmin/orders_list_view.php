@@ -20,6 +20,35 @@
                 <option value="2" <?=@$search_val==2 ? 'selected="selected"' : '';?>>Confirmado</option>
             </select>
 
+            <?php
+                $selected1="";
+                $selected2="";
+                $selected3="";
+                if( @$search_key=="date" ) {
+                    $d = explode("-", $search_val);
+                    $selected1 = $d[0];
+                    $selected2 = $d[1];
+                    $selected3 = $d[2];
+                }
+            ?>
+            <select id="cboDateDay" class="hide jq-date">
+                <option value="any">any</option>
+            <?php for( $n=1; $n<=31; $n++ ){$num = ($n<10) ? "0".$n : $n;?>
+                <option value="<?=$num;?>" <?php if( $selected1==$n ) echo 'selected="selected"';?>><?=$num;?></option>
+            <?php }?>
+            </select>
+            <select id="cboDateMonth" class="hide jq-date">
+                <option value="any">any</option>
+            <?php for( $n=1; $n<=12; $n++ ){$num = ($n<10) ? "0".$n : $n;?>
+                <option value="<?=$num;?>" <?php if( $selected2==$n ) echo 'selected="selected"';?>><?=$num;?></option>
+            <?php }?>
+            </select>
+            <select id="cboDateYear" class="hide jq-date">
+                <option value="any">any</option>
+            <?php for( $n=date('Y')-10; $n<=date('Y'); $n++ ){?>
+                <option value="<?=$n;?>" <?php if( $selected3==$n ) echo 'selected="selected"';?>><?=$n;?></option>
+            <?php }?>
+            </select>
 
             <button type="button" class="button-small" onclick="Orders.Search();">Buscar</button>
         </div>
@@ -35,11 +64,11 @@
             <thead>
                 <tr class="tbl-orders">
                     <td class="cell-1">&nbsp;</td>
-                    <td class="cell-2">Orden Nº</td>
-                    <td class="cell-3">Usuario</td>
-                    <td class="cell-4">Importe</td>
-                    <td class="cell-5">Estado</td>
-                    <td class="cell-6">Fecha Pedido</td>
+                    <td class="cell-2"><a href="<?=$orderby['order_id']['url'];?>" class="float-left">Nº</a><?php if( $orderby['order_id']['order']!=null ){?><img src="images/<?=$orderby['order_id']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
+                    <td class="cell-3"><a href="<?=$orderby['username']['url'];?>" class="float-left">Usuario</a><?php if( $orderby['username']['order']!=null ){?><img src="images/<?=$orderby['username']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
+                    <td class="cell-4"><a href="<?=$orderby['importe']['url'];?>" class="float-left">Importe</a><?php if( $orderby['importe']['order']!=null ){?><img src="images/<?=$orderby['importe']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
+                    <td class="cell-5"><a href="<?=$orderby['status']['url'];?>" class="float-left">Estado</a><?php if( $orderby['status']['order']!=null ){?><img src="images/<?=$orderby['status']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
+                    <td class="cell-6"><a href="<?=$orderby['date']['url'];?>" class="float-left">Fecha Pedido</a><?php if( $orderby['date']['order']!=null ){?><img src="images/<?=$orderby['date']['order'];?>" alt="" width="16" height="16" class="float-right" /><?php }?></td>
                 </tr>
             </thead>
             <tbody>
