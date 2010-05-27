@@ -45,13 +45,14 @@ class Index extends Controller {
         $uri = strtolower($this->uri->segment(1));
         if( empty($uri) || $uri=="display" || $uri=="index" ){
             $param = array(
-                'base_url'      => str_replace('.html', '', site_url('/display/page/')),
-                'title'         => setup('TITLE_INDEX'),
-                //'title_section' => 'Alquileres Destacados',
-                'title_section' => 'Ultimos Alquileres',
-                'searcher'      =>  false,
-                'listProp'      => $this->search_model->last_properties($this->_count_per_page, $this->_offset),
-                'disting_type'  => 'index'
+                'base_url'         => str_replace('.html', '', site_url('/display/page/')),
+                'title'            => setup('TITLE_INDEX'),
+                //'title_section'   => 'Alquileres Destacados',
+                'title_section'    => 'Ultimos Alquileres',
+                'searcher'         =>  false,
+                'listProp'         => $this->search_model->last_properties($this->_count_per_page, $this->_offset),
+                'disting_type'     => 'index',
+                'disting_type_val' => null
             );
         }
 
@@ -65,7 +66,7 @@ class Index extends Controller {
 
         $this->_data = $this->dataview->set_data(array(
             'listProp'           =>  $param['listProp']['result'],
-            'listPropDisting'    =>  $this->search_model->list_disting($param['disting_type']),
+            'listPropDisting'    =>  $this->search_model->list_disting($param['disting_type'], $param['disting_type_val']),
             'listSearches'       =>  $listSearches,
             'tlp_title_section'  =>  $param['title_section'],
             'tlp_title'          =>  $param['title'],
@@ -95,55 +96,62 @@ class Index extends Controller {
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, $searcher);
 
         $this->display(array(
-            'base_url'      => $base_url,
-            'title'         => setup('TITLE_INDEX'),
-            'title_section' => 'Resultado de B&uacute;queda',
-            'listProp'      => $listProp,
-            'searcher'      => $searcher,
-            'disting_type'  => 'index'
+            'base_url'         => $base_url,
+            'title'            => setup('TITLE_INDEX'),
+            'title_section'    => 'Resultado de B&uacute;queda',
+            'listProp'         => $listProp,
+            'searcher'         => $searcher,
+            'disting_type'     => 'index',
+            'disting_type_val' => isset($searcher['city']) ? $searcher['city'] : null
         ));
     }
 
     public function casas(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>1));
         $this->display(array(
-            'base_url'      => str_replace(".html", "", site_url('/casas/page/')),
-            'title'         => ' - Casas',
-            'title_section' => 'Casas',
-            'listProp'      => $listProp,
-            'searcher'      => false,
-            'disting_type'  => 'category'
+            'base_url'          => str_replace(".html", "", site_url('/casas/page/')),
+            'title'             => ' - Casas',
+            'title_section'     => 'Casas',
+            'listProp'          => $listProp,
+            'searcher'          => false,
+            'disting_type'      => 'category',
+            'disting_type_val'  => 1
         ));
     }
     public function departamentos(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>3));
         $this->display(array(
-            'base_url'      => str_replace(".html", "", site_url('/departamentos/page/')),
-            'title'         => ' - Departamentos',
-            'title_section' => 'Departamentos',
-            'listProp'      => $listProp,
-            'searcher'      => false,
-            'disting_type'  => 'category'
+            'base_url'          => str_replace(".html", "", site_url('/departamentos/page/')),
+            'title'             => ' - Departamentos',
+            'title_section'     => 'Departamentos',
+            'listProp'          => $listProp,
+            'searcher'          => false,
+            'disting_type'      => 'category',
+            'disting_type_val'  => 3
         ));
     }
     public function cabanias(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>2));
         $this->display(array(
-            'base_url'      => str_replace(".html", "", site_url('/cabanias/page/')),
-            'title'         => ' - Caba&ntilde;as',
-            'title_section' => 'Caba&ntilde;as',
-            'listProp'      => $listProp,
-            'searcher'      => false
+            'base_url'          => str_replace(".html", "", site_url('/cabanias/page/')),
+            'title'             => ' - Caba&ntilde;as',
+            'title_section'     => 'Caba&ntilde;as',
+            'listProp'          => $listProp,
+            'searcher'          => false,
+            'disting_type'      => 'category',
+            'disting_type_val'  => 2
         ));
     }
     public function otros(){
         $listProp = $this->search_model->search($this->_count_per_page, $this->_offset, array('category'=>4));
         $this->display(array(
-            'base_url'      => str_replace(".html", "", site_url('/otros/page/')),
-            'title'         => ' - Otros',
-            'title_section' => 'Otros',
-            'listProp'      => $listProp,
-            'searcher'      => false
+            'base_url'          => str_replace(".html", "", site_url('/otros/page/')),
+            'title'             => ' - Otros',
+            'title_section'     => 'Otros',
+            'listProp'          => $listProp,
+            'searcher'          => false,
+            'disting_type'      => 'category',
+            'disting_type_val'  => 4
         ));
     }
 

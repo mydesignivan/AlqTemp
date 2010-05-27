@@ -64,9 +64,9 @@
         <form id="formSearch" action="" enctype="application/x-www-form-urlencoded" onsubmit="return false;">
             <div class="row1">
                 <label class="label-search">Buscador&nbsp;</label>
-                <div class="cont-input"><img src="images/icon_search.png" alt="" class="float-left" width="22" height="22" /><input type="text" class="i1" name="search" value="<?=@$searcher["search"];?>" onkeypress="if(getKeyCode(event)==13) Search();" />
+                <div class="cont-input"><img src="images/icon_search.png" alt="" class="float-left" width="22" height="22" /><input type="text" class="i1" name="search" value="<?=@$searcher["search"];?>" onkeypress="if(getKeyCode(event)==13) Searcher.search();" />
                 </div>
-                <button type="button" class="button-small" onclick="Search();">Buscar</button>
+                <button type="button" class="button-small" onclick="Searcher.search();">Buscar</button>
             </div>
             <div class="row2">
                 <div class="span-4">

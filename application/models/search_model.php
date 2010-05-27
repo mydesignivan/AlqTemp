@@ -9,7 +9,7 @@ class Search_model extends Model {
 
     /* PUBLIC FUNCTIONS
      **************************************************************************/
-    public function list_disting($type) {
+    public function list_disting($type, $type_val) {
         $count_prop_disting = setup('COUNT_PROP_DISTING');
 
         $sql = TBL_PROPERTIES.".prop_id,";
@@ -23,7 +23,11 @@ class Search_model extends Model {
         $this->db->select($sql, false);
         $this->db->join(TBL_PROPERTIES_DISTING, TBL_PROPERTIES.".prop_id=".TBL_PROPERTIES_DISTING.".prop_id");
         $this->db->where("now() <=", TBL_PROPERTIES_DISTING.'.date_end');
-        $this->db->where("type", $type);
+        $this->db->where(TBL_PROPERTIES_DISTING.".type", $type);
+        if( !is_null($type_val) ) {
+            if( $type=="category" ) $this->db->where(TBL_PROPERTIES_DISTING.".category_id", $type_val);
+            else if( $type=="city" ) $this->db->where(TBL_PROPERTIES_DISTING.".city", $type_val);
+        }
         $this->db->order_by('prop_id', 'desc');
         $result = $this->db->get(TBL_PROPERTIES, $count_prop_disting);
         

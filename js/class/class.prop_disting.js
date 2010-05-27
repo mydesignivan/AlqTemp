@@ -16,7 +16,10 @@ var Prop = new (function(){
             var f = $('#form1')[0];
 
             f.action = baseURI+'paneluser/destacar/disting/';
-            f.data_post.value = JSON.encode({id : _data.id, type : type});
+            f.data_post.value = JSON.encode({
+                id   : _data.id,
+                type : type
+            });
 
             working=true;
             $.get(baseURI+'paneluser/destacar/ajax_check_saldo_distingprop', function(data){

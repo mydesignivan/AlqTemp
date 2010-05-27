@@ -676,7 +676,7 @@ class CI_DB_driver {
 	{
 		if (is_string($str))
 		{
-			$str = "'".$this->escape_str($str)."'";
+                    $str = strtolower($str)=="now()" ? $this->escape_str($str) : "'".$this->escape_str($str)."'";
 		}
 		elseif (is_bool($str))
 		{

@@ -36,33 +36,31 @@ class disting_model extends Model {
 
         $this->fondos_model->extract(setup('CFG_COSTO_PROPDISTING'));
 
-        /*$sql = "INSERT INTO ".TBL_PROPERTIES_DISTING."(prop_id, `type`, `type_val`, date_start, date_end) VALUES";
-        foreach ( $prop_id as $id ){
-            $sql.= "(";
-            $sql.= $id.",";
-            $sql.= "'".$type."',";
-            $sql.= "'".$type_val."',";
-            $sql.= "now(),";
-            $sql.= "'".$date_end."'";
-            $sql.= "),";
-        }
-        $sql = substr($sql, 0, -1);*/
+
+        $data = array(
+            'prop_id'    => 0,
+            'type'       => $type,
+            'date_start' => 'now()',
+            'date_end'   => $date_end
+        );
+
+        $key = $type=="category" ? "category_id" : $type;
 
         $this->db->trans_start(); // INICIO TRANSACCION
-
         foreach ( $prop_id as $id ){
-            $data = array(
-                'prop_id'    => $id,
-                'type'       => $type,
-                'date_start' => 'now()',
-                'date_end'   => $date_end
-            );
-            if( $this->db->insert(TBL_PROPERTIES_DISTING, $data) ){
-            //if( !$this->db->query($sql) ){
+
+            if( $type!="index" ) {
+                $val = $this->_get_data($id, $key);
+                if( !$val ) continue;
+                else $data[$key] = $val;
+            }
+
+            $data['prop_id'] = $id;
+
+            if( !$this->db->insert(TBL_PROPERTIES_DISTING, $data) ){
                 display_error(__FILE__, "disting", ERR_DB_INSERT, array(TBL_PROPERTIES_DISTING));
             }
         }
-
         $this->db->trans_complete(); // COMPLETO LA TRANSACCION
 
         return true;
@@ -77,6 +75,16 @@ class disting_model extends Model {
     }
 
 
-
+    /* PRIVATE FUNCTIONS
+     **************************************************************************/
+     private function _get_data($id, $field){
+         $this->db->select($field);
+         $query = $this->db->get_where(TBL_PROPERTIES, array('prop_id'=>$id));
+         if( $query->num_rows==0 ) return false;
+         else {
+             $row = $query->row_array();
+             return $row[$field];
+         }
+     }
 }
 ?>

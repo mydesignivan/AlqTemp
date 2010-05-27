@@ -67,6 +67,15 @@ var Searcher = new (function(){
         return false;
     };
 
+    this.search = function(){
+        var url = baseURI+"searcher/";
+        $($('#formSearch').serializeArray()).each(function(){
+            var t = $(this);
+            if( t.val()!=""&&t.val()!=0 ) url+= t.attr('name')+"/"+t.val()+"/";
+        });
+        location.href = url+"page/";
+    };
+
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
