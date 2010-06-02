@@ -38,17 +38,17 @@
             <legend>Cantidad</legend>
 
             <div class="span-8 last">
-                <!--<div class="span-5 last"><label class="label-form">Prop. Gratis</label></div>
-                <input type="text" id="gral_count_freeprop" name="gral_count_freeprop" class="input-small2 float-left validate" value="<?//=$info['gral_count_freeprop'];?>" style="text-align: right;" />-->
+                <div class="span-5 last"><label class="label-form">Prop. Destacadas</label></div>
+                <input type="text" id="gral_count_propdisting" name="gral_count_propdisting" class="input-small2 float-left validate" value="<?=$info['gral_count_propdisting'];?>" style="text-align: right;" />
+            </div>
+            <div class="span-8 last">
+                <div class="span-5 last"><label class="label-form">Prop. Similares</label></div>
+                <input type="text" id="gral_count_propsimilares" name="gral_count_propsimilares" class="input-small2 float-left validate" value="<?=$info['gral_count_propdisting'];?>" style="text-align: right;" />
             </div>
             <div class="clear span-13 last">
                 <div class="span-5 last"><label class="label-form float-left">Im&aacute;genes Gratis</label></div>
                 <input type="text" id="gral_count_freeimages" name="gral_count_freeimages" class="input-small2 float-left validate" value="<?=$info['gral_count_freeimages'];?>" style="text-align: right;" />
             </div>
-            <!--<div class="clear span-8 last">
-                <div class="span-5 last"><label class="label-form float-left">Prop. Cuenta Plus</label></div>
-                <input type="text" id="gral_count_propcp" name="gral_count_propcp" class="input-small2 float-left validate" value="<?//=$info['gral_count_propcp'];?>" style="text-align: right;" />
-            </div>-->
             <div class="clear span-13 last">
                 <div class="span-5 last"><label class="label-form float-left">Im&aacute;gen Cuenta Plus</label></div>
                 <input type="text" id="gral_count_imagescp" name="gral_count_imagescp" class="input-small2 float-left validate" value="<?=$info['gral_count_imagescp'];?>" style="text-align: right;" />

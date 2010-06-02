@@ -146,4 +146,20 @@ function array_implode($parent, $arr){
     }
     return $ret;
 }
+
+function EmailMessageConstructor($data, $arr){
+    $ret = array();
+    foreach( $arr as $key=>$val ){
+        if( isset($data[$key]) ){
+            if( is_array($data[$key]) ){
+                foreach( $data[$key] as $v ) $val = sprintf($val, $v);
+                $ret[] = $val;
+            }else{
+                if( !empty($data[$key]) && $data[$key]!='null' )
+                    $ret[] = sprintf($val, $data[$key]);
+            }
+        }
+    }
+    return implode("", $ret);
+}
 ?>

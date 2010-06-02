@@ -49,9 +49,15 @@ strong{color:#FC7F07;}
     margin-top: 30px;
 }
 
-.column-photo{
+.column-1{
     float:right;
     width: 480px;
+    margin-bottom: 5px;
+    /*border:1px solid red;*/
+}
+.column-2{
+    float:right;
+    width: 520px;
     margin-bottom: 5px;
     /*border:1px solid red;*/
 }
@@ -202,7 +208,7 @@ label.label-black{
     color: #000;
 }
 label.label-contact{
-    font-size: 70%;
+    font-size: 80%;
     color: #80694D;
 }
 label.label-form{
@@ -283,6 +289,18 @@ input.input-saldo{
     width: 120px;
     text-align: center;
 }
+input.input-date1{
+    width: 118px;
+    border:1px solid #ccc;
+    background-color:#FAF8E9;
+    font-size: 70%;
+    margin-right: 3px;
+}
+input.input-capcity{
+    width: 40px;
+    text-align: right;
+}
+
 input.input-small{width: 100px;}
 input.input-small2{width: 50px;}
 input.input-medium{width: 180px;}
@@ -296,7 +314,7 @@ textarea.textarea-contact{
     border:1px solid #ccc;
     background-color:#FAF8E9;
     width: 200px;
-    height: 115px;
+    height: 110px;
 }
 textarea.textarea-contact2{
     width: 515px;

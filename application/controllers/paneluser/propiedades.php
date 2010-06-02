@@ -18,15 +18,29 @@ class Propiedades extends Controller {
             'tlp_title'         =>  setup('TITLE_PROPIEDADES')
         ));
         $this->_data = $this->dataview->get_data();
-    }
+
+        $this->_count_per_page=10;
+        $uri = $this->uri->uri_to_assoc(2);
+        $this->_offset = !isset($uri['page']) ? 0 : $uri['page'];
+}
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
     private $_data;
+    private $_count_per_page;
+    private $_offset;
 
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
+        $this->load->library('pagination');
+
+        $config['base_url'] = site_url('/paneluser/propiedades/page/');
+        $config['total_rows'] = $param['listProp']['count_rows'];
+        $config['per_page'] = $this->_count_per_page;
+        $config['uri_segment'] = $this->uri->total_segments();
+        $this->pagination->initialize($config);
+
         $this->_data = $this->dataview->set_data(array(
             'tlp_title_section' =>  "Propiedades",
             'tlp_script'        =>  'prop_list',

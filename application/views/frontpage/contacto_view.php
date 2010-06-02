@@ -28,8 +28,8 @@
                         <div class="clear span-6">
                             <label class="label-form">Area de Consulta:</label><br />
                             <select name="cboArea" class="select-form">
-                                <option value="jbasaez@mydesign.com.ar">Publicidad</option>
-                                <option value="jbasaez@mydesign.com.ar">Consultas</option>
+                                <option value="basaezj@mydesign.com.ar">Publicidad</option>
+                                <option value="basaezj@mydesign.com.ar">Consultas</option>
                             </select>
                         </div>
                     </div>

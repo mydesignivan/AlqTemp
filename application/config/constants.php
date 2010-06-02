@@ -150,13 +150,18 @@ define('EMAIL_RP_MESSAGE', $msg);
 | EMAIL FORMULARIO CONSULTA DE LA PROP
 |--------------------------------------------------------------------------
 */
-$msg = "<b>Propiedad:</b> %s<br /><br />";
-$msg.= "<b>Nombre:</b> %s<br /><br />";
-$msg.= "<b>Telefono:</b> %s<br /><br />";
-$msg.= '<b>Consulta:</b><hr color="#000000" />%s';
+$msg = array();
+$msg['propname'] = "<b>Propiedad:</b> %s<br /><br />";
+$msg['name'] = "<b>Nombre:</b> %s<br /><br />";
+$msg['phone'] = "<b>Telefono:</b> %s<br /><br />";
+$msg['llegada'] = "<b>Llegada:</b> %s<br /><br />";
+$msg['partida'] = "<b>Partida:</b> %s<br /><br />";
+$msg['adultos'] = "<b>Adultos:</b> %s<br /><br />";
+$msg['ninios'] = "<b>Ni&ntilde;os:</b> %s<br /><br />";
+$msg['consult'] = '<b>Consulta:</b><hr color="#000000" />%s';
 
 define('EMAIL_CONSULTPROP_SUBJECT', 'AlquileresTemporarios.org - Consulta Propiedad');
-define('EMAIL_CONSULTPROP_MESSAGE', $msg);
+define('EMAIL_CONSULTPROP_MESSAGE', serialize($msg));
 
 /*
 |--------------------------------------------------------------------------

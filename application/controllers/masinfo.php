@@ -60,12 +60,20 @@ class Masinfo extends Controller {
      **************************************************************************/
     public function ajax_sendconsult(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
-
+            
             $this->load->library('email');
 
-            $data = $this->prop_model->get_info_prop($_POST['id']);
-
-            $message = sprintf(EMAIL_CONSULTPROP_MESSAGE, $data['address'], $_POST['txtName'], $_POST['txtPhone'], nl2br($_POST['txtConsult']));
+            $message = EmailMessageConstructor(array(
+                'propname' => $_POST['address'],
+                'name'     => $_POST['txtName'],
+                'phone'    => ($_POST['txtPhone']=="Número de Contacto") ? "" : $_POST['txtPhone'],
+                'llegada'  => $_POST['txtResLlegada'],
+                'salida'   => $_POST['txtResSalida'],
+                'adultos'  => $_POST['cboResAdultos'],
+                'ninios'   => $_POST['cboResNinios'],
+                'consult'  => nl2br($_POST['txtConsult'])
+                
+            ), unserialize(EMAIL_CONSULTPROP_MESSAGE));
 
             $this->email->from($_POST['txtEmail'], $_POST['txtName']);
             $this->email->to($data['email']);
@@ -80,6 +88,9 @@ class Masinfo extends Controller {
         }
     }
 
+
+    /* PRIVATE FUNCTIONS
+     **************************************************************************/
 }
 
 ?>

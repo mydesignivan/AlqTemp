@@ -10,11 +10,11 @@ var MoreInfo = new (function(){
     /* PUBLIC METHODS
      **************************************************************************/
     this.initializer = function(json){
-        //Inicializa la Galeria de Imagenes
+        //Inicialisa la Galeria de Imagenes
         ImageGallery.initializer(json);
         ImageGallery.load();
 
-        // Inicializa el Validador de campos
+        // Inicialisa el Validador de campos
         f = $('#formConsult')[0];
         $.validator.setting('#formConsult .validate', {
             effect_show     : 'slidefade',
@@ -32,7 +32,17 @@ var MoreInfo = new (function(){
             v_required : true
         });
 
+
+        // Aplica opacidad a la mascara para el form contact
         $('#formConsult .ajaxloader-mask').css('opacity', '0.5');
+
+        // Configura el calendario
+        $("input.datepicker").datepicker({
+            showOn          : 'both',
+            buttonImage     : 'images/icon_calendar.png',
+            buttonImageOnly : true,
+            dateFormat      : 'MM d, yy'
+        });
     };
 
     this.send_consult = function(){
@@ -42,7 +52,8 @@ var MoreInfo = new (function(){
 
          var cartel = false;
          $.validator.validate('#formConsult .validate', function(error){
-             if( !error ){
+             if( !error && validEmptyField() ){
+
                  ajaxloader.show('Enviando consulta...');
                  $.ajax({
                      type : 'post',
@@ -54,7 +65,7 @@ var MoreInfo = new (function(){
                              cartel.html('La consulta ha sido enviada con &eacute;xito.').slideDown('slow');
                          }else{
                              cartel = $('#formConsult .error');
-                             cartel.html('Ocurrio un error al enviar el mensaje.').slideDown('slow');
+                             cartel.html('Ocurrio un error en el envio.').slideDown('slow');
                          }
                      },
                      error : function(result){
@@ -62,9 +73,13 @@ var MoreInfo = new (function(){
                      },
                      complete : function(){
                          ajaxloader.hidden();
-                         f.txtName.value = "";
-                         f.txtEmail.value = "";
-                         f.txtPhone.value = "";
+                         f.txtName.value = "Nombre";
+                         f.txtEmail.value = "E-mail";
+                         f.txtPhone.value = "N&uacute;mero de Contacto";
+                         f.txtResLlegada.value = "";
+                         f.txtResSalida.value = "";
+                         f.cboResAdultos.options[0].selected=true;
+                         f.cboResNinios.options[0].selected=true;
                          f.txtConsult.value = "";
 
                          setTimeout(function(){
@@ -95,6 +110,27 @@ var MoreInfo = new (function(){
             working=false;
             $('#formConsult .ajaxloader-mask, #formConsult .ajaxloader').hide();
          }
-     }
+     };
+
+     var validEmptyField = function(){
+         var arr = Array('txtName', 'txtEmail', 'txtConsult');
+
+         try{
+             $(arr).each(function(i, t){
+                var obj = $('#formConsult [name='+t+']');
+
+                if( obj.length>0 ){
+                    obj.trigger('focus');
+                    if( obj.val().length==0 ) {
+                         ajaxloader.hidden();
+                         show_error(obj, 'Este campo es obligatorio');
+                         throw true;
+                    }
+                }
+             });
+
+         }catch(e){return false;}
+         return true;
+     };
 
 })();

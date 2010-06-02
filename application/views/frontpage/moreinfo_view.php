@@ -21,26 +21,54 @@
                 <div class="ajaxloader-mask"></div>
                 <div class="ajaxloader"></div>
                 <div class="span-6">
-                    <label class="label-contact">*Nombre</label><br />
-                    <input type="text" name="txtName" class="input-contact validate" />
+                    <input type="text" name="txtName" class="input-contact validate" value="Nombre" title="Nombre" onfocus="clear_input(event)" onblur="set_input(event,'Nombre')" />
                 </div>
                 <div class="clear span-6">
-                    <label class="label-contact">*E-mail</label><br />
-                    <input type="text" name="txtEmail" class="input-contact validate" />
+                    <input type="text" name="txtEmail" class="input-contact validate" value="E-mail" title="E-mail" onfocus="clear_input(event)" onblur="set_input(event,'E-mail')" />
                 </div>
                 <div class="clear span-6">
-                    <label class="label-contact">N&uacute;mero de Contacto</label><br />
-                    <input type="text" name="txtPhone" class="input-contact" />
+                    <input type="text" name="txtPhone" class="input-contact" value="N&uacute;mero de Contacto" title="N&uacute;mero de Contacto" onfocus="clear_input(event)" onblur="set_input(event,'N&uacute;mero de Contacto')" />
+                </div>
+
+                <div class="clear span-6">
+                    <div class="span-1"><label class="label-contact">Llegada</label></div>
+                    <div class="span-4 float-right">
+                        <input type="text" name="txtResLlegada" class="input-date1 datepicker" />
+                    </div>
                 </div>
                 <div class="clear span-6">
-                    <label class="label-contact">*Consulta</label>
-                    <textarea class="textarea-contact validate" name="txtConsult" cols="10" rows="3"></textarea>
+                    <div class="span-1"><label class="label-contact">Salida</label></div>
+                    <div class="span-4 float-right">
+                        <input type="text" name="txtResSalida" class="input-date1 datepicker" />
+                    </div>
+                </div>
+                <div class="clear span-6">
+                    <label class="label-contact">Adultos</label>
+                    <select name="cboResAdultos">
+                        <?php for( $n=0; $n<=9; $n++ ) {
+                            if( $n==0 ) echo '<option value="null">'.$n.'</option>';
+                            else echo '<option value="'.$n.'">'.$n.'</option>';
+                        }?>
+                    </select>
+                    <label class="label-contact">Ni&ntilde;os</label>
+                    <select name="cboResNinios">
+                        <?php for( $n=0; $n<=9; $n++ ) {
+                            if( $n==0 ) echo '<option value="null">'.$n.'</option>';
+                            else echo '<option value="'.$n.'">'.$n.'</option>';
+                        }?>
+                    </select>
+                </div>
+
+                <div class="clear span-6 prepend-top-small">
+                    <textarea class="textarea-contact validate" name="txtConsult" cols="10" rows="3" title="Consulta" onfocus="clear_input(event)" onblur="set_input(event,'Consulta')">Consulta</textarea>
                 </div>
                 <!-- ======= END FORM ======= -->
 
                 <div class="clear span-6 text-center">
                     <button type="button" class="button-contact" onclick="MoreInfo.send_consult();">Enviar</button>
                 </div>
+
+                <input type="hidden" name="address" value="<?=$info['address'];?>" />
             </form>
             <script type="text/javascript">
             <!--
@@ -69,17 +97,15 @@
             <?php }?>
             </li>
             <?php if( !empty($info['price']) ){
-                if( $info['pricemoney']=="$" ) $suffix = "peso";
+                /*if( $info['pricemoney']=="$" ) $suffix = "peso";
                 elseif( $info['pricemoney']=="U\$S" ) $suffix = "dolar";
                 elseif( $info['pricemoney']=="€" ) $suffix = "euro";
-             ?>
-                <img src="images/icon_money_<?=$suffix;?>.png" alt="" width="16" height="16" />
-                <?=$info['price']." ".$info['priceby'];?>
+                echo '<img src="images/icon_money_'.$suffix.'.png" alt="" width="16" height="16" />';*/
+             ?>                
+                <?='&nbsp;<b>'.$info['pricemoney']."</b> ".$info['price']." ".$info['priceby'];?>
             <?php }?>
         </ul>
     </div>
-
-<?php if( $cuentaplus ){?>
 
 <?php if( $info['gmap_visible']==1 ) {?>
     <div class="row-cont">
@@ -98,6 +124,8 @@
     -->
     </script>
 <?php }?>
+
+<?php if( $cuentaplus ){?>
 
 <?php if( $info['movie_visible']==1 ) {?>
     <div class="row-cont">

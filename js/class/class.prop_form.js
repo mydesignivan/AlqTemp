@@ -56,6 +56,9 @@ var Prop = new (function(){
 
         // Formatea los numeros como enteros
         formatNumber.init('#txtPhone, #txtPhoneArea, #txtPrice, #txtCapacity');
+
+        // Ejecuta eventos
+        $('#cboCapacity').trigger('change');
    };
 
     this.save = function(){
@@ -221,6 +224,13 @@ var Prop = new (function(){
         if( $('#divGmap').css('visibility')=='hidden' ){
             $('#divGmap, #map').show2();
             $('html, body').animate({scrollTop : $(window).scrollTop()+260}, 'slow');
+        }
+    };
+
+    this.actions = {
+        capacity_change : function(val){
+            if( parseInt(val)>1 ) $('#spnPeople').html('personas');
+            else $('#spnPeople').html('persona');
         }
     };
 
