@@ -7,15 +7,15 @@
 
     <div class="span-6">
         <label class="label-form" for="txtPssCurrent">Constrase&ntilde;a actual</label><br />
-        <input type="password" id="txtPssCurrent" class="input-form validate" />
+        <input type="password" id="txtPssCurrent" class="input-form validate" tabindex="-1" />
     </div>
     <div class="clear span-6">
         <label class="label-form" for="txtPssNew">Nueva constrase&ntilde;a</label><br />
-        <input type="password" id="txtPssNew" class="input-form validate" />
+        <input type="password" id="txtPssNew" class="input-form validate" tabindex="-1" />
     </div>
     <div class="clear span-6">
         <label class="label-form" for="txtPssVeri">Repetir nueva constrase&ntilde;a</label><br />
-        <input type="password" id="txtPssVeri" class="input-form validate" />
+        <input type="password" id="txtPssVeri" class="input-form validate" tabindex="-1" />
     </div>
 
     <div class="span-6 text-center">

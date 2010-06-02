@@ -29,15 +29,15 @@
         <div class="clear span-24 main-container">
             <div class="column-left">
 
-                <?php if( $listPropDisting->num_rows>0 ){?>
-                <div class="float-left">
+                <?php //if( $listPropDisting->num_rows>0 ){?>
+                <!--<div class="float-left">
                     <div class="row-top"><h1 class="title">Alquileres Destacados</h1></div>
                     <div class="row-center min-height-1">
-                        <?php require('includes/prop_destacadas_inc.php');?>
+                        <?php //require('includes/prop_destacadas_inc.php');?>
                     </div>
                     <div class="row-bottom"></div>
-                </div>
-                <?php }?>
+                </div>-->
+                <?php //}?>
 
                 <div class="clear float-left">
                     <div class="row-top"><h1 class="title"><?=$tlp_title_section;?></h1></div>
@@ -52,6 +52,16 @@
                     <div class="row-top"><h1 class="title">Destinos mas Buscados</h1></div>
                     <div class="row-center min-height-1">
                         <?php require('includes/hitssearch_inc.php');?>
+                    </div>
+                    <div class="row-bottom"></div>
+                </div>
+                <?php }?>
+
+                <?php if( isset($tlp_form_similarsearcher) && $listSimSearches->num_rows>0 ){?>
+                <div class="clear float-left">
+                    <div class="row-top"><h1 class="title">Anuncios Similares</h1></div>
+                    <div class="row-center min-height-1">
+                        <?php require('includes/similarsearcher_inc.php');?>
                     </div>
                     <div class="row-bottom"></div>
                 </div>

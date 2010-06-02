@@ -54,7 +54,8 @@ var Prop = new (function(){
             else PGmap.initializer();
         }
 
-        formatNumber.init('#formProp input[name=txtPhone], #formProp input[name=txtPhoneArea], #formProp input[name=txtPrice]');
+        // Formatea los numeros como enteros
+        formatNumber.init('#txtPhone, #txtPhoneArea, #txtPrice, #txtCapacity');
    };
 
     this.save = function(){

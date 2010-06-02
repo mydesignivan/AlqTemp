@@ -16,7 +16,7 @@
 
     <?php if( !$this->session->userdata('logged_in') ){?>
             <div class="column prepend-1">
-                <a href="<?=site_url('/registro/');?>" onmouseover="this.firstChild.src='images/btn_register_over.png'" onmouseout="this.firstChild.src='images/btn_register.png'"><img src="images/btn_register.png" alt="Registrarse" width="127" height="29" /></a>
+                <a href="<?=site_url('/registro/');?>" class="link-registro">Registrarse</a>
             </div>
 
     <?php }else{

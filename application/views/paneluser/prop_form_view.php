@@ -99,6 +99,11 @@
                 </div>
 
                 <div class="clear span-10 prepend-top-small">
+                    <label class="label-form float-left">Capacidad:</label>
+                    <input type="text" name="txtCapacity" id="txtCapacity" class="input-form float-right" value="<?=@$info['capacity'];?>" tabindex="7" />
+                </div>
+
+                <div class="clear span-10 prepend-top-small">
                     <label class="label-form float-left">*Pa&iacute;s:</label>
                     <?=form_dropdown('cboCountry', $comboCountry, @$info["country_id"], 'id="cboCountry" class="select-form float-right validate" onchange="Prop.show_states(this);" tabindex="5"');?>
                 </div>
@@ -112,20 +117,26 @@
                 </div>
                 <div class="clear span-10">
                     <label class="label-form float-left">Telefono:</label>
-                    <input type="text" name="txtPhone" class="input-phone float-right" value="<?=@$info['phone'];?>" tabindex="9" />
-                    <input type="text" name="txtPhoneArea" class="input-phonearea float-right" value="<?=@$info['phone_area'];?>" tabindex="8" />
+                    <input type="text" name="txtPhone" id="txtPhone" class="input-phone float-right" value="<?=@$info['phone'];?>" tabindex="9" />
+                    <input type="text" name="txtPhoneArea" id="txtPhoneArea" class="input-phonearea float-right" value="<?=@$info['phone_area'];?>" tabindex="8" />
                 </div>
                 <div class="clear span-10">
                     <label class="label-form float-left">P&aacute;gina Web:</label>
                     <input type="text" name="txtWebsite" class="input-form float-right" onblur="$(this).formatURL();" value="<?=(@$info['website']==FALSE || @$info['website']=='') ? "http://" : @$info['website'];?>" tabindex="10" />
                 </div>
-                <div class="clear span-10">
+                <div class="clear span-11">
                     <label class="label-form float-left">Precio:</label>
-                    <input type="text" name="txtPrice" class="input-price float-right" value="<?=@$info['price'];?>" tabindex="11" />
-                    <select id="cboMoneySymbol" class="float-right">
-                        <option value="$">$</option>
-                        <option value="U$S">U$S</option>
-                        <option value="€">€</option>
+                    <select name="cboPriceBy" class="float-right">
+                        <option value="por d&iacute;a" <?php if( @$info['priceby']=="por d&iacute;a" ) echo 'selected="selected"';?>>por d&iacute;a</option>
+                        <option value="por semana" <?php if( @$info['priceby']=="por semana" ) echo 'selected="selected"';?>>por semana</option>
+                        <option value="por quincena" <?php if( @$info['priceby']=="por quincena" ) echo 'selected="selected"';?>>por quincena</option>
+                        <option value="por mes" <?php if( @$info['priceby']=="por mes" ) echo 'selected="selected"';?>>por mes</option>
+                    </select>
+                    <input type="text" name="txtPrice" id="txtPrice" class="input-price float-right" value="<?=@$info['price'];?>" tabindex="11" />
+                    <select name="cboMoneySymbol" class="float-right">
+                        <option value="$" <?php if( @$info['pricemoney']=="$" ) echo 'selected="selected"';?>>$</option>
+                        <option value="U$S" <?php if( @$info['pricemoney']=="U\$S" ) echo 'selected="selected"';?>>U$S</option>
+                        <option value="€" <?php if( @$info['pricemoney']=="€" ) echo 'selected="selected"';?>>€</option>
                     </select>
                 </div>
 

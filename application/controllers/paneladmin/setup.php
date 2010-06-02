@@ -22,7 +22,7 @@ class Setup extends Controller {
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneladmin/setup_view.php',
             'tlp_title_section' =>  'Panel Configuraci&oacute;n',
-            'tlp_script'        =>  'tabs',
+            'tlp_script'        =>  array('validator', 'tabs', 'formatnumber', 'setup'),
             'info'              =>  $this->setup_model->get_data()
         ));
         $this->load->view("template_paneladmin_view", $this->_data);

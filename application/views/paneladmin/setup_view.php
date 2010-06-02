@@ -13,11 +13,11 @@
 
             <div class="span-8 last">
                 <div class="span-5 last"><label class="label-form">Prop. Destacada</label></div>
-                <div class="float-left"><input type="text" name="gral_time_propdisting" class="input-small2" value="<?=$info['gral_time_propdisting'];?>" style="text-align: right;" /> meses</div>
+                <div class="float-left" style="position: relative;"><input type="text" id="gral_time_propdisting" name="gral_time_propdisting" class="input-small2 validate" value="<?=$info['gral_time_propdisting'];?>" style="text-align: right;" /> meses</div>
             </div>
             <div class="clear span-8 last">
                 <div class="span-5 last"><label class="label-form float-left">Duraci&oacute;n de una Cuenta Plus</label></div>
-                <div class="float-left"><input type="text" name="gral_time_cp" class="input-small2" value="<?=$info['gral_time_cp'];?>" style="text-align: right;" /> a&ntilde;os</div>
+                <div class="float-left" style="position: relative;"><input type="text" id="gral_time_cp" name="gral_time_cp" class="input-small2 validate" value="<?=$info['gral_time_cp'];?>" style="text-align: right;" /> a&ntilde;os</div>
             </div>
         </fieldset>
 
@@ -26,11 +26,11 @@
 
             <div class="span-8 last">
                 <div class="span-5 last"><label class="label-form">Costo del destaque</label></div>
-                <div class="float-left"><input type="text" name="gral_costo_disting" class="input-small2" value="<?=$info['gral_costo_disting'];?>" style="text-align: right;" /> U$S</div>
+                <div class="float-left" style="position: relative;"><input type="text" id="gral_costo_disting" name="gral_costo_disting" class="input-small2 validate" value="<?=$info['gral_costo_disting'];?>" style="text-align: right;" /> U$S</div>
             </div>
             <div class="clear span-8 last">
                 <div class="span-5 last"><label class="label-form float-left">Costo Cuenta Plus</label></div>
-                <div class="float-left"><input type="text" name="gral_costo_cp" class="input-small2" value="<?=$info['gral_costo_cp'];?>" style="text-align: right;" /> U$S</div>
+                <div class="float-left" style="position: relative;"><input type="text" id="gral_costo_cp" name="gral_costo_cp" class="input-small2 validate" value="<?=$info['gral_costo_cp'];?>" style="text-align: right;" /> U$S</div>
             </div>
         </fieldset>
 
@@ -38,20 +38,20 @@
             <legend>Cantidad</legend>
 
             <div class="span-8 last">
-                <div class="span-5 last"><label class="label-form">Prop. Gratis</label></div>
-                <input type="text" name="gral_count_freeprop" class="input-small2 float-left" value="<?=$info['gral_count_freeprop'];?>" style="text-align: right;" />
+                <!--<div class="span-5 last"><label class="label-form">Prop. Gratis</label></div>
+                <input type="text" id="gral_count_freeprop" name="gral_count_freeprop" class="input-small2 float-left validate" value="<?//=$info['gral_count_freeprop'];?>" style="text-align: right;" />-->
             </div>
-            <div class="clear span-8 last">
+            <div class="clear span-13 last">
                 <div class="span-5 last"><label class="label-form float-left">Im&aacute;genes Gratis</label></div>
-                <input type="text" name="gral_count_freeimages" class="input-small2 float-left" value="<?=$info['gral_count_freeimages'];?>" style="text-align: right;" />
+                <input type="text" id="gral_count_freeimages" name="gral_count_freeimages" class="input-small2 float-left validate" value="<?=$info['gral_count_freeimages'];?>" style="text-align: right;" />
             </div>
-            <div class="clear span-8 last">
+            <!--<div class="clear span-8 last">
                 <div class="span-5 last"><label class="label-form float-left">Prop. Cuenta Plus</label></div>
-                <input type="text" name="gral_count_propcp" class="input-small2 float-left" value="<?=$info['gral_count_propcp'];?>" style="text-align: right;" />
-            </div>
-            <div class="clear span-8 last">
+                <input type="text" id="gral_count_propcp" name="gral_count_propcp" class="input-small2 float-left validate" value="<?//=$info['gral_count_propcp'];?>" style="text-align: right;" />
+            </div>-->
+            <div class="clear span-13 last">
                 <div class="span-5 last"><label class="label-form float-left">Im&aacute;gen Cuenta Plus</label></div>
-                <input type="text" name="gral_count_imagescp" class="input-small2 float-left" value="<?=$info['gral_count_imagescp'];?>" style="text-align: right;" />
+                <input type="text" id="gral_count_imagescp" name="gral_count_imagescp" class="input-small2 float-left validate" value="<?=$info['gral_count_imagescp'];?>" style="text-align: right;" />
             </div>
         </fieldset>
 
@@ -60,7 +60,7 @@
 
             <div class="span-13 last">
                 <label class="label-form">Script default movie</label>
-                <input type="text" name="gral_otros_scriptmovie" class="input-large" value='<?=$info['gral_otros_scriptmovie'];?>' />
+                <input type="text" name="gral_otros_scriptmovie" class="input-large validate" value='<?=$info['gral_otros_scriptmovie'];?>' />
             </div>
         </fieldset>
     </div>
@@ -178,17 +178,17 @@
     </div>
     <div id="tabs-3" class="hide">
         <label class="label-form">Editor</label><br />
-        <textarea name="txtHtaccess" cols="22" rows="5" class="textarea-edit"><?=$info['htaccess'];?></textarea>
+        <textarea name="txtHtaccess" cols="22" rows="5" class="textarea-edit validate"><?=$info['htaccess'];?></textarea>
     </div>
 </div>
 
 <div class="clear span-15 prepend-top-small text-center">
-    <button type="submit" class="button-large">Guardar</button>
+    <button type="button" class="button-large" onclick="Setup.save();">Guardar</button>
 </div>
 </form>
 
 <script type="text/javascript">
 <!--
-    $('#tabs').tabs();
+    Setup.initializer();
 -->
 </script>

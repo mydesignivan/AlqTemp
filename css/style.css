@@ -172,6 +172,19 @@ a.link-attachments{
     color:#684C1D;
 }
 
+a.link-registro{
+    display: block;
+    font-size: 100%;
+    font-weight: bold;
+    color: #fff;
+    background: url(../images/btn_registro.png) no-repeat;
+    width: 142px;
+    height: 35px;
+    text-align: center;
+    padding-top:8px;
+    margin:-6px 0 0 -10px;
+}
+
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LABEL
  -----------------------------------------------------------------------------*/
@@ -252,8 +265,9 @@ input.input-phone{
     width: 162px;
 }
 input.input-price{
-    width: 163px;
+    width: 92px;
     margin-left: 5px;
+    margin-right: 5px;
 }
 input.input-captcha{
     float:right;
@@ -1207,6 +1221,21 @@ table.tbl-list tbody{
 .validator-captcha{
     width: 175px !important;
     margin-right: 33px !important;
+}
+.validator-setup{
+    clear: inherit !important;
+    float: left !important;
+    position: absolute;
+    width: 150px !important;
+    right: -180px;
+    top:0;
+    z-index: 1000;
+}
+.validator-setup2{
+    width: 150px !important;
+    float: right !important;
+    margin-right: 172px !important;
+    
 }
 
 /*------------------------------------------------------------------------------

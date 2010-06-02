@@ -58,7 +58,7 @@
     <div class="row-cont bg-slide">
         <ul class="list-moreinfo">
             <li><img src="images/icon_address.png" alt="" width="19" height="15" /><?=$info['address'];?></li>
-            <li><?php if( !empty($info['website']) ){?><img src="images/icon_web.png" alt="" width="19" height="15" /><a href="<?=$info['website'];?>" class="link5" target="_blank"><?=$info['website'];?></a><br /><?php }?></li>
+            <li><?php if( !empty($info['website']) ){?><img src="images/icon_web.png" alt="" width="19" height="15" /><a href="<?=$info['website'];?>" class="link5" target="_blank" rel="nofollow"><?=$info['website'];?></a><br /><?php }?></li>
             <li>
             <?php if( !empty($info['phone']) ){?>
                 <img src="images/icon_phone.png" alt="" width="19" height="15" />
@@ -68,6 +68,14 @@
                  ?>
             <?php }?>
             </li>
+            <?php if( !empty($info['price']) ){
+                if( $info['pricemoney']=="$" ) $suffix = "peso";
+                elseif( $info['pricemoney']=="U\$S" ) $suffix = "dolar";
+                elseif( $info['pricemoney']=="€" ) $suffix = "euro";
+             ?>
+                <img src="images/icon_money_<?=$suffix;?>.png" alt="" width="16" height="16" />
+                <?=$info['price']." ".$info['priceby'];?>
+            <?php }?>
         </ul>
     </div>
 

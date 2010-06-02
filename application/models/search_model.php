@@ -18,6 +18,8 @@ class Search_model extends Model {
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= TBL_PROPERTIES.".city,";
         $sql.= TBL_PROPERTIES.".price,";
+        $sql.= TBL_PROPERTIES.".priceby,";
+        $sql.= TBL_PROPERTIES.".pricemoney,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_PROPERTIES .".prop_id=". TBL_IMAGES .".prop_id LIMIT 1) as image_thumb";
 
         $this->db->select($sql, false);
@@ -41,6 +43,8 @@ class Search_model extends Model {
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "city,";
         $sql.= "price,";
+        $sql.= "priceby,";
+        $sql.= "pricemoney,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ".TBL_IMAGES." WHERE ".TBL_PROPERTIES.".prop_id=".TBL_IMAGES.".prop_id LIMIT 1) as image_thumb";
 
         $this->db->select($sql, false);
@@ -61,6 +65,8 @@ class Search_model extends Model {
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "city,";
         $sql.= "price,";
+        $sql.= "priceby,";
+        $sql.= "pricemoney,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_PROPERTIES .".prop_id=". TBL_IMAGES .".prop_id LIMIT 1) as image_thumb";
 
         $where = array();
@@ -117,6 +123,26 @@ class Search_model extends Model {
     public function get_searches(){
         $this->db->order_by('hits', 'desc');
         return $this->db->get(TBL_LOGSEARCHES, 12);
+    }
+
+    public function prop_similares($prop_id){
+        $data = $this->db->get_where(TBL_PROPERTIES, array('prop_id'=>$prop_id))->row_array();
+
+        $sql = "prop_id,";
+        $sql.= "address,";
+        $sql.= "description,";
+        $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
+        $sql.= "city,";
+        $sql.= "price,";
+        $sql.= "priceby,";
+        $sql.= "pricemoney,";
+        $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ".TBL_IMAGES." WHERE ".TBL_PROPERTIES.".prop_id=".TBL_IMAGES.".prop_id LIMIT 1) as image_thumb";
+
+        $this->db->select($sql, false);
+        $this->db->where("city", $data['city']);
+        $this->db->where("category_id", $data['category_id']);
+        $this->db->order_by('prop_id', 'desc');
+        return $this->db->get(TBL_PROPERTIES, setup('gral_count_propsimilares '));
     }
 
 }

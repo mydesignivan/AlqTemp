@@ -51,35 +51,32 @@
         position:relative;
         float: left;
         width: 100%;
-        height: 20px;
-        top:-20px;
+        height: 23px;
+        top:-23px;
     }
         .sm-popup2 .sm-popup-top .sm-popup-b1{
-            background: #fff;
+            background: url(../img/popup2_topleft.png) no-repeat;
             position: relative;
             float: left;
-            width: 20px;
-            height: 20px;
-            left: -20px;
-            border:1px solid blue;
+            width: 27px;
+            height: 23px;
+            left: -27px;
         }
         .sm-popup2 .sm-popup-top .sm-popup-b2{
-            background: #fff;
+            background: url(../img/popup2_top.png) repeat-x;
             position:absolute;
             float: left;
             width: 100%;
-            height: 20px;
+            height: 23px;
             top:0;left:0;
-            border:1px solid blue;
         }
         .sm-popup2 .sm-popup-top .sm-popup-b3{
-            background: #fff;
+            background: url(../img/popup2_topright.png) no-repeat;
             position: relative;
             float: right;
-            width: 20px;
-            height: 20px;
-            right: -20px;
-            border:1px solid blue;
+            width: 27px;
+            height: 23px;
+            right: -27px;
         }
     .sm-popup2 .sm-popup-middle{
         background: #fff;
@@ -88,37 +85,34 @@
         clear: left;
         width: 100%;
         height:100%;
-        top:-20px;
+        top:-23px;
         padding: 0;
         margin: 0;
     }
         .sm-popup2 .sm-popup-middle .sm-popup-b1{
-            background: #fff;
+            background: url(../img/popup2_left.png) repeat-y;
             position: relative;
             float: left;
-            width: 20px;
+            width: 27px;
             height: 100%;
-            left: -20px;
-            border:1px solid blue;
+            left: -27px;
         }
         .sm-popup2 .sm-popup-middle .sm-popup-b2{
-            background: #fff;
+            background-color: #FAF5E1;
             position: absolute;
             float: left;
             width: 100%;
             height: 100%;
             left:0;top:0;
             overflow: hidden;
-            border:1px solid red;
         }
         .sm-popup2 .sm-popup-middle .sm-popup-b3{
-            background: #fff;
+            background: url(../img/popup2_right.png) repeat-y;
             position: relative;
             float: right;
-            width: 20px;
+            width: 27px;
             height: 100%;
-            right: -20px;
-            border:1px solid blue;
+            right: -27px;
         }
 
     .sm-popup2 .sm-popup-bottom{
@@ -127,35 +121,32 @@
         float: left;
         clear: left;
         width: 100%;
-        height: 20px;
-        top: -20px;
+        height: 23px;
+        top: -23px;
     }
         .sm-popup2 .sm-popup-bottom .sm-popup-b1{
-            background: #fff;
+            background: url(../img/popup2_bottomleft.png) no-repeat;
             position: relative;
             float: left;
-            width: 20px;
-            height: 20px;
-            left: -20px;
-            border:1px solid blue;
+            width: 27px;
+            height: 23px;
+            left: -27px;
         }
         .sm-popup2 .sm-popup-bottom .sm-popup-b2{
-            background: #fff;
+            background: url(../img/popup2_bottom.png) repeat-x;
             position:absolute;
             float: left;
             width: 100%;
-            height: 20px;
+            height: 23px;
             top:0;left:0;
-            border:1px solid blue;
         }
         .sm-popup2 .sm-popup-bottom .sm-popup-b3{
-            background: #fff;
+            background: url(../img/popup2_bottomright.png) no-repeat;
             position: relative;
             float: right;
-            width: 20px;
-            height: 20px;
-            right: -20px;
-            border:1px solid blue;
+            width: 27px;
+            height: 23px;
+            right: -27px;
         }
 
 .simplemodal-overlay{

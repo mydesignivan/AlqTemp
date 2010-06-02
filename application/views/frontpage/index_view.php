@@ -16,7 +16,7 @@
                     <h2><a href="<?=$url;?>" class="link4"><?=ucwords(strtolower($row['address']));?></a></h2>
                     <p><?=character_limiter(nl2br($row['description']), 150);?></p>
                     <label class="label-black">Categor&iacute;a:&nbsp;</label><span><?=$row['category'];?></span> |
-                    <?php if( !empty($row['price']) ){?><label class="label-black">Precio:&nbsp;</label><span><?=$row['price'];?></span> | <?php }?>
+                    <?php if( !empty($row['price']) ){?><label class="label-black">Precio:&nbsp;</label><span><?=$row['pricemoney']." ".$row['price']." ".$row['priceby'];?></span> | <?php }?>
                     <label class="label-black">Ciudad:&nbsp;</label><span><?=$row['city'];?></span><br />
                     
                 </div>

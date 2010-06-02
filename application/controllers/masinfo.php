@@ -6,15 +6,18 @@ class Masinfo extends Controller {
     function __construct(){
         parent::Controller();
         $this->load->model('prop_model');
-        $this->load->helper('form');
         $this->load->model('lists_model');
+        $this->load->model('search_model');
+        $this->load->helper('form');
+        $this->load->helper('text');
 
         $this->load->library('dataview', array(
-            'tlp_section'          =>  'frontpage/moreinfo_view.php',
-            'tlp_title'            =>  setup('TITLE_MASINFO'),
-            'tlp_title_section'    =>  "Detalle Propiedad",
-            'tlp_meta_description' =>  setup('META_DESCRIPTION_MASINFO'),
-            'tlp_meta_keywords'    =>  setup('META_KEYWORDS_MASINFO'),
+            'tlp_section'              =>  'frontpage/moreinfo_view.php',
+            'tlp_title'                =>  setup('TITLE_MASINFO'),
+            'tlp_title_section'        =>  "Detalle Propiedad",
+            'tlp_meta_description'     =>  setup('META_DESCRIPTION_MASINFO'),
+            'tlp_meta_keywords'        =>  setup('META_KEYWORDS_MASINFO'),
+            'tlp_form_similarsearcher' => true,
             'comboCountry'      =>  $this->lists_model->get_country_search(array("0"=>"Pa&iacute;ses")),
             'comboCategory'     =>  $this->lists_model->get_category(array("0"=>"Categor&iacute;as")),
             'comboStates'       =>  $this->lists_model->get_states_search(array("0"=>"Estados / Provincias")),
@@ -30,8 +33,10 @@ class Masinfo extends Controller {
     /* PUBLIC FUNCTIONS
      **************************************************************************/
     public function index(){
-        if( is_numeric($this->uri->segment(3)) ){
-            $info = $this->prop_model->get_prop($this->uri->segment(3));
+        $prop_id = $this->uri->segment(3);
+
+        if( is_numeric($prop_id) ){
+            $info = $this->prop_model->get_prop($prop_id);
             if( !$info ) redirect($this->config->item('base_url'));
 
             $this->load->model('cuentaplus_model');
@@ -42,9 +47,10 @@ class Masinfo extends Controller {
             if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));            
 
             $this->_data = $this->dataview->set_data(array(
-                'tlp_script'  =>  $tlp_script,
-                "info"        =>  $info,
-                'cuentaplus'  =>  $check_cp['result']
+                'tlp_script'      =>  $tlp_script,
+                "info"            =>  $info,
+                'cuentaplus'      =>  $check_cp['result'],
+                'listSimSearches' =>  $this->search_model->prop_similares($prop_id)
             ));
             $this->load->view('template_frontpage_view', $this->_data);
         }else redirect($this->config->item('base_url'));

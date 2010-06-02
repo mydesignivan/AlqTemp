@@ -36,11 +36,11 @@ class Propiedades extends Controller {
     }
 
     public function form(){
-        if( !$this->uri->segment(4) ){
-            $check = $this->_check_total_propfree();
+        if( !$this->uri->segment(4) ){ //Si es nueva propiedad
+            //$check = $this->_check_total_propfree();
 
             $info   = false;
-            if( $this->session->userdata('username')=='basaezj' ){
+            /*if( $this->session->userdata('username')=='basaezj' ){
                 $action = "show";
             }else{
                 if( $check['result'] ){
@@ -48,7 +48,9 @@ class Propiedades extends Controller {
                 }else{
                     $action = $check['error'];
                 }
-            }
+            }*/
+
+            $action = 'show';
         }else{
             $action = 'show';
             $info   = $this->prop_model->get_prop($this->uri->segment(4));
@@ -63,7 +65,7 @@ class Propiedades extends Controller {
         //$check_cp = $this->cuentaplus_model->check();
         $check_cp['result'] = true;
 
-        $tlp_script = array('validator', 'fancybox', 'popup', 'json', 'prop_form');
+        $tlp_script = array('validator', 'fancybox', 'popup', 'json', 'formatnumber', 'prop_form');
         if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));
         
 
@@ -189,7 +191,10 @@ class Propiedades extends Controller {
             'phone_area'      => $_POST["txtPhoneArea"],
             'website'         => (strtolower($_POST["txtWebsite"])!="http://") ? $_POST["txtWebsite"] : "",
             'price'           => $_POST["txtPrice"],
+            'priceby'         => $_POST["cboPriceBy"],
+            'pricemoney'      => $_POST["cboMoneySymbol"],
             'gmap_visible'    => isset($_POST["optGmap"]) ? $_POST["optGmap"] : 0,
+            'capacity'        => $_POST["txtCapacity"],
             'extra_post'      => json_decode($_POST['extra_post'])
         );
         
@@ -204,7 +209,7 @@ class Propiedades extends Controller {
         return $return;
     }
 
-    private function _check_total_propfree(){
+    /*private function _check_total_propfree(){
         $check_cp = $this->cuentaplus_model->check();
         $total_prop = $this->prop_model->get_total_prop();
 
@@ -224,7 +229,7 @@ class Propiedades extends Controller {
             }
         }
         return array('result'=>true);
-    }
+    }*/
 
 }
 
