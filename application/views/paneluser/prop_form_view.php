@@ -18,9 +18,16 @@
             <form id="formProp" action="" method="post" enctype="application/x-www-form-urlencoded">
                 <?php require(APPPATH . 'views/includes/popup1_inc.php');?>
                 
-                <div class="span-9">
+                <div class="span-13">
+                    <label class="label-form float-left">*Referencia de tu propiedad:</label>
+                    <div class="float-right">
+                        <input type="text" name="txtReference" id="txtReference" class="input-form validate" tabindex="1" value="<?=@$info['reference'];?>" onblur="$(this).ucTitle();" />
+                        <span class="label-legend">Máximo <b>40</b> car&aacute;cteres</span>
+                    </div>
+                </div>
+                <div class="clear span-10">
                     <label class="label-form float-left">*Direcci&oacute;n:</label>
-                    <input type="text" name="txtAddress" id="txtAddress" class="input-form float-right validate" tabindex="1" value="<?=@$info['address'];?>" onblur="$(this).ucTitle();" />
+                    <input type="text" name="txtAddress" id="txtAddress" class="input-form float-right validate" tabindex="1" value="<?=@$info['address'];?>" />
                 </div>
                 <?php
                     $html = '

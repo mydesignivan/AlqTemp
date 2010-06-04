@@ -35,8 +35,10 @@ class Propiedades extends Controller {
     public function index(){
         $this->load->library('pagination');
 
+        $listProp = $this->prop_model->get_list_prop($this->_count_per_page, $this->_offset);
+
         $config['base_url'] = site_url('/paneluser/propiedades/page/');
-        $config['total_rows'] = $param['listProp']['count_rows'];
+        $config['total_rows'] = $listProp['count_rows'];
         $config['per_page'] = $this->_count_per_page;
         $config['uri_segment'] = $this->uri->total_segments();
         $this->pagination->initialize($config);
@@ -44,7 +46,7 @@ class Propiedades extends Controller {
         $this->_data = $this->dataview->set_data(array(
             'tlp_title_section' =>  "Propiedades",
             'tlp_script'        =>  'prop_list',
-            'listProp'          =>  $this->prop_model->get_list_prop()
+            'listProp'          =>  $listProp['result']
         ));
         $this->load->view('template_paneluser_view', $this->_data);
     }
@@ -155,7 +157,7 @@ class Propiedades extends Controller {
     /* AJAX FUNCTIONS
      **************************************************************************/
     public function ajax_check(){
-        if( $this->prop_model->exists($_POST['address'], $_POST['propid']) ){
+        if( $this->prop_model->exists($_POST['reference'], $_POST['propid']) ){
             die("exists");
         }else{
             die("notexists");
@@ -195,6 +197,7 @@ class Propiedades extends Controller {
     private function _request_fields(){
         $return = array(
             'user_id'         => $this->session->userdata('user_id'),
+            'reference'       => $_POST["txtReference"],
             'address'         => $_POST["txtAddress"],
             'category_id'     => $_POST["cboCategory"],
             'description'     => $_POST["txtDesc"],
@@ -208,7 +211,7 @@ class Propiedades extends Controller {
             'priceby'         => $_POST["cboPriceBy"],
             'pricemoney'      => $_POST["cboMoneySymbol"],
             'gmap_visible'    => isset($_POST["optGmap"]) ? $_POST["optGmap"] : 0,
-            'capacity'        => $_POST["txtCapacity"],
+            'capacity'        => $_POST["cboCapacity"],
             'extra_post'      => json_decode($_POST['extra_post'])
         );
         

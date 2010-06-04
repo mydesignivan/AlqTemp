@@ -185,11 +185,11 @@ class Prop_model extends Model {
         return true;
     }
 
-    public function exists($address, $prop_id=''){
+    public function exists($reference, $prop_id=''){
         if( $prop_id=="" ){
-            $where = array('address'=>$address);
+            $where = array('reference'=>$reference);
         }else{
-            $where = array('prop_id <>'=>$prop_id, 'address'=>$address);
+            $where = array('prop_id <>'=>$prop_id, 'address'=>$reference);
         }
         $result = $this->db->get_where(TBL_PROPERTIES, $where);
         return $result->num_rows==0 ? false : true;
@@ -202,16 +202,26 @@ class Prop_model extends Model {
         return $this->db->get_where(TBL_SERVICES, array('prop_id'=>$prop_id))->result_array();
     }
 
-    public function get_list_prop($where=array()){
-        $sql = "prop_id, address,";
+    public function get_list_prop($limit, $offset){
+        $sql = "prop_id, reference,";
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."',name_thumb) FROM ". TBL_IMAGES ." WHERE ". TBL_IMAGES .".prop_id=". TBL_PROPERTIES .".prop_id LIMIT 1) as image";
+
+        $return = array();
+
+        $this->db->select($sql, false);
+        $this->db->from(TBL_PROPERTIES);
+        $this->db->where("user_id", $this->session->userdata('user_id'));
+        $return['count_rows'] = $this->db->count_all_results();
+
         $this->db->select($sql, false);
         $this->db->where("user_id", $this->session->userdata('user_id'));
-        $this->db->where($where);
         $this->db->order_by('prop_id', 'desc');
         $this->db->order_by('address', 'asc');
-        return $this->db->get(TBL_PROPERTIES);
+
+        $return['result'] = $this->db->get(TBL_PROPERTIES, $limit, $offset);
+
+        return $return;
     }
 
     public function get_list2_prop($limit, $offset, $arr_url){

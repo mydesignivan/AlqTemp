@@ -76,12 +76,12 @@ var Prop = new (function(){
                     type : 'post',
                     url  : baseURI+'paneluser/propiedades/ajax_check/',
                     data : {
-                        address : f.txtAddress.value,
-                        propid  : propid
+                        reference : f.txtReference.value,
+                        propid    : propid
                     },
                     success : function(data){
                         if( data=="exists" ){
-                            show_error(f.txtAddress, 'La direcci&oacute;n ingresada ya existe.')
+                            show_error(f.txtReference, 'La referencia ingresada ya existe.')
                             
                         }else if( data=="notexists" ){
                             ajaxloader.show('Enviando Formulario.');

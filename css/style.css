@@ -40,7 +40,7 @@ h2{
 
 strong{color:#FC7F07;}
 
-.text-small{font-size: 80%;}
+.text-small{font-size: 80% !important;}
 .text-medium{font-size: 90%;}
 .text-large{font-size: 100%;}
 
@@ -880,6 +880,7 @@ ul.list-moreinfo li{
         float:left;
         width: 365px;
         height: inherit;
+        font-size: 80%;
         /*border: 1px solid red;*/
     }
         .more-info .column-1 .photo-gallery{
@@ -979,6 +980,7 @@ ul.list-moreinfo li{
         width: 620px;
         margin:30px 0 0 5px;
         font-size: 80%;
+        /*border: 1px solid red;*/
     }
 
     .more-info .bg-slide{
@@ -1218,15 +1220,22 @@ table.tbl-list tbody{
     overflow: hidden;
 }
 .gmap-moreinfo{
-    width: 620px;
-    height: 300px;
-    overflow: hidden;
-}
-.gmap-info{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    float: right;
+    width: 240px;
+    height: inherit;
+    margin: 30px 0 0 40px;
     font-size: 80%;
-    color:#000;
     /*border:1px solid red;*/
+}
+    .gmap-moreinfo .gmap-info{
+        width: 240px;
+        height: 300px;
+        overflow: hidden;
+        /*border:1px solid red;*/
+    }
+.gmap-container{
+    float:right;
+    width:200px;
 }
 
 /*------------------------------------------------------------------------------

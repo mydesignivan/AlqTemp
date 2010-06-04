@@ -92,6 +92,20 @@ var MoreInfo = new (function(){
 
      };
 
+     this.gmap_zoom = function(){
+            Popup.initializer({
+                selContainer : '#sm-popup2',
+                selContent   : '.sm-popup-middle .sm-popup-b2',
+                width        : '500px',
+                height       : '300px',
+                effectOpen   : 'resize'
+            });
+
+            //var iframe = $('<iframe src="" width="" height=""></iframe>');
+            
+            Popup.load_html();
+     };
+
     /* PRIVATE PROPERTIES
      **************************************************************************/
      var f=false;

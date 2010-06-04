@@ -47,7 +47,7 @@ class Index extends Controller {
             $param = array(
                 'base_url'         => str_replace('.html', '', site_url('/display/page/')),
                 'title'            => setup('TITLE_INDEX'),
-                'title_section'   => 'Alquileres Destacados',
+                'title_section'    => 'Alquileres Destacados',
                 //'title_section'    => 'Ultimos Alquileres',
                 'searcher'         =>  false,
                 'listProp'         => $this->search_model->last_properties($this->_count_per_page, $this->_offset),

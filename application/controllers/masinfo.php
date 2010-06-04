@@ -43,7 +43,7 @@ class Masinfo extends Controller {
             //$check_cp = $this->cuentaplus_model->check($info['user_id']);
             $check_cp['result'] = true;
 
-            $tlp_script = array('validator', 'fancybox', 'moreinfo');
+            $tlp_script = array('validator', 'fancybox', 'popup', 'moreinfo');
             if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));            
 
             $this->_data = $this->dataview->set_data(array(
@@ -54,6 +54,10 @@ class Masinfo extends Controller {
             ));
             $this->load->view('template_frontpage_view', $this->_data);
         }else redirect($this->config->item('base_url'));
+    }
+
+    public function gmap(){
+        $this->load->view('includes/gmapzoom_view');
     }
 
     /* AJAX FUNCTIONS

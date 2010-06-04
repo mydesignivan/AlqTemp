@@ -66,5 +66,8 @@ $route['checkout_cancel/:any'] = "checkout_cancel/index/$1";
 $route['searcher/:any'] = "index/searcher/$1";
 $route['display/:any'] = "index/display/$1";
 
+$route['paneluser/propiedades/page/:any'] = "paneluser/propiedades/index/page/$1";
+$route['paneluser/propiedades/page'] = "paneluser/propiedades/index/page";
+
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

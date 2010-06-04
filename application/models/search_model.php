@@ -13,7 +13,7 @@ class Search_model extends Model {
         $count_prop_disting = setup('COUNT_PROP_DISTING');
 
         $sql = TBL_PROPERTIES.".prop_id,";
-        $sql.= TBL_PROPERTIES.".address,";
+        $sql.= TBL_PROPERTIES.".reference,";
         $sql.= TBL_PROPERTIES.".description,";
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= TBL_PROPERTIES.".city,";
@@ -38,7 +38,7 @@ class Search_model extends Model {
 
     public function last_properties($limit, $offset){
         $sql = "prop_id,";
-        $sql.= "address,";
+        $sql.= "reference,";
         $sql.= "description,";
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "city,";
@@ -129,7 +129,7 @@ class Search_model extends Model {
         $data = $this->db->get_where(TBL_PROPERTIES, array('prop_id'=>$prop_id))->row_array();
 
         $sql = "prop_id,";
-        $sql.= "address,";
+        $sql.= "reference,";
         $sql.= "description,";
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "city,";

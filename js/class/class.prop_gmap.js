@@ -8,7 +8,13 @@ var PGmap = new (function(){
         address : '',
         zoom    : 13,
         mapType : 'm', // m=Mapa, k=Satelitar, h=Hibrido
-        draggable : true
+        draggable : true,
+        controlMapType : true,
+        controlLargeMap : true,
+        iconMarker : 'images/home.png',
+        iconMap    : [0,0, 60,0, 60,60, 0,60],
+        iconSizeX  : 60,
+        iconSizeY  : 60
     };
 
     /* PUBLIC METHODS
@@ -23,8 +29,8 @@ var PGmap = new (function(){
             var point = new GLatLng(param.coorLat, param.coorLng);
             //map.enableScrollWheelZoom();
             map.setCenter(point, param.zoom);
-            map.addControl(new GMapTypeControl());
-            map.addControl(new GLargeMapControl());
+            if( param.controlMapType ) map.addControl(new GMapTypeControl());
+            if( param.controlLargeMap ) map.addControl(new GLargeMapControl());
             geocoder = new GClientGeocoder();
 
             if( param.mapType ){
@@ -37,9 +43,9 @@ var PGmap = new (function(){
 
             //Personaliza el Icono
             var IconMarker = new GIcon(G_DEFAULT_ICON);
-            IconMarker.image = "images/home.png";
-            IconMarker.imageMap = [0,0, 60,0, 60,60, 0,60];
-            IconMarker.iconSize = new GSize(60,60);
+            IconMarker.image = param.iconMarker;
+            IconMarker.imageMap = param.iconMap;
+            IconMarker.iconSize = new GSize(param.iconSizeX, param.iconSizeY);
             
             //Crea una marca en el mapa
             marker = new GMarker(point, {
