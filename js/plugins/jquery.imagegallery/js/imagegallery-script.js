@@ -64,6 +64,9 @@ var ClassImageGallery = function(options){
         });
         element.containerThumbs.append(html);
         element.divThumb = element.containerThumbs.find("div."+options.cssPrefix+'thumb');
+        topleft = element.divThumb.eq(0).outerWidth(true);
+
+        return false;
     };
 
     this.previous = function(){
@@ -72,7 +75,7 @@ var ClassImageGallery = function(options){
         if( index>0 ){
             working=true;
             var left=0;
-            for( var n=index-options.step+1; n>=index-options.step && n>=0; n-- ){
+            for( var n=index-options.step; n>=index-options.step && n>=0; n-- ){
                  left+= element.divThumb.eq(n).outerWidth(true);
             }
 
@@ -165,6 +168,7 @@ var ClassImageGallery = function(options){
      var imagesThumb = [];
      var conthumbs_width=0;
      var hasFancybox=false;
+     var topleft = 0;
 
 
 

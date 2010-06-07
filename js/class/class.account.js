@@ -133,8 +133,8 @@ var Account = new (function(){
                 effectOpen   : 'resize'
             });
             Popup.load_ajax(baseURI+'paneluser/micuenta/ajax_popup_editpass/', '', function(){
-                $('button.simplemodal-close').focus();                
-                $.validator.setting('#jquery-popup2 .jquery-popup-middle .jquery-popup-b2 .validate', {
+                $('button.simplemodal-close').focus();
+                $.validator.setting('#sm-popup2 .sm-popup-middle .sm-popup-b2 .validate', {
                     effect_show     : 'slidefade',
                     validatorOne    : true
                 });

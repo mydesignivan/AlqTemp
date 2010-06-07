@@ -11,7 +11,7 @@
  */
 
 .jquery-validator{
-    float:right;
+    float:left;
     clear: both !important;
     width:214px;
     padding:2px 5px 2px 5px;

@@ -155,7 +155,7 @@ $msg['propname'] = "<b>Propiedad:</b> %s<br /><br />";
 $msg['name'] = "<b>Nombre:</b> %s<br /><br />";
 $msg['phone'] = "<b>Telefono:</b> %s<br /><br />";
 $msg['llegada'] = "<b>Llegada:</b> %s<br /><br />";
-$msg['partida'] = "<b>Partida:</b> %s<br /><br />";
+$msg['salida'] = "<b>Salida:</b> %s<br /><br />";
 $msg['adultos'] = "<b>Adultos:</b> %s<br /><br />";
 $msg['ninios'] = "<b>Ni&ntilde;os:</b> %s<br /><br />";
 $msg['consult'] = '<b>Consulta:</b><hr color="#000000" />%s';

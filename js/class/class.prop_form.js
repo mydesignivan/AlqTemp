@@ -24,7 +24,7 @@ var Prop = new (function(){
             effect_show     : 'slidefade',
             validateOne     : true
         });
-        $("#txtAddress, #txtDesc, #cboCategory, #cboCountry, #cboStates, #txtCity").validator({
+        $("#txtReference, #txtAddress, #txtDesc, #cboCategory, #cboCountry, #cboStates, #txtCity").validator({
             v_required  : true
         });
 
@@ -112,7 +112,7 @@ var Prop = new (function(){
                                 extra_post.gmap_zoom = PGmap.options.zoom;
                                 extra_post.gmap_mapType = PGmap.options.mapType;
 
-                                if( f.optMovie[0].checked ){
+                                if( typeof(f.optMovie)!="undefined" && f.optMovie[0].checked ) {
                                     var url = $(f.txtUrlMovie.value).find('param:first').attr('value');
                                     url = url.replace('http://www.youtube.com/', 'http://www.youtube-nocookie.com/');
                                     if( url.indexOf('&border=')>-1 ) url = url.substr(0, url.length-10)+"0";
@@ -151,13 +151,13 @@ var Prop = new (function(){
            }else if( data=="accesdenied" ){
                alert('Estimado usuario, le informamos que el servicio gratuito que usted dispone, le permite cargar un maximo de tres imágenes.\nEn caso que desee cargar mas imágenes, debera obtener una "Cuenta Plus"');
            }else if( data=="ok" ){
-                var divRow = $('<div class="clear span-16"></div>');
-                var divCol = $('<div class="column-photo"></div>');
+                var divRow = $('<div class="clear span-15 prepend-top-small"><label class="label-form2 lbl-w3">&nbsp;</label></div>');
+                var divCol = $('<div class="float-left"></div>');
                 var button = $('<div class="button-examin">Examinar</div>');
-                var input  = $('<input type="text" name="" class="input-form float-left jq-uploadinput" value="" />');
+                var input  = $('<input type="text" name="" class="input-image jq-uploadinput" value="" />');
                     input.bind('keypress', function(e){e.preventDefault();});
 
-                divCol.append('<div class="ajaxloader2"><img src="images/ajax-loader.gif" alt="" />&nbsp;&nbsp;Subiendo Im&aacute;gen...</div>')
+                divCol.append('<img src="images/ajax-loader.gif" alt="" class="jq-ajaxloader float-left hide" />')
                       .append('<a href="#" class="append-right-small2 float-left hide jq-thumb jq-thumbnew" rel="group"><img src="" alt="" width="69" height="60" /></a>')
                       .append(input)
                       .append(button)
@@ -271,7 +271,9 @@ var Prop = new (function(){
     };
 
     var validUrlMovie = function(){
+        if( typeof(f.optMovie)=="undefined" ) return true;
         if( f.optMovie[1].checked || (!f.optMovie[0].checked && !f.optMovie[0].checked) ) return true;
+
         var el = f.txtUrlMovie;
         var msgbox = $('#msgbox_urlmovie');
 
@@ -337,9 +339,9 @@ var AjaxUpload = new ClassAjaxUpload({
                 filename = filename[filename.length-1];
             }
 
-            divCol.find('div.button-examin, input.input-form, a.jq-thumb, button').hide();
-            divCol.find('div.ajaxloader2').show();
-            divCol.find('input.input-form').val(filename);
+            divCol.find('div.button-examin, input.input-image, a.jq-thumb, button').hide();
+            divCol.find('img.jq-ajaxloader').show();
+            divCol.find('input.input-image').val(filename);
         }
         return true;
     },
@@ -349,13 +351,13 @@ var AjaxUpload = new ClassAjaxUpload({
         try{
             eval('var filename = '+response);
         }catch(e){
-            divCol.find('input.input-form').val('');
+            divCol.find('input.input-image').val('');
             alert("ERROR:\n"+response);
             return false;
         }
 
-        divCol.find('div.ajaxloader2').hide();
-        divCol.find('div.button-examin, input.input-form, button').show();
+        divCol.find('img.jq-ajaxloader').hide();
+        divCol.find('div.button-examin, input.input-image, button').show();
         
         var a = divCol.find('a.jq-thumb');
         var img = a.find(':first');

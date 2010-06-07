@@ -1,19 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 3.2.4
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 04-06-2010 a las 19:25:00
--- Versión del servidor: 5.1.37
--- Versión de PHP: 5.3.0
+-- Tiempo de generación: 07-06-2010 a las 02:12:02
+-- Versión del servidor: 5.1.41
+-- Versión de PHP: 5.3.1
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `alqtemp`
 --
-CREATE DATABASE `alqtemp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `alqtemp`;
 
 -- --------------------------------------------------------
 
@@ -64,8 +68,9 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('6edfe0450582801b31f56acfdebc4c1d', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1275665753, ''),
-('3d70969c60864b99daf7afc6e9cb5b47', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.1.9', 1275669462, '');
+('faeda5f825b3bd5d8384b657f52dbf6a', '192.168.1.3', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.2.3', 1275853469, ''),
+('7385f16ec9d093af0bc7d5b7b7e452f2', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.2.3', 1275857830, ''),
+('2728b15574495d4b4b209c16762f645f', '127.0.0.1', 'Mozilla/5.0 (X11; U; Linux i686; es-AR; rv:1.9.2.3', 1275865228, '');
 
 -- --------------------------------------------------------
 
@@ -99,58 +104,31 @@ CREATE TABLE IF NOT EXISTS `images` (
   `name_thumb` varchar(255) NOT NULL,
   `name_original` varchar(255) NOT NULL,
   PRIMARY KEY (`image_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=121 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=139 ;
 
 --
 -- Volcar la base de datos para la tabla `images`
 --
 
 INSERT INTO `images` (`image_id`, `prop_id`, `name`, `name_thumb`, `name_original`) VALUES
-(71, 40, '29_solynieve.jpg', '29_solynieve_thumb.jpg', 'solynieve.jpg'),
-(72, 41, '29_lunamerlo.jpg', '29_lunamerlo_thumb.jpg', 'lunamerlo.jpg'),
-(73, 42, '29_ioka.jpg', '29_ioka_thumb.jpg', 'ioka.jpg'),
-(74, 43, '29_5.jpg', '29_5_thumb.jpg', '5.jpg'),
-(75, 44, '29_logo_casachacras.jpg', '29_logo_casachacras_thumb.jpg', 'logo_casachacras.jpg'),
-(76, 45, '29_garden1.jpg', '29_garden1_thumb.jpg', 'garden1.jpg'),
-(79, 48, '29_5ta.jpeg', '29_5ta_thumb.jpeg', '5ta.jpeg'),
-(80, 48, '29_img.jpeg', '29_img_thumb.jpeg', 'img.jpeg'),
-(81, 49, '29_1.jpeg', '29_1_thumb.jpeg', '1.jpeg'),
-(82, 49, '29_2.jpeg', '29_2_thumb.jpeg', '2.jpeg'),
-(83, 49, '29_3.jpeg', '29_3_thumb.jpeg', '3.jpeg'),
-(85, 51, '30_a.jpeg', '30_a_thumb.jpeg', 'a.jpeg'),
-(86, 51, '30_b.jpeg', '30_b_thumb.jpeg', 'b.jpeg'),
-(87, 51, '30_c.jpeg', '30_c_thumb.jpeg', 'c.jpeg'),
-(88, 52, '29_0.1.jpeg', '29_0.1_thumb.jpeg', '0.1.jpeg'),
-(89, 52, '29_0.2.jpeg', '29_0.2_thumb.jpeg', '0.2.jpeg'),
-(90, 52, '29_0.3.jpeg', '29_0.3_thumb.jpeg', '0.3.jpeg'),
-(91, 53, '29_1.0.jpeg', '29_1.0_thumb.jpeg', '1.0.jpeg'),
-(92, 53, '29_1.1.jpeg', '29_1.1_thumb.jpeg', '1.1.jpeg'),
-(93, 53, '29_1.3.jpeg', '29_1.3_thumb.jpeg', '1.3.jpeg'),
-(94, 53, '1_107462888_6dc07c2735.jpg', '1_107462888_6dc07c2735_thumb.jpg', '107462888_6dc07c2735.jpg'),
-(95, 53, '1_152148884_f1998d7b51.jpg', '1_152148884_f1998d7b51_thumb.jpg', '152148884_f1998d7b51.jpg'),
-(96, 53, '1_541539311_e48ac6e3a2.jpg', '1_541539311_e48ac6e3a2_thumb.jpg', '541539311_e48ac6e3a2.jpg'),
-(97, 53, '1_bodega.jpg', '1_bodega_thumb.jpg', 'bodega.jpg'),
-(98, 53, '1_canon_del_atuel.jpg', '1_canon_del_atuel_thumb.jpg', 'canon del atuel.jpg'),
-(99, 54, '1_ph7015100.jpg', '1_ph7015100_thumb.jpg', 'ph7015100.jpg'),
-(100, 54, '1_ph12065761.jpg', '1_ph12065761_thumb.jpg', 'ph12065761.jpg'),
-(101, 56, '1_colinas_azules.jpg', '1_colinas_azules_thumb.jpg', 'Colinas azules.jpg'),
-(102, 56, '1_nenúfares.jpg', '1_nenúfares_thumb.jpg', 'Nenúfares.jpg'),
-(103, 57, '1_2977550025_c4cbb3e35d.jpg', '1_2977550025_c4cbb3e35d_thumb.jpg', '2977550025_c4cbb3e35d.jpg'),
-(104, 57, '1_3174186698_582c4f3d19_b.jpg', '1_3174186698_582c4f3d19_b_thumb.jpg', '3174186698_582c4f3d19_b.jpg'),
-(105, 58, '1_4966a3a99856a.jpg', '1_4966a3a99856a_thumb.jpg', '4966a3a99856a.jpg'),
-(106, 59, '1_ph6914496.jpg', '1_ph6914496_thumb.jpg', 'ph6914496.jpg'),
-(107, 59, '1_ph12274568.jpg', '1_ph12274568_thumb.jpg', 'ph12274568.jpg'),
-(108, 59, '1_ph1842868.jpg', '1_ph1842868_thumb.jpg', 'ph1842868.jpg'),
-(111, 62, '1_ph20383134.jpg', '1_ph20383134_thumb.jpg', 'ph20383134.jpg'),
-(112, 63, '1_ph11921703.jpg', '1_ph11921703_thumb.jpg', 'ph11921703.jpg'),
-(113, 64, '1_7_sanra2.jpg', '1_7_sanra2_thumb.jpg', '7_sanra2.jpg'),
-(114, 65, '1_casa1.jpg', '1_casa1_thumb.jpg', 'casa1.jpg'),
-(115, 66, '1_casa_madera_villa_blanca_grande.jpg', '1_casa_madera_villa_blanca_grande_thumb.jpg', 'casa_madera_villa_blanca_grande.jpg'),
-(116, 67, '1_7_sanra2_copy1.jpg', '1_7_sanra2_copy1_thumb.jpg', '7_sanra2_copy1.jpg'),
-(117, 67, '1_casa-eco-1.jpg', '1_casa-eco-1_thumb.jpg', 'casa-eco-1.jpg'),
-(118, 67, '1_dos_casas_rurales_en_avila_7.jpg', '1_dos_casas_rurales_en_avila_7_thumb.jpg', 'Dos casas rurales en Avila 7.JPG'),
-(119, 68, '1_casa_iberadria.jpg', '1_casa_iberadria_thumb.jpg', 'casa_iberadria.jpg'),
-(120, 69, '1_casa_madera_villa_blanca_grande_copy1.jpg', '1_casa_madera_villa_blanca_grande_copy1_thumb.jpg', 'casa_madera_villa_blanca_grande_copy1.jpg');
+(121, 70, '1_2145500167_a4df60b93c.jpg', '1_2145500167_a4df60b93c_thumb.jpg', '2145500167_a4df60b93c.jpg'),
+(122, 70, '1_casa-madera14.jpg', '1_casa-madera14_thumb.jpg', 'casa-madera14.jpg'),
+(123, 71, '1_2145500167_a4df60b93c_copy1.jpg', '1_2145500167_a4df60b93c_copy1_thumb.jpg', '2145500167_a4df60b93c_copy1.jpg'),
+(124, 71, '1_casas-rotativas-5.jpg', '1_casas-rotativas-5_thumb.jpg', 'casas-rotativas-5.jpg'),
+(125, 71, '1_casas_antiguas.jpg', '1_casas_antiguas_thumb.jpg', 'Casas antiguas.jpg'),
+(126, 72, '1_casas-california.jpg', '1_casas-california_thumb.jpg', 'casas-california.jpg'),
+(127, 72, '1_casa-madera14_copy1.jpg', '1_casa-madera14_copy1_thumb.jpg', 'casa-madera14_copy1.jpg'),
+(128, 73, '1_casas-rotativas-5_copy1.jpg', '1_casas-rotativas-5_copy1_thumb.jpg', 'casas-rotativas-5_copy1.jpg'),
+(129, 74, '1_casa8.jpg', '1_casa8_thumb.jpg', 'casa8.jpg'),
+(130, 75, '1_2355602676_44f5462892.jpg', '1_2355602676_44f5462892_thumb.jpg', '2355602676_44f5462892.jpg'),
+(131, 76, '1_casas-rotativas-5_copy1_copy2.jpg', '1_casas-rotativas-5_copy1_copy2_thumb.jpg', 'casas-rotativas-5_copy1_copy2.jpg'),
+(132, 77, '1_casas-california_copy1.jpg', '1_casas-california_copy1_thumb.jpg', 'casas-california_copy1.jpg'),
+(133, 77, '1_2145500167_a4df60b93c_copy1_copy2.jpg', '1_2145500167_a4df60b93c_copy1_copy2_thumb.jpg', '2145500167_a4df60b93c_copy1_copy2.jpg'),
+(134, 77, '1_2355602676_44f5462892_copy1.jpg', '1_2355602676_44f5462892_copy1_thumb.jpg', '2355602676_44f5462892_copy1.jpg'),
+(135, 77, '1_2145500167_a4df60b93c.jpg', '1_2145500167_a4df60b93c_thumb.jpg', '2145500167_a4df60b93c.jpg'),
+(136, 77, '1_2145500167_a4df60b93c.jpg', '1_2145500167_a4df60b93c_thumb.jpg', '2145500167_a4df60b93c.jpg'),
+(137, 77, '1_2145500167_a4df60b93c.jpg', '1_2145500167_a4df60b93c_thumb.jpg', '2145500167_a4df60b93c.jpg'),
+(138, 78, '1_casa-madera14_copy1_copy2.jpg', '1_casa-madera14_copy1_copy2_thumb.jpg', 'casa-madera14_copy1_copy2.jpg');
 
 -- --------------------------------------------------------
 
@@ -4779,25 +4757,14 @@ CREATE TABLE IF NOT EXISTS `log_searches` (
   `search_term` varchar(200) NOT NULL,
   `hits` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcar la base de datos para la tabla `log_searches`
 --
 
 INSERT INTO `log_searches` (`id`, `search_term`, `hits`) VALUES
-(10, 'Mendoza', 2),
-(11, 'Ezeiza', 2),
-(12, 'Chacras de coria', 4),
-(13, 'Carpintería - san luis', 4),
-(14, 'Merlo', 3),
-(15, 'Porto belo', 2),
-(16, 'Bombinha', 2),
-(17, 'Escobar.- pcia de bs as', 1),
-(18, 'Manzano histórico- tunuyan', 1),
-(19, 'Mar azul', 1),
-(20, 'Asdas', 2),
-(21, 'Bnvbn', 1);
+(1, 'Fsdfsd', 1);
 
 -- --------------------------------------------------------
 
@@ -4861,37 +4828,22 @@ CREATE TABLE IF NOT EXISTS `properties` (
   `date_added` datetime NOT NULL,
   `last_modified` datetime NOT NULL,
   PRIMARY KEY (`prop_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=79 ;
 
 --
 -- Volcar la base de datos para la tabla `properties`
 --
 
 INSERT INTO `properties` (`prop_id`, `user_id`, `reference`, `category_id`, `address`, `description`, `country_id`, `state_id`, `city`, `phone`, `phone_area`, `website`, `price`, `priceby`, `pricemoney`, `gmap_visible`, `gmap_lat`, `gmap_lng`, `gmap_address`, `gmap_zoom`, `gmap_maptype`, `movie_visible`, `movie_url`, `capacity`, `date_added`, `last_modified`) VALUES
-(40, 1, 'Manzano Histórico- Tunuyan', 2, 'Manzano Histórico- Tunuyan', 'El Complejo se encuentra al pie de la Cordillera de los Andes, cuyo microclima lo convierte en\nun lugar ideal para descansar en contacto con la naturaleza y el sol. Alojamientos diseñados\npara un alto confort con todas las comodidades que Usted necesita para disfrutar una estadía\ninolvidable. \nVenga y sueñe despierto... \nSERVICIOS:\nPara 6 personas:\n2 dormitorios\n1 Baño\nCocina\nComedor\nGarage techado\nChurrasquera\nTV satelital-DVD\nHeladera\nMicroondas\nSalamandra', 13, 180, 'Manzano histórico- tunuyan', '154859477', '261', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 16:05:43', '2010-04-02 16:06:28'),
-(41, 1, 'Cabañas El Refugio de la Luna  (Merlo) S', 2, 'Cabañas El Refugio de la Luna  (Merlo) San LUis', 'En un predio de 12.500 m² se encuentra este Complejo Refugio de la Luna, totalmente equipado al pie de las Sierras de Los Comechingones, cuenta con cocina completa, microondas, desayuno, servicio de mucama, ropa blanca, TV por cable, 2 dormitorios, teléfono, ventilador de techo, calefacción, cocheras, parrillas, horno de barro, juegos infantiles, piscina para grandes y chicos, solarium, atendido por sus dueños.', 13, 186, 'Merlo', '15-488560', '02652', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 16:10:56', '0000-00-00 00:00:00'),
-(42, 1, 'Cabañas Ioká Ioká  (Carpintería - San Lu', 2, 'Cabañas Ioká Ioká  (Carpintería - San Luis)', '  "Disfrutá de un lugar con la magia de la naturaleza".\nCabañas construidas en una planta con capacidad máxima para 5 pers y en dos plantas con capacidad para 6 pers. con excelente vista a las Sierras de los Comechingones y el Valle de Conlara ofrecen, cocina completa, microondas, vajilla, servicio de ropa blanca, TV por cable, ventiladores de techo, comedor con mesa y sillas de algarrobo, 2 dormitorios, galería exterior, calefactores, parrilla bajo cochera, piscina, solarium, parque iluminado, cochera cubierta, lavadero. Ubicadas en un amplio parque de 2500 m² recorrido por senderos rústicos con hierbas, flores y árboles autóctonos, a 7 km de la Villa de Merlo. (Opcional: servicio de mucama y desayuno).', 13, 186, 'Carpintería - san luis', '479036', '02656', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 16:13:46', '2010-04-02 16:14:04'),
-(43, 1, 'Departamento, Microcentro Mendoza', 3, 'Departamento, Microcentro Mendoza', '\nDepartamento de alquiler a turistas, ubicados en el microcentro de Mendoza, con ropa de cama, vajilla completa, aire acondicionado, calefaccion, microondas, opcional cochera. ', 13, 180, 'Mendoza', '4323505', '0261', '', 250, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 16:25:02', '0000-00-00 00:00:00'),
-(44, 1, 'Alzaga 4100 - Chacras de Coria - Mendoza', 1, 'Alzaga 4100 - Chacras de Coria - Mendoza ', ' 	\nCasa 3 dormitorios: dos con camas matrimoniales (uno en suite), un dormitorio con camas bajas y esquineras. Capacidad hasta 10 personas. Amplios placares. Ropa de cama opcional (por muy bajo costo). Acolchados y almohadas sin costo. Cocina completa: heladera, freezer, lavarropas, vajilla completa (sin mantelería). DirecTV. Reposeras. Sombrilla. Importante living de recepción y comedor con mesa y sillas para 10 personas. Amplia piscina (8x5 mts.) con sistema de filtrado permanente, churrasquera con parrilla para 10 comensales. Parque de 1500 mts. Totalmente parquizado y cerrado. Juego de jardín para 7 personas: ideal para almorzar y cenar en una de las galerías abiertas que da al jardín trasero de la propiedad. Cochera cubierta para 2 vehículos. Recambio de toallas y sabanas según necesidad. Estilo absolutamente mediterráneo, ventanas con postigos, hogar a leña, techos con decorado de troncos. Muebles de pinotea, roble. Cuadros de importantes artistas plásticos de la provincia, que nos hacen sentir la calidez que nos brinda un típico reducto mendocino.', 13, 180, 'Chacras de coria', ' 4058357', '0261', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 16:29:50', '0000-00-00 00:00:00'),
-(45, 1, '25 de Mayo 1246 - Ciudad de Mendoza - Me', 3, '25 de Mayo 1246 - Ciudad de Mendoza - Mendoza ', 'Departamentos de 2 y 3 ambientes para hasta 6 pasajeros. 1 y 2 baños. Servicio a la Habitacion las 24 hs. Vajilla completa. Horno. Mini Heladera. Amenities. Conexión a Internet Banda Ancha. Wi - Fi. Tv Cable. Cochera Cubierta en el Hotel con seguridad las 24 hs. personal Bilingüe. Traductor.', 13, 180, 'Mendoza- centro', '4230031', '0261', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 16:33:41', '0000-00-00 00:00:00'),
-(48, 1, 'Casa Quinta de Fin de Semana en Ezeiza', 1, 'Casa Quinta de Fin de Semana en Ezeiza', 'Expectacular Casa Quinta en Alquiler,para Fin de Semana,Semana,Quincena,Eventos Etc.Unica Completisima,Con todos los Servicios Incluidos,Parrilla,Quincho,Horno de Barro,Hogar a Leña(con Gas Natural),Piscina,con Luces Acuaticas y Cascadas(se disfruta mas de Noche que de dia),Canchita de Deportes,Tenis,Paddle,Voley,Etc.la Propiedad esta Equipada con todo lo que se Imagine y mas,Tv-DVD,Pequeño Video Club,Cable,Alarma Perimetral,Ambiente Wireless Etc.esta Ubicada Sobre Asfalto,en una Zona de ensueño,(es Zona de Quintas,No Barrio Cerrado)con lugares de Esparcimientos,Shopping,Centro Comercial,Cines,Restauranes,EASY,Disco Etc.con Frondosa Arboleda,y Cerco Perimetral de Piscina(para los mas Chiquis),a solo 22Km.y de acceso rapidisimo (Autopista Riccheri y 205 15 Minutos de Capital),Consulte por la fecha que desee venir,Gracias.', 13, 168, 'Ezeiza', '4605-5881', '011', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 16:58:13', '0000-00-00 00:00:00'),
-(49, 1, 'DELTA: ALQUILER CASA CLUB JARDIN NAUTICO', 1, 'DELTA: ALQUILER CASA CLUB JARDIN NAUTICO ESCOBAR ', 'ALQUILER DE CASA EN CLUB JARDIN NAUTICO ESCOBAR - DELTA    -EL PARAISO-   ( www.jardinnautico.com.ar ) EL PARAISO\n\nEQUIPADA PARA 6 PERSONAS - 2 DORMITORIOS : UN DORMITORIO MATRIMONIAL CON CAMA SOMIERS CON BALCÓN CON VITA AL PARQUE Y SEGUNDO DORMITORIO CON 2 CAMAS INDIVIDUALES- LIVING CON HOGAR A LEÑA - TV 29 ´´-DVD- VIDEOTECA CON 100 TITULOS- DIRECT TV- EQUIPO DE AUDIO-FUTON 3 CUERPOS- OTRO FUTÓN 1 CUERPO- COMEDOR CON MESA PARA 8 PERSONAS- BARRA DE ALGARROBO- HELADERA 380 LTRS CON FREEZER NON FROST- BAÑO CON CALEFÓN A GAS Y BAÑERA- JARDÍN DE INVIERNO CON VISTA AL RÍO CON  SOFÁ 3 CUERPOS Y 2 SILLONES INDIVIDUALES CON COCINA ECONOMICA- PARRILLA EN DECK CON MESA Y SILLAS PARA 12 PERSONAS- HERMOSO PARQUE 2280 MTS ARBOLADO CON VARIADAS ESPECIES, JASMINES, HORTENSIAS, MAGNOLIAS, MORAS, NOGALES, CIRUELO DE JARDÍN....AMARRA Y MUELLE DE 40 MTS SOBRE CANAL PRIVADO- PLAYA DE ARENA DE 15 MTS - 2 KAYAC- REPOSERAS Y SOMBRILLAS-\n\nMUY IMPORTANTE ACCESO POR AUTO HASTA LA CASA POR AUTOPISTA PANAMERICANA, RAMAL ESCOBAR O: POR CANAL PRIVADO DESDE RIO PARANA DE LAS PALMAS (1 KM PUERTO ESCOBAR).\n\nSEGURIDAD PRIVADA 24 HS. - ASISTENCIA MEDICA.\n\nAREAS COMUNES: CANCHA DE PADEL, FUTBOL / JUEGOS INFANTILES / RESTAURANT / COSTA PRIVADA SOBRE RIO PARANA DE LAS PALMAS. (IDEAL PASEOS - PESCA - DEPORTES NAUTICOS).\n\n                              ALQUILO  " EL PARAISO "       \n\nFin de semana año nuevo $1000\n\n1ra quincena de enero  $2500 - reservada-\n\n2da quincena de enero $3000\n\n1ra quincena de febrero $3000\n\n2da quincena de febrero $2500\n\n1ra quincena de marzo $2000  -reservada-\n\n \n\n                 -PARA 6 PERSONAS-                      ', 13, 168, 'Escobar.- pcia de bs as', '1530995778', '011', 'http://http://www.jardinnautico.com.ar', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 17:03:28', '0000-00-00 00:00:00'),
-(51, 1, 'Brasil,Bombinhas ', 1, 'Brasil,Bombinhas ', 'El Residencial Biluca se encuentra en la playa de Bombinhas, a 70 metros reales de la playa.\n\nLos apartamentos son simples, pero cuentan con todo lo necesario para unas buenas vacaciones. Ideal para quienes buscan un lugar tranquilo en contacto con la naturaleza.\n\n Contamos con departamentos para 2, 3, 4 ó 5 personas, de un cuarto, con cocina comedor y baño completo o de dos cuartos con dos baños.Todos los apartamentos tienen balcón. Contamos con piscina ,quincho con parrillas y solarium.No dude en contactarnos para más información.  ', 32, 483, 'Bombinha', '425-7365    LaPlata', '0221', 'http://residencialbiluca@terra.com.br', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 17:18:24', '0000-00-00 00:00:00'),
-(52, 1, 'Cabañas Mar Azul', 2, 'Cabañas Mar Azul', 'Complejo Rincon Azul\n\n3 Cabañas para 6 personas\n\n2 Cabañas para 2/3 personas\n\nConstruidas sobre lote de 1500 M2\n\nConstruidas en troncos , piedras y ladrillos.\n\nEl complejo cuenta con una pileta iluminada y amplio solarium\n\nCada cabaña cuenta con deck y parrilla individual\n\nLas cabañas para 6 personas cuentan con Cocina , Comedor , Sala de estar y  1 Baño en planta baja\n\nEn planta alta se encuentran las habitaciones , 1 matrimonial y otra para 4 personas y otro baño\n\nCada habitacion tiene su placard individual\n\nLas cabañas para 2/3 personas cuentan con cocina comedor , baño y amplio dormitorio en planta alta\n\nLos servicios generales y  equipamiento del complejo son:\n\n    *\n      Servicio de Blanco\n    *\n      Servicio de limpieza diaria\n    *\n      Desayuno\n    *\n      WiFi\n    *\n      Alarma\n    *\n      Acceso a la pileta y solarium del complejo\n    *\n      TV - Cable - DVD\n    *\n      Vajilla Completa\n    *\n      Heladera con Freezer\n    *\n      Microondas\n    *\n      Importantes descuentos en Restaurant de la zona\n\nUd podra encontrar en la zona :\n\n Playa, caballos, bicicletas, motos, pesca, caminatas, paseos, gastronomía, cuatriciclos.', 13, 168, 'Mar azul', '	1531709541', '', 'http://http://www.rinconazulcabanas.com.ar', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 17:22:21', '0000-00-00 00:00:00'),
-(53, 1, 'RESORT EN BRASIL - PORTO BELO ', 1, 'RESORT EN BRASIL - PORTO BELO ', 'CORRESPONDE A LA UNIDAD SUPERIOR PLUS CON HIDROMASAJE.  El precio en el Resort es MUY superior ya que por la misma unidad cobran RS 130 por día y persona, compruebelo usted mismo, si localiza la pagina del Resort que lleva el nombre del mismo.com.br\n\n \n\nMorro do Sol \n\nRúa Morro do Sol Número 100\nPorto Belo, SC  88210-000\nBrazil\n\n \n\nHabitación con capacidad para 4 personas. 1 Habitación con cama matrimonial + living con sofá cama.\n\n \n\nLa estructura del Hotel tiene un maravilloso restaurante con vista panorámica, 03 piscinas, sala de home theather, cancha de paddle, cancha de voley de arena, sala de juegos (snooker y tenis de mesa), parilla (para 25 personas) y salón de convenciones (para 300 personas).\nEl huespede puede disfrutar de las opociones de ocio y divertimiento de la región, como el passeo de escuna, la visita a la isla de Porto Belo y el facil aceso a las playas de la región, como Bombas, Bombinhas, Mariscal y Zimbros.\n\n  \n\nLa isla de Santa Catalina en Florianópolis, es uno de los lugares más bellos de Brasil por sus singulares playas y su entorno natural. Cuenta con inumerables actividades para realizar como por ejemplo deportes acuaticos o disfrutar de variados restaurantes. También tiene mucha vida nocturna.', 32, 483, 'Porto belo', '', '', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-02 17:27:33', '2010-04-05 11:07:53'),
-(54, 1, 'Prueba1', 1, 'Prueba1', 'ghfhfgh\nfghfghf', 13, 180, 'Mendoza', '', '', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-15 12:42:19', '0000-00-00 00:00:00'),
-(56, 1, 'Prueba Con Ie6', 2, 'Prueba Con Ie6', 'fghfghgfhfg', 4, 63, 'Bnvbn', '', '', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-15 13:59:13', '2010-04-15 14:01:29'),
-(57, 1, 'Prueba Con Ie7', 1, 'Prueba Con Ie7', 'dsfsdfsdf', 27, 431, 'Dfsdfsdf', '', '', '', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-15 14:02:28', '2010-04-15 14:02:52'),
-(58, 1, 'Prueba Con Ie8', 1, 'Prueba Con Ie8', 'cfgdfgewrwe r we rw er w er w er  sdf s df sd f sdf sd f sd fs df we r wer w er wer\nwerwersejrhkjwehr we rwjerw\nerwerjwhekrwerwerwe\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er \nwer wer\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er wer wer\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er wer wer\nrwerwekljrhkjwhelkjrhwle rljwhelrhlwejhrlwe rlwehr werw erhw er wer wer', 13, 180, 'Mendoza', '4442192', '0261', 'http://www.mydesign.com.ar', 0, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-04-15 14:04:41', '2010-04-28 09:04:10'),
-(59, 1, 'Prueba Marca Agua', 2, 'Prueba Marca Agua', 'sdfsfsdf', 13, 180, 'Mendoza', '4442192', '0261', 'http://www.mydesign.com.ar', 450, '', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-05-03 20:20:46', '2010-05-03 20:26:25'),
-(62, 1, 'Prop Gmap3', 1, 'Prop Gmap3', 'dfgdfdgfg', 13, 180, 'Asdas', '', '', '', 0, '', '', 1, '-36.6740395', '-64.3781606', '9 de Julio, Toay, La Pampa, Argentina', 14, 'm', 0, '', 0, '2010-05-04 10:53:23', '2010-05-04 11:07:39'),
-(63, 1, 'Prop Gmap4', 1, 'Prop Gmap4', 'gdfgfdfgf sd fs df s df sad fg sadf  sdf\nas\ndfas\nfd\nas\ndfasdfashdkfjhaskdfj kashdfkas kdfgaskdf', 13, 180, 'Mendoza', '4442192', '0261', 'http://mydesign.com.ar', 0, '', '', 1, '-32.8852106', '-68.8686512', 'Av Del Libertador, Mendoza, Argentina', 13, 'm', 0, '', 0, '2010-05-04 13:23:24', '2010-05-07 09:58:01'),
-(64, 1, 'Prop Movie1', 1, 'Prop Movie1', 'asdasdas asd\nasdasdasd', 13, 178, 'Asdas', '', '', '', 0, '', '', 0, '', '', '', 0, 'm', 1, 'http://www.youtube-nocookie.com/v/4p8qobHAgKg&hl=es_ES&fs=1&rel=0', 0, '2010-05-14 09:37:43', '2010-05-14 11:04:19'),
-(65, 1, 'Prop Prueba2', 1, 'Prop Prueba2', 'dgdfgdf\ng\ndfgdfg', 13, 180, 'Mendoza', '', '', '', 0, '', '', 1, '-32.8895975', '-68.8543988', 'Olascoaga 901-999, Mendoza, Argentina', 15, 'm', 1, 'http://www.youtube-nocookie.com/v/4p8qobHAgKg&hl=es_ES&fs=1&rel=0', 0, '2010-05-14 10:26:44', '2010-05-14 11:05:07'),
-(66, 1, 'Sdfsdfd', 1, 'Sdfsdfd', 'fgffg', 13, 180, 'Mendoza', '4442192', '0261', '', 150, 'por semana', '', 0, '', '', '', 0, 'm', 0, '', 0, '2010-05-31 13:03:57', '0000-00-00 00:00:00'),
-(67, 1, 'Mi Prop De Prueba', 1, 'Mi Prop De Prueba', 'fsdfsdf', 13, 172, 'Fgdfgdfg', '', '', 'http://www.mydesign.com.ar', 150, 'por día', '€', 0, '', '', '', 0, 'm', 0, '', 5, '2010-06-01 11:34:28', '2010-06-01 13:13:38'),
-(68, 1, 'Referencia1', 1, 'asdasd', 'asdasdasda\nsdasd', 13, 180, '', '', '', '', 0, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 4, '2010-06-03 18:18:13', '0000-00-00 00:00:00'),
-(69, 1, 'Referencia2', 2, 'sdfsdf', 'vbgdfgdfg', 3, 51, 'Dfsdf', '', '', '', 0, 'por día', '$', 1, '-32.8871064', '-68.8520105', 'Álvarez A. 101-199, Mendoza, Argentina', 13, 'm', 0, '', 0, '2010-06-03 18:20:28', '2010-06-03 18:51:56');
+(70, 1, 'Propiedad1', 1, 'asda sd as d asdasd', 'asdasdasdasda\nds\nasd\nas\ndasdasd', 13, 180, '25 de mayo', '', '', '', 345, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 4, '2010-06-04 16:55:44', '0000-00-00 00:00:00'),
+(71, 1, 'Propiedad2', 1, 'asdad asd as asd asdasdasd', 'casfdsf sd fs df sdf\nsd\nfs\ndfsdf', 13, 171, 'Assdw', '4442192', '0261', 'http://www.mydesign.com.ar', 453, 'por día', '$', 1, '-32.8858227', '-68.8653005', 'Av Del Libertador, Mendoza, Argentina', 13, 'm', 1, 'http://www.youtube-nocookie.com/v/cqWiD4VD0_w&hl=es_ES&fs=10', 2, '2010-06-04 16:58:29', '0000-00-00 00:00:00'),
+(72, 1, 'Propiedad3', 3, 'erwe werwerwer', 'dfsdfsdf', 13, 173, 'Dfsdf', '', '', '', 0, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 0, '2010-06-04 16:59:28', '0000-00-00 00:00:00'),
+(73, 1, 'Propiedad4', 0, 'dfsf', 'sdfsdfsdfsdfa sdf asd f asd fas\ndf asdfasdfashgkdjfg askf asdf as dfk asdgfas\nsdfasdfkhasd f sadf sa dfdfasdf sd fsa dfasdfjaks fsaf\nsdfsdfasdf as df asd f asd fas df as df as fd as df as dfas\nasdasdfa sdf as df asd f asd f asd f asd f asdf as df as dfas \nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df', 32, 480, 'Mendoza', '', '', '', 0, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 3, '2010-06-04 17:01:11', '0000-00-00 00:00:00'),
+(74, 1, 'Propiedad5', 1, 'asdasd aa d asd asd', 'sdfsdfsdfsdfa sdf asd f asd fas\ndf asdfasdfashgkdjfg askf asdf as dfk asdgfas\nsdfasdfkhasd f sadf sa dfdfasdf sd fsa dfasdfjaks fsaf\nsdfsdfasdf as df asd f asd fas df as df as fd as df as dfas\nasdasdfa sdf as df asd f asd f asd f asd f asdf as df as dfas \nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\nfa sdfhkasjdhfkgaskdf s dasdfsa dfsadf asd fsadfasgkdfsdf\nsadfasdfasghkdfgaksd fasdkfasdfa sdf sa df as df\ndasd', 28, 440, 'Cxcvxcv', '', '', '', 0, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 0, '2010-06-04 17:02:01', '0000-00-00 00:00:00'),
+(75, 1, 'Propiedad6', 1, 'sadasd asd as d asd', 'fsdfsdfsdfsdfs df sd f sd f sd f sdf ds f ds f sd f sdf sd f sdf\nfsdfsdfsdfsdfs df sd f sd f sd f sdf ds f ds f sd f sdf sd f fsdfsdfsdfsdfs df sd f sd f sd f sdf ds f ds f sd f sdf sd f sdf\nfsdfsdfsdfsdfs df sd f sd f sd f sdf ds f ds f sd f sdf sd f sdf\nfsdfsdfsdfsdfs df sd f sd f sd f sdf ds f ds f sd f sdf sd f sdf', 13, 176, 'Sdsd', '', '', '', 0, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 0, '2010-06-04 18:16:44', '0000-00-00 00:00:00'),
+(76, 1, 'Propiedad7', 2, 'sddfgfdg dfgdfg', 'asdasdasd asd a sd as dasdasdas dasd as d as d asd a sda\nasdasdasd asd a sd as dasdasdas dasd as d as d asd a sda\nasdasdasd asd a sd as dasdasdas dasd as d as d asd a sda\nasdasdasd asd a sd as dasdasdas dasd as d as d asd a sda\nasdasdasd asd a sd as dasdasdas dasd as d as d asd a sda', 13, 180, 'Maipu', '', '', '', 345, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 2, '2010-06-04 18:36:18', '0000-00-00 00:00:00'),
+(77, 1, 'Prop Con Fotos', 4, 'asdasd', 'dfsdf sdf s df sd f sdf\nsdf\nsdf sd fsdflkhsdklfhsdklfhkdshf', 13, 181, 'Fsdfsd', '', '', '', 0, 'por día', '$', 0, '', '', '', 0, 'm', 0, '', 2, '2010-06-05 11:33:16', '0000-00-00 00:00:00'),
+(78, 1, 'Prop 1', 1, 'dfsfsdf', 'xcvxcvxcv x cvxc\nvxcvxcv', 15, 203, 'Dsdf', '', '', '', 0, 'por día', '$', 1, '-32.8801052', '-68.8943461', 'Capital - Mendoza, Argentina', 13, 'm', 0, '', 0, '2010-06-06 11:40:01', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -4908,24 +4860,15 @@ CREATE TABLE IF NOT EXISTS `properties_disting` (
   `date_start` datetime NOT NULL,
   `date_end` char(10) NOT NULL,
   PRIMARY KEY (`propdisting_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Volcar la base de datos para la tabla `properties_disting`
 --
 
 INSERT INTO `properties_disting` (`propdisting_id`, `prop_id`, `type`, `category_id`, `city`, `date_start`, `date_end`) VALUES
-(5, 65, 'category', 1, '', '2010-05-26 14:03:41', '26-06-2010'),
-(6, 59, 'category', 2, '', '2010-05-26 14:03:41', '26-06-2010'),
-(7, 62, 'city', 0, 'Asdas', '2010-05-26 14:08:22', '26-06-2010'),
-(8, 58, 'index', 0, '', '2010-05-26 14:11:34', '26-06-2010'),
-(9, 57, 'city', 0, 'Dfsdfsdf', '2010-05-26 14:11:49', '26-06-2010'),
-(10, 64, 'category', 1, '', '2010-05-26 19:46:07', '26-06-2010'),
-(11, 63, 'category', 1, '', '2010-05-26 19:46:07', '26-06-2010'),
-(12, 51, 'city', 0, 'Bombinha', '2010-05-26 19:46:55', '26-06-2010'),
-(13, 49, 'city', 0, 'Escobar.- pcia de bs as', '2010-05-26 19:46:55', '26-06-2010'),
-(14, 56, 'category', 2, '', '2010-05-26 21:05:38', '26-06-2010'),
-(15, 54, 'category', 1, '', '2010-05-26 21:05:38', '26-06-2010');
+(16, 76, 'index', 0, '', '2010-06-04 19:03:00', '04-07-2010'),
+(17, 74, 'index', 0, '', '2010-06-04 19:03:00', '04-07-2010');
 
 -- --------------------------------------------------------
 
@@ -4943,96 +4886,25 @@ CREATE TABLE IF NOT EXISTS `properties_to_services` (
 --
 
 INSERT INTO `properties_to_services` (`prop_id`, `service_id`) VALUES
-(40, 7),
-(40, 1),
-(40, 6),
-(40, 2),
-(41, 4),
-(41, 5),
-(41, 2),
-(41, 1),
-(41, 7),
-(42, 7),
-(42, 3),
-(42, 1),
-(42, 2),
-(42, 5),
-(42, 4),
-(43, 4),
-(43, 5),
-(43, 2),
-(43, 1),
-(43, 3),
-(43, 7),
-(44, 4),
-(44, 5),
-(44, 2),
-(44, 1),
-(44, 3),
-(44, 7),
-(45, 4),
-(45, 5),
-(45, 2),
-(45, 6),
-(45, 1),
-(45, 3),
-(45, 7),
-(48, 4),
-(48, 5),
-(48, 2),
-(48, 1),
-(48, 3),
-(48, 7),
-(49, 4),
-(49, 5),
-(49, 2),
-(49, 1),
-(49, 3),
-(49, 7),
-(51, 4),
-(51, 5),
-(51, 2),
-(51, 6),
-(51, 1),
-(51, 3),
-(51, 7),
-(52, 4),
-(52, 5),
-(52, 2),
-(52, 6),
-(52, 1),
-(52, 3),
-(52, 7),
-(53, 2),
-(53, 1),
-(53, 7),
-(53, 6),
-(53, 5),
-(53, 4),
-(53, 3),
-(54, 5),
-(54, 6),
-(56, 4),
-(56, 6),
-(57, 4),
-(57, 2),
-(58, 4),
-(58, 6),
-(59, 6),
-(62, 4),
-(62, 5),
-(63, 4),
-(63, 2),
-(63, 6),
-(64, 4),
-(64, 5),
-(65, 4),
-(65, 5),
-(66, 4),
-(66, 2),
-(67, 6),
-(68, 5),
-(69, 4);
+(70, 4),
+(70, 5),
+(71, 4),
+(71, 5),
+(71, 2),
+(72, 5),
+(73, 4),
+(74, 4),
+(75, 4),
+(75, 2),
+(75, 6),
+(76, 4),
+(77, 4),
+(77, 5),
+(77, 2),
+(77, 6),
+(77, 7),
+(78, 4),
+(78, 1);
 
 -- --------------------------------------------------------
 
@@ -5083,7 +4955,7 @@ CREATE TABLE IF NOT EXISTS `setup` (
 --
 
 INSERT INTO `setup` (`id`, `gral_time_propdisting`, `gral_time_cp`, `gral_costo_disting`, `gral_costo_cp`, `gral_count_freeimages`, `gral_count_imagescp`, `gral_count_propdisting`, `gral_count_propsimilares`, `gral_otros_scriptmovie`, `meta_titles_general`, `meta_titles_index`, `meta_titles_moreinfo`, `meta_titles_contact`, `meta_titles_formreg`, `meta_titles_rememberpss`, `meta_titles_myaccount`, `meta_titles_prop`, `meta_titles_disting`, `meta_titles_cp`, `meta_titles_addfondo`, `meta_titles_conditions`, `meta_keywords_general`, `meta_keywords_index`, `meta_keywords_moreinfo`, `meta_keywords_contact`, `meta_keywords_formreg`, `meta_keywords_rememberpss`, `meta_desc_general`, `meta_desc_index`, `meta_desc_moreinfo`, `meta_desc_contact`, `meta_desc_formreg`, `meta_desc_rememberpss`) VALUES
-(1, 1, 1, '5.00', '30.00', 3, 8, 3, 5, '<object width="425" height="344"><param name="movie" value="%s"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="%s" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>', 'Alquileres Temporarios', ' - casas, departamentos, cabañas, vacaciones', '', '', '', '', '', '', '', '', '', '', 'alquiler apartamentos, alquiler cabañas, alquiler bungalows, alquiler temporario, alquiler fin de semana, alquiler vacaciones, alquiler casas, alquiler departamentos, alquiler de departamentos, departamentos en alquiler, casas en alquileres, cabañas en alquiler', '', '', '', '', '', '', '', '', '', '', '');
+(1, 1, 1, '5.00', '30.00', 3, 8, 3, 5, '<object width="240" height="194"><param name="movie" value="%s"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><param name="wmode" value="transparent"></param><embed src="%s" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="240" height="194" wmode="transparent"></embed></object>', 'Alquileres Temporarios', ' - casas, departamentos, cabañas, vacaciones', '', '', '', '', '', '', '', '', '', '', 'alquiler apartamentos, alquiler cabañas, alquiler bungalows, alquiler temporario, alquiler fin de semana, alquiler vacaciones, alquiler casas, alquiler departamentos, alquiler de departamentos, departamentos en alquiler, casas en alquileres, cabañas en alquiler', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -5114,7 +4986,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `firstname`, `lastname`, `email`, `phone`, `phone_area`, `active`, `fondo`, `token`, `level`, `date_added`, `last_modified`) VALUES
-(1, 'ivan', 'W+7vIijnZG95Bc6dE9uxNc8v97CQyAk+', 'Ivan', 'Mattoni', 'iwmattoni@yahoo.com', '4442192', '0261', 1, 630, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
+(1, 'ivan', 'W+7vIijnZG95Bc6dE9uxNc8v97CQyAk+', 'Ivan', 'Mattoni', 'iwmattoni@yahoo.com', '4442192', '0261', 1, 625, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
 (5, 'jsuarez', 'XSefDr9qBEzqXYhTFH5guxyDCbk=', 'juan', '', 'jsuarez@mydesign.com.ar', '', '', 0, 0, '', 0, '2010-03-02 09:54:05', '0000-00-00 00:00:00'),
 (6, 'admin', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Ivan Mattoni', '', NULL, NULL, '', 0, 0, '', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (11, 'valeria', 'fNipoyYm7R1yvLQT1xlmWpIM+y0=', 'Valeria', 'ad', 'iwmattoni@yahoo.com', '4442192', '0261', 1, 700, '', 0, '2010-04-13 09:54:05', '0000-00-00 00:00:00'),
@@ -5140,14 +5012,12 @@ CREATE TABLE IF NOT EXISTS `users_deletes` (
   `motive` varchar(500) NOT NULL,
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Volcar la base de datos para la tabla `users_deletes`
 --
 
-INSERT INTO `users_deletes` (`id`, `username`, `name`, `phone`, `email`, `motive`, `date_added`) VALUES
-(1, 'ivan', 'Mattoni, Ivan', 4442192, 'iwmattoni@yahoo.com', 'asdasdasd', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -5161,12 +5031,9 @@ CREATE TABLE IF NOT EXISTS `users_online` (
   `ip` varchar(50) NOT NULL,
   `time` int(12) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcar la base de datos para la tabla `users_online`
 --
-
-INSERT INTO `users_online` (`id`, `user_id`, `ip`, `time`) VALUES
-(20, 1, '127.0.0.1', 1275601917);
 

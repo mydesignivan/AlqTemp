@@ -21,8 +21,7 @@ var RememberPass = new (function(){
             });
 
             $(f.txtField).validator({
-                v_required   : true,
-                container    : '#msgbox-field'
+                v_required   : true
             });
             $(f.txtCaptcha).validator({
                 v_required   : true,
@@ -33,10 +32,7 @@ var RememberPass = new (function(){
                 var msg="";
                 if( error=="userinactive" ) msg = "El usuario se encuentra inactivo.";
                 else msg = 'La direcci&oacute;n de correo electr&oacute;nico o el usuario que has puesto no la reconocemos. Por favor int&eacute;ntalo de nuevo o ponte en contacto con el <a href="'+baseURI+'contacto" class="link4">administrador</a>.';
-
-                $.validator.show(f.txtField, {
-                    message : msg
-                });
+                show_error(f.txtField, msg);
             }
         }else if( $('#form2').length>0 ){
             f = $('#form2')[0];

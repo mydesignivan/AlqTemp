@@ -1,0 +1,7 @@
+.IG-thumb{float:left;width:inherit;height:inherit;margin-right:5px}
+.IG-thumb a{display:block}
+.IG-ajaxload-thumb{width:282px;padding-top:15px;background-color:transparent;color:#FC7F3C;font-size:90%;text-align:center}
+.IG-ajaxload-thumb .progressbar{width:200px;height:18px;border:2px solid #554C63;background-color:#fff;margin:5px auto}
+.IG-ajaxload-thumb .progressbar .bar{float:left;width:0;height:100%;background-color:#A397B8}
+.IG-ajaxload-preview{position:absolute;background:url(../img/ajax-load.gif) no-repeat center;top:7px;left:7px;width:353px;height:257px;z-index:1000;display:none}
+.IG-noimage{float:left;width:90px;height:80px;font-size:100%;font-weight:700;color:red;text-align:center}

@@ -29,16 +29,6 @@
         <div class="clear span-24 main-container">
             <div class="column-left">
 
-                <?php //if( $listPropDisting->num_rows>0 ){?>
-                <!--<div class="float-left">
-                    <div class="row-top"><h1 class="title">Alquileres Destacados</h1></div>
-                    <div class="row-center min-height-1">
-                        <?php //require('includes/prop_destacadas_inc.php');?>
-                    </div>
-                    <div class="row-bottom"></div>
-                </div>-->
-                <?php //}?>
-
                 <div class="clear float-left">
                     <div class="row-top"><h1 class="title"><?=$tlp_title_section;?></h1></div>
                     <div class="row-center min-height-2">

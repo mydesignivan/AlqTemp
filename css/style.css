@@ -50,8 +50,7 @@ strong{color:#FC7F07;}
 }
 
 .column-1{
-    float:right;
-    width: 480px;
+    float:left;
     margin-bottom: 5px;
     /*border:1px solid red;*/
 }
@@ -80,9 +79,10 @@ strong{color:#FC7F07;}
 }
 
 .img-captcha{
+    float:left;
+    clear:both;
     border:1px solid #000 !important;
-    margin-right: 18px;
-    margin-bottom: 5px;
+    margin:0 10px 5px 0;
 }
 
 
@@ -215,6 +215,13 @@ label.label-form{
     font-size: 80%;
     color: #6C491E;
 }
+label.label-form2{
+    float:left;
+    font-size: 80%;
+    color: #6C491E;
+    text-align: right;
+    margin-right: 10px;
+}
 label.label-user{
     font-size: 75%;
     color: #FF7D00;
@@ -229,6 +236,12 @@ label.label-large{
     font-weight: bold;
     color: #6C491E;
 }
+
+.lbl-w1{width: 90px;}
+.lbl-w2{width: 70px;}
+.lbl-w3{width: 180px;}
+.lbl-w4{width: 150px;}
+.lbl-w5{width: 120px;}
 
 /*------------------------------------------------------------------------------
  - ESTILOS PARA INPUT
@@ -257,26 +270,30 @@ input.input-contact{
     background-color:#FAF8E9;
 }
 input.input-form{
+    float:left;
     width: 220px;
 }
 input.input-pss{
     width: 167px;
 }
 input.input-phonearea{
+    float:left;
     width: 45px;
     margin-right: 5px;
     text-align: center;
 }
 input.input-phone{
+    float:left;
     width: 162px;
 }
 input.input-price{
+    float:left;
     width: 92px;
     margin-left: 5px;
     margin-right: 5px;
 }
 input.input-captcha{
-    float:right;
+    float:left;
     width: 180px;
     font-size: 120%;
     text-align: center;
@@ -299,6 +316,10 @@ input.input-date1{
 input.input-capcity{
     width: 40px;
     text-align: right;
+}
+input.input-image{
+    float:left;
+    width: 150px;
 }
 
 input.input-small{width: 100px;}
@@ -324,8 +345,9 @@ textarea.textarea-form{
     width: 220px;
     height: 100px;
 }
-textarea.textarea-form-large{
-    width: 430px;
+textarea.textarea-desc{
+    float: left;
+    width: 415px;
     height: 130px;
 }
 textarea.textarea-large{
@@ -784,6 +806,10 @@ ul.menu{
             overflow:hidden;
         }
 
+.prop-row-disting{
+    background-color: #ccc;
+}
+
 /*------------------------------------------------------------------------------
  - ESTILOS PARA LISTAS
  -----------------------------------------------------------------------------*/
@@ -831,7 +857,7 @@ ul.ul-list-cuentaplus{
     }
 
 .list-servicios{
-    float: right;
+    float: left;
     width:225px;
     height:110px;
     border: 1px solid #DBB076;
@@ -899,9 +925,8 @@ ul.list-moreinfo li{
             }
         .more-info .column-1 .thumbs{
             float: left;
-            width: 338px;
+            width: 360px;
             height: 90px;
-            margin-left: 15px;
             /*border:1px solid blue;*/
         }
             .more-info .column-1 .thumbs .col-arrow{
@@ -915,8 +940,9 @@ ul.list-moreinfo li{
                 background: url(../images/bg_texture1.png) repeat-y;
                 float:left;
                 position: relative;
-                width: 282px;
+                width: 306px;
                 height: 105px;
+                margin-left: 2px;
                 overflow: hidden;
                 /*border:1px solid green;*/
             }
@@ -974,6 +1000,15 @@ ul.list-moreinfo li{
                 display: none;
             }
 
+        .more-info .module{
+            float: right;
+            width: 240px;
+            height: inherit;
+            margin-top: 30px;
+            font-size: 80%;
+            /*border:1px solid red;*/
+        }
+
     .more-info .row-cont{
         float:left;
         clear:both;
@@ -987,6 +1022,11 @@ ul.list-moreinfo li{
         background: url(../images/bg_slide.png) repeat-y;
         padding:10px 0 6px 25px;
         margin-left: -15px;
+    }
+
+    .more-info .title-ref{
+        margin-left: 5px;
+        margin-bottom: 12px;
     }
 
 
@@ -1038,13 +1078,6 @@ ul.list-moreinfo li{
     height: 100%;
     z-index: 1000;
     display: none;
-}
-.ajaxloader2{
-    float:left;
-    display: none;
-    margin-right: 10px;
-    font-size: 80%;
-    width:290px;
 }
 
 /*------------------------------------------------------------------------------
@@ -1215,24 +1248,23 @@ table.tbl-list tbody{
  - ESTILOS PARA EL GOOGLE MAP
  -----------------------------------------------------------------------------*/
 .gmap{
-    width: 450px;
-    height: 300px;
+    font-size: 80%;
+    width: 430px;
+    height: 250px;
+    overflow: hidden;
+}
+.gmap_zoom{
+    font-size: 80%;
+    width: 490px;
+    height: 250px;
     overflow: hidden;
 }
 .gmap-moreinfo{
-    float: right;
     width: 240px;
-    height: inherit;
-    margin: 30px 0 0 40px;
-    font-size: 80%;
+    height: 300px;
+    overflow: hidden;
     /*border:1px solid red;*/
 }
-    .gmap-moreinfo .gmap-info{
-        width: 240px;
-        height: 300px;
-        overflow: hidden;
-        /*border:1px solid red;*/
-    }
 .gmap-container{
     float:right;
     width:200px;

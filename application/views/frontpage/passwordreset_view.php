@@ -20,13 +20,13 @@
                 Por favor, elija una contrase&ntilde;a para usar con su cuenta de AlquileresTemporarios.org
             </p>
 
-            <div class="span-11">
-                <label class="label-form float-left">Nueva Contrase&ntilde;a:</label>
-                <input type="password" name="txtPass" id="txtPass" class="input-form float-right validate" />
+            <div class="span-15">
+                <label class="label-form2 lbl-w3">Nueva Contrase&ntilde;a:</label>
+                <div class="float-left"><input type="password" name="txtPass" id="txtPass" class="input-form validate" /></div>
             </div>
-            <div class="clear span-11">
-                <label class="label-form float-left">Verifique Nueva Contrase&ntilde;a:</label>
-                <input type="password" name="txtPass2" class="input-form float-right validate" />
+            <div class="clear span-15">
+                <label class="label-form2 lbl-w3">Verifique Nueva Contrase&ntilde;a:</label>
+                <div class="float-left"><input type="password" name="txtPass2" class="input-form validate" /></div>
             </div>
 
             <div class="span-15 text-center prepend-top">

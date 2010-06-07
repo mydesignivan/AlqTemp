@@ -37,21 +37,23 @@ class Search_model extends Model {
     }
 
     public function last_properties($limit, $offset){
-        $sql = "prop_id,";
-        $sql.= "reference,";
-        $sql.= "description,";
+        $sql = TBL_PROPERTIES.".prop_id,";
+        $sql.= TBL_PROPERTIES.".reference,";
+        $sql.= TBL_PROPERTIES.".description,";
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
-        $sql.= "city,";
-        $sql.= "price,";
-        $sql.= "priceby,";
-        $sql.= "pricemoney,";
+        $sql.= TBL_PROPERTIES.".city,";
+        $sql.= TBL_PROPERTIES.".price,";
+        $sql.= TBL_PROPERTIES.".priceby,";
+        $sql.= TBL_PROPERTIES.".pricemoney,";
         $sql.= "(SELECT CONCAT('".substr(UPLOAD_DIR,2)."', name_thumb) FROM ".TBL_IMAGES." WHERE ".TBL_PROPERTIES.".prop_id=".TBL_IMAGES.".prop_id LIMIT 1) as image_thumb";
 
         $this->db->select($sql, false);
         $this->db->from(TBL_PROPERTIES);
+        $this->db->where(TBL_PROPERTIES.'.prop_id not in(SELECT prop_id FROM '.TBL_PROPERTIES_DISTING.')');
         $count_rows = $this->db->count_all_results();
 
         $this->db->select($sql, false);
+        $this->db->where(TBL_PROPERTIES.'.prop_id not in(SELECT prop_id FROM '.TBL_PROPERTIES_DISTING.')');
         $this->db->order_by('prop_id', 'desc');
         $result = $this->db->get(TBL_PROPERTIES, $limit, $offset);
 
@@ -60,7 +62,7 @@ class Search_model extends Model {
 
     public function search($limit, $offset, $searcher){
         $sql = "prop_id,";
-        $sql.= "address,";
+        $sql.= "reference,";
         $sql.= "description,";
         $sql.= "(SELECT name FROM ".TBL_CATEGORY." WHERE category_id=".TBL_PROPERTIES.".category_id) as category,";
         $sql.= "city,";

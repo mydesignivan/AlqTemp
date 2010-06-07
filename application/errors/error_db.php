@@ -1,34 +1,69 @@
 <html>
 <head>
-<title>Database Error</title>
-<style type="text/css">
+    <title>Database Error</title>
 
-body {
-background-color:	#fff;
-margin:				40px;
-font-family:		Lucida Grande, Verdana, Sans-serif;
-font-size:			12px;
-color:				#000;
-}
+    <base href="http://www.alquilerestemporarios.org" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-#content  {
-border:				#999 1px solid;
-background-color:	#fff;
-padding:			20px 20px 12px 20px;
-}
+    <link href="images/favicon.ico" rel="stylesheet icon" type="image/ico" />
 
-h1 {
-font-weight:		normal;
-font-size:			14px;
-color:				#990000;
-margin: 			0 0 4px 0;
-}
-</style>
+    <!-- Framework CSS (BLUE PRINT) -->
+    <link rel="stylesheet" href="css/blueprint/screen.min.css" type="text/css" media="screen, projection"/>
+    <link rel="stylesheet" href="css/blueprint/print.css" type="text/css" media="print"/>
+    <!--[if lt IE 8]><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection"/><![endif]-->
+    <!-- END FRAMEWORK -->
+
+    <link href="css/style.min.css" rel="stylesheet" type="text/css" />
+    <!--[if IE 7]>
+    <link href="css/styleIE7.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+    <!--[if IE 6]>
+    <link href="css/styleIE6.css" rel="stylesheet" type="text/css" />
+    <![endif]-->
+
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+
+    <script type="text/javascript">
+    <!--
+        if( $.browser.opera ) $('head').append($('<link href="css/styleOpera.css" rel="stylesheet" type="text/css" />'));
+        if( $.browser.safari ) $('head').append($('<link href="css/styleSafari.css" rel="stylesheet" type="text/css" />'));
+    -->
+    </script>
+
+    <!--[if IE 6]>
+    <script type="text/javascript">
+        var IE6UPDATE_OPTIONS = {
+            icons_path: "js/ie6update/ie6update/images/"
+        }
+    </script>
+    <script type="text/javascript" src="js/ie6update/ie6update/ie6update.js"></script>
+    <![endif]-->
+
+    <!--[if IE 6]>
+    <script type="text/javascript" src="js/DD_belatedPNG.js"></script>
+    <![endif]-->
+
 </head>
 <body>
-	<div id="content">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
-	</div>
+
+<div class="container">
+    <div class="span-24 last">
+        <div class="clear span-24">
+            <div class="err404-container">
+                <a href="http://www.alquilerestemporarios.org"><img src="images/logo_error.png" alt="AlquileresTemporarios.org"/></a>
+
+                <h1><?php echo $heading; ?></h1>
+                <?php echo $message; ?>
+
+                <p class="text-align"><a href="http://www.alquilerestemporarios.org" class="link3">Volver al Inicio</a></p>
+            </div>
+        </div>
+        <div class="err404-footer">
+            <div class="float-left">Copyright &copy; 2009 - 2010 &nbsp; Alquilerestemporarios.org<br/></div>
+            <div class="float-right">Dise&ntilde;o y Desarrollo by <a href="http://www.mydesign.com.ar" target="_blank"><img src="images/mydesign_logo.png" alt="www.mydesign.com.ar" /></a></div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

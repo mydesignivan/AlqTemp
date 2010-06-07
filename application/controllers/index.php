@@ -48,7 +48,6 @@ class Index extends Controller {
                 'base_url'         => str_replace('.html', '', site_url('/display/page/')),
                 'title'            => setup('TITLE_INDEX'),
                 'title_section'    => 'Alquileres Destacados',
-                //'title_section'    => 'Ultimos Alquileres',
                 'searcher'         =>  false,
                 'listProp'         => $this->search_model->last_properties($this->_count_per_page, $this->_offset),
                 'disting_type'     => 'index',
@@ -66,7 +65,7 @@ class Index extends Controller {
 
         $this->_data = $this->dataview->set_data(array(
             'listProp'           =>  $param['listProp']['result'],
-            //'listPropDisting'    =>  $this->search_model->list_disting($param['disting_type'], $param['disting_type_val']),
+            'listPropDisting'    =>  $this->search_model->list_disting($param['disting_type'], $param['disting_type_val']),
             'listSearches'       =>  $listSearches,
             'tlp_title_section'  =>  $param['title_section'],
             'tlp_title'          =>  $param['title'],

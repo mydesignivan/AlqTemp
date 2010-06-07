@@ -1,6 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');?>
 
 <div class="more-info">
+
+    <h1 class="title-ref"><?=$info['reference'];?></h1>
+    
     <div class="column-1">
         <?php $arrImages = $info['images']->result_array();?>
         <div class="photo-gallery">
@@ -98,36 +101,15 @@
                     <button type="button" class="button-contact" onclick="MoreInfo.send_consult();">Enviar</button>
                 </div>
 
-                <input type="hidden" name="address" value="<?=$info['address'];?>" />
+                <input type="hidden" name="reference" value="<?=$info['reference'];?>" />
+                <input type="hidden" name="user_id" value="<?=$info['user_id'];?>" />
             </form>
-            <script type="text/javascript">
-            <!--
-                MoreInfo.initializer('<?=json_encode($arrImages);?>');
-            -->
-            </script>
         </div>
 
     <?php if( $info['gmap_visible']==1 ) {?>
-            <div class="gmap-moreinfo">
+            <div class="module">
                 <h2>Ubicaci&oacute;n en el mapa</h2>
-                <div id="map" class="gmap-info"></div>
-                <script type="text/javascript">
-                <!--
-                    PGmap.initializer({
-                        coorLat   : <?=$info['gmap_lat'];?>,
-                        coorLng   : <?=$info['gmap_lng'];?>,
-                        zoom      : <?=$info['gmap_zoom'];?>,
-                        mapType   : '<?=$info['gmap_maptype'];?>',
-                        draggable : false,
-                        controlLargeMap : false,
-                        controlMapType  : false,
-                        iconMarker : 'images/home2.png',
-                        iconMap    : [0,0, 50,0, 50,50, 0,50],
-                        iconSizeX  : 50,
-                        iconSizeY  : 50
-                    });
-                -->
-                </script>
+                <div id="map" class="gmap-moreinfo"></div>
                 <a href="javascript:void(MoreInfo.gmap_zoom())" class="link5">Ampliar mapa</a>
             </div>
     <?php }?>
@@ -135,7 +117,7 @@
     <?php if( $cuentaplus ){?>
 
         <?php if( $info['movie_visible']==1 ) {?>
-            <div class="row-cont">
+            <div class="module">
                 <h2>Video</h2>
                 <?=sprintf(setup('CFG_MOVIE_OBJECT'), $info['movie_url'], $info['movie_url']);?>
             </div>
@@ -143,7 +125,23 @@
 
     <?php }?>
     </div><!-- end column-2 -->
-    
+
+    <script type="text/javascript">
+    <!--
+        MoreInfo.initializer({
+            IG_json : '<?=json_encode($arrImages);?>'
+        <?php if( $info['gmap_visible']==1 ) {
+                echo ",gmap    : {
+                    coorLat   : $info[gmap_lat],
+                    coorLng   : $info[gmap_lng],
+                    zoom      : $info[gmap_zoom],
+                    mapType   : '$info[gmap_maptype]'
+                }";
+            }?>
+        });
+    -->
+    </script>
+
     <div class="row-cont">
         <h2>Servicios</h2>
         <ul class="ul-list">
@@ -157,7 +155,6 @@
         <?php }?>
         </ul>
     </div>
-
 </div>
 
 <?php require(APPPATH . 'views/includes/popup2_inc.php');?>

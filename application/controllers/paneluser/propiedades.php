@@ -78,12 +78,10 @@ class Propiedades extends Controller {
             $comboStates = $this->lists_model->get_states($info['country_id'], array("0"=>"Seleccione una Provincia"));
         }
         
-        //$check_cp = $this->cuentaplus_model->check();
-        $check_cp['result'] = true;
+        $check_cp = $this->cuentaplus_model->check();
+        //$check_cp['result'] = true;
 
-        $tlp_script = array('validator', 'fancybox', 'popup', 'json', 'formatnumber', 'prop_form');
-        if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));
-        
+        $tlp_script = array('googlemap', 'validator', 'fancybox', 'popup', 'json', 'formatnumber', 'prop_form');
 
         $this->_data = $this->dataview->set_data(array(
             'tlp_section'       =>  'paneluser/prop_form_view.php',
@@ -95,7 +93,8 @@ class Propiedades extends Controller {
             'listServices'      =>  $this->lists_model->get_services(),
             'action'            =>  $action,
             'info'              =>  $info,
-            'cuenta_plus'       =>  $check_cp['result']
+            'cuenta_plus'       =>  $check_cp['result'],
+            'gmap_apikey'       =>  is_localhost() ? 'ABQIAAAA6jDZq_43l3KJx0o7hAmjcxSn3a9KdZC-g3pRNBAj-9Whm4ZFhhSyGJZ-okGC5PKIJIGxiD_EzN8xRQ' : 'ABQIAAAA7nM4SLXcwUrC-K6tMmT7ZBQr-Mj9tfADPoVR5I5Rejwsk-NHkBT2MDp15MJvao9rEQxKzaV4ii8wiQ'
         ));
         $this->load->view('template_paneluser_view', $this->_data);
     }

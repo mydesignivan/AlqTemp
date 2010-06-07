@@ -40,24 +40,30 @@ class Masinfo extends Controller {
             if( !$info ) redirect($this->config->item('base_url'));
 
             $this->load->model('cuentaplus_model');
-            //$check_cp = $this->cuentaplus_model->check($info['user_id']);
-            $check_cp['result'] = true;
+            $check_cp = $this->cuentaplus_model->check($info['user_id']);
+            //$check_cp['result'] = true;
 
             $tlp_script = array('validator', 'fancybox', 'popup', 'moreinfo');
-            if( $check_cp['result'] ) $tlp_script = array_merge($tlp_script, array('googlemap'));            
+            if( $info['gmap_visible']==1 ) $tlp_script = array_merge($tlp_script, array('googlemap'));
 
             $this->_data = $this->dataview->set_data(array(
                 'tlp_script'      =>  $tlp_script,
                 "info"            =>  $info,
                 'cuentaplus'      =>  $check_cp['result'],
-                'listSimSearches' =>  $this->search_model->prop_similares($prop_id)
+                'listSimSearches' =>  $this->search_model->prop_similares($prop_id),
+                'gmap_apikey'     =>  is_localhost() ? 'ABQIAAAA6jDZq_43l3KJx0o7hAmjcxSn3a9KdZC-g3pRNBAj-9Whm4ZFhhSyGJZ-okGC5PKIJIGxiD_EzN8xRQ' : 'ABQIAAAA7nM4SLXcwUrC-K6tMmT7ZBQ90brwZ5G-NYVuq3eJE07GrHhKUxQWvCc8DfgiMECygttmW5L_OY4a9A'
             ));
             $this->load->view('template_frontpage_view', $this->_data);
         }else redirect($this->config->item('base_url'));
     }
 
     public function gmap(){
-        $this->load->view('includes/gmapzoom_view');
+        $arr_seg = $this->uri->uri_to_assoc(3);
+        $data = array(
+            'gmap'         => $arr_seg,
+            'gmap_apikey'  => is_localhost() ? 'ABQIAAAA6jDZq_43l3KJx0o7hAmjcxSn3a9KdZC-g3pRNBAj-9Whm4ZFhhSyGJZ-okGC5PKIJIGxiD_EzN8xRQ' : 'ABQIAAAA7nM4SLXcwUrC-K6tMmT7ZBTwHqY6DGHnlcUpqG5ujKR4ILoX9xRlDi8p9NLkzcgra5N9wNqdCa0njQ'
+        );
+        $this->load->view('frontpage/popup/gmapzoom_view', $data);
     }
 
     /* AJAX FUNCTIONS
@@ -65,10 +71,11 @@ class Masinfo extends Controller {
     public function ajax_sendconsult(){
         if( $_SERVER['REQUEST_METHOD']=="POST" ){
             
+            $this->load->model('users_model');
             $this->load->library('email');
 
             $message = EmailMessageConstructor(array(
-                'propname' => $_POST['address'],
+                'propname' => $_POST['reference'],
                 'name'     => $_POST['txtName'],
                 'phone'    => ($_POST['txtPhone']=="Número de Contacto") ? "" : $_POST['txtPhone'],
                 'llegada'  => $_POST['txtResLlegada'],
@@ -78,6 +85,8 @@ class Masinfo extends Controller {
                 'consult'  => nl2br($_POST['txtConsult'])
                 
             ), unserialize(EMAIL_CONSULTPROP_MESSAGE));
+
+            $data = $this->users_model->get_user(array('user_id'=>$_POST['user_id']));
 
             $this->email->from($_POST['txtEmail'], $_POST['txtName']);
             $this->email->to($data['email']);

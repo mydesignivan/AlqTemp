@@ -51,10 +51,8 @@
             <div class="err404-container">
                 <a href="http://www.alquilerestemporarios.org"><img src="images/logo_error.png" alt="AlquileresTemporarios.org"/></a>
 
-                <h1><?php echo $heading; ?></h1>
-                <?php echo $message; ?>
+                <p>Realizando tareas de mantenimiento, volveremos pronto.</p>
 
-                <p class="text-align"><a href="http://www.alquilerestemporarios.org" class="link3">Volver al Inicio</a></p>
             </div>
         </div>
         <div class="err404-footer">

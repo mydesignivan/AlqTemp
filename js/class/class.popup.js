@@ -29,12 +29,12 @@ var Popup = new (function(){
     this.load_ajax = function(url, param, callback){
          if( typeof param=="undefined" ) param='';
          if( typeof callback=="undefined" ) callback = Function();
+         callBack = callback;
 
          content.html('<p align="center"><img src="images/ajax-loader6.gif" alt="Cargando..." width="100" height="100" /></p>');
 
          $.post(url, param, function(data){
              content.html(data);
-             callback(content);
              container.modal(OPTIONS);
          });
     };
@@ -48,6 +48,7 @@ var Popup = new (function(){
     var container = false;
     var content = false;
     var sizes = {};
+    var callBack = Function();
     var SETTINGS = {
         selContainer : '',        // [required]
         selContent   : '',        // [required]
@@ -93,6 +94,7 @@ var Popup = new (function(){
                 default:
                     dialog.data.show().css('visibility', 'inherit');
                     dialog.data.show();
+                    callBack();
                 break;
                 case 'resize':
                     dialog.data.css({
@@ -112,7 +114,7 @@ var Popup = new (function(){
                             width   : settings.width,
                             height  : settings.height,
                             opacity : 1
-                        }, 500);
+                        }, 500, function(){callBack();});
                     }
 
                 break;
@@ -120,6 +122,7 @@ var Popup = new (function(){
                     dialog.data.css('visibility', 'inherit');
                     dialog.data.fadeIn('slow', function(){
                         $(window).trigger('resize');
+                        callBack();
                     });
             }
         },

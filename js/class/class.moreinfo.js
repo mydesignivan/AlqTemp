@@ -9,9 +9,11 @@ var MoreInfo = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(json){
+    this.initializer = function(param){
+        paramGmap = param.gmap;
+
         //Inicialisa la Galeria de Imagenes
-        ImageGallery.initializer(json);
+        ImageGallery.initializer(param.IG_json);
         ImageGallery.load();
 
         // Inicialisa el Validador de campos
@@ -43,6 +45,24 @@ var MoreInfo = new (function(){
             buttonImageOnly : true,
             dateFormat      : 'MM d, yy'
         });
+
+        if( param.gmap ){
+            // Muestra el mapa
+            PGmap.initializer({
+                coorLat   : param.gmap.coorLat,
+                coorLng   : param.gmap.coorLng,
+                zoom      : param.gmap.zoom,
+                mapType   : param.gmap.mapType,
+                draggable : false,
+                controlLargeMap : false,
+                controlMapType  : false,
+                iconMarker : 'images/home2.png',
+                iconMap    : [0,0, 50,0, 50,50, 0,50],
+                iconSizeX  : 50,
+                iconSizeY  : 50
+            });
+        }
+
     };
 
     this.send_consult = function(){
@@ -75,7 +95,7 @@ var MoreInfo = new (function(){
                          ajaxloader.hidden();
                          f.txtName.value = "Nombre";
                          f.txtEmail.value = "E-mail";
-                         f.txtPhone.value = "N&uacute;mero de Contacto";
+                         f.txtPhone.value = "Número de Contacto";
                          f.txtResLlegada.value = "";
                          f.txtResSalida.value = "";
                          f.cboResAdultos.options[0].selected=true;
@@ -101,15 +121,15 @@ var MoreInfo = new (function(){
                 effectOpen   : 'resize'
             });
 
-            //var iframe = $('<iframe src="" width="" height=""></iframe>');
-            
-            Popup.load_html();
+            var src = baseURI+'masinfo/gmap/gmap_lat/'+paramGmap.coorLat+'/gmap_lng/'+paramGmap.coorLng+'/gmap_zoom/'+paramGmap.zoom+'/gmap_maptype/'+paramGmap.mapType;
+            Popup.load_html('<iframe src="'+src+'" width="100%" height="270px" frameborder="0" scrolling="0" style="overflow:hidden;"></iframe><div class="text-center"><button type="button" class="simplemodal-close button-small">Cerrar</button></div>');
      };
 
     /* PRIVATE PROPERTIES
      **************************************************************************/
      var f=false;
      var working=false;
+     var paramGmap={};
 
 
     /* PRIVATE METHODS

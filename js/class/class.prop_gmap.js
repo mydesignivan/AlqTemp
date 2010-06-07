@@ -3,11 +3,12 @@ var PGmap = new (function(){
     /* PUBLIC PROPERTIES
      **************************************************************************/
     this.options={
-        coorLat : -32.8885012,
-        coorLng : -68.8569772,
-        address : '',
-        zoom    : 13,
-        mapType : 'm', // m=Mapa, k=Satelitar, h=Hibrido
+        selector : '#map',
+        coorLat  : -32.8885012,
+        coorLng  : -68.8569772,
+        address  : '',
+        zoom     : 13,
+        mapType  : 'm', // m=Mapa, k=Satelitar, h=Hibrido
         draggable : true,
         controlMapType : true,
         controlLargeMap : true,
@@ -19,13 +20,12 @@ var PGmap = new (function(){
 
     /* PUBLIC METHODS
      **************************************************************************/
-    this.initializer = function(param){
+    this.initializer = function(_param){
         if (GBrowserIsCompatible()) {
 
-            if( typeof param=="object" ) This.options = param;
-            else param = This.options;
+            var param = $.extend({}, This.options, {}, _param);
 
-            map = new GMap2($('#map')[0]);
+            map = new GMap2($(param.selector)[0]);
             var point = new GLatLng(param.coorLat, param.coorLng);
             //map.enableScrollWheelZoom();
             map.setCenter(point, param.zoom);

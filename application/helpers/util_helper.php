@@ -7,6 +7,11 @@ function print_array($arr, $die=FALSE){
     if( $die ) die();
 }
 
+function is_localhost(){
+    $hostname = $_SERVER['SERVER_NAME'];
+    return $hostname=="localhost" || preg_match("/192.168/", $hostname);
+}
+
 function file_search_special($dir, $filename_search){
     if( substr($dir,-1)=="/" ) $dir = substr($dir, 0, strlen($dir)-1);
     if( is_dir($dir) ){
