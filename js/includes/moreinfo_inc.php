@@ -1,6 +1,6 @@
 <!-- SCRIPT "ImageGallery" -->
-<link type="text/css" href="js/plugins/jquery.imagegallery/css/imagegallery-style.css" rel="stylesheet" />
-<script type="text/javascript" src="js/plugins/jquery.imagegallery/js/imagegallery-script<?=$this->config->item('sufix_pack_css');?>.js"></script>
+<link type="text/css" href="js/plugins/jquery.imagegallery/css/imagegallery-style<?=$this->config->item('sufix_pack_css');?>.css" rel="stylesheet" />
+<script type="text/javascript" src="js/plugins/jquery.imagegallery/js/imagegallery-script<?=$this->config->item('sufix_pack_js');?>.js"></script>
 <script type="text/javascript" src="js/plugins/jquery.imagegallery/js/execute.js"></script>
 <!-- END SCRIPT -->
 

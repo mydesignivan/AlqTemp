@@ -143,6 +143,8 @@ class Search_model extends Model {
         $this->db->select($sql, false);
         $this->db->where("city", $data['city']);
         $this->db->where("category_id", $data['category_id']);
+        $this->db->where('prop_id <>', $prop_id);
+        
         $this->db->order_by('prop_id', 'desc');
         return $this->db->get(TBL_PROPERTIES, setup('gral_count_propsimilares '));
     }

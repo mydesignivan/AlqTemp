@@ -115,7 +115,7 @@
                     <label class="label-form2 lbl-w3">Capacidad:</label>
                     <div class="float-left">
                         <select id="cboCapacity" name="cboCapacity" onchange="Prop.actions.capacity_change(this.value);" tabindex="8">
-                            <?php for($n=0; $n<=9; $n++) {
+                            <?php for($n=0; $n<=15; $n++) {
                                 $selected = $n == @$info['capacity'] ? ' selected="selected"' : '';
                                 echo '<option value="'.$n.'"'.$selected.'>'.$n.'</option>';
                             }?>

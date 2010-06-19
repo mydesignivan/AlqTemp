@@ -39,8 +39,11 @@
                     elseif( $info['pricemoney']=="€" ) $suffix = "euro";
                     echo '<img src="images/icon_money_'.$suffix.'.png" alt="" width="16" height="16" />';*/
                  ?>
-                    <?='&nbsp;<b>'.$info['pricemoney']."</b> ".$info['price']." ".$info['priceby'];?>
+                    <?='<li>&nbsp;<b>'.$info['pricemoney']."</b> ".$info['price']." ".$info['priceby'].'</li>';?>
                 <?php }?>
+                <?php if( !empty($info['capacity']) ){?>
+                <li><?=$info['capacity'];?></li>
+                <?php }?>                
             </ul>
         </div>
     </div><!-- end column-1 -->
